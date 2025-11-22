@@ -1,0 +1,705 @@
+:root {
+    /* colors */
+    /* Navigation - Text */
+    --color-navigation-text-default: var(--color-gray-900);
+    --color-navigation-text-hover: var(--color-indigo-500);
+    --color-navigation-text-active: var(--color-indigo-600);
+
+    /* Navigation – Mobile Panel */
+    --color-navigation-panel-mobile-background: var(--color-base-white);
+
+    /* Global Text Roles */
+    --color-text-primary: var(--color-indigo-500);
+    --color-text-heading: var(--color-neutral-800);
+    --color-text-body: var(--color-neutral-600);
+
+    /* Card Wrapper */
+    --color-card-wrapper-fill: var(--color-base-white);
+    --color-card-wrapper-stroke: var(--color-gray-200);
+
+    /* Icon Button Overlay */
+    --color-icon-button-overlay-background-default: color-mix(in srgb, var(--color-base-black) 50%, transparent);
+    --color-icon-button-overlay-background-hover: color-mix(in srgb, var(--color-base-black) 70%, transparent);
+    
+    /* Icon Button Overlay Icon */
+    --color-icon-button-overlay-icon-default: var(--color-base-white);
+
+    /* Icon Button Overlay Border */
+    --color-icon-button-overlay-border-default: color-mix(in srgb, var(--color-base-white) 20%, transparent);
+
+    /* Icon Button Toggle */
+    --color-icon-button-toggle-border: color-mix(in srgb, var(--color-neutral-300) 50%, transparent);
+
+    /* Icon Button Toggle Knob */
+    --color-icon-button-toggle-knob-background: var(--color-neutral-200);
+   
+    /* Carousal Dot Border*/
+    --color-carousal-dot-border: color-mix(in srgb, var(--color-base-white) 20%, transparent);
+
+    /* Carousal Dot Inactive*/
+    --color-carousal-dot-inactive-default: color-mix(in srgb, var(--color-base-black) 50%, transparent);
+    --color-carousal-dot-inactive-hover: color-mix(in srgb, var(--color-base-black) 70%, transparent);
+
+    /* Tech Stack Tag*/
+    --color-tech-stack-tag-background-default: var(--color-gray-100);
+
+    /* Tech Stack Tag Border*/
+    --color-tech-stack-tag-border-default: var(--color-gray-800);
+
+    /* Form Field Border*/
+    --color-form-field-border-default: var(--color-gray-300);
+    --color-form-field-border-focus: var(--color-base-black);
+    --color-form-field-border-warning: var(--color-red-600);
+
+    /* Button Primary */
+    --color-button-primary-backgorund-default: var(--color-indigo-500);
+    --color-button-primary-backgorund-hover: var(--color-indigo-600);
+    --color-button-primary-backgorund-active: var(--color-indigo-700);
+    --color-button-primary-backgorund-disabled: var(--color-violet-300);
+
+    /* Button Primary Text */
+    --color-button-primary-text-default: var(--color-base-white);
+    --color-button-primary-text-disabled: var(--color-violet-50);
+    
+    /* Button Secondary Border */
+    --color-button-secondary-border-default: var(--color-indigo-500);
+
+    /* Button Secondary Text */
+    --color-button-secondary-text-default: var(--color-indigo-500);
+    --color-button-secondary-text-hover: var(--color-gray-50);
+    --color-button-secondary-text-active: var(--color-gray-100);
+    --color-button-secondary-text-disabled: var(--color-violet-50);
+
+    /* Button Secondary */
+    --color-button-secondary-background-hover: var(--color-indigo-500);
+    --color-button-secondary-background-active: var(--color-indigo-600);
+    --color-button-secondary-background-disabled: var(--color-violet-300);
+
+    /* Button Overlay */
+    --color-button-overlay-border: color-mix(in srgb, var(--color-base-black) 6%, transparent);
+    --color-button-overlay-icon: color-mix(in srgb, var(--color-base-black) 75%, transparent);
+    --color-button-overlay-icon-active: var(--color-base-black);
+    --color-button-overlay-text-default: color-mix(in srgb, var(--color-base-black) 60%, transparent);
+    --color-button-overlay-text-hover: color-mix(in srgb, var(--color-base-black) 75%, transparent);
+    --color-button-overlay-text-active: var(--color-base-black);
+
+    /* Button Overlay Text */
+    --color-button-overlay-text-default: var(--color-base-white);
+
+    /* Button Overlay Border*/
+    --color-button-overlay-border-deault: color-mix(in srgb, var(--color-base-white) 20%, transparent);
+
+    /* Button Overlay Background*/
+    --color-button-overlay-background-deault: color-mix(in srgb, var(--color-base-black) 3%, transparent);
+    --color-button-overlay-background-hover: color-mix(in srgb, var(--color-base-black) 6%, transparent);
+    --color-button-overlay-background-active: color-mix(in srgb, var(--color-indigo-500) 14%, transparent);
+
+    /* Button Overlay Background Default*/
+    --color-button-overlay-background-deault-defualt: color-mix(in srgb, var(--color-base-black) 50%, transparent);
+    --color-button-overlay-background-default-hover: color-mix(in srgb, var(--color-base-black) 70%, transparent);
+
+    /* Select Background */
+    --color-select-background-defualt: color-mix(in srgb, var(--color-indigo-500) 8%, transparent);
+    --color-select-background-hover: color-mix(in srgb, var(--color-indigo-500) 8%, transparent);
+    --color-select-background-focus: color-mix(in srgb, var(--color-indigo-500) 15%, transparent);
+
+    /* Select Border */
+    --color-select-border-defualt: var(--color-neutral-300);
+    --color-select-border-focus: var(--color-indigo-500);
+
+    /* Select Text */
+    --color-select-text-defualt: var(--color-neutral-800);
+    --color-select-text-contrast-on-brand: var(--color-indigo-500);
+
+    /* Icon Dropdown */
+    --color-icon-dropdown-defualt: var(--color-neutral-800);
+    --color-icon-dropdown-hover: var(--color-neutral-950);
+
+    /* Tag Icon */
+    --color-tag-icon-defualt: color-mix(in srgb, var(--color-base-black) 60%, transparent);
+
+    /* Card Container */
+    --color-card-container-background: var(--color-base-white);
+    --color-card-container-border: var(--color-neutral-200);
+    --color-card-container-shadow: color-mix(in srgb, var(--color-base-black) 6%, transparent);
+
+    /* Image Placeholder */
+    --color-image-placeholder-background: var(--color-neutral-300);
+
+    /* Badge Primary */
+    --color-badge-primary-background: var(--color-base-white);
+    --color-badge-primary-text: var(--color-neutral-950);
+    --color-badge-primary-border: var(--color-neutral-200);
+
+    /* Badge Accent */
+    --color-badge-primary-background: var(--color-violet-50);
+    --color-badge-primary-text: var(--color-blue-600);
+    --color-badge-primary-border: color-mix(in srgb, var(--color-indigo-500) 24%, transparent);
+
+    /* Badge Neutral */
+    --color-badge-neutral-background: color-mix(in srgb, var( --color-base-white) neutral%, transparent);
+    --color-badge-neutral-text: var(--color-neutral-950);
+    --color-badge-neutral-border: var(--color-neutral-200);
+
+    /* Header Border */
+    --color-border-header-bottom: var(--color-neutral-200);
+
+    /* Footer Section */
+    --color-footer-section-background: var(--color-zinc-50);
+
+    /* App Background */
+    --color-app-background: var(--color-base-white);
+
+
+    /* Typography */
+    /* Button */
+    --text-button-desktop-font-size: var(--font-size-md);
+    --text-button-tablet-font-size: var(--font-size-sm-plus);
+    --text-button-mobile-font-size: var(--font-size-sm);
+    --text-button-font-weight: var(--font-weight-semibold);
+
+    /* Navigation Link  */
+    --text-navigation-link-desktop-font-size: var(--font-size-md-plus);
+    --text-navigation-link-desktop-font-weight: var(--font-weight-medium);
+    --text-navigation-link-tablet-font-size: var(--font-size-md);
+    --text-navigation-link-tablet-font-weight: var(--font-weight-medium);
+    --text-navigation-link-mobile-font-size: var(--font-size-sm-plus);
+    --text-navigation-link-mobile-font-weight: var(--font-weight-medium);
+
+    /* Navigation Link Footer */
+    --text-navigation-link-footer-desktop-font-size: var(--font-size-md);
+    --text-navigation-link-footer-tablet-font-size: var(--font-size-sm);
+    --text-navigation-link-footer-mobile-font-size: var(--font-size-xs-plus);
+    --text-navigation-link-footer-font-weight: var(--font-weight-medium);
+
+    /* Hero Intro */
+    --text-hero-intro-desktop-font-size: var(---font-size-md-plus-2);
+    --text-hero-intro-tablet-font-size: var(--font-size-md);
+    --text-hero-intro-mobile-font-size: var(--font-size-sm);
+    --text-hero-intro-font-weight: var(--font-weight-medium);
+
+    /* Hero Heading */
+    --text-hero-heading-desktop-font-size: var(--font-size-3xl-plus-2);
+    --text-hero-heading-tablet-font-size: var(--font-size-3xl);
+    --text-hero-heading-mobile-font-size: var(--font-size-xl-plus);
+    --text-hero-heading-font-weight: var(--font-weight-extrabold);
+
+    /* Hero Heading Subpage */
+    --text-hero-heading-subpage-desktop-font-size: var(--font-size-3xl-plus);
+    --text-hero-heading-subpage-tablet-font-size: var(--font-size-2xl-plus);
+    --text-hero-heading-subpage-mobile-font-size: var(--font-size-xl-plus);
+    --text-hero-heading-subpage-font-weight: var(--font-weight-extrabold);
+
+    /* Hero Tagline */
+    --text-hero-tagline-desktop-font-size: var(--font-size-md-plus-2);
+    --text-hero-tagline-tablet-font-size: var(--font-size-md);
+    --text-hero-tagline-mobile-font-size: var(--font-size-sm);
+    --text-hero-tagline-font-weight: var(--font-weight-medium);
+
+    /* Heading-1 */
+    --text-heading-1-desktop-font-size: var(--font-size-3xl-plus);
+    --text-heading-1-tablet-font-size: var(--font-size-2xl-plus);
+    --text-heading-1-mobile-font-size: var(--font-size-xl-plus);
+    --text-heading-1-font-weight: var(--font-weight-bold);
+
+    /* Heading-1 Subpage */
+    --text-heading-1-subpage-desktop-font-size: var(--font-size-2xl-plus);
+    --text-heading-1-subpage-tablet-font-size: var(--font-size-xl-plus);
+    --text-heading-1-subpage-mobile-font-size: var(--font-size-xl);
+    --text-heading-1-subpage-font-weight: var(--font-weight-bold);
+
+    /* Heading-2 Subpage */
+    --text-heading-2-desktop-font-size: var(--font-size-lg-plus);
+    --text-heading-2-tablet-font-size: var(--font-size-lg);
+    --text-heading-2-mobile-font-size: var(--font-size-md-plus-2);
+    --text-heading-2-font-weight: var(--font-weight-bold);
+
+    /* Heading-3 Subpage */
+    --text-heading-3-desktop-font-size: var(--font-size-md-plus-2);
+    --text-heading-3-tablet-font-size: var(--font-size-md);
+    --text-heading-3-mobile-font-size: var(--font-size-sm-plus);
+    --text-heading-3-font-weight: var(--font-weight-bold);
+
+    /* Body Large */
+    --text-body-large-desktop-font-size: var(--font-size-md);
+    --text-body-large-tablet-font-size: var(--font-size-sm-plus);
+    --text-body-large-mobile-font-size: var(--font-size-sm);
+    --text-body-large-font-weight: var(--font-weight-regular);
+
+    /* Body Base */
+    --text-body-base-desktop-font-size: var(--font-size-md);
+    --text-body-base-desktop-line-height: var(--line-height-relaxed-plus);
+    --text-body-base-tablet-font-size: var(--font-size-sm-plus);
+    --text-body-base-tablet-line-height: var(--line-height-normal-mid);
+    --text-body-base-mobile-font-size: var(--font-size-sm);
+    --text-body-base-desktop-line-height: var(--line-height-normal-plus);
+    --text-body-base-font-weight: var(--font-weight-regular);
+
+    /* Body Small */
+    --text-body-small-desktop-font-size: var(--font-size-sm);
+    --text-body-small-tablet-font-size: var(--font-size-xs-plus);
+    --text-body-small-mobile-font-size: var(--font-size-xs);
+    --text-body-small-font-weight: var(--font-weight-regular);
+
+    /* Caption Default */
+    --text-caption-default-desktop-font-size: var(--font-size-xs);
+    --text-caption-default-tablet-font-size: var(--font-size-xxs);
+    --text-caption-default-mobile-font-size: var(--font-size-xxs);
+    --text-caption-default-font-weight: var(--font-weight-regular);
+
+    /* Label Default */
+    --text-label-default-desktop-font-size: var(--font-size-sm);
+    --text-label-default-tablet-font-size: var(--font-size-sm);
+    --text-label-default-mobile-font-size: var(--font-size-xs-plus);
+    --text-label-default-font-weight: var(--font-weight-regular);
+
+    /* Tag Static */
+    --text-tag-static-desktop-font-size: var(--font-size-sm);
+    --text-tag-static-tablet-font-size: var(--font-size-xs-plus);
+    --text-tag-static-mobile-font-size: var(--font-size-xs);
+    --text-tag-static-font-weight: var(--font-weight-medium);
+    
+   
+    /* Sizes */
+    /* Button */
+    --size-button-desktop-padding-x: 24px;
+    --size-button-desktop-height: 48px;
+    --size-button-tablet-padding-x: 22px;
+    --size-button-tablet-height: 42px;
+    --size-button-mobile-padding-x: 20px;
+    --size-button-mobile-height: 40px;
+
+    /* Button Base */
+    --size-button-base-padding-y: 12px;
+
+    /* Button Overlay */
+    --size-button-overlay-desktop: 40px;
+    --size-button-overlay-tablet: 36px;
+    --size-button-overlay-mobile: 32px;
+
+    /* Navigation Header */
+    --size-navigation-header-desktop-width: 1440px;
+    --size-navigation-header-desktop-height: 80px
+    --size-navigation-header-tablet-width: 1024px;
+    --size-navigation-header-tablet-height: 72px;
+    --size-navigation-header-mobile-width: 390px;
+    --size-navigation-header-mobile-height: 64px;
+
+    /* Navigation Closet Panel */
+    --size-navigation-closet-panel-mobile-width: 390px;
+    --size-navigation-closet-panel-mobile-height: 844p;
+
+    /* Section Wrapper */
+    --size-section-wrapper-desktop-max-width: 1440px;
+    --size-section-wrapper-tablet-max-width: 1024px;
+    --size-section-wrapper-mobile-max-width: 390px;
+
+    /* Block Wrapper */
+    --size-block-wrapper-desktop-max-width: 636px;
+    --size-block-wrapper-tablet-max-width: 464px;
+    --size-block-wrapper-mobile-max-width: 358px;
+
+    /* Icon Button Overlay */
+    --size-icon-button-overlay-desktop-height: 40px;
+    --size-icon-button-overlay-tablet-height: 38px;
+    --size-icon-button-overlay-mobile-height: 36px;
+
+    /* Icon Button Toggle Track */
+    --size-icon-button-toggle-track-desktop-wodth: 60px;
+    --size-icon-button-toggle-track-desktop-height: 28px;
+    --size-icon-button-toggle-track-tablet-width: 52px;
+    --size-icon-button-toggle-track-tablet-height: 24px;
+    --size-icon-button-toggle-track-mobile-width: 46px;
+    --size-icon-button-toggle-track-mobile-height: 20px;
+
+    /* Icon Button Toggle Knob */
+    --size-icon-button-toggle-knob-desktop-diameter: 32px;
+    --size-icon-button-toggle-knob-tablet-diameter: 28px;
+    --size-icon-button-toggle-knob-mobile-diameter: 24px;
+
+    /* Carousel Dot */
+    --size-carousel-dot-all-diameter: 10px;
+
+    /* Testimonial Card */
+    --size-testimonial-card-desktop-width: 424px;
+    --size-testimonial-card-tablet-width: 460px;
+    --size-testimonial-card-mobile-width: 358px;
+
+    /* Form Field Single Line */
+    --size-form-field-single-line-desktop-height: 48px;
+    --size-form-field-single-line-tablet-height: 44px;
+    --size-form-field-single-line-mobile-height: 40px;
+
+    /* Form Field Expandable */
+    --size-form-field-expandable-desktop-height: 128px;
+    --size-form-field-expandable-tablet-height: 112px;
+    --size-form-field-expandable-mobile-height: 96px;
+
+    /* Tag Static */
+    --size-tag-static-desktop-height: 32px;
+    --size-tag-static-desktop-height: 28px;
+    --size-tag-static-desktop-height: 24px;
+
+    /* Select */
+    --size-select-desktop-height: 40px;
+    --size-select-desktop-max-width: 320px;
+    --size-select-tablet-height: 36px;
+    --size-select-tablet-max-width: 280px;
+    --size-select-mobile-height: 32px;
+    --size-select-mobile-max-width: 240px;
+
+    /* Select Dropdown*/
+    --size-select-dropdown-desktop-max-height: 200px;
+
+    /* Icon Dropdown*/
+    --size-icon-dropdown-desktop: 14px;
+    --size-icon-dropdown-tablet: 12px;
+    --size-icon-dropdown-mobile: 10px;
+
+    /* Icon Heading-1 */
+    --size-icon-heading-1-desktop: 20px;
+    --size-icon-heading-1-tablet: 18px;
+    --size-icon-heading-1-mobile: 16px;
+
+    /* Icon Heading-2 */
+    --size-icon-heading-2-desktop: 16px;
+    --size-icon-heading-2-tablet: 15px;
+    --size-icon-heading-2-mobile: 14px;
+
+    /* Icon Heading-3 */
+    --size-icon-heading-3-desktop: 14px;
+    --size-icon-heading-3-tablet: 13px;
+    --size-icon-heading-3-mobile: 12px;
+
+    /* Icon Container Heading-1 */
+    --size-icon-container-heading-1-desktop-diameter: 36px;
+    --size-icon-container-heading-1-tablet-diameter: 32px;
+    --size-icon-container-heading-1-mobile-diameter: 28px;
+
+    /* Icon Container Heading-2 */
+    --size-icon-container-heading-2-desktop-diameter: 28px;
+    --size-icon-container-heading-2-tablet-diameter: 26px;
+    --size-icon-container-heading-2-mobile-diameter: 24px;
+
+    /* Icon Container Heading-3 */
+    --size-icon-container-heading-3-desktop-diameter: 24px;
+    --size-icon-container-heading-3-tablet-diameter: 22px;
+    --size-icon-container-heading-3-mobile-diameter: 20px;
+
+    /* Block Wrapper Single */
+    --size-block-wrapper-single-desktop-max-width: 784px;
+    --size-block-wrapper-single-tablet-max-width: 656px;
+
+    /* Block Wrapper Primary */
+    --size-block-wrapper-primary-desktop-max-width: 850px;
+
+
+    /* Spacing */
+    /* Navigaiton Link Group */
+    --spacing-navigation-link-group-desktop-gap: 24px;
+    --spacing-navigation-link-group-tablet-gap: 16px;
+    --spacing-navigation-link-group-mobile-gap-vertical: 16px;
+
+    /* Navigaiton Header */
+    --spacing-navigation-header-padding-x-desktop: 64px;
+    --spacing-navigation-header-padding-x-tablet: 32px;
+    --spacing-navigation-header-padding-x-mobile: 16px;
+
+    /* Navigaiton Footer Link Group */
+    --spacing-navigation-footer-link-group-gap-vertical-desktop: 8px;
+    --spacing-navigation-footer-link-group-gap-vertical-tablet: 6px;
+    --spacing-navigation-footer-link-group-gap-vertical-mobile: 4px;
+
+    /* Closet Panel */
+    --spacing-closet-panel-mobile-padding-x: 16px;
+    --spacing-closet-panel-mobile-padding-top: 20px;
+    --spacing-closet-panel-mobile-padding-bottom: 32px;
+    --spacing-closet-panel-mobile-section-gap: 24px;
+
+    /* Section Wrapper */
+    --spacing-section-wrapper-desktop-padding-x: 64px;
+    --spacing-section-wrapper-desktop-padding-y: 64px;
+    --spacing-section-wrapper-desktop-gap: 40px;
+    --spacing-section-wrapper-tablet-padding-x: 32px;
+    --spacing-section-wrapper-tablet-padding-y: 48px;
+    --spacing-section-wrapper-tablet-gap: 32px;
+    --spacing-section-wrapper-mobile-padding-x: 16px;
+    --spacing-section-wrapper-mobile-padding-y: 32px;
+    --spacing-section-wrapper-mobile-gap: 24px;
+
+    /* Block Wrapper */
+    --spacing-block-wrapper-desktop-padding-x: 16px;
+    --spacing-block-wrapper-desktop-padding-y: 16px;
+    --spacing-block-wrapper-desktop-gap: 24px;
+    --spacing-block-wrapper-tablet-padding-x: 16px;
+    --spacing-block-wrapper-tablet-padding-y: 16px;
+    --spacing-block-wrapper-tablet-gap: 20px;
+    --spacing-block-wrapper-mobile-padding-x: 16px;
+    --spacing-block-wrapper-mobile-padding-y: 16px;
+    --spacing-block-wrapper-mobile-gap: 16px;
+
+    /* Card Wrapper Education */
+    --spacing-card-wrapper-education-desktop-padding-x: 32px;
+    --spacing-card-wrapper-education-desktop-padding-y: 32px;
+    --spacing-card-wrapper-education-desktop-gap: 12px;
+    --spacing-card-wrapper-education-tablet-padding-x: 24px;
+    --spacing-card-wrapper-education-tablet-padding-y: 24px;
+    --spacing-card-wrapper-education-tablet-gap: 10px;
+    --spacing-card-wrapper-education-mobile-padding-x: 32px;
+    --spacing-card-wrapper-education-mobile-padding-y: 20px;
+    --spacing-card-wrapper-education-mobile-gap: 8px;
+
+    /* Card Wrapper Skill */
+    --spacing-card-wrapper-skill-desktop-padding-x: 16px;
+    --spacing-card-wrapper-skill-desktop-padding-y: 12px;
+    --spacing-card-wrapper-skill-desktop-gap: 8px;
+    --spacing-card-wrapper-skill-tablet-padding-x: 14px;
+    --spacing-card-wrapper-skill-tablet-padding-y: 10px;
+    --spacing-card-wrapper-skill-tablet-gap: 6px;
+    --spacing-card-wrapper-skill-mobile-padding-x: 12px;
+    --spacing-card-wrapper-skill-mobile-padding-y: 8px;
+    --spacing-card-wrapper-skill-mobile-gap: 6px;
+
+    /* Button Overlay */
+    --spacing-button-overlay-desktop-padding-x: 14px;
+    --spacing-button-overlay-desktop-padding-y: 9px;
+    --spacing-button-overlay-tablet-padding-x: 10px;
+    --spacing-button-overlay-tablet-padding-y: 7px;
+    --spacing-button-overlay-mobile-padding-x: 8px;
+    --spacing-button-overlay-mobile-padding-y: 5px;
+
+    /* Tech Stack Tag */
+    --spacing-teck-stack-tag-padding-x: 16px;
+
+    /* Testimonial Card */
+    --spacing-testimonial-card-desktop-padding: 24px;
+    --spacing-testimonial-card-tablet-padding: 20px;
+    --spacing-testimonial-card-mobile-padding: 16px;
+    --spacing-testimonial-card-gap: 20px;
+
+    /* Form Field Stack */
+    --spacing-form-field-stack-desktop-gap: 10px;
+    --spacing-form-field-stack-tablet-gap: 8px;
+    --spacing-form-field-stack-mobile-gap: 6px;
+
+    /* Form Field */
+    --spacing-form-field-desktop-padding-x: 16px;
+    --spacing-form-field-desktop-padding-y: 12px;
+    --spacing-form-field-desktop-gap: 24px;
+    --spacing-form-field-tablet-padding-x: 14px;
+    --spacing-form-field-tablet-padding-y: 10px;
+     --spacing-form-field-tablet-gap: 20px;
+    --spacing-form-field-mobile-padding-x: 12px;
+    --spacing-form-field-mobile-padding-y: 8px;
+    --spacing-form-field-mobile-gap: 16px;
+
+    /* Select */
+    --spacing-select-padding-x: 10px;
+    --spacing-select-padding-y: 14px;
+
+    /* Block Wrapper Single */
+    --spacing-block-wrapper-single-desktop-padding-x: 16px;
+    --spacing-block-wrapper-single-desktop-gap: 24px;
+    --spacing-block-wrapper-single-tablet-padding-x: 16px;
+    --spacing-block-wrapper-single-tablet-gap: 20px;
+
+    /* Block Wrapper Primary */
+    --spacing-block-wrapper-primary-desktop-padding-x: 65px;
+    --spacing-block-wrapper-primary-desktop-gap: 24px;
+
+    /* Card Container */
+    --spacing-card-container-desktop-padding-y: 24px;
+    --spacing-card-container-tablet-padding-y: 20px;
+    --spacing-card-container-mobile-padding-y: 16px;
+
+    /* Badge */
+    --spacing-badge-padding-x: 16px;
+    --spacing-badge-padding-y: 24px;
+
+    /* Text Container */
+    --spacing-text-container-desktop-padding-x: 32px;
+    --spacing-text-container-desktop-padding-y: 32px;
+    --spacing-text-container-tablet-padding-x: 28px;
+    --spacing-text-container-tablet-padding-y: 28px;
+    --spacing-text-container-mobile-padding-x: 20px;
+    --spacing-text-container-mobile-padding-y: 24px;
+    --spacing-text-container-mobile-compensate-inner-padding-x: 12px;
+
+    /* Text Container Inner-1 */
+    --spacing-text-container-inner-1-desktop-padding: 24px;
+    --spacing-text-container-inner-1-tablet-padding: 20px;
+    --spacing-text-container-inner-1-mobile-padding: 16px;
+
+    /* Text Container Inner-2 */
+    --spacing-text-container-inner-2-desktop-padding: 16px;
+    --spacing-text-container-inner-2-tablet-padding: 16px;
+    --spacing-text-container-inner-2-mobile-padding: 12px;
+
+    /* Icon-Heading */
+    --spacing-icon-heading-base-gap: 8px;
+
+    /* Heading-1-Heading-2 */
+    --spacing-heading-1-heading-2-desktop-gap: 44px;
+    --spacing-heading-1-heading-2-tablet-gap: 36px;
+    --spacing-heading-1-heading-2-mobile-gap: 28px;
+
+    /* Heading-1-Body */
+    --spacing-heading-1-body-desktop-gap: 20px;
+    --spacing-heading-1-body-tablet-gap: 16px;
+    --spacing-heading-1-body-mobile-gap: 12px;
+
+    /* Heading-2-Heading-3 */
+    --spacing-heading-2-heading-3-desktop-gap: 28px;
+    --spacing-heading-2-heading-3-tablet-gap: 24px;
+    --spacing-heading-2-heading-3-mobile-gap: 20px;
+
+    /* Heading-2-Body */
+    --spacing-heading-2-body-desktop-gap: 12px;
+    --spacing-heading-2-body-tablet-gap: 10px;
+    --spacing-heading-2-body-mobile-gap: 8px;
+
+    /* Body-Body */
+    --spacing-body-body-desktop-gap: 14px;
+    --spacing-body-body-tablet-gap: 12px;
+    --spacing-body-body-mobile-gap: 10px;
+
+    /* Item-Item */
+    --spacing-item-item-desktop-gap: 20px;
+    --spacing-item-item-tablet-gap: 16px;
+    --spacing-item-item-mobile-gap: 12px;
+
+    /* List-Item */
+    --spacing-list-item-desktop-gap: 12px;
+    --spacing-list-item-tablet-gap: 10px;
+    --spacing-list-item-mobile-gap: 8px;
+
+    /* Interactive-Interactive */
+    --spacing-interactive-interactive-desktop-gap-horizontal: 16px;
+    --spacing-interactive-interactive-tablet-gap-horizontal: 12px;
+    --spacing-interactive-interactive-mobile-gap-horizontal: 8px;
+    --spacing-interactive-interactive-desktop-gap-vertical: 16px;
+    --spacing-interactive-interactive-tablet-gap-vertical: 14px;
+    --spacing-interactive-interactive-mobile-gap-vertical: 12px;
+
+    /* Block-Block */
+    --spacing-block-block-desktop-gap: 32px;
+    --spacing-block-block-tablet-gap: 24px;
+    --spacing-block-block-mobile-gap: 16px;
+
+    /* Footer-List-List */
+    --spacing-footer-list-list-desktop-gap: 10px;
+    --spacing-footer-list-list-tablet-gap: 8px;
+    --spacing-footer-list-list-mobile-gap: 6px;
+
+    /* Footer-Heading-List */
+    --spacing-footer-heading-list-desktop-gap: 16px;
+    --spacing-footer-heading-list-tablet-gap: 14px;
+    --spacing-footer-heading-list-mobile-gap: 12px;
+
+    /* Section */
+    --spacing-section-desktop-gap: 72px;
+    --spacing-section-tablet-gap: 56px;
+    --spacing-section-mobile-gap: 40px;
+
+    /* card Inner */
+    --spacing-card-inner-mobile-padding: 8px;
+
+
+    /* Radius */
+    /* Button */
+    --radius-button-base: var(--radius-lg);
+    --radius-button-tag-clickable: var(--radius-full);
+
+    /* Button Overlay */
+    --radius-button-overlay-base: var(--radius-lg);
+
+    /* Card Wrapper */
+    --radius-card-wrapper-base: var(--radius-xl);
+
+    /* Icon Button Overlay */
+    --radius-icon-button-overlay: var(--radius-full);
+
+    /* Carousel Contianer */
+    --radius-carousel-container: var(--radius-2xl);
+
+    /* Carousel Dot */
+    --radius-carousel-dot-all: var(--radius-full);
+
+    /* Tech Stack Tag */
+    --radius-tech-stack-tag: var(--radius-full);
+
+    /* Form Field */
+    --radius-form-field-base: var(--radius-lg);
+
+    /* Closet Panel */
+    --radius-closet-panel-mobile: var(--radius-lg);
+
+    /* Tag Static */
+    --radius-tag-static: var(--radius-xl);
+
+    /* Select */
+    --radius-select-base: var(--radius-xl);
+
+    /* Card Contianer */
+    --radius-card-container-base: var(--radius-2xl);
+
+    /* Image */
+    --radius-image-base: var(--radius-xl);
+
+    /* Badge */
+    --radius-badge-base: var(--radius-3xl);
+
+    /* Card Skill Wrapper */
+    --radius-card-skill-wrapper-base: var(--radius-full);
+    
+
+    /* Border */
+    /* Button Secondary */
+    --border-buttion-secondary-width: var(--border-1);
+
+    /* Card Wrapper */
+    --border-card-wrapper-base-width: var(--border-1);
+
+    /* Button Overlay */
+    --border-button-overlay-width: var(--border-1);
+
+    /* Icon Button Overlay */
+    --border-icon-button-overlay-width: var(--border-1);
+
+    /* Icon Button Toggle */
+    --border-icon-button-toggle-width: var(--border-1);
+
+    /* Carousel Dot */
+    --border-carousel-dot-all-width: var(--border-1);
+
+    /* Form Field */
+    --border-form-field-width: var(--border-1);
+
+    /* Card Container */
+    --border-card-container-base-width: var(--border-1);
+
+
+    /* Shadows */
+    /* Card Wrapper */
+    --shadow-card-wrapper: 0px 2px 6px 0px rgba(0, 0, 0, 0.06);
+
+    /* Card Container */
+    --shadow-card-container: 0px 2px 12px 0px;
+
+    /* Carousel Contianer */
+    --shadow-carousel-container: 0px 4px 12px 0px rgba(0, 0, 0, 0.8);
+
+    /* Select Dropdown */
+    --shadow-select-dropdown: 0px 6px 16px 0px rgba(115, 93, 248, 0.3);
+
+    /* Header Bottom */
+    --shadow-select-dropdown: 0px 2px 6px 0px rgba(0, 0, 0, 0.05);
+
+
+    /* Effects */
+    /* Card Wrapper */
+    --effect-card-wrapper-background-blur: 0px;
+
+    /* Card Container */
+    --effect-card-container-background-blur: 0px;
+}

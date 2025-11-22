@@ -1,0 +1,143 @@
+html.dark {
+  /* Navigation - Text */
+  --color-navigation-text-default: var(--color-base-white);
+  --color-navigation-text-hover: var(--color-indigo-400);
+  --color-navigation-text-active: var(--color-indigo-300);
+
+  /* Navigation - Mobile Panel */
+  --color-navigation-panel-mobile-background: var(--color-gray-800);
+
+  /* Global Text Roles */
+  --color-text-primary: var(--color-violet-400);
+  --color-text-heading: var(--color-base-white);
+  --color-text-body: var(--color-neutral-200);
+
+  /* Card Wrapper */
+  --color-card-wrapper-fill: color-mix(in srgb, var(--color-zinc-700) 6%, transparent);
+  --color-card-wrapper-stroke: color-mix(in srgb, var(--color-base-white) 8%, transparent);
+
+  /* Icon Button Toggle Knob */
+  --color-icon-button-toggle-knob-background: var(--color-gray-300);
+
+  /* Icon Button Toggle Tracker */
+  --color-icon-button-toggle-tracker-background: var( --color-gray-600);
+
+  /* Tech Stack Tag*/
+  --color-tech-stack-tag-background-default: color-mix(in srgb, var(--color-zinc-600) 60%, transparent);
+
+  /* Tech Stack Tag Border*/
+  --color-tech-stack-tag-border-default: var(--color-gray-700);
+
+  /* Form Field Border*/
+  --color-form-field-border-default: var(--color-gray-400);
+  --color-form-field-border-focus: var(--color-base-white);
+  --color-form-field-border-warning: var(--color-red-400);
+
+  /* Button Primary */
+  --color-button-primary-backgorund-default: var(--color-violet-400);
+  --color-button-primary-backgorund-hover: var(--color-indigo-500);
+  --color-button-primary-backgorund-active: var(--color-indigo-600);
+  --color-button-primary-backgorund-disabled: var(--color-slate-600);
+
+  /* Button Primary Text */
+  --color-button-primary-text-default: var(--color-base-white);
+  --color-button-primary-text-disabled: var(--color-violet-300);
+
+  /* Button Secondary Border */
+  --color-button-secondary-border-default: var(--color-violet-400);
+
+  /* Button Secondary Text */
+  --color-button-secondary-text-default: var(--color-violet-200);
+  --color-button-secondary-text-hover: var(--color-violet-100);
+  --color-button-secondary-text-active: var(--color-indigo-900);
+  --color-button-secondary-text-disabled: var(--color-slate-500);
+  
+
+   /* Button Secondary */
+  --color-button-secondary-background-hover: var(--color-violet-400);
+  --color-button-secondary-background-active: var(--color-violet-300);
+  --color-button-secondary-background-disabled: var(--color-indigo-950);
+
+  /* Button Overlay */
+  --color-button-overlay-border: color-mix(in srgb, var(--color-base-white) 6%, transparent);
+  --color-button-overlay-icon: color-mix(in srgb, var(--color-base-white) 75%, transparent);
+  --color-button-overlay-icon-active: var(--color-base-white);
+  --color-button-overlay-text-default: color-mix(in srgb, var(--color-base-white) 60%, transparent);
+  --color-button-overlay-text-hover: color-mix(in srgb, var(--color-base-white) 75%, transparent);
+  --color-button-overlay-text-active: var(--color-base-white);
+
+  /* Button Overlay Background*/
+  --color-button-overlay-background-deault: color-mix(in srgb, var(--color-base-white) 3%, transparent);
+  --color-button-whitelay-background-hover: color-mix(in srgb, var(--color-base-white) 6%, transparent);
+  --color-button-overlay-background-active: color-mix(in srgb, var(--color-indigo-500) 20%, transparent);
+
+  /* Select Background */
+  --color-select-background-defualt: color-mix(in srgb, var(--color-indigo-500) 20%, transparent);
+
+  /* Select Border */
+  --color-select-border-defualt: color-mix(in srgb, var(--color-base-white) 6%, transparent);
+
+  /* Select Text */
+  --color-select-text-defualt: var(--color-slate-200);
+
+  /* Icon Dropdown */
+  --color-icon-dropdown-defualt: var(--color-neutral-100);
+  --color-icon-dropdown-hover: var(--color-base-white);
+
+  /* Tag Icon */
+  --color-tag-icon-defualt: color-mix(in srgb, var(--color-base-white) 80%, transparent);
+
+  /* Card Container */
+  --color-card-container-background: color-mix(in srgb, var( --color-zinc-700) 6%, transparent);
+  --color-card-container-border: color-mix(in srgb, var(--color-base-white) 8%, transparent);
+  --color-card-container-shadow: color-mix(in srgb, var(--color-base-black) 30%, transparent);
+
+  /* Badge Primary */
+  --color-badge-primary-background: color-mix(in srgb, var(--color-zinc-600) 6%, transparent);
+  --color-badge-primary-text: var(--color-zinc-100);
+  --color-badge-primary-border: color-mix(in srgb, var(--color-base-white) 8%, transparent);
+
+  /* Badge Accent */
+  --color-badge-primary-background: var(--color-indigo-950);
+  --color-badge-primary-text: var(--color-blue-300);
+  --color-badge-primary-border: color-mix(in srgb, var(--color-violet-400) 28%, transparent);
+
+  /* Badge Neutral */
+  --color-badge-neutral-background: color-mix(in srgb, var( --color-base-white) neutral%, transparent);
+  --color-badge-neutral-text: var(--color-zinc-100);
+  --color-badge-neutral-border: color-mix(in srgb, var(--color-base-white) 12%, transparent);
+
+  /* Header Border */
+  --color-border-header-bottom: var(--color-neutral-800);
+
+  /* Footer Section */
+  --color-footer-section-background: color-mix(in srgb, var(--color-gray-800) 50%, transparent);
+
+  /* App Background */
+  --color-app-background: var(--color-zinc-700);
+
+
+  /* Shadows */
+  /* Card Wrapper */
+  --shadow-card-wrapper: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+
+  /* Card Container */
+  --shadow-card-container: 0px 2px 12px 0px;
+
+  /* Carousel Contianer */
+  --shadow-carousel-container: 0px 4px 12px 0px rgba(0, 0, 0, 0.8);
+
+  /* Select Dropdown */
+  --shadow-select-dropdown: 0px 6px 16px 0px rgba(115, 93, 248, 0.3);
+
+  /* Header Bottom */
+  --shadow-select-dropdown: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
+
+
+  /* Effects */
+  /* Card Wrapper */
+  --effect-card-wrapper-background-blur: 12px;
+
+  /* Card Container */
+  --effect-card-container-background-blur: 12px;
+}
