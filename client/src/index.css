@@ -1,4 +1,12 @@
-@import"tailwindcss";
+@import "tailwindcss";
+@import "./styles/tokens.core.css";
+@import "./styles/tokens.semantic.css";
+@import "./styles/tokens.themes.css";
+
+
 :root {
-background: #000;
+    margin: 5rem;
+    background: var(--color-app-background);
+    transition: background-color 1s ease, color 1s ease;
 }
+

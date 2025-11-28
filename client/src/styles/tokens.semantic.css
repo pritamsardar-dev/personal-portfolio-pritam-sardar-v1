@@ -24,21 +24,30 @@
     /* Icon Button Overlay Icon */
     --color-icon-button-overlay-icon-default: var(--color-base-white);
 
+    /* Icon Button Icon Only */
+    --color-icon-button-icon-only: var(--color-base-black);
+
     /* Icon Button Overlay Border */
     --color-icon-button-overlay-border-default: color-mix(in srgb, var(--color-base-white) 20%, transparent);
 
     /* Icon Button Toggle */
     --color-icon-button-toggle-border: color-mix(in srgb, var(--color-neutral-300) 50%, transparent);
 
+    /* Icon Button Toggle Tracker */
+    --color-icon-button-toggle-tracker-background-default: var(--color-transparent);
+    --color-icon-button-toggle-tracker-background-hover: var(--color-base-white);
+    --color-icon-button-toggle-tracker-icon-border-default: var(--color-gray-400);
+    --color-icon-button-toggle-tracker-icon-background-hover: var(--color-gray-200);
+
     /* Icon Button Toggle Knob */
     --color-icon-button-toggle-knob-background: var(--color-neutral-200);
-   
-    /* Carousal Dot Border*/
+    --color-icon-button-toggle-knob-icon-background: var(--color-gray-500);
+  
+    /* Carousal Dot*/
+    --color-carousal-dot-default: color-mix(in srgb, var(--color-base-black) 50%, transparent);
+    --color-carousal-dot-hover: color-mix(in srgb, var(--color-base-black) 70%, transparent);
+    --color-carousal-dot-active: color-mix(in srgb, var(--color-indigo-500) 50%, transparent);
     --color-carousal-dot-border: color-mix(in srgb, var(--color-base-white) 20%, transparent);
-
-    /* Carousal Dot Inactive*/
-    --color-carousal-dot-inactive-default: color-mix(in srgb, var(--color-base-black) 50%, transparent);
-    --color-carousal-dot-inactive-hover: color-mix(in srgb, var(--color-base-black) 70%, transparent);
 
     /* Tech Stack Tag*/
     --color-tech-stack-tag-background-default: var(--color-gray-100);
@@ -52,10 +61,10 @@
     --color-form-field-border-warning: var(--color-red-600);
 
     /* Button Primary */
-    --color-button-primary-backgorund-default: var(--color-indigo-500);
-    --color-button-primary-backgorund-hover: var(--color-indigo-600);
-    --color-button-primary-backgorund-active: var(--color-indigo-700);
-    --color-button-primary-backgorund-disabled: var(--color-violet-300);
+    --color-button-primary-background-default: var(--color-indigo-500);
+    --color-button-primary-background-hover: var(--color-indigo-600);
+    --color-button-primary-background-active: var(--color-indigo-700);
+    --color-button-primary-background-disabled: var(--color-violet-300);
 
     /* Button Primary Text */
     --color-button-primary-text-default: var(--color-base-white);
@@ -82,21 +91,18 @@
     --color-button-overlay-text-default: color-mix(in srgb, var(--color-base-black) 60%, transparent);
     --color-button-overlay-text-hover: color-mix(in srgb, var(--color-base-black) 75%, transparent);
     --color-button-overlay-text-active: var(--color-base-black);
-
-    /* Button Overlay Text */
-    --color-button-overlay-text-default: var(--color-base-white);
-
-    /* Button Overlay Border*/
-    --color-button-overlay-border-deault: color-mix(in srgb, var(--color-base-white) 20%, transparent);
-
+    
     /* Button Overlay Background*/
-    --color-button-overlay-background-deault: color-mix(in srgb, var(--color-base-black) 3%, transparent);
+    --color-button-overlay-background-default: color-mix(in srgb, var(--color-base-black) 3%, transparent);
     --color-button-overlay-background-hover: color-mix(in srgb, var(--color-base-black) 6%, transparent);
     --color-button-overlay-background-active: color-mix(in srgb, var(--color-indigo-500) 14%, transparent);
 
-    /* Button Overlay Background Default*/
-    --color-button-overlay-background-deault-defualt: color-mix(in srgb, var(--color-base-black) 50%, transparent);
+    /* Button Overlay Background Default Theme*/
+    --color-button-overlay-border-default-default: color-mix(in srgb, var(--color-base-white) 20%, transparent);
+    --color-button-overlay-background-default-defualt: color-mix(in srgb, var(--color-base-black) 50%, transparent);
     --color-button-overlay-background-default-hover: color-mix(in srgb, var(--color-base-black) 70%, transparent);
+    --color-button-overlay-text-default-default: var(--color-base-white);
+    --color-icon-overlay-border-default-default: var(--color-base-white);
 
     /* Select Background */
     --color-select-background-defualt: color-mix(in srgb, var(--color-indigo-500) 8%, transparent);
@@ -137,7 +143,7 @@
     --color-badge-primary-border: color-mix(in srgb, var(--color-indigo-500) 24%, transparent);
 
     /* Badge Neutral */
-    --color-badge-neutral-background: color-mix(in srgb, var( --color-base-white) neutral%, transparent);
+    --color-badge-neutral-background: color-mix(in srgb, var(--color-base-white) neutral%, transparent);
     --color-badge-neutral-text: var(--color-neutral-950);
     --color-badge-neutral-border: var(--color-neutral-200);
 
@@ -146,6 +152,14 @@
 
     /* Footer Section */
     --color-footer-section-background: var(--color-zinc-50);
+
+    /* Button Icon React */
+    --color-button-icon-react-background-default: var(--color-neutral-400);
+    --color-button-icon-react-background-hover: var(--color-neutral-300);
+    --color-button-icon-react-background-active: var(--color-red-600);
+
+    /* Button Icon Link */
+    --color-button-icon-link-background-default: var(--color-base-black);
 
     /* App Background */
     --color-app-background: var(--color-base-white);
@@ -157,6 +171,11 @@
     --text-button-tablet-font-size: var(--font-size-sm-plus);
     --text-button-mobile-font-size: var(--font-size-sm);
     --text-button-font-weight: var(--font-weight-semibold);
+
+    /* Button Small */
+    --text-button-small-desktop-font-size: var(--font-size-sm);
+    --text-button-small-tablet-font-size: var(--font-size-xs-plus);
+    --text-button-small-mobile-font-size: var(--font-size-xs);
 
     /* Navigation Link  */
     --text-navigation-link-desktop-font-size: var(--font-size-md-plus);
@@ -173,7 +192,7 @@
     --text-navigation-link-footer-font-weight: var(--font-weight-medium);
 
     /* Hero Intro */
-    --text-hero-intro-desktop-font-size: var(---font-size-md-plus-2);
+    --text-hero-intro-desktop-font-size: var(--font-size-md-plus-2);
     --text-hero-intro-tablet-font-size: var(--font-size-md);
     --text-hero-intro-mobile-font-size: var(--font-size-sm);
     --text-hero-intro-font-weight: var(--font-weight-medium);
@@ -273,13 +292,13 @@
     --size-button-base-padding-y: 12px;
 
     /* Button Overlay */
-    --size-button-overlay-desktop: 40px;
-    --size-button-overlay-tablet: 36px;
-    --size-button-overlay-mobile: 32px;
+    --size-button-overlay-desktop-height: 40px;
+    --size-button-overlay-tablet-height: 36px;
+    --size-button-overlay-mobile-height: 32px;
 
     /* Navigation Header */
     --size-navigation-header-desktop-width: 1440px;
-    --size-navigation-header-desktop-height: 80px
+    --size-navigation-header-desktop-height: 80px;
     --size-navigation-header-tablet-width: 1024px;
     --size-navigation-header-tablet-height: 72px;
     --size-navigation-header-mobile-width: 390px;
@@ -287,7 +306,7 @@
 
     /* Navigation Closet Panel */
     --size-navigation-closet-panel-mobile-width: 390px;
-    --size-navigation-closet-panel-mobile-height: 844p;
+    --size-navigation-closet-panel-mobile-height: 844px;
 
     /* Section Wrapper */
     --size-section-wrapper-desktop-max-width: 1440px;
@@ -305,7 +324,7 @@
     --size-icon-button-overlay-mobile-height: 36px;
 
     /* Icon Button Toggle Track */
-    --size-icon-button-toggle-track-desktop-wodth: 60px;
+    --size-icon-button-toggle-track-desktop-width: 60px;
     --size-icon-button-toggle-track-desktop-height: 28px;
     --size-icon-button-toggle-track-tablet-width: 52px;
     --size-icon-button-toggle-track-tablet-height: 24px;
@@ -386,6 +405,17 @@
     --size-icon-container-heading-3-tablet-diameter: 22px;
     --size-icon-container-heading-3-mobile-diameter: 20px;
 
+    /* Icon Button Element */
+    --size-icon-button-element-desktop-diameter: 16px;
+    --size-icon-button-element-tablet-diameter: 14px;
+    --size-icon-button-element-mobile-diameter: 12px;
+
+    /* Icon Button Element Large */
+    --size-icon-button-element-large-desktop-diameter: 20px;
+    --size-icon-button-element-large-tablet-diameter: 18px;
+    --size-icon-button-element-large-mobile-diameter: 16px;
+
+
     /* Block Wrapper Single */
     --size-block-wrapper-single-desktop-max-width: 784px;
     --size-block-wrapper-single-tablet-max-width: 656px;
@@ -395,6 +425,11 @@
 
 
     /* Spacing */
+     /* Button Content Gap */
+    --spacing-button-content-desktop-gap: 10px;
+    --spacing-button-content-tablet-gap: 8px;
+    --spacing-button-content-mobile-gap: 6px;
+
     /* Navigaiton Link Group */
     --spacing-navigation-link-group-desktop-gap: 24px;
     --spacing-navigation-link-group-tablet-gap: 16px;
@@ -469,7 +504,7 @@
     --spacing-button-overlay-mobile-padding-y: 5px;
 
     /* Tech Stack Tag */
-    --spacing-teck-stack-tag-padding-x: 16px;
+    --spacing-tech-stack-tag-padding-x: 16px;
 
     /* Testimonial Card */
     --spacing-testimonial-card-desktop-padding: 24px;
@@ -655,7 +690,7 @@
 
     /* Border */
     /* Button Secondary */
-    --border-buttion-secondary-width: var(--border-1);
+    --border-button-secondary-width: var(--border-1);
 
     /* Card Wrapper */
     --border-card-wrapper-base-width: var(--border-1);
@@ -677,6 +712,9 @@
 
     /* Card Container */
     --border-card-container-base-width: var(--border-1);
+
+    /* Icon Stroke */
+    --border-icon-base-width: var(--border-2);
 
 
     /* Shadows */

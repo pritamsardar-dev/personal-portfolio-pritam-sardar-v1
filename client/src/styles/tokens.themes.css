@@ -16,11 +16,19 @@ html.dark {
   --color-card-wrapper-fill: color-mix(in srgb, var(--color-zinc-700) 6%, transparent);
   --color-card-wrapper-stroke: color-mix(in srgb, var(--color-base-white) 8%, transparent);
 
-  /* Icon Button Toggle Knob */
-  --color-icon-button-toggle-knob-background: var(--color-gray-300);
+  /* Icon Button Icon Only */
+  --color-icon-button-icon-only: var(--color-base-white);
 
   /* Icon Button Toggle Tracker */
-  --color-icon-button-toggle-tracker-background: var( --color-gray-600);
+  --color-icon-button-toggle-tracker-background-default: var( --color-gray-600);
+  --color-icon-button-toggle-tracker-background-hover: var(--color-base-black);
+  --color-icon-button-toggle-tracker-icon-border-default: var(--color-neutral-300);
+  --color-icon-button-toggle-tracker-icon-background-hover: var(--color-zinc-100);
+
+  /* Icon Button Toggle Knob */
+  --color-icon-button-toggle-knob-background: var(--color-gray-300);
+  --color-icon-button-toggle-knob-icon-background: var(--color-zinc-100);
+  
 
   /* Tech Stack Tag*/
   --color-tech-stack-tag-background-default: color-mix(in srgb, var(--color-zinc-600) 60%, transparent);
@@ -34,10 +42,10 @@ html.dark {
   --color-form-field-border-warning: var(--color-red-400);
 
   /* Button Primary */
-  --color-button-primary-backgorund-default: var(--color-violet-400);
-  --color-button-primary-backgorund-hover: var(--color-indigo-500);
-  --color-button-primary-backgorund-active: var(--color-indigo-600);
-  --color-button-primary-backgorund-disabled: var(--color-slate-600);
+  --color-button-primary-background-default: var(--color-violet-400);
+  --color-button-primary-background-hover: var(--color-indigo-500);
+  --color-button-primary-background-active: var(--color-indigo-600);
+  --color-button-primary-background-disabled: var(--color-slate-600);
 
   /* Button Primary Text */
   --color-button-primary-text-default: var(--color-base-white);
@@ -51,9 +59,8 @@ html.dark {
   --color-button-secondary-text-hover: var(--color-violet-100);
   --color-button-secondary-text-active: var(--color-indigo-900);
   --color-button-secondary-text-disabled: var(--color-slate-500);
-  
 
-   /* Button Secondary */
+  /* Button Secondary */
   --color-button-secondary-background-hover: var(--color-violet-400);
   --color-button-secondary-background-active: var(--color-violet-300);
   --color-button-secondary-background-disabled: var(--color-indigo-950);
@@ -112,6 +119,14 @@ html.dark {
 
   /* Footer Section */
   --color-footer-section-background: color-mix(in srgb, var(--color-gray-800) 50%, transparent);
+
+  /* Button Icon React */
+  --color-button-icon-react-background-default: var(--color-neutral-500);
+  --color-button-icon-react-background-hover: var(--color-neutral-400);
+  --color-button-icon-react-background-active: var(--color-red-500);
+
+  /* Button Icon Link */
+  --color-button-icon-link-background-default: var(--color-base-white);
 
   /* App Background */
   --color-app-background: var(--color-zinc-700);
