@@ -102,6 +102,7 @@ export const variantMap = {
     `,
 
     iconClasses: `
+      fill-transparent
       text-inherit
       stroke-(length:--border-icon-base-width)
       w-(--size-icon-button-element-mobile-diameter)
@@ -144,6 +145,7 @@ export const variantMap = {
     `,
 
     iconClasses: `
+      fill-transparent
       text-inherit
       stroke-(length:--border-icon-base-width)
       w-(--size-icon-button-element-mobile-diameter)
@@ -187,6 +189,7 @@ export const variantMap = {
     `,
 
     iconClasses: `
+      fill-transparent
       text-inherit
       stroke-(length:--border-icon-base-width)
       w-(--size-icon-button-element-mobile-diameter)
@@ -212,6 +215,7 @@ export const variantMap = {
     `,
 
     iconClasses: `
+      fill-transparent
       text-inherit
       stroke-[(length:--border-icon-base-width)]
       w-[70%]
@@ -234,6 +238,7 @@ export const variantMap = {
     `,
 
     iconClasses: `
+      fill-transparent
       text-(--color-icon-button-icon-only)
       stroke-[(length:--border-icon-base-width)]
       w-[80%]
@@ -261,6 +266,7 @@ export const variantMap = {
     `,
 
     iconClasses: `
+      fill-transparent
       text-inherit
       stroke-[(length:--border-icon-base-width)]
       w-(--size-icon-button-element-mobile-diameter)
@@ -290,6 +296,7 @@ export const variantMap = {
     `,
 
     iconClasses: `
+      fill-transparent
       text-inherit
       stroke-[(length:--border-icon-base-width)]
       w-(--size-icon-button-element-mobile-diameter)
@@ -390,6 +397,7 @@ export const variantMap = {
     `,
 
     iconClasses: `
+      fill-(--color-button-icon-link-background-default)
       text-(--color-button-icon-link-background-default)
       stroke-(length:--border-icon-base-width)
       w-(--size-icon-button-element-large-mobile-diameter)

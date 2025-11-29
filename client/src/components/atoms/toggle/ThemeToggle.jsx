@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Sun } from "../../../testIcon/Sun";
-import { Moon } from "../../../testIcon/Moon";
+import {SunIcon, MoonIcon} from '../../../assets/icons/system'
 
 const ThemeToggle = () => {
   const [isOn, setIsOn] = useState(false);
@@ -64,7 +63,7 @@ const ThemeToggle = () => {
           
         `}
       >
-        <Sun className="" />
+        <SunIcon className="" />
       </span>
       
       {/* Moon */}
@@ -80,7 +79,7 @@ const ThemeToggle = () => {
           
         `}
       >
-        <Moon className="" />
+        <MoonIcon className="" />
       </span>
 
       {/* Knob */}
@@ -104,9 +103,9 @@ const ThemeToggle = () => {
         `}
       >
         {isOn ? (
-          <Moon className={iconClassesKnob} />
+          <MoonIcon className={iconClassesKnob} />
         ) : (
-          <Sun className={iconClassesKnob} />
+          <SunIcon className={iconClassesKnob} />
         )}
       </span>
 
