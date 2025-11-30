@@ -9,7 +9,6 @@ const Button = ({
    iconRight= null, 
    state="default", 
    isDisabled=false,
-   onToggle,
    className = "",
 }) => {
    const variantConfig = variantMap[variant] || variantMap.primary;

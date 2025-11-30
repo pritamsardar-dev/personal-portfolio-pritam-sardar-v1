@@ -161,6 +161,9 @@
     /* Button Icon Link */
     --color-button-icon-link-background-default: var(--color-base-black);
 
+    /* Content Icon */
+    --color-content-icon-stroke-default: var(--color-base-white);
+
     /* App Background */
     --color-app-background: var(--color-base-white);
 
@@ -227,13 +230,13 @@
     --text-heading-1-subpage-mobile-font-size: var(--font-size-xl);
     --text-heading-1-subpage-font-weight: var(--font-weight-bold);
 
-    /* Heading-2 Subpage */
+    /* Heading-2 */
     --text-heading-2-desktop-font-size: var(--font-size-lg-plus);
     --text-heading-2-tablet-font-size: var(--font-size-lg);
     --text-heading-2-mobile-font-size: var(--font-size-md-plus-2);
     --text-heading-2-font-weight: var(--font-weight-bold);
 
-    /* Heading-3 Subpage */
+    /* Heading-3 */
     --text-heading-3-desktop-font-size: var(--font-size-md-plus-2);
     --text-heading-3-tablet-font-size: var(--font-size-md);
     --text-heading-3-mobile-font-size: var(--font-size-sm-plus);
@@ -380,6 +383,11 @@
     --size-icon-heading-1-tablet: 18px;
     --size-icon-heading-1-mobile: 16px;
 
+    /* Icon Heading-1 Subpage */
+    --size-icon-heading-1-subpage-desktop: 18px;
+    --size-icon-heading-1-subpage-tablet: 16px;
+    --size-icon-heading-1-subpage-mobile: 14px;
+
     /* Icon Heading-2 */
     --size-icon-heading-2-desktop: 16px;
     --size-icon-heading-2-tablet: 15px;
@@ -394,6 +402,11 @@
     --size-icon-container-heading-1-desktop-diameter: 36px;
     --size-icon-container-heading-1-tablet-diameter: 32px;
     --size-icon-container-heading-1-mobile-diameter: 28px;
+
+    /* Icon Container Heading-1 Subpage */
+    --size-icon-container-heading-1-subpage-desktop-diameter: 32px;
+    --size-icon-container-heading-1-subpage-tablet-diameter: 28px;
+    --size-icon-container-heading-1-subpage-mobile-diameter: 24px;
 
     /* Icon Container Heading-2 */
     --size-icon-container-heading-2-desktop-diameter: 28px;
@@ -686,6 +699,9 @@
 
     /* Card Skill Wrapper */
     --radius-card-skill-wrapper-base: var(--radius-full);
+
+    /* Icon Contaniner */
+    --radius-icon-contaniner-base: var(--radius-full);
     
 
     /* Border */

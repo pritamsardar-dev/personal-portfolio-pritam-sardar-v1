@@ -19,11 +19,13 @@ readdirSync(svgFolder).forEach((file) => {
     .replace(/\s*height="[^"]*"/g, "")
     .replace(/\s*fill="[^"]*"/g, "")
     .replace(/\s*stroke-width="[^"]*"/g, "")
-    .replace(/stroke="[^"]*"/g, 'stroke="currentColor"');
+    .replace(/stroke="[^"]*"/g, 'stroke="currentColor"')
+    .replace(/\sstroke-\s*/g, " "); // Figma/Illustrator sometimes break attributes
 
     // Wrap in JSX
     svg = svg.replace(/stroke-linecap=/g, "strokeLinecap=");
     svg = svg.replace(/stroke-linejoin=/g, "strokeLinejoin=");
+    svg = svg.replace(/stroke-opacity=/g, "strokeOpacity=");
 
     const jsxContent = `import * as React from "react";
 

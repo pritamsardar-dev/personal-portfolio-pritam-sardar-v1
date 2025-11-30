@@ -1,0 +1,47 @@
+import React from "react";
+import clsx from "clsx";
+import { baseText, variantMap, colorTokens } from "./text.config";
+import { IconRenderer } from "./IconRenderer";
+
+const Text = ({
+  variant = "bodyLarge",
+  as = null,
+  text = "",
+  icon = null,
+  textParts = null,
+  className = "",
+  ...props
+}) => {
+  const variantConfig = variantMap[variant] || variantMap.bodyLarge;
+
+  const Tag = as || variantConfig.semanticTag || "p";
+
+  const classes = clsx(
+    baseText,
+    variantConfig.baseClasses,
+    className
+  );
+
+  return (
+    <Tag className={classes} {...props}>
+      {icon && (
+        <span className={variantConfig.iconWrapperClasses}>
+           <IconRenderer svg={icon} className={variantConfig.iconClasses} />
+        </span>
+      )}
+
+      {textParts
+        ? textParts.map((part, idx) => (
+            <span
+              key={idx}
+              className={clsx(colorTokens[part.color] || "")}
+            >
+              {part.text}
+            </span>
+          ))
+        : text}
+    </Tag>
+  );
+};
+
+export default Text;

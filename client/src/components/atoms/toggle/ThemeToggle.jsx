@@ -48,7 +48,8 @@ const ThemeToggle = () => {
         border-(length:--border-icon-button-toggle-width) 
         border-(--color-icon-button-toggle-border) 
         bg-(--color-icon-button-toggle-tracker-background-default) 
-        hover:bg-(--color-icon-button-toggle-tracker-background-hover)"
+        hover:bg-(--color-icon-button-toggle-tracker-background-hover)
+        shrink-0"
     >
       {/* Sun */}
       <span

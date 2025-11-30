@@ -1,7 +1,9 @@
 import Logo from './components/atoms/logo/Logo.jsx'
 import Button from './components/atoms/button/Button.jsx'
 import ThemeToggle from './components/atoms/toggle/ThemeToggle.jsx'
-import {HeartReactIcon, ContactLinkPhoneIcon, ContactLinkEmailIcon, ContactLinkWhatsappIcon} from './assets/icons/system'
+import {HeartReactIcon, ContactLinkPhoneIcon, ContactLinkEmailIcon, ContactLinkWhatsappIcon, FullscreenIcon, SunIcon, MoonIcon} from './assets/icons/system'
+import Text from './components/atoms/text/Text.jsx'
+import aboutHeading from './assets/icons-raw/content/about-heading.svg?raw'
 
 
 
@@ -13,13 +15,16 @@ function App() {
     
       {/* <Logo theme="light" /> */}
       
-      <Button label="+917908137571" isDisabled={false} variant="link" iconLeft={<ContactLinkPhoneIcon/>}  />
+      {/* <Button label="+917908137571" isDisabled={false} variant="link" iconLeft={<ContactLinkPhoneIcon/>}  /> */}
       
       <ThemeToggle />
 
-     
+      <Text variant="heading3"  text="Hello world !"
+        icon={MoonIcon}/>
+
      
     </div>
+    
   
   )
 }
@@ -27,4 +32,9 @@ function App() {
 
 export default App
 
+// textParts={[
+//     { text: "Hello ", color: "primary" },
+//     { text: "World", color: "heading" },
+//     { text: "!", color: "heading" },
+//   ]}
 
