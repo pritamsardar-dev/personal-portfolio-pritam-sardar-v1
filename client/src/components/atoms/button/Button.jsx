@@ -7,9 +7,10 @@ const Button = ({
    label="", 
    iconLeft= null, 
    iconRight= null, 
-   state="default", 
    isDisabled=false,
    className = "",
+   onClick = () => {},
+   ...props
 }) => {
    const variantConfig = variantMap[variant] || variantMap.primary;
 
@@ -21,7 +22,12 @@ const Button = ({
    );
 
   return (
-    <button disabled={isDisabled} className={classes}>
+    <button 
+    disabled={isDisabled} 
+    className={classes}
+    onClick={onClick}
+    {...props}
+    >
       {iconLeft && (
       <span className={variantConfig.iconClasses}>
          {iconLeft}
