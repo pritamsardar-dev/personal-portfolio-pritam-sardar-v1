@@ -24,11 +24,13 @@ const sanitize = (svg) =>
     .replace(/\s*height="[^"]*"/g, "")
     .replace(/\s*fill="[^"]*"/g, "")
     .replace(/\s*stroke-width="[^"]*"/g, "")
+    .replace(/\s*fill-opacity="[^"]*"/g, "")
     .replace(/stroke="[^"]*"/g, 'stroke="currentColor"')
     .replace(/\sstroke-\s*/g, " ") // Figma/Illustrator sometimes break attributes
 
     // Wrap in JSX
     .replace(/stroke-linecap=/g, "strokeLinecap=")
     .replace(/stroke-linejoin=/g, "strokeLinejoin=")
-    .replace(/stroke-opacity=/g, "strokeOpacity=");
+    .replace(/stroke-opacity=/g, "strokeOpacity=")
+  
     

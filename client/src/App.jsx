@@ -2,13 +2,14 @@ import React from 'react'
 import Logo from './components/atoms/logo/Logo.jsx'
 import Button from './components/atoms/button/Button.jsx'
 import ThemeToggle from './components/atoms/toggle/ThemeToggle.jsx'
-import {HeartReactIcon, ContactLinkPhoneIcon, ContactLinkEmailIcon, ContactLinkWhatsappIcon, FullscreenIcon, SunIcon, MoonIcon} from './assets/icons/system'
+import {HeartReactIcon, ContactLinkPhoneIcon, ContactLinkEmailIcon, ContactLinkWhatsappIcon, FullscreenIcon, SunIcon, MoonIcon, TagHeartFillIcon, TagClockIcon, TagEyeIcon} from './assets/icons/system'
 import Text from './components/atoms/text/Text.jsx'
 import aboutHeading from './assets/icons-raw/content/about-heading.svg?raw'
 import NavigationItem from './components/atoms/navigationitem/NavigationItem.jsx'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
+import Tag from './components/atoms/tag/Tag.jsx'
 
 
 function App() {
@@ -34,7 +35,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes> */}
-  
+
+      <Tag label='Love react' iconLeft={<TagClockIcon/>}/>
      
     </div>
   )

@@ -19,6 +19,7 @@ readdirSync(svgFolder).forEach((file) => {
     .replace(/\s*height="[^"]*"/g, "")
     .replace(/\s*fill="[^"]*"/g, "")
     .replace(/\s*stroke-width="[^"]*"/g, "")
+    .replace(/\s*fill-opacity="[^"]*"/g, "")
     .replace(/stroke="[^"]*"/g, 'stroke="currentColor"')
     .replace(/\sstroke-\s*/g, " "); // Figma/Illustrator sometimes break attributes
 
