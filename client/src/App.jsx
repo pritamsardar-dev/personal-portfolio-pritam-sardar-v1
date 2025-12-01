@@ -10,6 +10,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import Tag from './components/atoms/tag/Tag.jsx'
+import Avatar from './components/atoms/avatar/Avatar.jsx'
+import avatarTestImage from './assets/images/avatartest.png'
 
 
 function App() {
@@ -36,7 +38,10 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
         </Routes> */}
 
-      <Tag label='Love react' iconLeft={<TagClockIcon/>}/>
+      {/* <Tag label='Love react' iconLeft={<TagClockIcon/>}/> */}
+
+    {/* <Avatar image={avatarTestImage} /> */}
+    <Avatar name='p'/>
      
     </div>
   )
