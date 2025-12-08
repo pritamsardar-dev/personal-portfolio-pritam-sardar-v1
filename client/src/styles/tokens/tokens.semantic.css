@@ -57,7 +57,7 @@
 
     /* Form Field Border*/
     --color-form-field-border-default: var(--color-gray-300);
-    --color-form-field-border-focus: var(--color-base-black);
+    --color-form-field-border-focus: var(--color-indigo-500);
     --color-form-field-border-warning: var(--color-red-600);
 
     /* Button Primary */
@@ -117,9 +117,12 @@
     --color-select-text-defualt: var(--color-neutral-800);
     --color-select-text-contrast-on-brand: var(--color-indigo-500);
 
+    /* Text Placeholder */
+    --color-text-placeholder-default: var(--color-gray-400);
+
     /* Icon Dropdown */
     --color-icon-dropdown-defualt: var(--color-neutral-800);
-    --color-icon-dropdown-hover: var(--color-neutral-950);
+    --color-icon-dropdown-hover: var(--color-indigo-500);
 
     /* Tag Icon */
     --color-tag-icon-defualt: color-mix(in srgb, var(--color-base-black) 60%, transparent);
@@ -167,6 +170,13 @@
     /* App Background */
     --color-app-background: var(--color-base-white);
 
+    /* Focus Visible */
+    --color-focus-visible-border: var(--color-indigo-600);
+    --color-focus-visible-background: color-mix(in srgb, var(--color-indigo-500) 20%, transparent);
+
+    /* Custom Scrollbar Background */
+    --color-custom-scrollbar-background-default: color-mix(in srgb, var(--color-indigo-500) 20%, transparent);
+    --color-custom-scrollbar-background-hover: color-mix(in srgb, var(--color-indigo-500) 80%, transparent);
 
     /* Typography */
     /* Button */
@@ -359,9 +369,12 @@
     --size-form-field-single-line-mobile-height: 40px;
 
     /* Form Field Expandable */
-    --size-form-field-expandable-desktop-height: 128px;
-    --size-form-field-expandable-tablet-height: 112px;
-    --size-form-field-expandable-mobile-height: 96px;
+    --size-form-field-expandable-desktop-min-height: 128px;
+    --size-form-field-expandable-tablet-min-height: 112px;
+    --size-form-field-expandable-mobile-min-height: 96px;
+    --size-form-field-expandable-desktop-max-height: 256px;
+    --size-form-field-expandable-tablet-max-height: 216px;
+    --size-form-field-expandable-mobile-max-height: 180px;
 
     /* Tag Static */
     --size-tag-static-desktop-height: 32px;
@@ -448,10 +461,15 @@
 
 
     /* Spacing */
-     /* Button Content Gap */
+    /* Button Content Gap */
     --spacing-button-content-desktop-gap: 10px;
     --spacing-button-content-tablet-gap: 8px;
     --spacing-button-content-mobile-gap: 6px;
+
+    /* Select Content Gap */
+    --spacing-select-content-desktop-gap: 16px;
+    --spacing-select-content-tablet-gap: 12px;
+    --spacing-select-content-mobile-gap: 8px;
 
     /* Navigaiton Link Group */
     --spacing-navigation-link-group-desktop-gap: 24px;
@@ -735,6 +753,7 @@
 
     /* Form Field */
     --border-form-field-width: var(--border-1);
+    --border-form-field-focus-width: var(--border-2);
 
     /* Card Container */
     --border-card-container-base-width: var(--border-1);
@@ -742,7 +761,11 @@
     /* Icon Stroke */
     --border-icon-base-width: var(--border-2);
 
+    /* Focus Visible */
+    --border-focus-visible-width: var(--border-2);
+    --border-focus-visible-offset: var(--space-1);
 
+    
     /* Shadows */
     /* Card Wrapper */
     --shadow-card-wrapper: 0px 2px 6px 0px rgba(0, 0, 0, 0.06);

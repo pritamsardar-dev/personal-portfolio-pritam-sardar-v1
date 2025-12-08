@@ -1,0 +1,19 @@
+
+/* Outline for interactive elements */
+
+.u-focus-visible-outline {
+  @apply focus-visible:outline-none
+        focus-visible:ring-(length:--border-focus-visible-width)
+        focus-visible:ring-(--color-focus-visible-border)
+        focus-visible:ring-offset-(length:--border-focus-offset);
+}
+
+/* Background highlight for list items */
+.u-focus-visible-bg {
+  @apply focus-visible:outline-none 
+        focus-visible:bg-(--color-focus-visible-background)
+         
+}
+
+
+

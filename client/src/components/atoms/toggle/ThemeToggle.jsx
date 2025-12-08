@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import {SunIcon, MoonIcon} from '../../../assets/icons/system'
 
 const ThemeToggle = () => {
-  const [isOn, setIsOn] = useState(false);
+  const [isOn, setIsOn] = useState(() => {
+    const saved = localStorage.getItem("theme") || "light";
+    return saved === "dark";
+  });
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme") || "light";
-    const dark = saved === "dark";
-    setIsOn(dark);
-    document.documentElement.classList.toggle("dark", dark);
-  }, []);
+    document.documentElement.classList.toggle("dark", isOn);
+  }, [isOn]);
 
   const toggle = () => {
     const next = !isOn;
@@ -49,7 +49,7 @@ const ThemeToggle = () => {
         border-(--color-icon-button-toggle-border) 
         bg-(--color-icon-button-toggle-tracker-background-default) 
         hover:bg-(--color-icon-button-toggle-tracker-background-hover)
-        shrink-0"
+        shrink-0 u-focus-visible-outline"
     >
       {/* Sun */}
       <span

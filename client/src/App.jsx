@@ -2,19 +2,24 @@ import React from 'react'
 import Logo from './components/atoms/logo/Logo.jsx'
 import Button from './components/atoms/button/Button.jsx'
 import ThemeToggle from './components/atoms/toggle/ThemeToggle.jsx'
-import {HeartReactIcon, ContactLinkPhoneIcon, ContactLinkEmailIcon, ContactLinkWhatsappIcon, FullscreenIcon, SunIcon, MoonIcon, TagHeartFillIcon, TagClockIcon, TagEyeIcon} from './assets/icons/system'
+import {HeartReactIcon, ContactLinkPhoneIcon, ContactLinkEmailIcon, ContactLinkWhatsappIcon, FullscreenIcon, SunIcon, MoonIcon, TagHeartFillIcon, TagClockIcon, TagEyeIcon, DropdownIcon} from './assets/icons/system'
 import Text from './components/atoms/text/Text.jsx'
-import aboutHeading from './assets/icons-raw/content/about-heading.svg?raw'
 import NavigationItem from './components/atoms/navigationitem/NavigationItem.jsx'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import Tag from './components/atoms/tag/Tag.jsx'
 import Avatar from './components/atoms/avatar/Avatar.jsx'
-import avatarTestImage from './assets/images/avatartest.png'
+import FormField from './components/atoms/formfield/FormField.jsx'
+import { useForm } from 'react-hook-form'
+
+
 
 
 function App() {
+  // const {register, control} = useForm();
+  const {register, } = useForm();
+  // const {control} = useForm();
 
   return (
     <div className="inline-flex items-center justify-center gap-10">
@@ -23,25 +28,70 @@ function App() {
       {/* <Logo theme="light" /> */}
       
       {/* <Button label="+917908137571" isDisabled={false} variant="link" iconLeft={<ContactLinkPhoneIcon/>}  /> */}
+
+      {/* <Button label="Click me" isDisabled={false} variant="overlay" /> */}
     
       {/* <Text variant="heading3"  text="Hello world !"
         icon={MoonIcon}/> */}
 
-{/*        
+       
         <div className="inline-flex items-center justify-center gap-10">
-          <NavigationItem variant="footer" isButtonStyle={true} label="Home"  to="/" />
-          <NavigationItem variant="footer" isButtonStyle={true} label="About"  to="/about" />
+          <NavigationItem variant="footer" isButtonStyle={false} label="Home"  to="/" />
+          <NavigationItem variant="footer" isButtonStyle={false} label="About"  to="/about" />
         </div>
 
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
-        </Routes> */}
+        </Routes>
 
       {/* <Tag label='Love react' iconLeft={<TagClockIcon/>}/> */}
 
     {/* <Avatar image={avatarTestImage} /> */}
-    <Avatar name='p'/>
+    {/* <Avatar name='p' /> */}
+
+    {/* <FormField icon={<HeartReactIcon />}/> */}
+    {/* <FormField variant="selectCustom" placeholder="Enter your full name" label="Your name" error="Invlaid!" options={[
+    { label: "Option One", value: "optionOne" },
+    { label: "Option Two", value: "optionTwo" },
+    { label: "Option Three", value: "optionThree" }
+  ]}/> */}
+
+    {/* <CustomFormField /> */}
+
+    {/* <FormField variant="email" placeholder="Enter your email" register={register("text")}/> */}
+
+    <FormField variant="textarea" placeholder="Enter your email" register={register} name="textarea" 
+    rules={{
+    maxLength: {
+      value: 50,
+      message: "Max limit reached!" 
+    }
+  }}
+  error=""
+  maxLength={50}
+ />
+
+    {/* <FormField
+      variant="selectCustom"
+      label="Choose an option"
+      name="choice"
+      placeholder="Select one"
+      options={[
+        { value: "option1", label: "Option One" },
+        { value: "option2", label: "Option Two" },
+        { value: "option1", label: "Option One" },
+        { value: "option2", label: "Option Two" },
+        { value: "option1", label: "Option One" },
+        { value: "option2", label: "Option Two" },
+      ]}
+      control={control}
+      error=''
+      icon={<DropdownIcon/>}
+    /> */}
+
+
+
      
     </div>
   )
@@ -55,4 +105,3 @@ export default App
 //     { text: "World", color: "heading" },
 //     { text: "!", color: "heading" },
 //   ]}
-

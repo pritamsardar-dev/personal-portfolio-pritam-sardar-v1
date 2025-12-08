@@ -6,6 +6,7 @@ export const baseButton = `
     select-none whitespace-nowrap
     transition-all duration-300 ease-in-out
     cursor-pointer disabled:cursor-default
+    u-focus-visible-outline
 `;
 
 export const variantMap = {
@@ -217,7 +218,7 @@ export const variantMap = {
     iconClasses: `
       fill-transparent
       text-inherit
-      stroke-[(length:--border-icon-base-width)]
+      stroke-(length:--border-icon-base-width)
       w-[70%]
       h-auto
     `,
@@ -406,9 +407,4 @@ export const variantMap = {
       h-auto
     `,
   },
-  
-  
-
-
-
 };

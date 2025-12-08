@@ -10,6 +10,7 @@ import ContactLinkPhoneIcon from './ContactLinkPhoneIcon';
 import ContactLinkResumeIcon from './ContactLinkResumeIcon';
 import ContactLinkWhatsappIcon from './ContactLinkWhatsappIcon';
 import CrossIcon from './CrossIcon';
+import DropdownIcon from './DropdownIcon';
 import FullscreenIcon from './FullscreenIcon';
 import HamburgerIcon from './HamburgerIcon';
 import HeartReactIcon from './HeartReactIcon';
@@ -39,6 +40,7 @@ ContactLinkPhoneIcon,
 ContactLinkResumeIcon,
 ContactLinkWhatsappIcon,
 CrossIcon,
+DropdownIcon,
 FullscreenIcon,
 HamburgerIcon,
 HeartReactIcon,

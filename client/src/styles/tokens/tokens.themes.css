@@ -38,7 +38,7 @@ html.dark {
 
   /* Form Field Border*/
   --color-form-field-border-default: var(--color-gray-400);
-  --color-form-field-border-focus: var(--color-base-white);
+  --color-form-field-border-focus: var(--color-violet-400);
   --color-form-field-border-warning: var(--color-red-400);
 
   /* Button Primary */
@@ -80,16 +80,23 @@ html.dark {
 
   /* Select Background */
   --color-select-background-defualt: color-mix(in srgb, var(--color-indigo-500) 20%, transparent);
+  --color-select-background-hover: color-mix(in srgb, var(--color-indigo-500) 5%, transparent);
+  --color-select-background-focus: color-mix(in srgb, var(--color-indigo-500) 10%, transparent);
+  
 
   /* Select Border */
   --color-select-border-defualt: color-mix(in srgb, var(--color-base-white) 6%, transparent);
 
   /* Select Text */
   --color-select-text-defualt: var(--color-slate-200);
+  --color-select-text-contrast-on-brand: var(--color-violet-400);
+
+  /* Text Placeholder */
+  --color-text-placeholder-default: var(--color-gray-500);
 
   /* Icon Dropdown */
   --color-icon-dropdown-defualt: var(--color-neutral-100);
-  --color-icon-dropdown-hover: var(--color-base-white);
+  --color-icon-dropdown-hover: var(--color-violet-400);
 
   /* Tag Icon */
   --color-tag-icon-defualt: color-mix(in srgb, var(--color-base-white) 80%, transparent);
@@ -130,6 +137,15 @@ html.dark {
 
   /* App Background */
   --color-app-background: var(--color-zinc-700);
+
+  /* Focus Visible */
+  --color-focus-visible-border: var(--color-violet-300);
+  --color-focus-visible-background: color-mix(in srgb, var(--color-indigo-500) 15%, transparent);
+
+  /* Custom Scrollbar Background */
+  --color-custom-scrollbar-background-default: color-mix(in srgb, var(--color-indigo-500) 25%, transparent);
+  --color-custom-scrollbar-background-hover: color-mix(in srgb, var(--color-indigo-500) 80%, transparent);
+
 
 
   /* Shadows */

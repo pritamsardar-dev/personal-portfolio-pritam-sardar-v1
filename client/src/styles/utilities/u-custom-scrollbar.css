@@ -1,0 +1,44 @@
+/* WebKit Browsers (Chrome / Edge / Safari) */
+.u-custom-scrollbar {
+  overflow: auto;
+  scroll-behavior: smooth;
+  cursor: auto;
+}
+
+/* Scrollbar size */
+.u-custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+.u-custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Thumb */
+.u-custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-custom-scrollbar-background-default);
+  border-radius: 9999px;
+}
+
+/* Hover */
+.u-custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-custom-scrollbar-background-hover);
+}
+
+/* Firefox only */
+@-moz-document url-prefix() {
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: var(--color-custom-scrollbar-background-default) transparent;
+  }
+}
+
+/* Safari-specific tweak */
+@supports (-webkit-touch-callout: none) {
+  .u-custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+}

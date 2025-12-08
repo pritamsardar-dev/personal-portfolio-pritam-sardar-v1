@@ -9,7 +9,6 @@ const NavigationItem = ({
    label= "", 
    iconLeft = null, 
    iconRight = null, 
-   isDisabled = false,
    className = "",
    isExternal = false,
    isButtonStyle = false,
@@ -44,14 +43,16 @@ const NavigationItem = ({
 
   if(isExternal){
     return (
-      <a href={to} target="_blank" rel="noopener noreferrer" {...props}>
+      <a href={to} target="_blank" rel="noopener noreferrer" {...props} 
+      className={clsx("u-focus-visible-outline", "rounded-(--radius-button-base)")}>
         {content({isActive: false})}
       </a>
     );
   }
 
   return (
-    <NavLink to={to} end {...props}>
+    <NavLink to={to} end {...props} 
+    className={clsx("u-focus-visible-outline", "rounded-(--radius-button-base)")}> 
         {content}
     </NavLink>
   );
