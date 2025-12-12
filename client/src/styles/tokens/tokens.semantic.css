@@ -730,6 +730,9 @@
 
     /* Icon Contaniner */
     --radius-icon-contaniner-base: var(--radius-full);
+
+    /* Hero Image Contanier Block */
+    --radius-hero-image-block-base: var(--radius-2xl);
     
 
     /* Border */

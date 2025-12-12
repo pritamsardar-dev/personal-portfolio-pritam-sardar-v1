@@ -12,9 +12,11 @@ import Tag from './components/atoms/tag/Tag.jsx'
 import Avatar from './components/atoms/avatar/Avatar.jsx'
 import FormField from './components/atoms/formfield/FormField.jsx'
 // import { useForm } from 'react-hook-form'
-import {headerNavItems}  from './data/navigation/headerNav.js'
+// import {headerNavItems}  from './data/navigation/headerNav.js'
 import NavigationList from './components/molecules/navigationlist/NavigationList.jsx'
-
+import HeroImageBlock from './components/molecules/heroimageblock/HeroImageBlock.jsx'
+// import avatarTestImage from './assets/images/avatartest.png'
+import heroImgeTest from'./assets/images/hero/home-hero.svg'
 
 
 
@@ -92,9 +94,9 @@ function App() {
       icon={<DropdownIcon/>}
     /> */}
 
-    <NavigationList items={headerNavItems} variant="header" showCenterGroup splitLastItem />
+    {/* <NavigationList items={headerNavItems} variant="header" showCenterGroup splitLastItem /> */}
 
-
+    <HeroImageBlock src={heroImgeTest}/>
 
      
     </div>
