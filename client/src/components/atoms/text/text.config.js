@@ -4,7 +4,7 @@ export const colorTokens = {
 };
 
 export const baseText = `
-  inline-flex justify-center
+  block
 `;
 
 export const iconWrapperClassesBase = `

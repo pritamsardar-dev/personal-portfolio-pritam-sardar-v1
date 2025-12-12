@@ -37,7 +37,6 @@ const HeroImageBlock = ({
             )}
             loading={loading}
             />
-
         </div>
     );
 };

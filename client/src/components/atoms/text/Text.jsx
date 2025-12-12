@@ -34,7 +34,10 @@ const Text = ({
         ? textParts.map((part, idx) => (
             <span
               key={idx}
-              className={clsx(colorTokens[part.color] || "")}
+              className={clsx(
+                colorTokens[part.color] || "",
+                "mr-1"
+              )}
             >
               {part.text}
             </span>

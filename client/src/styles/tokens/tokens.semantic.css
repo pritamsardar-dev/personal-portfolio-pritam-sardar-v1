@@ -601,6 +601,17 @@
     --spacing-text-container-mobile-padding-y: 24px;
     --spacing-text-container-mobile-compensate-inner-padding-x: 12px;
 
+    /* Hero Text Container Block */
+    --spacing-hero-text-block-button-desktop-gap: 32px;
+    --spacing-hero-text-block-button-tablet-gap: 28px;
+    --spacing-hero-text-block-button-mobile-gap: 20px;
+    --spacing-hero-intro-heading-desktop-gap: 16px;
+    --spacing-hero-intro-heading-tablet-gap: 14px;
+    --spacing-hero-intro-heading-mobile-gap: 12px;
+    --spacing-hero-heading-tagline-desktop-gap: 14px;
+    --spacing-hero-heading-tagline-tablet-gap: 12px;
+    --spacing-hero-heading-tagline-mobile-gap: 8px;
+
     /* Text Container Inner-1 */
     --spacing-text-container-inner-1-desktop-padding: 24px;
     --spacing-text-container-inner-1-tablet-padding: 20px;

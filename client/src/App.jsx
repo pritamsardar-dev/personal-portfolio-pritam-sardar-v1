@@ -16,7 +16,8 @@ import FormField from './components/atoms/formfield/FormField.jsx'
 import NavigationList from './components/molecules/navigationlist/NavigationList.jsx'
 import HeroImageBlock from './components/molecules/heroimageblock/HeroImageBlock.jsx'
 // import avatarTestImage from './assets/images/avatartest.png'
-import heroImgeTest from'./assets/images/hero/home-hero.svg'
+// import heroImgeTest from'./assets/images/hero/home-hero.svg'
+import HeroTextBlock from './components/molecules/herotextblock/HeroTextBlock.jsx'
 
 
 
@@ -96,7 +97,9 @@ function App() {
 
     {/* <NavigationList items={headerNavItems} variant="header" showCenterGroup splitLastItem /> */}
 
-    <HeroImageBlock src={heroImgeTest}/>
+    {/* <HeroImageBlock src={heroImgeTest}/> */}
+
+    <HeroTextBlock />
 
      
     </div>
