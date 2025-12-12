@@ -14,14 +14,6 @@ export const variantMap = {
       text-(--color-navigation-text-default)
       hover:text-(--color-navigation-text-hover)
 
-      px-(--size-button-mobile-padding-x)
-      sm:px-(--size-button-tablet-padding-x)
-      lg:px-(--size-button-desktop-padding-x)
-
-      h-(--size-button-mobile-height)
-      sm:h-(--size-button-tablet-height)
-      lg:h-(--size-button-desktop-height)
-
       text-(length:--text-navigation-link-mobile-font-size)
       sm:text-(length:--text-navigation-link-tablet-font-size)
       lg:text-(length:--text-navigation-link-desktop-font-size)
@@ -51,14 +43,6 @@ export const variantMap = {
     baseClasses: `
       text-(--color-navigation-text-default)
       hover:text-(--color-navigation-text-hover)
-
-      px-(--size-button-mobile-padding-x)
-      sm:px-(--size-button-tablet-padding-x)
-      lg:px-(--size-button-desktop-padding-x)
-
-      h-(--size-button-mobile-height)
-      sm:h-(--size-button-tablet-height)
-      lg:h-(--size-button-desktop-height)
 
       text-(length:--text-navigation-link-footer-mobile-font-size)
       sm:text-(length:--text-navigation-link-footer-tablet-font-size)

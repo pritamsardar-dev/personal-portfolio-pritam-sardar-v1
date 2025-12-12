@@ -11,18 +11,20 @@ import AboutPage from "./pages/AboutPage.jsx";
 import Tag from './components/atoms/tag/Tag.jsx'
 import Avatar from './components/atoms/avatar/Avatar.jsx'
 import FormField from './components/atoms/formfield/FormField.jsx'
-import { useForm } from 'react-hook-form'
+// import { useForm } from 'react-hook-form'
+import {headerNavItems}  from './data/navigation/headerNav.js'
+import NavigationList from './components/molecules/navigationlist/NavigationList.jsx'
 
 
 
 
 function App() {
   // const {register, control} = useForm();
-  const {register, } = useForm();
+  // const {register, } = useForm();
   // const {control} = useForm();
 
   return (
-    <div className="inline-flex items-center justify-center gap-10">
+    <div className="inline-flex items-center justify-center gap-10 w-full">
       <ThemeToggle />
     
       {/* <Logo theme="light" /> */}
@@ -34,7 +36,7 @@ function App() {
       {/* <Text variant="heading3"  text="Hello world !"
         icon={MoonIcon}/> */}
 
-       
+{/*        
         <div className="inline-flex items-center justify-center gap-10">
           <NavigationItem variant="footer" isButtonStyle={false} label="Home"  to="/" />
           <NavigationItem variant="footer" isButtonStyle={false} label="About"  to="/about" />
@@ -43,7 +45,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
-        </Routes>
+        </Routes> */}
 
       {/* <Tag label='Love react' iconLeft={<TagClockIcon/>}/> */}
 
@@ -61,7 +63,7 @@ function App() {
 
     {/* <FormField variant="email" placeholder="Enter your email" register={register("text")}/> */}
 
-    <FormField variant="textarea" placeholder="Enter your email" register={register} name="textarea" 
+    {/* <FormField variant="textarea" placeholder="Enter your email" register={register} name="textarea" 
     rules={{
     maxLength: {
       value: 50,
@@ -70,7 +72,7 @@ function App() {
   }}
   error=""
   maxLength={50}
- />
+ /> */}
 
     {/* <FormField
       variant="selectCustom"
@@ -89,6 +91,8 @@ function App() {
       error=''
       icon={<DropdownIcon/>}
     /> */}
+
+    <NavigationList items={headerNavItems} variant="header" showCenterGroup splitLastItem />
 
 
 
