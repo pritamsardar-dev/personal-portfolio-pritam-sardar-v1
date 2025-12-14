@@ -220,6 +220,42 @@ export const variantMap = {
     `,
   },
 
+  bodyBaseStrong: {
+    baseClasses: `
+      text-(--color-text-body)
+      text-(length:--text-body-base-desktop-font-size)
+      sm:text-(length:--text-body-base-tablet-font-size)
+      lg:text-(length:--text-body-base-mobile-font-size)
+      font-(--text-body-base-strong-font-weight)
+    `,
+    semanticTag: "p",
+    iconWrapperClasses: `
+    `,
+    iconClasses: `
+    `,
+  },
+
+  bodyBaseTag: {
+    baseClasses: `
+      text-(--color-text-body)
+      bg-(--color-tech-stack-tag-background-default)
+      px-(--spacing-tech-stack-tag-mobile-padding-x)
+      sm:px-(--spacing-tech-stack-tag-tablet-padding-x)
+      lg:px-(--spacing-tech-stack-tag-desktop-padding-x)
+      rounded-(--radius-tech-stack-tag)
+      text-(length:--text-body-base-desktop-font-size)
+      sm:text-(length:--text-body-base-tablet-font-size)
+      lg:text-(length:--text-body-base-mobile-font-size)
+      font-(--text-body-base-font-weight)
+    `,
+    semanticTag: "p",
+    iconWrapperClasses: `
+    `,
+    iconClasses: `
+    `,
+  },
+
+
   bodySmall: {
     baseClasses: `
       text-(--color-text-body)

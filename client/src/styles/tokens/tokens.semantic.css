@@ -258,7 +258,7 @@
     --text-body-large-mobile-font-size: var(--font-size-sm);
     --text-body-large-font-weight: var(--font-weight-regular);
 
-    /* Body Base */
+    /* Body Base and Strong */
     --text-body-base-desktop-font-size: var(--font-size-md);
     --text-body-base-desktop-line-height: var(--line-height-relaxed-plus);
     --text-body-base-tablet-font-size: var(--font-size-sm-plus);
@@ -266,6 +266,7 @@
     --text-body-base-mobile-font-size: var(--font-size-sm);
     --text-body-base-desktop-line-height: var(--line-height-normal-plus);
     --text-body-base-font-weight: var(--font-weight-regular);
+    --text-body-base-strong-font-weight: var(--font-weight-bold);
 
     /* Body Small */
     --text-body-small-desktop-font-size: var(--font-size-sm);
@@ -545,7 +546,12 @@
     --spacing-button-overlay-mobile-padding-y: 5px;
 
     /* Tech Stack Tag */
-    --spacing-tech-stack-tag-padding-x: 16px;
+    --spacing-tech-stack-tag-desktop-padding-x: 14px;
+    --spacing-tech-stack-tag-tablet-padding-x: 12px;
+    --spacing-tech-stack-tag-mobile-padding-x: 10px;
+    --spacing-tech-stack-tag-desktop-gap: 8px;
+    --spacing-tech-stack-tag-tablet-gap: 7px;
+    --spacing-tech-stack-tag-mobile-gap: 6px;
 
     /* Testimonial Card */
     --spacing-testimonial-card-desktop-padding: 24px;
@@ -698,10 +704,10 @@
     --spacing-list-item-text-gap-y-desktop: 8px;
     --spacing-list-item-text-gap-y-tablet: 6px;
     --spacing-list-item-text-gap-y-mobile: 4px;
-    
-    
 
-
+    /* Inline Text*/
+    --spacing-inline-text-gap: 4px;
+    
 
     /* Radius */
     /* Button */

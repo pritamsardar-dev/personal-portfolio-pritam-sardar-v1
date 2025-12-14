@@ -1,8 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import Text from "../../atoms/text/Text";
-import Button from "../../atoms/button/Button.jsx";
-import { homeAboutCard } from "../../../data/home/homeAboutCard.js";
+import { homeWorkExperienceCard } from "../../../data/home/homeWorkExperienceCard.js";
 
 const blockContainerClasses = `
     flex flex-col w-full h-auto 
@@ -43,15 +42,15 @@ const bodyItemContainerCardClasses = `
     lg:gap-(--spacing-list-item-desktop-gap)
 `;
 
-const listItemClasses = `
-    list-disc
-    list-outside
-    pl-(--spacing-list-item-text-indent-mobile)
-    sm:pl-(--spacing-list-item-text-indent-tablet)
-    lg:pl-(--spacing-list-item-text-indent-desktop)
-    space-y-(--spacing-list-item-text-gap-y-mobile)
-    sm:space-y-(--spacing-list-item-text-gap-y-tablet)
-    lg:space-y-(--spacing-list-item-text-gap-y-desktop)
+const techStackClasses = `
+    w-full flex flex-wrap h-auto
+    gap-(--spacing-tech-stack-tag-mobile-gap)
+    sm:gap-(--spacing-tech-stack-tag-tablet-gap)
+    lg:gap-(--spacing-tech-stack-tag-desktop-gap)
+`
+const labelValueRowClasses = `
+    [&>*]:inline
+    [&>*+*]:ml-(--spacing-inline-text-gap)
 `
 
 const alignmentClassesMap = {
@@ -60,11 +59,9 @@ const alignmentClassesMap = {
     right: "text-right",
 };
 
-
-const AboutCardBlock = ({
-    heading = homeAboutCard.heading,
-    bodyItems = homeAboutCard.bodyItems,
-    buttonProps = homeAboutCard.buttonProps,
+const WorkExperienceCardBlock = ({
+    heading = homeWorkExperienceCard.heading,
+    bodyItems = homeWorkExperienceCard.bodyItems,
     alignmentHeading = "left",
     alignmenBody = "left",
     className,
@@ -89,29 +86,28 @@ const AboutCardBlock = ({
             >
                 {bodyItems.map((item, index) => (
                     <div key={index} className={clsx(bodyItemContainerCardClasses,)}>
-                        <Text  {...item.body.timeline} />
+                        <Text {...item.body.timeline} />
 
-                        <Text  {...item.heading} />
+                        <Text {...item.heading} />
 
-                        <Text  {...item.body.institute} />
+                        {item.body.labelValueItems.map((labelValueItem, index) => (
+                        <span key={index} className={clsx(labelValueRowClasses)}>
+                            <Text {...labelValueItem.label} />
+                            <Text {...labelValueItem.value} />
+                        </span>
+                        ))}
 
-                        <Text  {...item.body.board} />
-
-                        <ul className={clsx(listItemClasses)}>
-                            {item.body.highlights.map((listItem, index) => (
-                                <Text key={index} {...listItem} />
+                        <div className={clsx(techStackClasses)}>
+                            <Text {...item.body.techStack.label}/>
+                            {item.body.techStack.value.texts.map((text, index) => (
+                                <Text key={index} variant={item.body.techStack.value.variant} text={text} />
                             ))}
-                        </ul>
-
-                        <Text  {...item.body.score} />
+                        </div>
                     </div>
                 ))}
-            </div>
-            <div>
-                <Button {...buttonProps}/>
             </div>
         </div>
     )
 };
 
-export default AboutCardBlock;
+export default WorkExperienceCardBlock;
