@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
+import { readdirSync, readFileSync, writeFileSync } from "fs";
 import { basename, join } from "path";
 
 const svgFolder = "src/assets/icons-raw/system"; 

@@ -1,21 +1,38 @@
-import React from 'react';
+import React from "react";
+import clsx from "clsx";
+import { iconPaintClasses } from "./icon.paint.config";
 
-export const IconRenderer = ({svg, className=""}) => {
-    // Case 1: SVG is React component
-    if(typeof svg === "function") {
-        return React.createElement(svg, {className});
-    }
+export const IconRenderer = ({ svg, type = "stroke", className = "" }) => {
+  if (!svg) return null;
 
-    // Case 2: SVG is a raw string form API/DB
-    if(typeof svg === "string") {
-        return (
-            <span
-                className={className}
-                dangerouslySetInnerHTML={{__html: sanitize(svg)}}
-            />
-        )
-    }
+  const paintClasses = iconPaintClasses[type] || "";
+
+  const finalClassName = clsx(className, paintClasses);
+
+  // JSX Component
+  if (typeof svg === "function") {
+    return React.createElement(svg, { className: finalClassName });
+  }
+
+  // Reject URIs
+  if (typeof svg === "string" && svg.trim().startsWith("data:")) {
+    console.warn("SVG URI detected. Use raw SVG markup instead.");
+    return null;
+  }
+
+  // Raw SVG markup
+  if (typeof svg === "string" && svg.trim().startsWith("<svg")) {
+    return (
+      <span
+        className={finalClassName}
+        dangerouslySetInnerHTML={{ __html: sanitize(svg) }}
+      />
+    );
+  }
+
+  return null;
 };
+
 
 // Utility: Remove unwanted inline width/height/fill/steoke coming from upload icons
 const sanitize = (svg) =>

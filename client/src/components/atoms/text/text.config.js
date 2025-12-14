@@ -90,7 +90,6 @@ export const variantMap = {
       lg:h-(--size-icon-container-heading-1-desktop-diameter)
     `,
     iconClasses: `
-      fill-transparent
       text-(--color-content-icon-stroke-default)
       w-(--size-icon-heading-1-mobile)
       sm:w-(--size-icon-heading-1-tablet)
@@ -120,7 +119,6 @@ export const variantMap = {
       lg:h-(--size-icon-container-heading-1-subpage-desktop-diameter)
     `,
     iconClasses: `
-      fill-transparent
       text-(--color-content-icon-stroke-default)
       w-(--size-icon-heading-1-subpage-mobile)
       sm:w-(--size-icon-heading-1-subpage-tablet)
@@ -152,7 +150,6 @@ export const variantMap = {
       rounded-(--radius-icon-contaniner-base)
     `,
     iconClasses: `
-      fill-transparent
       text-(--color-content-icon-stroke-default)
       w-(--size-icon-heading-2-mobile)
       sm:w-(--size-icon-heading-2-tablet)
@@ -184,7 +181,6 @@ export const variantMap = {
       rounded-(--radius-icon-contaniner-base)
     `,
     iconClasses: `
-      fill-transparent
       text-(--color-content-icon-stroke-default)
       w-(--size-icon-heading-3-mobile)
       sm:w-(--size-icon-heading-3-tablet)

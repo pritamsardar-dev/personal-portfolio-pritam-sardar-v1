@@ -7,7 +7,7 @@ const Text = ({
   variant = "bodyLarge",
   as = null,
   text = "",
-  icon = null,
+  icon = {svg: {}, type: ""},
   textParts = null,
   className = "",
   ...props
@@ -26,7 +26,11 @@ const Text = ({
     <Tag className={classes} {...props}>
       {icon && (
         <span className={variantConfig.iconWrapperClasses}>
-           <IconRenderer svg={icon} className={variantConfig.iconClasses} />
+           <IconRenderer
+            svg={icon.svg}
+            type={icon.type}
+            className={variantConfig.iconClasses}
+          />
         </span>
       )}
 

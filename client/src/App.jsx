@@ -18,6 +18,7 @@ import HeroImageBlock from './components/molecules/heroimageblock/HeroImageBlock
 // import avatarTestImage from './assets/images/avatartest.png'
 // import heroImgeTest from'./assets/images/hero/home-hero.svg'
 import HeroTextBlock from './components/molecules/herotextblock/HeroTextBlock.jsx'
+ import AboutTextBlock from './components/molecules/abouttextblock/AboutTextBlock.jsx'
 
 
 
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <div className="inline-flex items-center justify-center gap-10 w-full">
+      
       <ThemeToggle />
     
       {/* <Logo theme="light" /> */}
@@ -35,8 +37,8 @@ function App() {
       {/* <Button label="+917908137571" isDisabled={false} variant="link" iconLeft={<ContactLinkPhoneIcon/>}  /> */}
 
       {/* <Button label="Click me" isDisabled={false} variant="overlay" /> */}
-    
-      {/* <Text variant="heading3"  text="Hello world !"
+{/*     
+      <Text variant="heading3"  text="Hello world !"
         icon={MoonIcon}/> */}
 
 {/*        
@@ -99,8 +101,9 @@ function App() {
 
     {/* <HeroImageBlock src={heroImgeTest}/> */}
 
-    <HeroTextBlock />
+    {/* <HeroTextBlock /> */}
 
+      <AboutTextBlock />
      
     </div>
   )
