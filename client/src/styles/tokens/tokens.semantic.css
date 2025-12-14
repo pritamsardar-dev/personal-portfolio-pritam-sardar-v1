@@ -691,6 +691,17 @@
     /* card Inner */
     --spacing-card-inner-mobile-padding: 8px;
 
+    /* List Item Text*/
+    --spacing-list-item-text-indent-desktop: 20px;
+    --spacing-list-item-text-indent-tablet: 19px;
+    --spacing-list-item-text-indent-mobile: 18px;
+    --spacing-list-item-text-gap-y-desktop: 8px;
+    --spacing-list-item-text-gap-y-tablet: 6px;
+    --spacing-list-item-text-gap-y-mobile: 4px;
+    
+    
+
+
 
     /* Radius */
     /* Button */
@@ -799,7 +810,7 @@
 
     /* Effects */
     /* Card Wrapper */
-    --effect-card-wrapper-background-blur: 0px;
+    --effect-card-wrapper-background-blur: 6px;
 
     /* Card Container */
     --effect-card-container-background-blur: 0px;

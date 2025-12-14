@@ -18,6 +18,7 @@ const Text = ({
 
   const classes = clsx(
     baseText,
+    as === "li" && "list-item",
     variantConfig.baseClasses,
     className
   );

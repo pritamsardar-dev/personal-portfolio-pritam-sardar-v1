@@ -19,6 +19,7 @@ import HeroImageBlock from './components/molecules/heroimageblock/HeroImageBlock
 // import heroImgeTest from'./assets/images/hero/home-hero.svg'
 import HeroTextBlock from './components/molecules/herotextblock/HeroTextBlock.jsx'
  import AboutTextBlock from './components/molecules/abouttextblock/AboutTextBlock.jsx'
+import AboutCardBlock from './components/molecules/aboutcardblock/AboutCardBlock.jsx'
 
 
 
@@ -28,7 +29,7 @@ function App() {
   // const {control} = useForm();
 
   return (
-    <div className="inline-flex items-center justify-center gap-10 w-full">
+    <div className="inline-flex items-center flex-col justify-center gap-10 w-full">
       
       <ThemeToggle />
     
@@ -103,7 +104,9 @@ function App() {
 
     {/* <HeroTextBlock /> */}
 
-      <AboutTextBlock />
+      {/* <AboutTextBlock /> */}
+      <AboutCardBlock/>
+
      
     </div>
   )
