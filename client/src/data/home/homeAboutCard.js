@@ -33,23 +33,15 @@ export const homeAboutCard = {
           variant: "bodyBase",
           text: "Affiliated to MAKAUT, WB"
         },
-        highlights: [
-          {
-            variant: "bodyBase",
-            text: "Built a COPD & Asthma detection system using CNN (Python).",
-            as: "li"
-          },
-          {
-            variant: "bodyBase",
-            text: "Published research on medical image classification using deep learning.",
-            as: "li"
-          },
-          {
-            variant: "bodyBase",
-            text: "Developed scalable full-stack applications using the MERN stack.",
-            as: "li"
-          },
-        ],
+        highlights: {
+          variant: "bodyBase",
+          as: "li",
+          texts: [
+             "Built a COPD & Asthma detection system using CNN (Python).",
+             "Published research on medical image classification using deep learning.",
+             "Developed scalable full-stack applications using the MERN stack."
+          ]
+        },
         score: {
           variant: "bodyBase",
           text: "CGPA: 8.1"
@@ -79,18 +71,14 @@ export const homeAboutCard = {
           variant: "bodyBase",
           text: "Affiliated to MAKAUT, WB"
         },
-        highlights: [
-          {
-            variant: "bodyBase",
-            text: "Practiced DSA extensively using Java.",
-            as: "li"
-          },
-          {
-            variant: "bodyBase",
-            text: "Built a machine learning–based email spam classifier.",
-            as: "li"
-          },
-        ],
+        highlights: {
+          variant: "bodyBase",
+          as: "li",
+          texts: [
+             "Practiced DSA extensively using Java.",
+             "Built a machine learning–based email spam classifier."
+          ]
+        },
         score: {
           variant: "bodyBase",
           text: "CGPA: 9.0"
@@ -120,18 +108,14 @@ export const homeAboutCard = {
           variant: "bodyBase",
           text: "Affiliated to WBSCTVESD, WB"
         },
-        highlights: [
-          {
-            variant: "bodyBase",
-            text: "Learned C, C++, Java fundamentals.",
-            as: "li"
-          },
-          {
-            variant: "bodyBase",
-            text: "Built microservice-based school utility apps.",
-            as: "li"
-          },
-        ],
+        highlights: {
+          variant: "bodyBase",
+          as: "li",
+          texts: [
+             "Learned C, C++, Java fundamentals.",
+             "Built microservice-based school utility apps."
+          ]
+        },
         score: {
           variant: "bodyBase",
           text: "CGPA: 7.8"
@@ -161,18 +145,14 @@ export const homeAboutCard = {
           variant: "bodyBase",
           text: "Board: WBBSE, WBCHSE"
         },
-        highlights: [
-          {
-            variant: "bodyBase",
-            text: "Learned C, C++, Java fundamentals.",
-            as: "li"
-          },
-          {
-            variant: "bodyBase",
-            text: "Built microservice-based school utility apps.",
-            as: "li"
-          },
-        ],
+        highlights: {
+          variant: "bodyBase",
+          as: "li",
+          texts: [
+             "Learned C, C++, Java fundamentals.",
+             "Built microservice-based school utility apps."
+          ]
+        },
         score: {
           variant: "bodyBase",
           text: "CGPA: 7.8"

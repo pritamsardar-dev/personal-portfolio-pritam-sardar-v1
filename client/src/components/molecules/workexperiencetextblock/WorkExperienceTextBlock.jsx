@@ -2,13 +2,17 @@ import React from "react";
 import clsx from "clsx";
 import Text from "../../atoms/text/Text";
 import Button from "../../atoms/button/Button.jsx";
-import { homeAboutCard } from "../../../data/home/homeAboutCard.js";
+import { homeWorkExperienceText } from "../../../data/home/homeWorkExperienceText.js";
+homeWorkExperienceText
 
 const blockContainerClasses = `
     flex flex-col w-full h-auto 
     max-w-(--size-block-wrapper-mobile-max-width)
     sm:max-w-(--size-block-wrapper-tablet-max-width)
     lg:max-w-(--size-block-wrapper-desktop-max-width)
+    px-(--spacing-text-container-mobile-padding-x)
+    sm:px-(--spacing-text-container-tablet-padding-x)
+    lg:px-(--spacing-text-container-desktop-padding-x)
     gap-(--spacing-block-block-mobile-gap)
     sm:gap-(--spacing-block-block-tablet-gap)
     lg:gap-(--spacing-block-block-desktop-gap)
@@ -16,28 +20,13 @@ const blockContainerClasses = `
 
 const bodyItemsContainerClasses = `
     flex flex-col w-full h-auto 
-    gap-(--spacing-item-item-mobile-gap)
-    sm:gap-(--spacing-item-item-tablet-gap)
-    lg:gap-(--spacing-item-item-desktop-gap)
+    gap-(--spacing-block-block-mobile-gap)
+    sm:gap-(--spacing-block-block-tablet-gap)
+    lg:gap-(--spacing-block-block-desktop-gap)
 `;
 
-const bodyItemContainerCardClasses = `
+const bodyItemContainerClasses = `
     flex flex-col w-full h-auto
-    bg-(--color-card-wrapper-fill)
-    border-(length:--border-card-wrapper-base-width)
-    border-(--color-card-wrapper-stroke)
-    shadow-(--shadow-card-wrapper)
-    backdrop-blur-(--effect-card-wrapper-background-blur)
-    rounded-(--radius-card-wrapper-base)
-    transform-gpu
-    will-change-transform
-    contain-layout contain-paint
-    px-(--spacing-text-container-mobile-padding-x)
-    sm:px-(--spacing-text-container-tablet-padding-x)
-    lg:px-(--spacing-text-container-desktop-padding-x)
-    py-(--spacing-text-container-mobile-padding-y)
-    sm:py-(--spacing-text-container-tablet-padding-y)
-    lg:py-(--spacing-text-container-desktop-padding-y)
     gap-(--spacing-list-item-mobile-gap)
     sm:gap-(--spacing-list-item-tablet-gap)
     lg:gap-(--spacing-list-item-desktop-gap)
@@ -61,10 +50,8 @@ const alignmentClassesMap = {
 };
 
 
-const AboutCardBlock = ({
-    heading = homeAboutCard.heading,
-    bodyItems = homeAboutCard.bodyItems,
-    buttonProps = homeAboutCard.buttonProps,
+const WorkExperienceTextBlock = ({
+    bodyItems = homeWorkExperienceText.bodyItems,
     alignmentHeading = "left",
     alignmenBody = "left",
     className,
@@ -83,40 +70,35 @@ const AboutCardBlock = ({
         )}
         {...props}
         >
-            <Text {...heading} />
-            <div
-            className={clsx(bodyItemsContainerClasses, alignmentClassBody)}
-            >
-                {bodyItems.map((item, index) => (
-                    <div key={index} className={clsx(bodyItemContainerCardClasses,)}>
-                        <Text  {...item.body.timeline} />
-
-                        <Text  {...item.heading} />
-
-                        <Text  {...item.body.institute} />
-
-                        <Text  {...item.body.board} />
+            {bodyItems.map((item, index) => (
+                <div key={index} className={clsx(
+                    bodyItemsContainerClasses,
+                    alignmentClassBody
+                    )}>
+                    <div className={clsx(bodyItemContainerClasses)}>
+                        <Text  {...item.overview} />
 
                         <ul className={clsx(listItemClasses)}>
-                            {item.body.highlights.texts.map((listItem, index) => (
+                            {item.highlights.texts.map((listItem, index) => (
                                 <Text 
                                 key={index} 
-                                variant={item.body.highlights.variant} 
-                                as={item.body.highlights.as}
+                                variant={item.highlights.variant} 
+                                as={item.highlights.as} 
                                 text={listItem}
                                 />
                             ))}
                         </ul>
 
-                        <Text  {...item.body.score} />
+                        <Text  {...item.caseStudyAtAGlance} />
                     </div>
-                ))}
-            </div>
-            <div>
-                <Button {...buttonProps}/>
-            </div>
+
+                    <div>
+                        <Button {...item.buttonProps}/>
+                    </div>
+                </div>
+            ))}
         </div>
-    )
+    );
 };
 
-export default AboutCardBlock;
+export default WorkExperienceTextBlock;
