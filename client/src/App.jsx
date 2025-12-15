@@ -23,6 +23,7 @@ import AboutCardBlock from './components/molecules/aboutcardblock/AboutCardBlock
 import WorkExperienceCardBlock from './components/molecules/workexperiencecardblock/WorkExperienceCardBlock.jsx'
 import WorkExperienceTextBlock from './components/molecules/workexperiencetextblock/WorkExperienceTextBlock.jsx'
 import SkillsCardBlock from './components/molecules/skillscardblock/SkillsCardBlock.jsx'
+import SkillsTextBlock from './components/molecules/skillstextblock/SkillsTextBlock.jsx'
 
 
 
@@ -111,8 +112,8 @@ function App() {
       {/* <AboutCardBlock/> */}
       {/* <WorkExperienceCardBlock /> */}
       {/* <WorkExperienceTextBlock /> */}
-      
-      <SkillsCardBlock />
+      {/* <SkillsCardBlock /> */}
+      <SkillsTextBlock />
      
     </div>
   )

@@ -41,7 +41,9 @@ const techStackTagStyleClasses = `
     border-(length:--border-card-wrapper-base-width)
     border-(--color-card-wrapper-stroke)
     shadow-(--shadow-card-wrapper)
-    backdrop-blur-(--effect-card-wrapper-background-blur)
+    backdrop-blur-none
+    sm:backdrop-blur-none
+    lg:backdrop-blur-none
     rounded-(--radius-card-skill-wrapper-base)
     transform-gpu
     will-change-transform
