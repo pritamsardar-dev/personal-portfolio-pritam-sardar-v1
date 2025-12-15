@@ -1,4 +1,15 @@
+import { workExperienceTitleTextblock } from "../../assets/icons/content";
+
 export const homeWorkExperienceText = {
+  heading: {
+      variant: "heading2",
+      text: "Key Contributions & Impact",
+      icon: {
+        svg: workExperienceTitleTextblock.svg, 
+        type: workExperienceTitleTextblock.type 
+      }
+  },
+  
   bodyItems: [
     {
       overview: {
