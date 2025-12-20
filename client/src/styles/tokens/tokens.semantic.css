@@ -44,11 +44,11 @@
     --color-icon-button-toggle-knob-icon-background: var(--color-gray-500);
   
     /* Carousal Dot*/
-    --color-carousal-dot-default: color-mix(in srgb, var(--color-base-black) 50%, transparent);
-    --color-carousal-dot-hover: color-mix(in srgb, var(--color-base-black) 70%, transparent);
-    --color-carousal-dot-active: color-mix(in srgb, var(--color-indigo-500) 50%, transparent);
-    --color-carousal-dot-border: color-mix(in srgb, var(--color-base-white) 20%, transparent);
-
+    --color-carousal-dot-default: color-mix(in srgb, var(--color-base-black) 30%, transparent);
+    --color-carousal-dot-hover: color-mix(in srgb, var(--color-base-black) 45%, transparent);
+    --color-carousal-dot-active: color-mix(in srgb, var(--color-indigo-500) 70%, transparent);
+    --color-carousal-dot-border: color-mix(in srgb, var(--color-base-white) 12%, transparent);
+    
     /* Tech Stack Tag*/
     --color-tech-stack-tag-background-default: var(--color-gray-100);
 
@@ -707,7 +707,23 @@
 
     /* Inline Text*/
     --spacing-inline-text-gap: 4px;
-    
+
+    /* Carousel */
+    --spacing-carousel-dot-desktop-gap: 12px;
+    --spacing-carousel-dot-tablet-gap: 10px;
+    --spacing-carousel-dot-mobile-gap: 8px;
+    --spacing-carousel-dot-desktop-offset: 20px;
+    --spacing-carousel-dot-tablet-offset: 16px;
+    --spacing-carousel-dot-mobile-offset: 12px;
+    --spacing-carousel-utility-desktop-offset: 16px;
+    --spacing-carousel-utility-tablet-offset: 12px;
+    --spacing-carousel-utility-mobile-offset: 8px;
+    --spacing-carousel-cta-fullscreen-desktop-offset: 16px;
+    --spacing-carousel-cta-fullscreen-tablet-offset: 12px;
+    --spacing-carousel-cta-fullscreen-mobile-offset: 8px;
+    --spacing-carousel-arrow-fullscreen-desktop-offset: 48px;
+    --spacing-carousel-arrow-fullscreen-tablet-offset: 40px;
+    --spacing-carousel-arrow-fullscreen-mobile-offset: 32px;
 
     /* Radius */
     /* Button */
@@ -806,6 +822,8 @@
 
     /* Carousel Contianer */
     --shadow-carousel-container: 0px 4px 12px 0px rgba(0, 0, 0, 0.8);
+    --color-carousal-viewport-shadow: 0 6px 20px rgba(0,0,0,0.06);
+
 
     /* Select Dropdown */
     --shadow-select-dropdown: 0px 6px 16px 0px rgba(115, 93, 248, 0.3);

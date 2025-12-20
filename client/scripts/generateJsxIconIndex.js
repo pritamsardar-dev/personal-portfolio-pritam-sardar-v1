@@ -4,17 +4,21 @@ import { join, basename } from "path";
 const iconsFolder = "src/assets/icons/system";
 const indexFile = join(iconsFolder, "index.js");
 
-// Read all files in the folder
+// Read all JSX files in the folder
 const files = readdirSync(iconsFolder).filter(file => file.endsWith(".jsx"));
 
-// Generate import & export lines
+// Generate import lines for both component and type
 let content = files.map(file => {
   const name = basename(file, ".jsx"); 
-  return `import ${name} from './${name}';`;
+  return `import ${name}, { ${name}Type } from './${name}';`;
 }).join("\n");
 
-content += "\n\nexport {\n" + files.map(file => basename(file, ".jsx")).join(",\n") + "\n};\n";
+// Generate export block
+content += "\n\nexport {\n" + files.map(file => {
+  const name = basename(file, ".jsx"); 
+  return `${name}, ${name}Type`;
+}).join(",\n") + "\n};\n";
 
 // Write index.js
 writeFileSync(indexFile, content, "utf8");
-console.log(`index.js generated with ${files.length} icons`);
+console.log(`index.js generated with ${files.length} icons and their types`);

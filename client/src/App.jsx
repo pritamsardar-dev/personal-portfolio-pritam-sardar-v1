@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from './components/atoms/logo/Logo.jsx'
 import Button from './components/atoms/button/Button.jsx'
 import ThemeToggle from './components/atoms/toggle/ThemeToggle.jsx'
-import {HeartReactIcon, ContactLinkPhoneIcon, ContactLinkEmailIcon, ContactLinkWhatsappIcon, FullscreenIcon, SunIcon, MoonIcon, TagHeartFillIcon, TagClockIcon, TagEyeIcon, DropdownIcon} from './assets/icons/system'
+import {HeartReactIcon, ContactLinkPhoneIcon, ContactLinkEmailIcon, ContactLinkWhatsappIcon, FullscreenIcon, SunIcon, MoonIcon, TagHeartFillIcon, TagClockIcon, TagEyeIcon, DropdownIcon, ArrowLeftIcon, ArrowRightIcon} from './assets/icons/system'
 import Text from './components/atoms/text/Text.jsx'
 import NavigationItem from './components/atoms/navigationitem/NavigationItem.jsx'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -24,6 +24,7 @@ import WorkExperienceCardBlock from './components/molecules/workexperiencecardbl
 import WorkExperienceTextBlock from './components/molecules/workexperiencetextblock/WorkExperienceTextBlock.jsx'
 import SkillsCardBlock from './components/molecules/skillscardblock/SkillsCardBlock.jsx'
 import SkillsTextBlock from './components/molecules/skillstextblock/SkillsTextBlock.jsx'
+import ProjectsCarouselBlock from './components/molecules/projectscarousalblock/ProjectsCarouselBlock.jsx'
 
 
 
@@ -33,7 +34,21 @@ function App() {
   // const {control} = useForm();
 
   return (
-    <div className="inline-flex items-center flex-col justify-center gap-10 w-full">
+    <div className="
+    inline-flex items-center flex-col justify-center gap-10 w-full
+
+    max-w-(--size-section-wrapper-mobile-max-width)
+    sm:max-w-(--size-section-wrapper-tablet-max-width)
+    lg:max-w-(--size-section-wrapper-desktop-max-width)
+
+    px-(--spacing-section-wrapper-mobile-padding-x)
+    sm:px-(--spacing-section-wrapper-tablet-padding-x)
+    lg:px-(--spacing-section-wrapper-desktop-padding-x)
+
+    py-(--spacing-section-wrapper-mobile-padding-y)
+    sm:py-(--spacing-section-wrapper-tablet-padding-y)
+    lg:py-(--spacing-section-wrapper-desktop-padding-x)
+    ">
       
       <ThemeToggle />
     
@@ -113,7 +128,9 @@ function App() {
       {/* <WorkExperienceCardBlock /> */}
       {/* <WorkExperienceTextBlock /> */}
       {/* <SkillsCardBlock /> */}
-      <SkillsTextBlock />
+      {/* <SkillsTextBlock /> */}
+      <ProjectsCarouselBlock />
+   
      
     </div>
   )

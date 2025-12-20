@@ -103,8 +103,6 @@ export const variantMap = {
     `,
 
     iconClasses: `
-      fill-transparent
-      text-inherit
       stroke-(length:--border-icon-base-width)
       w-(--size-icon-button-element-mobile-diameter)
       sm:w-(--size-icon-button-element-tablet-diameter)
@@ -146,8 +144,6 @@ export const variantMap = {
     `,
 
     iconClasses: `
-      fill-transparent
-      text-inherit
       stroke-(length:--border-icon-base-width)
       w-(--size-icon-button-element-mobile-diameter)
       sm:w-(--size-icon-button-element-tablet-diameter)
@@ -190,8 +186,6 @@ export const variantMap = {
     `,
 
     iconClasses: `
-      fill-transparent
-      text-inherit
       stroke-(length:--border-icon-base-width)
       w-(--size-icon-button-element-mobile-diameter)
       sm:w-(--size-icon-button-element-tablet-diameter)
@@ -239,7 +233,6 @@ export const variantMap = {
     `,
 
     iconClasses: `
-      fill-transparent
       text-(--color-icon-button-icon-only)
       stroke-[(length:--border-icon-base-width)]
       w-[80%]
@@ -267,8 +260,6 @@ export const variantMap = {
     `,
 
     iconClasses: `
-      fill-transparent
-      text-inherit
       stroke-[(length:--border-icon-base-width)]
       w-(--size-icon-button-element-mobile-diameter)
       sm:w-(--size-icon-button-element-tablet-diameter)
@@ -297,8 +288,6 @@ export const variantMap = {
     `,
 
     iconClasses: `
-      fill-transparent
-      text-inherit
       stroke-[(length:--border-icon-base-width)]
       w-(--size-icon-button-element-mobile-diameter)
       sm:w-(--size-icon-button-element-tablet-diameter)
@@ -307,7 +296,7 @@ export const variantMap = {
     `,
     },
 
-    casouselDot: {
+    carouselDot: {
     baseClasses: `
       bg-(--color-carousal-dot-default)
       hover:bg-(--color-carousal-dot-hover)
@@ -320,7 +309,6 @@ export const variantMap = {
       
       h-(--size-carousel-dot-all-diameter)
       
-    
       font-(--text-button-font-weight)
       rounded-(--radius-icon-button-overlay)
       border-(length:--border-carousel-dot-all-width)
@@ -361,7 +349,6 @@ export const variantMap = {
       group-hover:text-(--color-button-icon-react-background-hover)
       group-active:text-(--color-button-icon-react-background-active) 
 
-      fill-transparent  
       group-active:fill-(--color-button-icon-react-background-active)
       stroke-(length:--border-icon-base-width)
       w-(--size-icon-button-element-large-mobile-diameter)
@@ -398,7 +385,6 @@ export const variantMap = {
     `,
 
     iconClasses: `
-      fill-(--color-button-icon-link-background-default)
       text-(--color-button-icon-link-background-default)
       stroke-(length:--border-icon-base-width)
       w-(--size-icon-button-element-large-mobile-diameter)

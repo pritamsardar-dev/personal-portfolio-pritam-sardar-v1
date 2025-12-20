@@ -1,59 +1,57 @@
-import ArrowBottomIcon from './ArrowBottomIcon';
-import ArrowLeftIcon from './ArrowLeftIcon';
-import ArrowRightIcon from './ArrowRightIcon';
-import Close from './Close';
-import ContactLinkEmailIcon from './ContactLinkEmailIcon';
-import ContactLinkGithubIcon from './ContactLinkGithubIcon';
-import ContactLinkLinkedinIcon from './ContactLinkLinkedinIcon';
-import ContactLinkLocationIcon from './ContactLinkLocationIcon';
-import ContactLinkPhoneIcon from './ContactLinkPhoneIcon';
-import ContactLinkResumeIcon from './ContactLinkResumeIcon';
-import ContactLinkWhatsappIcon from './ContactLinkWhatsappIcon';
-import CrossIcon from './CrossIcon';
-import DropdownIcon from './DropdownIcon';
-import FullscreenIcon from './FullscreenIcon';
-import HamburgerIcon from './HamburgerIcon';
-import HeartReactIcon from './HeartReactIcon';
-import MoonIcon from './MoonIcon';
-import OverlayCloseIcon from './OverlayCloseIcon';
-import OverlayFigmaIcon from './OverlayFigmaIcon';
-import OverlayFullscreenIcon from './OverlayFullscreenIcon';
-import OverlayFullscreenMinIcon from './OverlayFullscreenMinIcon';
-import OverlayGitIcon from './OverlayGitIcon';
-import OverlayHeartIcon from './OverlayHeartIcon';
-import OverlayPlayIcon from './OverlayPlayIcon';
-import SunIcon from './SunIcon';
-import TagClockIcon from './TagClockIcon';
-import TagEyeIcon from './TagEyeIcon';
-import TagHeartFillIcon from './TagHeartFillIcon';
+import ArrowBottomIcon, { ArrowBottomIconType } from './ArrowBottomIcon';
+import ArrowLeftIcon, { ArrowLeftIconType } from './ArrowLeftIcon';
+import ArrowRightIcon, { ArrowRightIconType } from './ArrowRightIcon';
+import ContactLinkEmailIcon, { ContactLinkEmailIconType } from './ContactLinkEmailIcon';
+import ContactLinkGithubIcon, { ContactLinkGithubIconType } from './ContactLinkGithubIcon';
+import ContactLinkLinkedinIcon, { ContactLinkLinkedinIconType } from './ContactLinkLinkedinIcon';
+import ContactLinkLocationIcon, { ContactLinkLocationIconType } from './ContactLinkLocationIcon';
+import ContactLinkPhoneIcon, { ContactLinkPhoneIconType } from './ContactLinkPhoneIcon';
+import ContactLinkResumeIcon, { ContactLinkResumeIconType } from './ContactLinkResumeIcon';
+import ContactLinkWhatsappIcon, { ContactLinkWhatsappIconType } from './ContactLinkWhatsappIcon';
+import CrossIcon, { CrossIconType } from './CrossIcon';
+import DropdownIcon, { DropdownIconType } from './DropdownIcon';
+import FullscreenIcon, { FullscreenIconType } from './FullscreenIcon';
+import HamburgerIcon, { HamburgerIconType } from './HamburgerIcon';
+import HeartReactIcon, { HeartReactIconType } from './HeartReactIcon';
+import MoonIcon, { MoonIconType } from './MoonIcon';
+import OverlayCloseIcon, { OverlayCloseIconType } from './OverlayCloseIcon';
+import OverlayFigmaIcon, { OverlayFigmaIconType } from './OverlayFigmaIcon';
+import OverlayFullscreenIcon, { OverlayFullscreenIconType } from './OverlayFullscreenIcon';
+import OverlayFullscreenMinIcon, { OverlayFullscreenMinIconType } from './OverlayFullscreenMinIcon';
+import OverlayGitIcon, { OverlayGitIconType } from './OverlayGitIcon';
+import OverlayHeartIcon, { OverlayHeartIconType } from './OverlayHeartIcon';
+import OverlayPlayIcon, { OverlayPlayIconType } from './OverlayPlayIcon';
+import SunIcon, { SunIconType } from './SunIcon';
+import TagClockIcon, { TagClockIconType } from './TagClockIcon';
+import TagEyeIcon, { TagEyeIconType } from './TagEyeIcon';
+import TagHeartFillIcon, { TagHeartFillIconType } from './TagHeartFillIcon';
 
 export {
-ArrowBottomIcon,
-ArrowLeftIcon,
-ArrowRightIcon,
-Close,
-ContactLinkEmailIcon,
-ContactLinkGithubIcon,
-ContactLinkLinkedinIcon,
-ContactLinkLocationIcon,
-ContactLinkPhoneIcon,
-ContactLinkResumeIcon,
-ContactLinkWhatsappIcon,
-CrossIcon,
-DropdownIcon,
-FullscreenIcon,
-HamburgerIcon,
-HeartReactIcon,
-MoonIcon,
-OverlayCloseIcon,
-OverlayFigmaIcon,
-OverlayFullscreenIcon,
-OverlayFullscreenMinIcon,
-OverlayGitIcon,
-OverlayHeartIcon,
-OverlayPlayIcon,
-SunIcon,
-TagClockIcon,
-TagEyeIcon,
-TagHeartFillIcon
+ArrowBottomIcon, ArrowBottomIconType,
+ArrowLeftIcon, ArrowLeftIconType,
+ArrowRightIcon, ArrowRightIconType,
+ContactLinkEmailIcon, ContactLinkEmailIconType,
+ContactLinkGithubIcon, ContactLinkGithubIconType,
+ContactLinkLinkedinIcon, ContactLinkLinkedinIconType,
+ContactLinkLocationIcon, ContactLinkLocationIconType,
+ContactLinkPhoneIcon, ContactLinkPhoneIconType,
+ContactLinkResumeIcon, ContactLinkResumeIconType,
+ContactLinkWhatsappIcon, ContactLinkWhatsappIconType,
+CrossIcon, CrossIconType,
+DropdownIcon, DropdownIconType,
+FullscreenIcon, FullscreenIconType,
+HamburgerIcon, HamburgerIconType,
+HeartReactIcon, HeartReactIconType,
+MoonIcon, MoonIconType,
+OverlayCloseIcon, OverlayCloseIconType,
+OverlayFigmaIcon, OverlayFigmaIconType,
+OverlayFullscreenIcon, OverlayFullscreenIconType,
+OverlayFullscreenMinIcon, OverlayFullscreenMinIconType,
+OverlayGitIcon, OverlayGitIconType,
+OverlayHeartIcon, OverlayHeartIconType,
+OverlayPlayIcon, OverlayPlayIconType,
+SunIcon, SunIconType,
+TagClockIcon, TagClockIconType,
+TagEyeIcon, TagEyeIconType,
+TagHeartFillIcon, TagHeartFillIconType
 };

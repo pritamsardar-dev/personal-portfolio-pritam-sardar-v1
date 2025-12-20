@@ -9,24 +9,33 @@ readdirSync(svgFolder).forEach((file) => {
 
     const svgName = basename(file, ".svg");
     const componentName = 
-    svgName.replace(/(^\w|-\w)/g, (c) => c.replace("-", "").toUpperCase()) + "Icon";
+        svgName.replace(/(^\w|-\w)/g, (c) => c.replace("-", "").toUpperCase()) + "Icon";
 
     let svg = readFileSync(join(svgFolder, file), "utf8");
 
-    // Clean the SVG
-    svg = svg
-    .replace(/\s*width="[^"]*"/g, "")
-    .replace(/\s*height="[^"]*"/g, "")
-    .replace(/\s*fill="[^"]*"/g, "")
-    .replace(/\s*stroke-width="[^"]*"/g, "")
-    .replace(/\s*fill-opacity="[^"]*"/g, "")
-    .replace(/stroke="[^"]*"/g, 'stroke="currentColor"')
-    .replace(/\sstroke-\s*/g, " "); // Figma/Illustrator sometimes break attributes
+    // Detect type
+    const hasStroke = /stroke="/.test(svg);
+    const hasFill = /fill="(?!none)/.test(svg);
 
-    // Wrap in JSX
-    svg = svg.replace(/stroke-linecap=/g, "strokeLinecap=");
-    svg = svg.replace(/stroke-linejoin=/g, "strokeLinejoin=");
-    svg = svg.replace(/stroke-opacity=/g, "strokeOpacity=");
+    let type = "unknown";
+    if (hasStroke && !hasFill) type = "stroke";
+    else if (hasFill && !hasStroke) type = "fill";
+    else if (hasStroke && hasFill) type = "mixed";
+
+    // Clean SVG
+    svg = svg
+        .replace(/\s*width="[^"]*"/g, "")
+        .replace(/\s*height="[^"]*"/g, "")
+        .replace(/\s*fill-opacity="[^"]*"/g, "")
+        .replace(/\s*stroke-width="[^"]*"/g, "")
+        .replace(/stroke="[^"]*"/g, 'stroke="currentColor"')
+        .replace(/\sstroke-\s*/g, " ");
+
+    // JSX attributes
+    svg = svg
+        .replace(/stroke-linecap=/g, "strokeLinecap=")
+        .replace(/stroke-linejoin=/g, "strokeLinejoin=")
+        .replace(/stroke-opacity=/g, "strokeOpacity=");
 
     const jsxContent = `import * as React from "react";
 
@@ -38,10 +47,11 @@ ${svg.replace(
 );
 
 export default ${componentName};
+export const ${componentName}Type = "${type}";
 `;
 
     writeFileSync(join(outputFolder, `${componentName}.jsx`), jsxContent);
-    console.log(`Created ${componentName}.jsx`);
+    console.log(`Created ${componentName}.jsx with type "${type}"`);
 });
 
-console.log("All SVGs converted to JSX icons!");
+console.log("All SVGs converted to JSX icons with prefixed type metadata!");

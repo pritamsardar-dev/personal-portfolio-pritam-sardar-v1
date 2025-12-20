@@ -1,49 +1,56 @@
-import React from 'react';
-import clsx from 'clsx';
-import { baseButton, variantMap } from './button.config';
+import React from "react";
+import clsx from "clsx";
+import { baseButton, variantMap } from "./button.config";
+import {iconPaintClasses} from "./icon.paint.config";
 
 const Button = ({
-   variant="primary", 
-   label="", 
-   iconLeft= null, 
-   iconRight= null, 
-   isDisabled=false,
-   className = "",
-   onClick = () => {},
-   ...props
+  variant = "primary",
+  label = "",
+  iconLeft: IconLeft = null,
+  iconRight: IconRight = null,
+  iconLeftType = null,  
+  iconRightType = null, 
+  isDisabled = false,
+  className = "",
+  onClick = () => {},
+  ...props
 }) => {
-   const variantConfig = variantMap[variant] || variantMap.primary;
+  const variantConfig = variantMap[variant] || variantMap.primary;
 
-   const classes = clsx(
-      baseButton,
-      variantConfig.baseClasses,
-      className,
-      isDisabled && "pointer-events-none"
-   );
+  const classes = clsx(
+    baseButton,
+    variantConfig.baseClasses,
+    className,
+    isDisabled && "pointer-events-none"
+  );
+
+  const getIconClasses = (type) => clsx(
+    variantConfig.iconClasses, 
+    type && iconPaintClasses[type] 
+  );
 
   return (
-    <button 
-    disabled={isDisabled} 
-    className={classes}
-    onClick={onClick}
-    {...props}
+    <button
+      disabled={isDisabled}
+      className={classes}
+      onClick={onClick}
+      {...props}
     >
-      {iconLeft && (
-      <span className={variantConfig.iconClasses}>
-         {iconLeft}
-      </span>
+      {IconLeft && (
+        <span className={getIconClasses(iconLeftType)}>
+          <IconLeft />
+        </span>
       )}
 
       {label && <span>{label}</span>}
 
-      {iconRight && (
-      <span className={variantConfig.iconClasses}>
-         {iconRight}
-      </span>
+      {IconRight && (
+        <span className={getIconClasses(iconRightType)}>
+          <IconRight />
+        </span>
       )}
-     </button>
+    </button>
   );
 };
 
-export default Button
-
+export default Button;
