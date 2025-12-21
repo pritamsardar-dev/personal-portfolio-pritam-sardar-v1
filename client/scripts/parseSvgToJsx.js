@@ -40,7 +40,9 @@ readdirSync(svgFolder).forEach((file) => {
     svg = svg
         .replace(/stroke-linecap=/g, "strokeLinecap=")
         .replace(/stroke-linejoin=/g, "strokeLinejoin=")
-        .replace(/stroke-opacity=/g, "strokeOpacity=");
+        .replace(/stroke-opacity=/g, "strokeOpacity=")
+        .replace(/fill-rule=/g, "fillRule=")
+        .replace(/clip-rule=/g, "clipRule=");
 
     const jsxContent = `import * as React from "react";
 

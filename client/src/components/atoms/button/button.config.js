@@ -381,7 +381,8 @@ export const variantMap = {
       font-(-text-body-large-font-weight)
       rounded-(--radius-button-overlay-base)
       
-      hover:underline 
+      hover:underline
+      active:underline
     `,
 
     iconClasses: `
