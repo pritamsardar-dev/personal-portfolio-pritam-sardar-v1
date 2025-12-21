@@ -1,12 +1,15 @@
 import React from "react";
 import clsx from "clsx";
 import { baseTag, variantMap } from "./tag.config";
+import {iconPaintClasses} from "./icon.paint.config";
 
 const Tag = ({
   variant = "overlay",
   label = "",
-  iconLeft = null,
-  iconRight = null,
+  iconLeft: IconLeft = null,
+  iconRight: IconRight = null,
+  iconLeftType = null,  
+  iconRightType = null, 
   className = "",
   ...props
 }) => {
@@ -18,19 +21,24 @@ const Tag = ({
     className
   );
 
+  const getIconClasses = (type) => clsx(
+      variantConfig.iconClasses, 
+      type && iconPaintClasses[type] 
+  );
+
   return (
     <div className={classes} {...props}>
-      {iconLeft && (
-        <span className={variantConfig.iconClasses}>
-          {iconLeft}
+      {IconLeft && (
+        <span className={getIconClasses(iconLeftType)}>
+          <IconLeft />
         </span>
       )}
 
       {label && <span>{label}</span>}
 
-      {iconRight && (
-        <span className={variantConfig.iconClasses}>
-          {iconRight}
+      {IconRight && (
+        <span className={getIconClasses(iconRightType)}>
+          <IconRight />
         </span>
       )}
     </div>

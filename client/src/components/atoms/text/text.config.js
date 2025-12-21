@@ -95,7 +95,6 @@ export const variantMap = {
       sm:w-(--size-icon-heading-1-tablet)
       lg:w-(--size-icon-heading-1-desktop)
       h-auto
-      stroke-(length:--border-icon-base-width)
     `,
   },
 
@@ -155,7 +154,6 @@ export const variantMap = {
       sm:w-(--size-icon-heading-2-tablet)
       lg:w-(--size-icon-heading-2-desktop)
       h-auto
-      stroke-(length:--border-icon-base-width)
     `,
   },
 
@@ -186,7 +184,6 @@ export const variantMap = {
       sm:w-(--size-icon-heading-3-tablet)
       lg:w-(--size-icon-heading-3-desktop)
       h-auto
-      stroke-(length:--border-icon-base-width)
     `,
   },
 

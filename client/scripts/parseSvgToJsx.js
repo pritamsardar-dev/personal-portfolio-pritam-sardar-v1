@@ -29,7 +29,12 @@ readdirSync(svgFolder).forEach((file) => {
         .replace(/\s*fill-opacity="[^"]*"/g, "")
         .replace(/\s*stroke-width="[^"]*"/g, "")
         .replace(/stroke="[^"]*"/g, 'stroke="currentColor"')
-        .replace(/\sstroke-\s*/g, " ");
+        .replace(/\sstroke-\s*/g, " ")
+        // Path-level fill → currentColor (ignore fill="none")
+        .replace(
+            /(<(path|circle|rect|polygon|line|polyline)[^>]*?)\sfill="(?!none)[^"]*"/g,
+            '$1 fill="currentColor"'
+        );
 
     // JSX attributes
     svg = svg

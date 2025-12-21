@@ -611,7 +611,8 @@ const ProjectsCarouselBlock = ({
                             key={index}
                             variant="carouselDot"
                             className={clsx(
-                                index === activeIndex && "bg-[var(--color-carousal-dot-active)]"
+                                "flex transition-all scale-100 duration-300 ease-out",
+                                index === activeIndex && "bg-[var(--color-carousal-dot-active)] scale-105"
                             )}
                             onClick={() => {
                                 pauseAutoPlay();

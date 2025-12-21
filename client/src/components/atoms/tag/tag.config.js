@@ -5,6 +5,7 @@ export const baseTag = `
     lg:gap-(--spacing-button-content-desktop-gap)
     whitespace-nowrap
     transition-all duration-300 ease-in-out
+    
 `;
 
 export const variantMap = {
