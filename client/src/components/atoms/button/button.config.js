@@ -7,6 +7,7 @@ export const baseButton = `
     transition-all duration-300 ease-in-out
     cursor-pointer disabled:cursor-default
     u-focus-visible-outline
+    min-w-fit
 `;
 
 export const variantMap = {

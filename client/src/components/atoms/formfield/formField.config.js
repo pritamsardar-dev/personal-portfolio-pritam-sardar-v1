@@ -196,6 +196,7 @@ export const variantMap = {
     `,
 
     baseClasses: `
+      w-full
       resize-none outline-none
       min-h-(--size-form-field-expandable-mobile-min-height)
       sm:min-h-(--size-form-field-expandable-tablet-min-height)
