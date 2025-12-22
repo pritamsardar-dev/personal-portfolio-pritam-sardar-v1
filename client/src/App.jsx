@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState} from 'react'
 import Logo from './components/atoms/logo/Logo.jsx'
 import Button from './components/atoms/button/Button.jsx'
 import ThemeToggle from './components/atoms/toggle/ThemeToggle.jsx'
@@ -27,14 +27,16 @@ import SkillsTextBlock from './components/molecules/skillstextblock/SkillsTextBl
 import ProjectsCarouselBlock from './components/molecules/projectscarousalblock/ProjectsCarouselBlock.jsx'
 import ProjectsTextBlock from './components/molecules/projectstextblock/ProjectsTextBlock.jsx'
 import ContactTextBlock from './components/molecules/contacttextblock/ContactTextBlock.jsx'
-import ContactFormBlock from './components/molecules/contactcardblock/ContactFormBlock.jsx'
-
+import ContactFormBlock from './components/molecules/contactformblock/ContactFormBlock.jsx'
+import Paginaiton from './components/molecules/pagination/Paginaton.jsx'
 
 
 function App() {
   // const {register, control} = useForm();
   // const {register, } = useForm();
   // const {control} = useForm();
+  const [currentPage, setCurrentPage] = useState(1);
+
 
   return (
     <div className="
@@ -135,7 +137,11 @@ function App() {
       {/* <ProjectsCarouselBlock /> */}
       {/* <ProjectsTextBlock /> */}
       {/* <ContactTextBlock /> */}
-      <ContactFormBlock />
+      {/* <ContactFormBlock /> */}
+      <Paginaiton
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+      />
    
      
     </div>
