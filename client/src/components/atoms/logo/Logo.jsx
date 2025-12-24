@@ -15,6 +15,7 @@ const logos = {
   dark: {sm: LogoDarkSm, md: LogoDarkMd, lg: LogoDarkLg},
 };
 
+
 const Logo = ({theme = "light"}) => {
   const [size, setSize] = useState("lg");
   const [logoSrc, setLogoSrc] = useState(logos[theme][size]);

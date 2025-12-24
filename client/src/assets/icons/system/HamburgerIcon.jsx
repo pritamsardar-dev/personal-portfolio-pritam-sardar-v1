@@ -1,11 +1,8 @@
 import * as React from "react";
 
 const HamburgerIcon = (props) => (
-<svg {...props} viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 1.25H20M0 7.75H20M0 14.25H20" stroke="currentColor" strokeLinecap="round" linejoin="round"/>
-</svg>
-
+<svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M4 6a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Zm0 12a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Zm1-7a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H5Z"/></svg>
 );
 
 export default HamburgerIcon;
-export const HamburgerIconType = "stroke";
+export const HamburgerIconType = "fill";

@@ -447,6 +447,9 @@
     --size-icon-button-element-large-desktop-diameter: 20px;
     --size-icon-button-element-large-tablet-diameter: 18px;
     --size-icon-button-element-large-mobile-diameter: 16px;
+    --size-icon-only-circular-button-element-large-desktop-diameter: 28px;
+    --size-icon-only-circular-button-element-large-tablet-diameter: 26px;
+    --size-icon-only-circular-button-element-large-mobile-diameter: 24px;
 
     /* Block Wrapper Single */
     --size-block-wrapper-single-desktop-max-width: 784px;
@@ -751,6 +754,9 @@
     /* Form Field */
     --radius-form-field-base: var(--radius-lg);
 
+    /* Header */
+    --radius-header-base: var(--radius-lg);
+
     /* Closet Panel */
     --radius-closet-panel-mobile: var(--radius-lg);
 
@@ -829,7 +835,7 @@
     --shadow-select-dropdown: 0px 6px 16px 0px rgba(115, 93, 248, 0.3);
 
     /* Header Bottom */
-    --shadow-select-dropdown: 0px 2px 6px 0px rgba(0, 0, 0, 0.05);
+    --shadow-select-bottom: 0px 2px 6px 0px rgba(0, 0, 0, 0.05);
 
 
     /* Effects */

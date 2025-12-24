@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+// import React, { useState} from 'react'
 import Logo from './components/atoms/logo/Logo.jsx'
 import Button from './components/atoms/button/Button.jsx'
 import ThemeToggle from './components/atoms/toggle/ThemeToggle.jsx'
@@ -29,13 +29,14 @@ import ProjectsTextBlock from './components/molecules/projectstextblock/Projects
 import ContactTextBlock from './components/molecules/contacttextblock/ContactTextBlock.jsx'
 import ContactFormBlock from './components/molecules/contactformblock/ContactFormBlock.jsx'
 import Paginaiton from './components/molecules/pagination/Paginaton.jsx'
-
+import Header from './components/organisms/header/Header.jsx'
+import { headerNavItems } from './data/navigation/headerNav.js'
 
 function App() {
   // const {register, control} = useForm();
   // const {register, } = useForm();
   // const {control} = useForm();
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
 
 
   return (
@@ -53,7 +54,8 @@ function App() {
     py-(--spacing-section-wrapper-mobile-padding-y)
     sm:py-(--spacing-section-wrapper-tablet-padding-y)
     lg:py-(--spacing-section-wrapper-desktop-padding-x)
-    ">
+    "
+    >
       
       <ThemeToggle />
     
@@ -138,11 +140,22 @@ function App() {
       {/* <ProjectsTextBlock /> */}
       {/* <ContactTextBlock /> */}
       {/* <ContactFormBlock /> */}
-      <Paginaiton
+      {/* <Paginaiton
         currentPage={currentPage}
         onPageChange={setCurrentPage}
       />
-   
+    */}
+
+        <Header 
+            navigationItems={{
+              variant: "header",
+              items: headerNavItems,
+              splitLastItem: true,
+              showCenterGroup: true
+             }}
+             showThemeToggle = {true}
+            
+        />
      
     </div>
   )

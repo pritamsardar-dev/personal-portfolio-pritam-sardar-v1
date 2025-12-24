@@ -43,7 +43,7 @@ const NavigationList = ({
   return (
     <div
       className={clsx(
-        "w-full flex flex-col sm:flex-row lg:flex-row", 
+        "w-full flex flex-col sm:flex-row lg:flex-row sm:items-center lg:items-center", 
         gapClasses, 
         className
       )}

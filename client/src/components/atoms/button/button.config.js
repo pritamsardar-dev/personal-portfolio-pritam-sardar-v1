@@ -222,6 +222,7 @@ export const variantMap = {
   iconOnlyCircular: {
     baseClasses: `
       hover:bg-(--color-button-overlay-background-hover)
+      active:bg-(--color-button-overlay-background-hover)
    
       text-(--color-button-overlay-text-default-default)
 
@@ -234,9 +235,12 @@ export const variantMap = {
     `,
 
     iconClasses: `
+      fill-(--color-icon-button-icon-only)
       text-(--color-icon-button-icon-only)
       stroke-[(length:--border-icon-base-width)]
-      w-[80%]
+      w-(--size-icon-only-circular-button-element-large-mobile-diameter)
+      sm:w-(--size-icon-only-circular-button-element-large-tablet-diameter)
+      lg:w-(--size-icon-only-circular-button-element-large-desktop-diameter)
       h-auto
     `,
   },

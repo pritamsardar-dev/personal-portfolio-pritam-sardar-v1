@@ -8,10 +8,12 @@ import ContactLinkLocationIcon, { ContactLinkLocationIconType } from './ContactL
 import ContactLinkPhoneIcon, { ContactLinkPhoneIconType } from './ContactLinkPhoneIcon';
 import ContactLinkResumeIcon, { ContactLinkResumeIconType } from './ContactLinkResumeIcon';
 import ContactLinkWhatsappIcon, { ContactLinkWhatsappIconType } from './ContactLinkWhatsappIcon';
+import CrossFilledIcon, { CrossFilledIconType } from './CrossFilledIcon';
 import CrossIcon, { CrossIconType } from './CrossIcon';
 import DropdownIcon, { DropdownIconType } from './DropdownIcon';
 import FullscreenIcon, { FullscreenIconType } from './FullscreenIcon';
 import HamburgerIcon, { HamburgerIconType } from './HamburgerIcon';
+import HamburgerTwoIcon, { HamburgerTwoIconType } from './HamburgerTwoIcon';
 import HeartReactIcon, { HeartReactIconType } from './HeartReactIcon';
 import MoonIcon, { MoonIconType } from './MoonIcon';
 import OverlayCloseIcon, { OverlayCloseIconType } from './OverlayCloseIcon';
@@ -37,10 +39,12 @@ ContactLinkLocationIcon, ContactLinkLocationIconType,
 ContactLinkPhoneIcon, ContactLinkPhoneIconType,
 ContactLinkResumeIcon, ContactLinkResumeIconType,
 ContactLinkWhatsappIcon, ContactLinkWhatsappIconType,
+CrossFilledIcon, CrossFilledIconType,
 CrossIcon, CrossIconType,
 DropdownIcon, DropdownIconType,
 FullscreenIcon, FullscreenIconType,
 HamburgerIcon, HamburgerIconType,
+HamburgerTwoIcon, HamburgerTwoIconType,
 HeartReactIcon, HeartReactIconType,
 MoonIcon, MoonIconType,
 OverlayCloseIcon, OverlayCloseIconType,
