@@ -35,17 +35,25 @@ const Text = ({
         </span>
       )}
 
-      {textParts
+      { textParts
         ? textParts.map((part, idx) => (
-            <span
-              key={idx}
-              className={clsx(
-                colorTokens[part.color] || "",
-                "mr-1"
+            <React.Fragment key={idx}>
+              <span
+                className={clsx(
+                  colorTokens[part.color] || "",
+                  "mr-1"
+                )}
+              >
+                {part.text}
+              </span>
+
+              {part.breakAfter && (
+                <span
+                  aria-hidden="true"
+                  className="block h-0 w-full"
+                />
               )}
-            >
-              {part.text}
-            </span>
+            </React.Fragment>
           ))
         : text}
     </Tag>

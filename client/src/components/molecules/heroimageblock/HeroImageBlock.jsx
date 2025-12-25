@@ -9,21 +9,28 @@ const HeroImageBlock = ({
     className="",
     ...props
 }) => {
-    const blockClasses = `
-        w-full
-        h-auto
+    const outerShellClasses = `
+        overflow-hidden
+        relative w-full flex justify-center
         max-w-(--size-block-wrapper-mobile-max-width)
         sm:max-w-(--size-block-wrapper-tablet-max-width)
         lg:max-w-(--size-block-wrapper-desktop-max-width)
         rounded-(--radius-hero-image-block-base)
-        overflow-hidden
-        relative
+       
+        `;
+
+        const imageClasses = `
+        w-full
+        max-w-(--size-image-mobile-max-width)
+        sm:max-w-(--size-image-tablet-max-width)
+        lg:max-w-(--size-image-desktop-max-width)
+        object-cover
         `;
 
     return (
         <div
         className={clsx(
-            blockClasses,
+            outerShellClasses,
             aspect !== "auto" && `aspect-${aspect}`,
             className,
         )}
@@ -32,9 +39,7 @@ const HeroImageBlock = ({
             <img
             src={src}
             alt={alt}
-            className={clsx(
-                "w-full h-full object-cover"
-            )}
+            className={clsx(imageClasses)}
             loading={loading}
             />
         </div>

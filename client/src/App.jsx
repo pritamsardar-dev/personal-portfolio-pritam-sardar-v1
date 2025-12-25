@@ -31,9 +31,12 @@ import ContactFormBlock from './components/molecules/contactformblock/ContactFor
 import Paginaiton from './components/molecules/pagination/Paginaton.jsx'
 import Header from './components/organisms/header/Header.jsx'
 // import { headerNavItems } from './data/navigation/headerNav.js'
-import { footer } from './data/navigation/footer.js'
+// import { footer } from './data/navigation/footer.js'
 import Footer from './components/organisms/footer/Footer.jsx'
 Footer
+import HeroSecion from './components/organisms/herosecion/HeroSection.jsx'
+import { homeHeroText } from './data/home/homeHeroText.js'
+import homeHero from './assets/images/hero/home-hero.svg'
 
 function App() {
   // const {register, control} = useForm();
@@ -60,7 +63,7 @@ function App() {
     "
     >
       
-      {/* <ThemeToggle /> */}
+      <ThemeToggle />
     
       {/* <Logo theme="light" /> */}
       
@@ -160,7 +163,7 @@ function App() {
             
         /> */}
 
-         <Footer 
+         {/* <Footer 
             navigationItems={{
               variant: "footer",
               items: footer.navItems,
@@ -172,6 +175,11 @@ function App() {
              availabilityHeading={footer.availabilityHeading}
              availabilityTagline={footer.availabilityTagline}
              copyright={footer.copyright}
+        /> */}
+
+        <HeroSecion
+          heroTextBlockProps={homeHeroText}
+          heroImageBlockProps={{src: homeHero}}
         />
     </div>
   )

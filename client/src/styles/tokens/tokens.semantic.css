@@ -466,6 +466,11 @@
     --size-avatar-container-default-tablet-diameter: 40px;
     --size-avatar-container-default-mobile-diameter: 30px;
 
+    /* Image Size */
+    --size-image-desktop-max-width: 500px;
+    --size-image-tablet-max-width: 400px;
+    --size-image-mobile-max-width: 300px;
+
 
     /* Spacing */
     /* Button Content Gap */
