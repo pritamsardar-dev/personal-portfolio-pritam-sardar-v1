@@ -178,6 +178,9 @@
     --color-custom-scrollbar-background-default: color-mix(in srgb, var(--color-indigo-500) 20%, transparent);
     --color-custom-scrollbar-background-hover: color-mix(in srgb, var(--color-indigo-500) 80%, transparent);
 
+    /* Divider Background */
+    --color-divider-background: var(--color-gray-200);
+
     /* Typography */
     /* Button */
     --text-button-desktop-font-size: var(--font-size-md);
@@ -199,7 +202,7 @@
     --text-navigation-link-mobile-font-weight: var(--font-weight-medium);
 
     /* Navigation Link Footer */
-    --text-navigation-link-footer-desktop-font-size: var(--font-size-md);
+    --text-navigation-link-footer-desktop-font-size: var(--font-size-sm-plus);
     --text-navigation-link-footer-tablet-font-size: var(--font-size-sm);
     --text-navigation-link-footer-mobile-font-size: var(--font-size-xs-plus);
     --text-navigation-link-footer-font-weight: var(--font-weight-medium);
@@ -269,9 +272,9 @@
     --text-body-base-strong-font-weight: var(--font-weight-bold);
 
     /* Body Small */
-    --text-body-small-desktop-font-size: var(--font-size-sm);
-    --text-body-small-tablet-font-size: var(--font-size-xs-plus);
-    --text-body-small-mobile-font-size: var(--font-size-xs);
+    --text-body-small-desktop-font-size: var(--font-size-sm-plus);
+    --text-body-small-tablet-font-size: var(--font-size-sm);
+    --text-body-small-mobile-font-size: var(--font-size-xs-plus);
     --text-body-small-font-weight: var(--font-weight-regular);
 
     /* Caption Default */

@@ -30,7 +30,10 @@ import ContactTextBlock from './components/molecules/contacttextblock/ContactTex
 import ContactFormBlock from './components/molecules/contactformblock/ContactFormBlock.jsx'
 import Paginaiton from './components/molecules/pagination/Paginaton.jsx'
 import Header from './components/organisms/header/Header.jsx'
-import { headerNavItems } from './data/navigation/headerNav.js'
+// import { headerNavItems } from './data/navigation/headerNav.js'
+import { footer } from './data/navigation/footer.js'
+import Footer from './components/organisms/footer/Footer.jsx'
+Footer
 
 function App() {
   // const {register, control} = useForm();
@@ -57,7 +60,7 @@ function App() {
     "
     >
       
-      <ThemeToggle />
+      {/* <ThemeToggle /> */}
     
       {/* <Logo theme="light" /> */}
       
@@ -145,7 +148,7 @@ function App() {
         onPageChange={setCurrentPage}
       />
     */}
-
+{/* 
         <Header 
             navigationItems={{
               variant: "header",
@@ -155,8 +158,21 @@ function App() {
              }}
              showThemeToggle = {true}
             
+        /> */}
+
+         <Footer 
+            navigationItems={{
+              variant: "footer",
+              items: footer.navItems,
+             }}
+             brandTagline={footer.brandTagline}
+             quickLinksHeading={footer.quickLinksHeading}
+             contactLinksHeading={footer.contactLinksHeading}
+             contactLinks={footer.contactLinks}
+             availabilityHeading={footer.availabilityHeading}
+             availabilityTagline={footer.availabilityTagline}
+             copyright={footer.copyright}
         />
-     
     </div>
   )
 }

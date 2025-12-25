@@ -50,7 +50,7 @@ export const variantMap = {
 
       font-(--text-navigation-link-footer-mobile-font-weight)
       rounded-(--radius-button-base)
-       u-focus-visible-outline
+      u-focus-visible-outline
     `,
 
     activeClasses: `

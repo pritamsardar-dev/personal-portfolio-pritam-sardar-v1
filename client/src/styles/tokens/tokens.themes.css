@@ -146,6 +146,8 @@ html.dark {
   --color-custom-scrollbar-background-default: color-mix(in srgb, var(--color-indigo-500) 25%, transparent);
   --color-custom-scrollbar-background-hover: color-mix(in srgb, var(--color-indigo-500) 80%, transparent);
 
+  /* Divider Background */
+  --color-divider-background: var(--color-gray-700);
 
 
   /* Shadows */

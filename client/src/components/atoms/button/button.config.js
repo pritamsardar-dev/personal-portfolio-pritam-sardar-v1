@@ -399,4 +399,33 @@ export const variantMap = {
       h-auto
     `,
   },
+
+  linkSmall: {
+    baseClasses: `
+      text-(--color-text-body)
+
+      h-(--size-button-overlay-mobile-height)
+      sm:h-(--size-button-overlay-tablet-height)
+      lg:h-(--size-button-overlay-desktop-height)
+
+      text-(length:--text-body-small-mobile-font-size)
+      sm:text-(length:--text-body-small-tablet-font-size)
+      lg:text-(length:--text-body-small-desktop-font-size)
+
+      font-(-text-body-small-font-weight)
+      rounded-(--radius-button-overlay-base)
+      
+      hover:underline
+      active:underline
+    `,
+
+    iconClasses: `
+      text-(--color-button-icon-link-background-default)
+      stroke-(length:--border-icon-base-width)
+      w-(--size-icon-button-element-large-mobile-diameter)
+      sm:w-(--size-icon-button-element-large-tablet-diameter)
+      lg:w-(--size-icon-button-element-large-desktop-diameter)
+      h-auto
+    `,
+  },
 };

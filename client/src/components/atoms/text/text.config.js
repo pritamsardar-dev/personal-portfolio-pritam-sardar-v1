@@ -190,10 +190,25 @@ export const variantMap = {
   bodyLarge: {
     baseClasses: `
       text-(--color-text-body)
-      text-(length:--text-body-large-desktop-font-size)
+      text-(length:--text-body-large-mobile-font-size)
       sm:text-(length:--text-body-large-tablet-font-size)
-      lg:text-(length:--text-body-large-mobile-font-size)
+      lg:text-(length:--text-body-large-desktop-font-size)
       font-(--text-body-large-font-weight)
+    `,
+    semanticTag: "p",
+    iconWrapperClasses: `
+    `,
+    iconClasses: `
+    `,
+  },
+
+  bodyLargeStrong: {
+    baseClasses: `
+      text-(--color-text-body)
+      text-(length:--text-body-large-mobile-font-size)
+      sm:text-(length:--text-body-large-tablet-font-size)
+      lg:text-(length:--text-body-large-desktop-font-size)
+      font-(--text-body-base-strong-font-weight)
     `,
     semanticTag: "p",
     iconWrapperClasses: `
@@ -205,9 +220,9 @@ export const variantMap = {
   bodyBase: {
     baseClasses: `
       text-(--color-text-body)
-      text-(length:--text-body-base-desktop-font-size)
+      text-(length:--text-body-base-mobile-font-size)
       sm:text-(length:--text-body-base-tablet-font-size)
-      lg:text-(length:--text-body-base-mobile-font-size)
+      lg:text-(length:--text-body-base-desktop-font-size)
       font-(--text-body-base-font-weight)
     `,
     semanticTag: "p",
@@ -220,9 +235,9 @@ export const variantMap = {
   bodyBaseStrong: {
     baseClasses: `
       text-(--color-text-body)
-      text-(length:--text-body-base-desktop-font-size)
+      text-(length:--text-body-base-mobile-font-size)
       sm:text-(length:--text-body-base-tablet-font-size)
-      lg:text-(length:--text-body-base-mobile-font-size)
+      lg:text-(length:--text-body-base-desktop-font-size)
       font-(--text-body-base-strong-font-weight)
     `,
     semanticTag: "p",
@@ -240,9 +255,9 @@ export const variantMap = {
       sm:px-(--spacing-tech-stack-tag-tablet-padding-x)
       lg:px-(--spacing-tech-stack-tag-desktop-padding-x)
       rounded-(--radius-tech-stack-tag)
-      text-(length:--text-body-base-desktop-font-size)
+      text-(length:--text-body-base-mobile-font-size)
       sm:text-(length:--text-body-base-tablet-font-size)
-      lg:text-(length:--text-body-base-mobile-font-size)
+      lg:text-(length:--text-body-base-desktop-font-size)
       font-(--text-body-base-font-weight)
     `,
     semanticTag: "p",
@@ -256,9 +271,9 @@ export const variantMap = {
   bodySmall: {
     baseClasses: `
       text-(--color-text-body)
-      text-(length:--text-body-small-desktop-font-size)
+      text-(length:--text-body-small-mobile-font-size)
       sm:text-(length:--text-body-small-tablet-font-size)
-      lg:text-(length:--text-body-small-mobile-font-size)
+      lg:text-(length:--text-body-small-desktop-font-size)
       font-(--text-body-small-font-weight)
     `,
     semanticTag: "p",
@@ -271,9 +286,9 @@ export const variantMap = {
   captionDefault: {
     baseClasses: `
       text-(--color-text-body)
-      text-(length:--text-caption-default-desktop-font-size)
+      text-(length:--text-caption-default-mobile-font-size)
       sm:text-(length:--text-caption-default-tablet-font-size)
-      lg:text-(length:--text-caption-default-mobile-font-size)
+      lg:text-(length:--text-caption-default-desktop-font-size)
       font-(--text-caption-default-font-weight)
     `,
     semanticTag: "p",
@@ -286,9 +301,9 @@ export const variantMap = {
   labelDefault: {
     baseClasses: `
       text-(--color-text-body)
-      text-(length:--text-label-default-desktop-font-size)
+      text-(length:--text-label-default-mobile-font-size)
       sm:text-(length:--text-label-default-tablet-font-size)
-      lg:text-(length:--text-label-default-mobile-font-size)
+      lg:text-(length:--text-label-default-desktop-font-size)
       font-(--text-label-default-font-weight)
     `,
     semanticTag: "p",
