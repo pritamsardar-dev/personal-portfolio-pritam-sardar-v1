@@ -845,6 +845,9 @@
     /* Header Bottom */
     --shadow-select-bottom: 0px 2px 6px 0px rgba(0, 0, 0, 0.05);
 
+    /* Edge Mask Container */
+    --shadow-edge-mask-container: 8px 0px 24px 16px var(--color-base-white);
+
 
     /* Effects */
     /* Card Wrapper */

@@ -45,7 +45,7 @@ const mergeRefs = (...refs) => {
 
 export const getFieldElement = (
   variant, 
-  icon, 
+  Icon, 
   classes, 
   register, 
   control, 
@@ -128,7 +128,7 @@ export const getFieldElement = (
             {...field}
             options={options}
             placeholder={placeholder}
-            icon={icon}
+            Icon={Icon}
           />
         )}
       />

@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { customSelectClasses } from "./formField.config";
 
 const CustomSelect = React.forwardRef(
-  ({ placeholder, icon, options = [], value, onChange, onBlur, name }, ref) => {
+  ({ placeholder, Icon, options = [], value, onChange, onBlur, name }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
@@ -56,14 +56,14 @@ const CustomSelect = React.forwardRef(
               {selectedOption ? selectedOption.label : placeholder}
             </span>
 
-            {icon && (
+            {Icon && (
               <span
                 className={clsx(
                   customSelectClasses.iconClasses,
                   isOpen && customSelectClasses.iconClassesOpened
                 )}
               >
-                {icon}
+                <Icon/>
               </span>
             )}
           </div>

@@ -1,6 +1,6 @@
 // Parent container (label + field + error)
 export const baseParentField = `
-  flex flex-col w-full
+  flex flex-col
   gap-(--spacing-form-field-stack-mobile-gap)
   sm:gap-(--spacing-form-field-stack-tablet-gap)
   lg:gap-(--spacing-form-field-stack-desktop-gap)
@@ -351,9 +351,9 @@ export const customSelectClasses = {
     border-(--color-select-border-defualt)
     bg-(--color-select-background-default)
     
-    max-h-30
+    max-h-(--size-select-mobile-max-width)
     sm:max-h-(--size-select-tablet-max-width)
-    lg:max-h-15
+    lg:max-h-(--size-select-desktop-max-width)
     shadow-(--shadow-select-dropdown)
     rounded-(--radius-form-field-base)
 

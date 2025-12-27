@@ -35,8 +35,11 @@ import Header from './components/organisms/header/Header.jsx'
 import Footer from './components/organisms/footer/Footer.jsx'
 Footer
 import HeroSecion from './components/organisms/herosecion/HeroSection.jsx'
-import { homeHeroText } from './data/home/homeHeroText.js'
-import homeHero from './assets/images/hero/home-hero.svg'
+// import { homeHeroText } from './data/home/homeHeroText.js'
+// import homeHero from './assets/images/hero/home-hero.svg'
+import FilterBarSection from './components/organisms/filterbarsection/FilterBarSection.jsx'
+// import { useForm } from 'react-hook-form'
+import { filterBar } from './data/filter/filterBar.js'
 
 function App() {
   // const {register, control} = useForm();
@@ -120,14 +123,14 @@ function App() {
       options={[
         { value: "option1", label: "Option One" },
         { value: "option2", label: "Option Two" },
-        { value: "option1", label: "Option One" },
-        { value: "option2", label: "Option Two" },
-        { value: "option1", label: "Option One" },
-        { value: "option2", label: "Option Two" },
+        { value: "option3", label: "Option Three" },
+        { value: "option4", label: "Option Four" },
+        { value: "option5", label: "Option Five" },
+        { value: "option6", label: "Option Six" },
       ]}
       control={control}
       error=''
-      icon={<DropdownIcon/>}
+      icon={<DropdownIcon />}
     /> */}
 
     {/* <NavigationList items={headerNavItems} variant="header" showCenterGroup splitLastItem /> */}
@@ -177,10 +180,14 @@ function App() {
              copyright={footer.copyright}
         /> */}
 
-        <HeroSecion
+        {/* <HeroSecion
           heroTextBlockProps={homeHeroText}
           heroImageBlockProps={{src: homeHero}}
-        />
+        /> */}
+
+        <FilterBarSection config={filterBar}/>
+
+
     </div>
   )
 }

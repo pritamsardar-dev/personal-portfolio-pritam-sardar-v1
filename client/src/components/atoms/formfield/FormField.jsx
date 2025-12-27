@@ -8,7 +8,7 @@ const FormField = ({
   native = true,
   label = "",
   error = "",
-  icon = null,
+  Icon = null,
   maxLength,                
   register = () => ({}),                 
   control = null,
@@ -39,7 +39,11 @@ const FormField = ({
   );
 
   return (
-    <div className={baseParentField}>
+    <div className={clsx(
+      baseParentField,
+        variant === "slectCustom" ? "w-full" : "w-fit"
+      )}
+      >
       
       {label && (
         <label className={variantConfig.labelClasses}>{label}</label>
@@ -47,13 +51,13 @@ const FormField = ({
 
       <div className="relative flex items-center">
         
-        {icon && native && (
-          <span className={variantConfig.iconClasses}>{icon}</span>
+        {Icon && native && (
+          <span className={variantConfig.iconClasses}><Icon/></span>
         )}
 
         {getFieldElement(
           variant,
-          icon,
+          Icon,
           classes,
           register(name, rules),
           control,
