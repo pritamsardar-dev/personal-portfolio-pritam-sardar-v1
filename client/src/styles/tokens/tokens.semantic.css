@@ -736,6 +736,11 @@
     --spacing-carousel-arrow-fullscreen-tablet-offset: 40px;
     --spacing-carousel-arrow-fullscreen-mobile-offset: 32px;
 
+    /* Card Wrapper Buffer */
+    --spacing-card-wrapper-buffer-padding-x: 6px;
+    --spacing-card-wrapper-buffer-padding-top: 4px;
+    --spacing-card-wrapper-buffer-padding-bottom: 8px;
+
     /* Radius */
     /* Button */
     --radius-button-base: var(--radius-lg);

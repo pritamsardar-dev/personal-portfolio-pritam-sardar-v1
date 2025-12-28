@@ -1,122 +1,145 @@
-import React from "react";
+/**
+ * Role: CMS-driven card block for the About section
+ * Used by: Mounted via BlockRenderer based on block.type
+ * Responsibilities:
+ *   - Render an optional block heading
+ *   - Render a list of card items via CardRenderer
+ *   - Support expand / collapse with animated height
+ *   - Use padding buffer to avoid shadow clipping
+ *   - Respect CMS controls (enabled, alignment, order)
+ * Guardrails:
+ *   - Fully data-driven, no page-specific assumptions
+ *   - All cards remain mounted to enable height measurement
+ *   - Expansion logic is layout-safe (no fixed heights)
+ */
+
+import React, { useState, useRef, useLayoutEffect } from "react";
 import clsx from "clsx";
 import Text from "../../atoms/text/Text";
 import Button from "../../atoms/button/Button.jsx";
-import { homeAboutCard } from "../../../data/home/homeAboutCard.js";
+import CardRenderer from "./CardRenderer.jsx";
+
+const VISIBLE_CARDS_COLLAPSED = 2;
+const BOTTOM_BUFFER = 8;
 
 const blockContainerClasses = `
-    flex flex-col w-full h-auto 
-    max-w-(--size-block-wrapper-mobile-max-width)
-    sm:max-w-(--size-block-wrapper-tablet-max-width)
-    lg:max-w-(--size-block-wrapper-desktop-max-width)
-    gap-(--spacing-block-block-mobile-gap)
-    sm:gap-(--spacing-block-block-tablet-gap)
-    lg:gap-(--spacing-block-block-desktop-gap)
+  flex flex-col w-full h-auto
+  max-w-(--size-block-wrapper-mobile-max-width)
+  sm:max-w-(--size-block-wrapper-tablet-max-width)
+  lg:max-w-(--size-block-wrapper-desktop-max-width)
+  gap-(--spacing-heading-2-heading-3-mobile-gap)
+  sm:gap-(--spacing-heading-2-heading-3-tablet-gap)
+  lg:gap-(--spacing-heading-2-heading-3-desktop-gap)
 `;
 
 const bodyItemsContainerClasses = `
-    flex flex-col w-full h-auto 
-    gap-(--spacing-item-item-mobile-gap)
-    sm:gap-(--spacing-item-item-tablet-gap)
-    lg:gap-(--spacing-item-item-desktop-gap)
+  flex flex-col w-full
+  gap-(--spacing-item-item-mobile-gap)
+  sm:gap-(--spacing-item-item-tablet-gap)
+  lg:gap-(--spacing-item-item-desktop-gap)
 `;
 
-const bodyItemContainerCardClasses = `
-    flex flex-col w-full h-auto
-    bg-(--color-card-wrapper-fill)
-    border-(length:--border-card-wrapper-base-width)
-    border-(--color-card-wrapper-stroke)
-    shadow-(--shadow-card-wrapper)
-    backdrop-blur-(--effect-card-wrapper-background-blur)
-    rounded-(--radius-card-wrapper-base)
-    transform-gpu
-    will-change-transform
-    contain-layout contain-paint
-    px-(--spacing-text-container-mobile-padding-x)
-    sm:px-(--spacing-text-container-tablet-padding-x)
-    lg:px-(--spacing-text-container-desktop-padding-x)
-    py-(--spacing-text-container-mobile-padding-y)
-    sm:py-(--spacing-text-container-tablet-padding-y)
-    lg:py-(--spacing-text-container-desktop-padding-y)
-    gap-(--spacing-list-item-mobile-gap)
-    sm:gap-(--spacing-list-item-tablet-gap)
-    lg:gap-(--spacing-list-item-desktop-gap)
+const animatedHeightWrapper = `
+  overflow-hidden transition-[max-height] duration-500
+  ccubic-bezier(0.4, 0, 0.2, 1)
+  px-(--spacing-card-wrapper-buffer-padding-x)
+  pt-(--spacing-card-wrapper-buffer-padding-top)
+  pb-(--spacing-card-wrapper-buffer-padding-bottom)
 `;
-
-const listItemClasses = `
-    list-disc
-    list-outside
-    pl-(--spacing-list-item-text-indent-mobile)
-    sm:pl-(--spacing-list-item-text-indent-tablet)
-    lg:pl-(--spacing-list-item-text-indent-desktop)
-    space-y-(--spacing-list-item-text-gap-y-mobile)
-    sm:space-y-(--spacing-list-item-text-gap-y-tablet)
-    lg:space-y-(--spacing-list-item-text-gap-y-desktop)
-`
 
 const alignmentClassesMap = {
-    left: "text-left",
-    center: "text-center",
-    right: "text-right",
+  left: "text-left",
+  center: "text-center",
+  right: "text-right",
 };
 
+const AboutCardBlock = ({ data = {}, className, ...props }) => {
+  const {
+    id,
+    enabled = true,
+    heading,
+    bodyItems = [],
+    buttonProps,
+    alignment = { heading: "left", body: "left" },
+  } = data;
 
-const AboutCardBlock = ({
-    heading = homeAboutCard.heading,
-    bodyItems = homeAboutCard.bodyItems,
-    buttonProps = homeAboutCard.buttonProps,
-    alignmentHeading = "left",
-    alignmenBody = "left",
-    className,
-    ...props
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [heights, setHeights] = useState({ collapsed: 0, expanded: 0 });
 
-}) => {
-    const alignmentClassHeading = alignmentClassesMap[alignmentHeading] || alignmentClassesMap.left;
-    const alignmentClassBody = alignmentClassesMap[alignmenBody] || alignmentClassesMap.left;
+  const fullContentRef = useRef(null);
+  const collapsedContentRef = useRef(null);
 
-    return (
-        <div
-        className={clsx(
-            blockContainerClasses,
-            alignmentClassHeading,
-            className,
-        )}
-        {...props}
-        >
-            <Text {...heading} />
-            <div
-            className={clsx(bodyItemsContainerClasses, alignmentClassBody)}
-            >
-                {bodyItems.map((item, index) => (
-                    <div key={index} className={clsx(bodyItemContainerCardClasses,)}>
-                        <Text  {...item.body.timeline} />
+  const recalcHeights = () => {
+    if (!fullContentRef.current || !collapsedContentRef.current) return;
+    setHeights({
+      collapsed: collapsedContentRef.current.scrollHeight + BOTTOM_BUFFER,
+      expanded: fullContentRef.current.scrollHeight + BOTTOM_BUFFER,
+    });
+  };
 
-                        <Text  {...item.heading} />
+  useLayoutEffect(() => {
+    recalcHeights();
 
-                        <Text  {...item.body.institute} />
+    const resizeObserver = new ResizeObserver(() => {
+      recalcHeights();
+    });
 
-                        <Text  {...item.body.board} />
+    if (fullContentRef.current) resizeObserver.observe(fullContentRef.current);
+    if (collapsedContentRef.current) resizeObserver.observe(collapsedContentRef.current);
 
-                        <ul className={clsx(listItemClasses)}>
-                            {item.body.highlights.texts.map((listItem, index) => (
-                                <Text 
-                                key={index} 
-                                variant={item.body.highlights.variant} 
-                                as={item.body.highlights.as}
-                                text={listItem}
-                                />
-                            ))}
-                        </ul>
+    return () => resizeObserver.disconnect();
+  }, [bodyItems.length]);
 
-                        <Text  {...item.body.score} />
-                    </div>
-                ))}
-            </div>
-            <div>
-                <Button {...buttonProps}/>
-            </div>
+  if (!enabled) return null;
+
+  const buttonLabel = isExpanded
+    ? buttonProps?.label?.expanded
+    : buttonProps?.label?.collapsed;
+
+  return (
+    <div
+      id={id}
+      className={clsx(blockContainerClasses, alignmentClassesMap[alignment.heading], className)}
+      {...props}
+    >
+      {heading && <Text {...heading} />}
+
+      <div
+        className={animatedHeightWrapper}
+        style={{
+          maxHeight: isExpanded
+            ? `${heights.expanded}px`
+            : `${heights.collapsed}px`,
+        }}
+      >
+        <div ref={fullContentRef} className={clsx(bodyItemsContainerClasses)}>
+          {/* Collapsed measurement group */}
+          <div ref={collapsedContentRef} className={bodyItemsContainerClasses}>
+            {bodyItems.slice(0, VISIBLE_CARDS_COLLAPSED).map((item) => (
+              <CardRenderer key={item.id} item={item} />
+            ))}
+          </div>
+
+          {/* Remaining cards */}
+          {bodyItems.slice(VISIBLE_CARDS_COLLAPSED).map((item) => (
+            <CardRenderer key={item.id} item={item} />
+          ))}
+
         </div>
-    )
+      </div>
+
+      {buttonProps && bodyItems.length > VISIBLE_CARDS_COLLAPSED && (
+        <div className="px-(--spacing-card-wrapper-buffer-padding-x)">
+            <Button
+                {...buttonProps}
+                label={buttonLabel}
+                onClick={() => setIsExpanded((prev) => !prev)}
+                aria-expanded={isExpanded}
+            />
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default AboutCardBlock;

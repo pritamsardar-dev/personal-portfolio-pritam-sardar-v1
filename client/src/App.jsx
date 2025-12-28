@@ -39,7 +39,10 @@ import HeroSecion from './components/organisms/herosecion/HeroSection.jsx'
 // import homeHero from './assets/images/hero/home-hero.svg'
 import FilterBarSection from './components/organisms/filterbarsection/FilterBarSection.jsx'
 // import { useForm } from 'react-hook-form'
-import { filterBar } from './data/filter/filterBar.js'
+// import { filterBar } from './data/filter/filterBar.js'
+
+import AboutSection from './components/organisms/aboutsection/AboutSection.jsx'
+import { homeAboutSection } from './data/pages/home/sections/about.js'
 
 function App() {
   // const {register, control} = useForm();
@@ -63,6 +66,7 @@ function App() {
     py-(--spacing-section-wrapper-mobile-padding-y)
     sm:py-(--spacing-section-wrapper-tablet-padding-y)
     lg:py-(--spacing-section-wrapper-desktop-padding-x)
+    
     "
     >
       
@@ -185,7 +189,9 @@ function App() {
           heroImageBlockProps={{src: homeHero}}
         /> */}
 
-        <FilterBarSection config={filterBar}/>
+        {/* <FilterBarSection config={filterBar}/> */}
+
+        <AboutSection data={homeAboutSection}/>
 
 
     </div>
