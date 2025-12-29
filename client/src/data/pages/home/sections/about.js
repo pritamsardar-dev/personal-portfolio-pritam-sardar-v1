@@ -35,10 +35,11 @@ export const homeAboutSection = {
   dataBlocks: [
     {
       id: "about-textblock",
-      type: "textBlock",
+      type: "AboutTextBlock",
       enabled: true,
       order: 1,
       data: {
+        /* ───────────────────────── TEXT BLOCK ───────────────────────── */
         alignment: {
           heading: "left",
           body: "left",
@@ -135,9 +136,10 @@ export const homeAboutSection = {
         ],
       },
     },
+    /* ───────────────────────── CARD BLOCK ───────────────────────── */
     {
       id: "about-cardblock",
-      type: "cardsBlock",
+      type: "AboutCardsBlock",
       enabled: true,
       order: 2,
       data: {

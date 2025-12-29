@@ -42,7 +42,9 @@ import FilterBarSection from './components/organisms/filterbarsection/FilterBarS
 // import { filterBar } from './data/filter/filterBar.js'
 
 import AboutSection from './components/organisms/aboutsection/AboutSection.jsx'
-import { homeAboutSection } from './data/pages/home/sections/about.js'
+// import { homeAboutSection } from './data/pages/home/sections/about.js'
+import { homeWorkExperienceSection } from './data/pages/home/sections/workExperience.js'
+import WorkExperienceSection from './components/organisms/workexperiencesection/WorkExperienceSection.jsx'
 
 function App() {
   // const {register, control} = useForm();
@@ -191,7 +193,11 @@ function App() {
 
         {/* <FilterBarSection config={filterBar}/> */}
 
-        <AboutSection data={homeAboutSection}/>
+        {/* <AboutSection data={homeAboutSection}/> */}
+
+        <WorkExperienceSection
+        data={homeWorkExperienceSection}
+        />
 
 
     </div>

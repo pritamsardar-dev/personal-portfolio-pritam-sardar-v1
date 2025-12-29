@@ -657,6 +657,11 @@
     --spacing-heading-2-heading-3-tablet-gap: 24px;
     --spacing-heading-2-heading-3-mobile-gap: 20px;
 
+    /* Heading-2-Body */
+    --spacing-heading-2-body-desktop-gap: 16px;
+    --spacing-heading-2-body-tablet-gap: 14px;
+    --spacing-heading-2-body-mobile-gap: 12px;
+
     /* Heading-3-Body */
     --spacing-heading-3-body-desktop-gap: 12px;
     --spacing-heading-3-body-tablet-gap: 10px;
