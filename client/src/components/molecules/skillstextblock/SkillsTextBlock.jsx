@@ -1,8 +1,21 @@
+/**
+ * Role: CMS-driven text block for Skills section
+ * Used by: BlockRenderer via block.type === "skillsTextBlock"
+ *
+ * Responsibilities:
+ * - Render block heading
+ * - Render multiple skill description items (heading + body)
+ * - Respect alignment and enabled flags
+ *
+ * Guardrails:
+ * - DO NOT modify layout or spacing classes
+ * - Fully driven by CMS data model
+ * - No CTA rendering (handled at section level)
+ */
+
 import React from "react";
 import clsx from "clsx";
 import Text from "../../atoms/text/Text";
-import Button from "../../atoms/button/Button.jsx";
-import { homeSkillsText } from "../../../data/home/homeSkillsText.js";
 
 const blockContainerOuterClasses = `
     flex flex-col w-full h-auto 
@@ -44,49 +57,65 @@ const alignmentClassesMap = {
     right: "text-right",
 };
 
+const SkillsTextBlock = ({ data = {}, className, ...props }) => {
+    const {
+        id,
+        enabled = true,
+        heading,
+        bodyItems = [],
+        alignment = {
+            heading: "left",
+            body: "left",
+        },
+    } = data;
 
-const SkillsTextBlock = ({
-    heading = homeSkillsText.heading,
-    bodyItems = homeSkillsText.bodyItems,
-    buttonProps = homeSkillsText.buttonProps,
-    alignmentHeading = "left",
-    alignmenBody = "left",
-    className,
-    ...props
+    if (!enabled) return null;
 
-}) => {
-    const alignmentClassHeading = alignmentClassesMap[alignmentHeading] || alignmentClassesMap.left;
-    const alignmentClassBody = alignmentClassesMap[alignmenBody] || alignmentClassesMap.left;
+    const alignmentClassHeading =
+        alignmentClassesMap[alignment.heading] || alignmentClassesMap.left;
+
+    const alignmentClassBody =
+        alignmentClassesMap[alignment.body] || alignmentClassesMap.left;
 
     return (
-        <div className={clsx(blockContainerOuterClasses)}>
+        <div id={id} className={clsx(blockContainerOuterClasses)}>
+            {/* Block Container  */}
             <div
-            className={clsx(
-                blockContainerClasses,
-                alignmentClassHeading,
-                className,
-            )}
-            {...props}
+                className={clsx(
+                    blockContainerClasses,
+                    alignmentClassHeading,
+                    className
+                )}
+                {...props}
             >
-                <Text {...heading} />
-                <div
-                className={clsx(bodyItemsContainerClasses, alignmentClassBody)}
-                >
-                    {bodyItems.map((item, index) => (
-                        <div key={index} className={clsx(bodyItemContainerClasses,)}>
-                            <Text  {...item.heading} />
-                            <Text  {...item.body} />
-                        </div>
-                    ))}
-                </div>
-            </div>
+                {/*  Block Heading  */}
+                {heading && <Text {...heading} />}
 
-            <div>
-                <Button {...buttonProps}/>
+                {/*  Body Items  */}
+                {bodyItems.length > 0 && (
+                    <div
+                        className={clsx(
+                            bodyItemsContainerClasses,
+                            alignmentClassBody
+                        )}
+                    >
+                        {bodyItems.map((item, index) => (
+                            <div
+                                key={index}
+                                className={clsx(bodyItemContainerClasses)}
+                            >
+                                {/* Item Heading */}
+                                {item.heading && <Text {...item.heading} />}
+
+                                {/* Item Body */}
+                                {item.body && <Text {...item.body} />}
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
-        
-    )
+    );
 };
 
 export default SkillsTextBlock;

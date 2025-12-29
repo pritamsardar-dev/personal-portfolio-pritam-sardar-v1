@@ -43,8 +43,10 @@ import FilterBarSection from './components/organisms/filterbarsection/FilterBarS
 
 import AboutSection from './components/organisms/aboutsection/AboutSection.jsx'
 // import { homeAboutSection } from './data/pages/home/sections/about.js'
-import { homeWorkExperienceSection } from './data/pages/home/sections/workExperience.js'
+// import { homeWorkExperienceSection } from './data/pages/home/sections/workExperience.js'
 import WorkExperienceSection from './components/organisms/workexperiencesection/WorkExperienceSection.jsx'
+import SkillsSection from './components/organisms/skillssection/SkillsSection.jsx'
+import { homeSkillsSection } from './data/pages/home/sections/skills.js'
 
 function App() {
   // const {register, control} = useForm();
@@ -195,8 +197,12 @@ function App() {
 
         {/* <AboutSection data={homeAboutSection}/> */}
 
-        <WorkExperienceSection
+        {/* <WorkExperienceSection
         data={homeWorkExperienceSection}
+        /> */}
+
+        <SkillsSection
+          data={homeSkillsSection}
         />
 
 

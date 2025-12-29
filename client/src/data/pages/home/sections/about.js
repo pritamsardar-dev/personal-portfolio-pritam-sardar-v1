@@ -35,7 +35,7 @@ export const homeAboutSection = {
   dataBlocks: [
     {
       id: "about-textblock",
-      type: "AboutTextBlock",
+      type: "aboutTextBlock",
       enabled: true,
       order: 1,
       data: {
@@ -139,7 +139,7 @@ export const homeAboutSection = {
     /* ───────────────────────── CARD BLOCK ───────────────────────── */
     {
       id: "about-cardblock",
-      type: "AboutCardsBlock",
+      type: "aboutCardsBlock",
       enabled: true,
       order: 2,
       data: {

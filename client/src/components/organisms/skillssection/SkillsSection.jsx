@@ -1,13 +1,17 @@
 /**
- * Role: CMS-driven About section
- * Used by: Home page or other pages that include About section
+ * Role: CMS-driven Skills section
+ * Used by: Home page or any page rendering Skills via section.type === "skills"
+ *
  * Responsibilities:
- *   - Render multiple blocks via BlockRenderer
- *   - Render section heading and optional CTA
- *   - Respect section-level CMS controls
+ *  - Render section heading
+ *  - Render grouped rows of blocks via BlockRenderer
+ *  - Render optional section-level CTA
+ *  - Respect enabled flags and alignment from CMS
+ *
  * Guardrails:
- *   - Fully data-driven, no page-specific logic
- *   - Alignment handled by child molecules
+ *  - Fully data-driven (no hardcoded layout logic)
+ *  - Block layout handled by molecules
+ *  - Section never mutates block data
  */
 
 import React from "react";
@@ -42,32 +46,36 @@ const sectionHeadingWrapperClasses = `
   lg:gap-(--spacing-heading-1-heading-2-desktop-gap)
 `;
 
-const blocksContainerClasses = `
+const rowContainerClasses = `
   flex flex-col sm:flex-row w-full
   gap-(--spacing-section-wrapper-mobile-gap)
   sm:gap-(--spacing-section-wrapper-tablet-gap)
   lg:gap-(--spacing-section-wrapper-desktop-gap)
 `;
 
-const textAlignMap = { 
-    left: "text-left", 
-    center: "text-center", 
-    right: "text-right" 
-};
-const flexAlignMap = { 
-    left: "justify-start", 
-    center: "justify-center", 
-    right: "justify-end" 
+const textAlignMap = {
+  left: "text-left",
+  center: "text-center",
+  right: "text-right",
 };
 
-const AboutSection = ({ data = {}, className, ...props }) => {
+const flexAlignMap = {
+  left: "justify-start",
+  center: "justify-center",
+  right: "justify-end",
+};
+
+const SkillsSection = ({ data = {}, className, ...props }) => {
   const {
     id,
     enabled = true,
     heading,
     buttonProps,
-    dataBlocks = [],
-    alignment = { heading: "center", cta: "center" },
+    rows = [],
+    alignment = {
+      heading: "center",
+      cta: "center",
+    },
   } = data;
 
   if (!enabled) return null;
@@ -90,22 +98,30 @@ const AboutSection = ({ data = {}, className, ...props }) => {
             </div>
         )}
 
-        {/* Blocks */}
-        {dataBlocks.length > 0 && (
-            <div className={blocksContainerClasses}>
-            {dataBlocks
-                .filter(block => block.enabled)
-                .sort((a, b) => a.order - b.order)
-                .map(block => (
-                <BlockRenderer key={block.id} block={block} />
-                ))}
-            </div>
-        )}
+        {/* Rows & Blocks */}
+        {rows.length > 0 &&
+            rows
+            .filter(row => row.enabled)
+            .map(row => (
+                <div key={row.id} className={rowContainerClasses}>
+                {row.blocks
+                    ?.filter(block => block.enabled)
+                    .sort((a, b) => a.order - b.order)
+                    .map(block => (
+                    <BlockRenderer key={block.id} block={block} />
+                    ))}
+                </div>
+            ))}
       </div>
       
       {/* Section CTA */}
       {buttonProps && (
-        <div className={clsx("w-full flex", flexAlignMap[alignment.cta])}>
+        <div
+          className={clsx(
+            "w-full flex",
+            flexAlignMap[alignment.cta]
+          )}
+        >
           <Button {...buttonProps} />
         </div>
       )}
@@ -113,4 +129,4 @@ const AboutSection = ({ data = {}, className, ...props }) => {
   );
 };
 
-export default AboutSection;
+export default SkillsSection;
