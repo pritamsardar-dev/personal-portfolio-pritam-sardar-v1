@@ -1,6 +1,13 @@
 import { BLOCK_MAP } from "./blockMap";
 
-const BlockRenderer = ({ block }) => {
+const BlockRenderer = ({
+  variant, 
+  size, 
+  block, 
+  ui, 
+  handlers,
+  state,
+}) => {
   if (!block || !block.enabled) return null;
 
   const Component = BLOCK_MAP[block.type];
@@ -12,11 +19,17 @@ const BlockRenderer = ({ block }) => {
 
   return (
     <Component
+      variant={variant}
+      size={size}
       data={{
         ...block.data,
         id: block.id,
         enabled: block.enabled,
       }}
+      block={block}
+      ui={ui}
+      handlers={handlers}
+      state={state}
     />
   );
 };

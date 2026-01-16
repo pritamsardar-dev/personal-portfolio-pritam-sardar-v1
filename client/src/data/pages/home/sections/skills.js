@@ -34,7 +34,7 @@ export const homeSkillsSection = {
 
   heading: {
     variant: "heading1",
-    text: "Skills",
+    text: "My Skills",
     icon: {
         svg: skillsHeading.svg,
         type: skillsHeading.type,

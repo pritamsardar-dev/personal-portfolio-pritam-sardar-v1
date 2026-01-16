@@ -1,5 +1,7 @@
 import ArrowBottomIcon, { ArrowBottomIconType } from './ArrowBottomIcon';
+import ArrowLeft2Icon, { ArrowLeft2IconType } from './ArrowLeft2Icon';
 import ArrowLeftIcon, { ArrowLeftIconType } from './ArrowLeftIcon';
+import ArrowRight2Icon, { ArrowRight2IconType } from './ArrowRight2Icon';
 import ArrowRightIcon, { ArrowRightIconType } from './ArrowRightIcon';
 import ContactLinkEmailIcon, { ContactLinkEmailIconType } from './ContactLinkEmailIcon';
 import ContactLinkGithubIcon, { ContactLinkGithubIconType } from './ContactLinkGithubIcon';
@@ -23,14 +25,19 @@ import OverlayFullscreenMinIcon, { OverlayFullscreenMinIconType } from './Overla
 import OverlayGitIcon, { OverlayGitIconType } from './OverlayGitIcon';
 import OverlayHeartIcon, { OverlayHeartIconType } from './OverlayHeartIcon';
 import OverlayPlayIcon, { OverlayPlayIconType } from './OverlayPlayIcon';
+import PauseFilledIcon, { PauseFilledIconType } from './PauseFilledIcon';
+import PlayFilledIcon, { PlayFilledIconType } from './PlayFilledIcon';
 import SunIcon, { SunIconType } from './SunIcon';
 import TagClockIcon, { TagClockIconType } from './TagClockIcon';
 import TagEyeIcon, { TagEyeIconType } from './TagEyeIcon';
 import TagHeartFillIcon, { TagHeartFillIconType } from './TagHeartFillIcon';
+import TagTimeDurationIcon, { TagTimeDurationIconType } from './TagTimeDurationIcon';
 
 export {
 ArrowBottomIcon, ArrowBottomIconType,
+ArrowLeft2Icon, ArrowLeft2IconType,
 ArrowLeftIcon, ArrowLeftIconType,
+ArrowRight2Icon, ArrowRight2IconType,
 ArrowRightIcon, ArrowRightIconType,
 ContactLinkEmailIcon, ContactLinkEmailIconType,
 ContactLinkGithubIcon, ContactLinkGithubIconType,
@@ -54,8 +61,11 @@ OverlayFullscreenMinIcon, OverlayFullscreenMinIconType,
 OverlayGitIcon, OverlayGitIconType,
 OverlayHeartIcon, OverlayHeartIconType,
 OverlayPlayIcon, OverlayPlayIconType,
+PauseFilledIcon, PauseFilledIconType,
+PlayFilledIcon, PlayFilledIconType,
 SunIcon, SunIconType,
 TagClockIcon, TagClockIconType,
 TagEyeIcon, TagEyeIconType,
-TagHeartFillIcon, TagHeartFillIconType
+TagHeartFillIcon, TagHeartFillIconType,
+TagTimeDurationIcon, TagTimeDurationIconType
 };

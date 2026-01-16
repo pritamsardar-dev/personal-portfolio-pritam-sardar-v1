@@ -4,6 +4,9 @@
 @import "./styles/tokens/tokens.themes.css";
 @import "./styles/utilities/u-custom-scrollbar.css";
 @import "./styles/utilities/u-focus-visible.css";
+@import "./styles/utilities/u-modal-backdrop.css";
+@import "./styles/utilities/u-scollbar-hide.css";
+@import "./styles/utilities/u-feedback-bubbly-pop.css";
 
 :root {
     position: relative;
@@ -19,4 +22,8 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* html, body {
+  overscroll-behavior: contain;
+} */
 

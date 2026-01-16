@@ -1,52 +1,7 @@
 // import React, { useState} from 'react'
-import Logo from './components/atoms/logo/Logo.jsx'
-import Button from './components/atoms/button/Button.jsx'
-import ThemeToggle from './components/atoms/toggle/ThemeToggle.jsx'
-import {HeartReactIcon, ContactLinkPhoneIcon, ContactLinkEmailIcon, ContactLinkWhatsappIcon, FullscreenIcon, SunIcon, MoonIcon, TagHeartFillIcon, TagClockIcon, TagEyeIcon, DropdownIcon, ArrowLeftIcon, ArrowRightIcon} from './assets/icons/system'
-import Text from './components/atoms/text/Text.jsx'
-import NavigationItem from './components/atoms/navigationitem/NavigationItem.jsx'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage.jsx";
-import AboutPage from "./pages/AboutPage.jsx";
-import Tag from './components/atoms/tag/Tag.jsx'
-import Avatar from './components/atoms/avatar/Avatar.jsx'
-import FormField from './components/atoms/formfield/FormField.jsx'
-// import { useForm } from 'react-hook-form'
-// import {headerNavItems}  from './data/navigation/headerNav.js'
-import NavigationList from './components/molecules/navigationlist/NavigationList.jsx'
-import HeroImageBlock from './components/molecules/heroimageblock/HeroImageBlock.jsx'
-// import avatarTestImage from './assets/images/avatartest.png'
-// import heroImgeTest from'./assets/images/hero/home-hero.svg'
-import HeroTextBlock from './components/molecules/herotextblock/HeroTextBlock.jsx'
- import AboutTextBlock from './components/molecules/abouttextblock/AboutTextBlock.jsx'
-import AboutCardBlock from './components/molecules/aboutcardblock/AboutCardBlock.jsx'
-import WorkExperienceCardBlock from './components/molecules/workexperiencecardblock/WorkExperienceCardBlock.jsx'
-import WorkExperienceTextBlock from './components/molecules/workexperiencetextblock/WorkExperienceTextBlock.jsx'
-import SkillsCardBlock from './components/molecules/skillscardblock/SkillsCardBlock.jsx'
-import SkillsTextBlock from './components/molecules/skillstextblock/SkillsTextBlock.jsx'
-import ProjectsCarouselBlock from './components/molecules/projectscarousalblock/ProjectsCarouselBlock.jsx'
-import ProjectsTextBlock from './components/molecules/projectstextblock/ProjectsTextBlock.jsx'
-import ContactTextBlock from './components/molecules/contacttextblock/ContactTextBlock.jsx'
-import ContactFormBlock from './components/molecules/contactformblock/ContactFormBlock.jsx'
-import Paginaiton from './components/molecules/pagination/Paginaton.jsx'
-import Header from './components/organisms/header/Header.jsx'
-// import { headerNavItems } from './data/navigation/headerNav.js'
-// import { footer } from './data/navigation/footer.js'
-import Footer from './components/organisms/footer/Footer.jsx'
-Footer
-import HeroSecion from './components/organisms/herosecion/HeroSection.jsx'
-// import { homeHeroText } from './data/home/homeHeroText.js'
-// import homeHero from './assets/images/hero/home-hero.svg'
-import FilterBarSection from './components/organisms/filterbarsection/FilterBarSection.jsx'
-// import { useForm } from 'react-hook-form'
-// import { filterBar } from './data/filter/filterBar.js'
-
-import AboutSection from './components/organisms/aboutsection/AboutSection.jsx'
-// import { homeAboutSection } from './data/pages/home/sections/about.js'
-// import { homeWorkExperienceSection } from './data/pages/home/sections/workExperience.js'
-import WorkExperienceSection from './components/organisms/workexperiencesection/WorkExperienceSection.jsx'
-import SkillsSection from './components/organisms/skillssection/SkillsSection.jsx'
-import { homeSkillsSection } from './data/pages/home/sections/skills.js'
+import ThemeToggle from './components/atoms/toggle/ThemeToggle'
+import ProjectsSection from './components/sections/shared/projects-section/ProjectsSection'
+import {projectsSection} from './data/pages/home/sections/projects'
 
 function App() {
   // const {register, control} = useForm();
@@ -56,21 +11,20 @@ function App() {
 
 
   return (
+    // max-w-(--size-section-wrapper-mobile-max-width)
+    // sm:max-w-(--size-section-wrapper-tablet-max-width)
+    // lg:max-w-(--size-section-wrapper-desktop-max-width)
+    // px-(--spacing-section-wrapper-mobile-padding-x)
+    // sm:px-(--spacing-section-wrapper-tablet-padding-x)
+    // lg:px-(--spacing-section-wrapper-desktop-padding-x)
+
+    // py-(--spacing-section-wrapper-mobile-padding-y)
+    // sm:py-(--spacing-section-wrapper-tablet-padding-y)
+    // lg:py-(--spacing-section-wrapper-desktop-padding-x)
+
     <div className="
     inline-flex items-center flex-col justify-center gap-10 w-full
 
-    max-w-(--size-section-wrapper-mobile-max-width)
-    sm:max-w-(--size-section-wrapper-tablet-max-width)
-    lg:max-w-(--size-section-wrapper-desktop-max-width)
-
-    px-(--spacing-section-wrapper-mobile-padding-x)
-    sm:px-(--spacing-section-wrapper-tablet-padding-x)
-    lg:px-(--spacing-section-wrapper-desktop-padding-x)
-
-    py-(--spacing-section-wrapper-mobile-padding-y)
-    sm:py-(--spacing-section-wrapper-tablet-padding-y)
-    lg:py-(--spacing-section-wrapper-desktop-padding-x)
-    
     "
     >
       
@@ -201,9 +155,19 @@ function App() {
         data={homeWorkExperienceSection}
         /> */}
 
-        <SkillsSection
+        {/* <SkillsSection
           data={homeSkillsSection}
+        /> */}
+
+        <ProjectsSection
+        data={projectsSection}
         />
+
+        {/* <Modal
+        open={true}
+        >
+          <div className='w-30 h-30 bg-red-500'></div>
+        </Modal> */}
 
 
     </div>

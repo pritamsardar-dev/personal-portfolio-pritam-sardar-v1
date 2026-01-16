@@ -79,7 +79,7 @@ html.dark {
   --color-button-overlay-background-active: color-mix(in srgb, var(--color-indigo-500) 20%, transparent);
 
   /* Select Background */
-  --color-select-background-defualt: color-mix(in srgb, var(--color-indigo-500) 20%, transparent);
+  --color-select-background-defualt: color-mix(in srgb, var(--color-zinc-700) 75%, transparent);
   --color-select-background-hover: color-mix(in srgb, var(--color-indigo-500) 5%, transparent);
   --color-select-background-focus: color-mix(in srgb, var(--color-indigo-500) 10%, transparent);
   
@@ -149,13 +149,19 @@ html.dark {
   /* Divider Background */
   --color-divider-background: var(--color-gray-700);
 
+  /* Modal Backdrop */
+  --color-overlay-backdrop: rgba(0, 0, 0, 0.65);
+  
+  /* Media Frame Surface Backgound */
+  --color-surface-media-dark: hsl(0 0% 10%);
+
 
   /* Shadows */
   /* Card Wrapper */
   --shadow-card-wrapper: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
 
   /* Card Container */
-  --shadow-card-container: 0px 2px 12px 0px;
+  --shadow-card-container: 0px 2px 12px 0px var(--color-card-container-shadow);
 
   /* Carousel Contianer */
   --shadow-carousel-container: 0px 4px 12px 0px rgba(0, 0, 0, 0.8);
@@ -175,4 +181,7 @@ html.dark {
 
   /* Card Container */
   --effect-card-container-background-blur: 12px;
+
+  /* Modal Backdrop */
+  --effect-overlay-blur: 6px;
 }

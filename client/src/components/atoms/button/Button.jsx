@@ -3,8 +3,15 @@ import clsx from "clsx";
 import { baseButton, variantMap } from "./button.config";
 import { iconPaintClasses } from "./icon.paint.config";
 
+const resolveClasses = (value, size) => {
+  if (!value) return "";
+  if (typeof value === "string") return value;
+  return value[size] || value.default || "";
+};
+
 const Button = forwardRef(({
   variant = "primary",
+  size = "default",            
   label = "",
   children,
   iconLeft: IconLeft = null,
@@ -21,16 +28,20 @@ const Button = forwardRef(({
   const classes = clsx(
     baseButton,
     variantConfig.baseClasses,
+    resolveClasses(variantConfig.sizes, size), 
     className,
     isDisabled && "pointer-events-none"
   );
 
   const getIconClasses = (type) =>
-    clsx(variantConfig.iconClasses, type && iconPaintClasses[type]);
+    clsx(
+      resolveClasses(variantConfig.iconClasses, size),
+      type && iconPaintClasses[type]
+    );
 
   return (
     <button
-      ref={ref}          
+      ref={ref}
       disabled={isDisabled}
       className={classes}
       onClick={onClick}

@@ -21,24 +21,32 @@ export const variantMap = {
       text-(--color-button-primary-text-default)
       disabled:text-(--color-button-primary-text-disabled)
 
-      px-(--size-button-mobile-padding-x)
-      sm:px-(--size-button-tablet-padding-x)
-      lg:px-(--size-button-desktop-padding-x)
-
-      h-(--size-button-mobile-height)
-      sm:h-(--size-button-tablet-height)
-      lg:h-(--size-button-desktop-height)
-
-      text-(length:--text-button-mobile-font-size)
-      sm:text-(length:--text-button-tablet-font-size)
-      lg:text-(length:--text-button-desktop-font-size)
-
       font-(--text-button-font-weight)
       rounded-(--radius-button-base)
     `,
 
-    iconClasses: `
-    `,
+    sizes: {
+      default: `
+        px-(--size-button-mobile-padding-x)
+        sm:px-(--size-button-tablet-padding-x)
+        lg:px-(--size-button-desktop-padding-x)
+
+        h-(--size-button-mobile-height)
+        sm:h-(--size-button-tablet-height)
+        lg:h-(--size-button-desktop-height)
+
+        text-(length:--text-button-mobile-font-size)
+        sm:text-(length:--text-button-tablet-font-size)
+        lg:text-(length:--text-button-desktop-font-size)
+      `,
+      compact: `
+        px-(--size-button-mobile-padding-x)
+        h-(--size-button-mobile-height)
+        text-(length:--text-button-mobile-font-size)
+      `,
+    },
+
+    iconClasses: ``,
   },
 
   secondary: {
@@ -53,25 +61,33 @@ export const variantMap = {
       active:text-(--color-button-secondary-text-active)
       disabled:text-(--color-button-secondary-text-disabled)
 
-      px-(--size-button-mobile-padding-x)
-      sm:px-(--size-button-tablet-padding-x)
-      lg:px-(--size-button-desktop-padding-x)
-
-      h-(--size-button-mobile-height)
-      sm:h-(--size-button-tablet-height)
-      lg:h-(--size-button-desktop-height)
-
-      text-(length:--text-button-mobile-font-size)
-      sm:text-(length:--text-button-tablet-font-size)
-      lg:text-(length:--text-button-desktop-font-size)
-
       font-(--text-button-font-weight)
       rounded-(--radius-button-base)
       border-(length:--border-button-secondary-width)
     `,
 
-    iconClasses: `
-    `,
+    sizes: {
+      default: `
+        px-(--size-button-mobile-padding-x)
+        sm:px-(--size-button-tablet-padding-x)
+        lg:px-(--size-button-desktop-padding-x)
+
+        h-(--size-button-mobile-height)
+        sm:h-(--size-button-tablet-height)
+        lg:h-(--size-button-desktop-height)
+
+        text-(length:--text-button-mobile-font-size)
+        sm:text-(length:--text-button-tablet-font-size)
+        lg:text-(length:--text-button-desktop-font-size)
+      `,
+      compact: `
+        px-(--size-button-mobile-padding-x)
+        h-(--size-button-mobile-height)
+        text-(length:--text-button-mobile-font-size)
+      `,
+    },
+
+    iconClasses: ``,
   },
 
   overlayDefault: {
@@ -79,37 +95,57 @@ export const variantMap = {
       border-(--color-button-overlay-border-default-default)
       bg-(--color-button-overlay-background-default-defualt)
       hover:bg-(--color-button-overlay-background-default-hover)
-    
+      hover:scale-[1.1]
+      active:bg-(--color-button-overlay-background-default-hover)
+      active:scale-[1.1]
+
       text-(--color-button-overlay-text-default-default)
-      
-      px-(--spacing-button-overlay-mobile-padding-x)
-      sm:px-(--spacing-button-overlay-tablet-padding-x)
-      lg:px-(--spacing-button-overlay-desktop-padding-x)
-
-      py-(--spacing-button-overlay-mobile-padding-y)
-      sm:py-(--spacing-button-overlay-tablet-padding-y)
-      lg:py-(--spacing-button-overlay-desktop-padding-y)
-
-      h-(--size-button-overlay-mobile-height)
-      sm:h-(--size-button-overlay-tablet-height)
-      lg:h-(--size-button-overlay-desktop-height)
-
-      text-(length:--text-button-small-mobile-font-size)
-      sm:text-(length:--text-button-small-tablet-font-size)
-      lg:text-(length:--text-button-small-desktop-font-size)
 
       font-(--text-button-font-weight)
       rounded-(--radius-button-overlay-base)
       border-(length:--border-button-overlay-width)
     `,
 
-    iconClasses: `
-      stroke-(length:--border-icon-base-width)
-      w-(--size-icon-button-element-mobile-diameter)
-      sm:w-(--size-icon-button-element-tablet-diameter)
-      lg:w-(--size-icon-button-element-desktop-diameter)
-      h-auto
-    `,
+    sizes: {
+      default: `
+        px-(--spacing-button-overlay-mobile-padding-x)
+        sm:px-(--spacing-button-overlay-tablet-padding-x)
+        lg:px-(--spacing-button-overlay-desktop-padding-x)
+
+        py-(--spacing-button-overlay-mobile-padding-y)
+        sm:py-(--spacing-button-overlay-tablet-padding-y)
+        lg:py-(--spacing-button-overlay-desktop-padding-y)
+
+        h-(--size-button-overlay-mobile-height)
+        sm:h-(--size-button-overlay-tablet-height)
+        lg:h-(--size-button-overlay-desktop-height)
+
+        text-(length:--text-button-small-mobile-font-size)
+        sm:text-(length:--text-button-small-tablet-font-size)
+        lg:text-(length:--text-button-small-desktop-font-size)
+      `,
+      compact: `
+        px-(--spacing-button-overlay-mobile-padding-x)
+        py-(--spacing-button-overlay-mobile-padding-y)
+        h-(--size-button-overlay-mobile-height)
+        text-(length:--text-button-small-mobile-font-size)
+      `,
+    },
+
+    iconClasses: {
+      default: `
+        stroke-(length:--border-icon-base-width)
+        w-(--size-icon-button-element-mobile-diameter)
+        sm:w-(--size-icon-button-element-tablet-diameter)
+        lg:w-(--size-icon-button-element-desktop-diameter)
+        h-auto
+      `,
+      compact: `
+        stroke-(length:--border-icon-base-width)
+        w-(--size-icon-button-element-mobile-diameter)
+        h-auto
+      `,
+    },
   },
   
   overlay: {
@@ -117,40 +153,60 @@ export const variantMap = {
       border-(--color-button-overlay-border)
       bg-(--color-button-overlay-background-default)
       hover:bg-(--color-button-overlay-background-hover)
+      active:scale-[1.1]
       active:bg-(--color-button-overlay-background-active)
+      hover:scale-[1.1]
     
       text-(--color-button-overlay-text-default)
       hover:text-(--color-button-overlay-text-hover)
       active:text-(--color-button-overlay-text-active)
-      
-      px-(--spacing-button-overlay-mobile-padding-x)
-      sm:px-(--spacing-button-overlay-tablet-padding-x)
-      lg:px-(--spacing-button-overlay-desktop-padding-x)
-
-      py-(--spacing-button-overlay-mobile-padding-y)
-      sm:py-(--spacing-button-overlay-tablet-padding-y)
-      lg:py-(--spacing-button-overlay-desktop-padding-y)
-
-      h-(--size-button-overlay-mobile-height)
-      sm:h-(--size-button-overlay-tablet-height)
-      lg:h-(--size-button-overlay-desktop-height)
-
-      text-(length:--text-button-small-mobile-font-size)
-      sm:text-(length:--text-button-small-tablet-font-size)
-      lg:text-(length:--text-button-small-desktop-font-size)
 
       font-(--text-button-font-weight)
       rounded-(--radius-button-overlay-base)
       border-(length:--border-button-overlay-width)
     `,
 
-    iconClasses: `
-      stroke-(length:--border-icon-base-width)
-      w-(--size-icon-button-element-mobile-diameter)
-      sm:w-(--size-icon-button-element-tablet-diameter)
-      lg:w-(--size-icon-button-element-desktop-diameter)
-      h-auto
-    `,
+    sizes: {
+      default: `
+        px-(--spacing-button-overlay-mobile-padding-x)
+        sm:px-(--spacing-button-overlay-tablet-padding-x)
+        lg:px-(--spacing-button-overlay-desktop-padding-x)
+
+        py-(--spacing-button-overlay-mobile-padding-y)
+        sm:py-(--spacing-button-overlay-tablet-padding-y)
+        lg:py-(--spacing-button-overlay-desktop-padding-y)
+
+        h-(--size-button-overlay-mobile-height)
+        sm:h-(--size-button-overlay-tablet-height)
+        lg:h-(--size-button-overlay-desktop-height)
+
+        text-(length:--text-button-small-mobile-font-size)
+        sm:text-(length:--text-button-small-tablet-font-size)
+        lg:text-(length:--text-button-small-desktop-font-size)
+      `,
+
+      compact: `
+        px-(--spacing-button-overlay-mobile-padding-x)
+        py-(--spacing-button-overlay-mobile-padding-y)
+        h-(--size-button-overlay-mobile-height)
+        text-(length:--text-button-small-mobile-font-size)
+      `,
+    },
+
+    iconClasses: {
+      default: `
+        stroke-(length:--border-icon-base-width)
+        w-(--size-icon-button-element-mobile-diameter)
+        sm:w-(--size-icon-button-element-tablet-diameter)
+        lg:w-(--size-icon-button-element-desktop-diameter)
+        h-auto
+      `,
+      compact: `
+        stroke-(length:--border-icon-base-width)
+        w-(--size-icon-button-element-mobile-diameter)
+        h-auto
+      `,
+    },
   },
 
   tag: {
@@ -183,7 +239,6 @@ export const variantMap = {
       font-(--text-button-font-weight)
       rounded-(--radius-button-tag-clickable)
       border-(length:--border-button-overlay-width)
-      
     `,
 
     iconClasses: `
@@ -249,63 +304,103 @@ export const variantMap = {
     baseClasses: `
       bg-(--color-button-overlay-background-default-defualt)
       hover:bg-(--color-button-overlay-background-default-hover)
-    
+      hover:scale-[1.1]
+      active:bg-(--color-button-overlay-background-default-hover)
+      active:scale-[1.1]
+
       text-(--color-button-overlay-text-default-default)
 
-      w-(--size-button-overlay-mobile-height)
-      sm:w-(--size-button-overlay-tablet-height)
-      lg:w-(--size-button-overlay-desktop-height)
-      
-      h-(--size-button-overlay-mobile-height)
-      sm:h-(--size-button-overlay-tablet-height)
-      lg:h-(--size-button-overlay-desktop-height)
-    
       font-(--text-button-font-weight)
       rounded-(--radius-icon-button-overlay)
     `,
 
-    iconClasses: `
-      stroke-[(length:--border-icon-base-width)]
-      w-(--size-icon-button-element-mobile-diameter)
-      sm:w-(--size-icon-button-element-tablet-diameter)
-      lg:w-(--size-icon-button-element-desktop-diameter)
-      h-auto
-    `,
+    sizes: {
+      default: `
+        w-(--size-button-overlay-mobile-height)
+        sm:w-(--size-button-overlay-tablet-height)
+        lg:w-(--size-button-overlay-desktop-height)
+
+        h-(--size-button-overlay-mobile-height)
+        sm:h-(--size-button-overlay-tablet-height)
+        lg:h-(--size-button-overlay-desktop-height)
+      `,
+
+      compact: `
+        w-(--size-button-overlay-mobile-height)
+        h-(--size-button-overlay-mobile-height)
+      `,
     },
 
-    iconOnlyRectangularOverlay: {
+    iconClasses: {
+      default: `
+        stroke-(length:--border-icon-base-width)
+        w-(--size-icon-button-element-mobile-diameter)
+        sm:w-(--size-icon-button-element-tablet-diameter)
+        lg:w-(--size-icon-button-element-desktop-diameter)
+        h-auto
+      `,
+      compact: `
+        stroke-(length:--border-icon-base-width)
+        w-(--size-icon-button-element-mobile-diameter)
+        h-auto
+      `,
+    },
+  },
+
+  iconOnlyRectangularOverlay: {
     baseClasses: `
       bg-(--color-button-overlay-background-default-defualt)
       hover:bg-(--color-button-overlay-background-default-hover)
-    
+      active:bg-(--color-button-overlay-background-default-hover)
+      hover:scale-[1.1]
+      active:scale-[1.1]
+
       text-(--color-button-overlay-text-default-default)
 
-      w-(--size-button-overlay-mobile-height)
-      sm:w-(--size-button-overlay-tablet-height)
-      lg:w-(--size-button-overlay-desktop-height)
-      
-      h-(--size-button-overlay-mobile-height)
-      sm:h-(--size-button-overlay-tablet-height)
-      lg:h-(--size-button-overlay-desktop-height)
-    
       font-(--text-button-font-weight)
       rounded-(--radius-button-overlay-base)
     `,
 
-    iconClasses: `
-      stroke-[(length:--border-icon-base-width)]
-      w-(--size-icon-button-element-mobile-diameter)
-      sm:w-(--size-icon-button-element-tablet-diameter)
-      lg:w-(--size-icon-button-element-desktop-diameter)
-      h-auto
-    `,
+    sizes: {
+      default: `
+        w-(--size-button-overlay-mobile-height)
+        sm:w-(--size-button-overlay-tablet-height)
+        lg:w-(--size-button-overlay-desktop-height)
+
+        h-(--size-button-overlay-mobile-height)
+        sm:h-(--size-button-overlay-tablet-height)
+        lg:h-(--size-button-overlay-desktop-height)
+      `,
+
+      compact: `
+        w-(--size-button-overlay-mobile-height)
+        h-(--size-button-overlay-mobile-height)
+      `,
     },
 
-    carouselDot: {
+    iconClasses: {
+      default: `
+        stroke-(length:--border-icon-base-width)
+        w-(--size-icon-button-element-mobile-diameter)
+        sm:w-(--size-icon-button-element-tablet-diameter)
+        lg:w-(--size-icon-button-element-desktop-diameter)
+        h-auto
+      `,
+      compact: `
+        stroke-(length:--border-icon-base-width)
+        w-(--size-icon-button-element-mobile-diameter)
+        h-auto
+      `,
+    },
+  },
+
+  carouselDot: {
     baseClasses: `
       bg-(--color-carousal-dot-default)
       hover:bg-(--color-carousal-dot-hover)
+      hover:scale-[1.5]
       active:bg-(--color-carousal-dot-active)
+      active:scale-[1.5]
       border-(--color-carousal-dot-border)
     
       text-(--color-button-overlay-text-default-default)
@@ -321,12 +416,12 @@ export const variantMap = {
 
     iconClasses: `
     `,
-    },
+  },
 
-    react: {
+  react: {
     baseClasses: `
       text-(--color-text-body)
-     
+      
       px-(--spacing-button-overlay-mobile-padding-x)
       sm:px-(--spacing-button-overlay-tablet-padding-x)
       lg:px-(--spacing-button-overlay-desktop-padding-x)
@@ -346,7 +441,6 @@ export const variantMap = {
       font-(-text-body-large-font-weight)
       rounded-(--radius-button-overlay-base)
       group
-     
     `,
 
     iconClasses: `
@@ -363,7 +457,7 @@ export const variantMap = {
     `,
   },
 
-    link: {
+  link: {
     baseClasses: `
       text-(--color-text-body)
 

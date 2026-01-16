@@ -171,5 +171,14 @@
     --border-4: 4px;
     --border-5: 6px;
     --border-5: 8px;
+
+    /* Z Indices */
+    --z-base: 0;
+    --z-dropdown: 1000;
+    --z-sticky: 1100;
+    --z-modal-backdrop: 1200;
+    --z-modal: 1300;
+    --z-popover: 1400;
+    --z-toast: 1500;
 }
 

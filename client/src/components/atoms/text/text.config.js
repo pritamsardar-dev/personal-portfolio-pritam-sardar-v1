@@ -128,143 +128,220 @@ export const variantMap = {
   },
 
   heading2: {
+    semanticTag: "h2",
+
     baseClasses: `
       text-(--color-text-heading)
-      text-(length:--text-heading-2-mobile-font-size)
-      sm:text-(length:--text-heading-2-tablet-font-size)
-      lg:text-(length:--text-heading-2-desktop-font-size)
       font-(--text-heading-2-font-weight)
     `,
-    semanticTag: "h2",
-    iconWrapperClasses: `
-      ${iconWrapperClassesBase}
-      inline-flex items-center justify-center
-      bg-(--color-text-primary)
-      w-(--size-icon-container-heading-2-mobile-diameter)
-      sm:w-(--size-icon-container-heading-2-tablet-diameter)
-      lg:w-(--size-icon-container-heading-2-desktop-diameter)
-      h-(--size-icon-container-heading-2-mobile-diameter)
-      sm:h-(--size-icon-container-heading-2-tablet-diameter)
-      lg:h-(--size-icon-container-heading-2-desktop-diameter)
-      rounded-(--radius-icon-contaniner-base)
-    `,
-    iconClasses: `
-      text-(--color-content-icon-stroke-default)
-      w-(--size-icon-heading-2-mobile)
-      sm:w-(--size-icon-heading-2-tablet)
-      lg:w-(--size-icon-heading-2-desktop)
-      h-auto
-    `,
+
+    sizes: {
+      default: `
+        text-(length:--text-heading-2-mobile-font-size)
+        sm:text-(length:--text-heading-2-tablet-font-size)
+        lg:text-(length:--text-heading-2-desktop-font-size)
+      `,
+
+      compact: `
+        text-(length:--text-heading-2-mobile-font-size)
+      `,
+    },
+
+    iconWrapperClasses: {
+      default: `
+        ${iconWrapperClassesBase}
+        bg-(--color-text-primary)
+        w-(--size-icon-container-heading-2-mobile-diameter)
+        sm:w-(--size-icon-container-heading-2-tablet-diameter)
+        lg:w-(--size-icon-container-heading-2-desktop-diameter)
+        h-(--size-icon-container-heading-2-mobile-diameter)
+        sm:h-(--size-icon-container-heading-2-tablet-diameter)
+        lg:h-(--size-icon-container-heading-2-desktop-diameter)
+      `,
+
+      compact: `
+        ${iconWrapperClassesBase}
+        bg-(--color-text-primary)
+        w-(--size-icon-container-heading-2-mobile-diameter)
+        h-(--size-icon-container-heading-2-mobile-diameter)
+      `,
+    },
+
+    iconClasses: {
+      default: `
+        text-(--color-content-icon-stroke-default)
+        w-(--size-icon-heading-2-mobile)
+        sm:w-(--size-icon-heading-2-tablet)
+        h-auto
+      `,
+
+      compact: `
+        text-(--color-content-icon-stroke-default)
+        w-(--size-icon-heading-2-mobile)
+        h-auto
+      `,
+    },
   },
+
 
   heading3: {
+    semanticTag: "h3",
+
     baseClasses: `
       text-(--color-text-heading)
-      text-(length:--text-heading-3-mobile-font-size)
-      sm:text-(length:--text-heading-3-tablet-font-size)
-      lg:text-(length:--text-heading-3-desktop-font-size)
       font-(--text-heading-3-font-weight)
     `,
-    semanticTag: "h3",
-    iconWrapperClasses: `
-      ${iconWrapperClassesBase}
-      inline-flex items-center justify-center
-      bg-(--color-text-primary)
-      w-(--size-icon-container-heading-3-mobile-diameter)
-      sm:w-(--size-icon-container-heading-3-tablet-diameter)
-      lg:w-(--size-icon-container-heading-3-desktop-diameter)
-      h-(--size-icon-container-heading-3-mobile-diameter)
-      sm:h-(--size-icon-container-heading-3-tablet-diameter)
-      lg:h-(--size-icon-container-heading-3-desktop-diameter)
-      rounded-(--radius-icon-contaniner-base)
-    `,
-    iconClasses: `
-      text-(--color-content-icon-stroke-default)
-      w-(--size-icon-heading-3-mobile)
-      sm:w-(--size-icon-heading-3-tablet)
-      lg:w-(--size-icon-heading-3-desktop)
-      h-auto
-    `,
+
+    sizes: {
+      default: `
+        text-(length:--text-heading-3-mobile-font-size)
+        sm:text-(length:--text-heading-3-tablet-font-size)
+        lg:text-(length:--text-heading-3-desktop-font-size)
+      `,
+
+      compact: `
+        text-(length:--text-heading-3-mobile-font-size)
+      `,
+    },
+
+    iconWrapperClasses: {
+      default: `
+        ${iconWrapperClassesBase}
+        inline-flex items-center justify-center
+        bg-(--color-text-primary)
+        w-(--size-icon-container-heading-3-mobile-diameter)
+        sm:w-(--size-icon-container-heading-3-tablet-diameter)
+        lg:w-(--size-icon-container-heading-3-desktop-diameter)
+        h-(--size-icon-container-heading-3-mobile-diameter)
+        sm:h-(--size-icon-container-heading-3-tablet-diameter)
+        lg:h-(--size-icon-container-heading-3-desktop-diameter)
+        rounded-(--radius-icon-contaniner-base)
+      `,
+
+      compact: `
+        ${iconWrapperClassesBase}
+        inline-flex items-center justify-center
+        bg-(--color-text-primary)
+        w-(--size-icon-container-heading-3-mobile-diameter)
+        h-(--size-icon-container-heading-3-mobile-diameter)
+        rounded-(--radius-icon-contaniner-base)
+      `,
+    },
+
+    iconClasses: {
+      default: `
+        text-(--color-content-icon-stroke-default)
+        w-(--size-icon-heading-3-mobile)
+        sm:w-(--size-icon-heading-3-tablet)
+        lg:w-(--size-icon-heading-3-desktop)
+        h-auto
+      `,
+
+      compact: `
+        text-(--color-content-icon-stroke-default)
+        w-(--size-icon-heading-3-mobile)
+        h-auto
+      `,
+    },
   },
+
 
   bodyLarge: {
+    semanticTag: "p",
+
     baseClasses: `
       text-(--color-text-body)
-      text-(length:--text-body-large-mobile-font-size)
-      sm:text-(length:--text-body-large-tablet-font-size)
-      lg:text-(length:--text-body-large-desktop-font-size)
-      font-(--text-body-large-font-weight)
     `,
-    semanticTag: "p",
-    iconWrapperClasses: `
-    `,
-    iconClasses: `
-    `,
+
+    sizes: {
+      default: `
+        text-(length:--text-body-large-mobile-font-size)
+        sm:text-(length:--text-body-large-tablet-font-size)
+        lg:text-(length:--text-body-large-desktop-font-size)
+      `,
+
+      compact: `
+        text-(length:--text-body-large-mobile-font-size)
+      `,
+    },
+
+    modifiers: {
+      default: `
+        font-(--text-body-large-font-weight)
+      `,
+
+      strong: `
+        font-(--text-body-base-strong-font-weight)
+      `,
+    },
+
+    iconWrapperClasses: {},
+    iconClasses: {},
   },
 
-  bodyLargeStrong: {
-    baseClasses: `
-      text-(--color-text-body)
-      text-(length:--text-body-large-mobile-font-size)
-      sm:text-(length:--text-body-large-tablet-font-size)
-      lg:text-(length:--text-body-large-desktop-font-size)
-      font-(--text-body-base-strong-font-weight)
-    `,
-    semanticTag: "p",
-    iconWrapperClasses: `
-    `,
-    iconClasses: `
-    `,
-  },
 
   bodyBase: {
+    semanticTag: "p",
+
     baseClasses: `
       text-(--color-text-body)
-      text-(length:--text-body-base-mobile-font-size)
-      sm:text-(length:--text-body-base-tablet-font-size)
-      lg:text-(length:--text-body-base-desktop-font-size)
-      font-(--text-body-base-font-weight)
     `,
-    semanticTag: "p",
-    iconWrapperClasses: `
-    `,
-    iconClasses: `
-    `,
+
+    sizes: {
+      default: `
+        text-(length:--text-body-base-mobile-font-size)
+        sm:text-(length:--text-body-base-tablet-font-size)
+        lg:text-(length:--text-body-base-desktop-font-size)
+      `,
+    },
+
+    modifiers: {
+      default: `
+        font-(--text-body-base-font-weight)
+      `,
+      strong: `
+        font-(--text-body-base-strong-font-weight)
+      `,
+    },
+
+    iconWrapperClasses: {},
+    iconClasses: {},
   },
 
-  bodyBaseStrong: {
-    baseClasses: `
-      text-(--color-text-body)
-      text-(length:--text-body-base-mobile-font-size)
-      sm:text-(length:--text-body-base-tablet-font-size)
-      lg:text-(length:--text-body-base-desktop-font-size)
-      font-(--text-body-base-strong-font-weight)
-    `,
-    semanticTag: "p",
-    iconWrapperClasses: `
-    `,
-    iconClasses: `
-    `,
-  },
 
   bodyBaseTag: {
+    semanticTag: "span",
+
     baseClasses: `
       text-(--color-text-body)
       bg-(--color-tech-stack-tag-background-default)
-      px-(--spacing-tech-stack-tag-mobile-padding-x)
-      sm:px-(--spacing-tech-stack-tag-tablet-padding-x)
-      lg:px-(--spacing-tech-stack-tag-desktop-padding-x)
       rounded-(--radius-tech-stack-tag)
-      text-(length:--text-body-base-mobile-font-size)
-      sm:text-(length:--text-body-base-tablet-font-size)
-      lg:text-(length:--text-body-base-desktop-font-size)
-      font-(--text-body-base-font-weight)
+      inline-flex items-center
     `,
-    semanticTag: "p",
-    iconWrapperClasses: `
-    `,
-    iconClasses: `
-    `,
+
+    sizes: {
+      default: `
+        px-(--spacing-tech-stack-tag-mobile-padding-x)
+        sm:px-(--spacing-tech-stack-tag-tablet-padding-x)
+        lg:px-(--spacing-tech-stack-tag-desktop-padding-x)
+
+        text-(length:--text-body-base-mobile-font-size)
+        sm:text-(length:--text-body-base-tablet-font-size)
+        lg:text-(length:--text-body-base-desktop-font-size)
+      `,
+    },
+
+    modifiers: {
+      default: `
+        font-(--text-body-base-font-weight)
+      `,
+      strong: `
+        font-(--text-body-base-strong-font-weight)
+      `,
+    },
+
+    iconWrapperClasses: {},
+    iconClasses: {},
   },
 
 
@@ -312,13 +389,4 @@ export const variantMap = {
     iconClasses: `
     `,
   },
-
-
-
-
-
-
-  
-
-  
 };

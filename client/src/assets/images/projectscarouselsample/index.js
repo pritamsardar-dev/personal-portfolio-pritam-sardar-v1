@@ -5,7 +5,8 @@ import projectsCarouselSampleSlide4 from './Screenshot 2025-12-16 012632.png';
 import projectsCarouselSampleSlide5 from './Screenshot 2025-12-16 012706.png';
 import projectsCarouselSampleSlide6 from './Screenshot 2025-12-16 012735.png';
 import projectsCarouselSampleSlide7 from './Screenshot 2025-12-16 012809.png';
-import projectsCarouselSampleSlide8 from './Screenshot 2025-12-16 012809.png';
+import projectsCarouselSampleSlide8 from './mobile-aspect-sample-image.jpg';
+import projectsCarouselSampleSlide9 from './Screenshot 2025-12-16 012809.png';
 
 export {
     projectsCarouselSampleSlide1,
@@ -15,5 +16,6 @@ export {
     projectsCarouselSampleSlide5,
     projectsCarouselSampleSlide6,
     projectsCarouselSampleSlide7,
-    projectsCarouselSampleSlide8
+    projectsCarouselSampleSlide8,
+    projectsCarouselSampleSlide9,
 };

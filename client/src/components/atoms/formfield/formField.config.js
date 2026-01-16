@@ -346,16 +346,17 @@ export const customSelectClasses = {
     rotate-180
   `,
   dropdownList: `
-    absolute z-10 overflow-y-auto w-full h-auto
+    absolute z-(--z-dropdown) overflow-y-auto w-full h-auto
     border-(length:--border-form-field-width)
     border-(--color-select-border-defualt)
-    bg-(--color-select-background-default)
+    bg-(--color-select-background-defualt)
     
     max-h-(--size-select-mobile-max-width)
     sm:max-h-(--size-select-tablet-max-width)
     lg:max-h-(--size-select-desktop-max-width)
     shadow-(--shadow-select-dropdown)
     rounded-(--radius-form-field-base)
+    backdrop-blur-(--effect-card-wrapper-background-blur)
 
     u-custom-scrollbar
   `,

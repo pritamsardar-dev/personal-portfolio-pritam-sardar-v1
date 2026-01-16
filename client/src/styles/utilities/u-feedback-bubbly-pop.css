@@ -1,0 +1,26 @@
+@keyframes u-feedback-bubbly-pop {
+  0% {
+    transform: scale(2);
+    opacity: 0;
+  }
+
+  28% {
+    transform: scale(2.7);
+    opacity: 0.95;
+  }
+
+  55% {
+    transform: scale(2.35);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(2.35);
+    opacity: 0;
+  }
+}
+
+.u-feedback-bubbly-pop {
+  animation: u-feedback-bubbly-pop 480ms cubic-bezier(0.2, 0, 0, 1);
+  will-change: transform, opacity;
+}

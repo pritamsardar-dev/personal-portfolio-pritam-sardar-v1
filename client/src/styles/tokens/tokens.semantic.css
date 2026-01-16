@@ -98,14 +98,14 @@
     --color-button-overlay-background-active: color-mix(in srgb, var(--color-indigo-500) 14%, transparent);
 
     /* Button Overlay Background Default Theme*/
-    --color-button-overlay-border-default-default: color-mix(in srgb, var(--color-base-white) 20%, transparent);
-    --color-button-overlay-background-default-defualt: color-mix(in srgb, var(--color-base-black) 50%, transparent);
-    --color-button-overlay-background-default-hover: color-mix(in srgb, var(--color-base-black) 70%, transparent);
+    --color-button-overlay-border-default-default: color-mix(in srgb, var(--color-base-white) 30%, transparent);
+    --color-button-overlay-background-default-defualt: color-mix(in srgb, var(--color-base-black) 40%, transparent);
+    --color-button-overlay-background-default-hover: color-mix(in srgb, var(--color-base-black) 60%, transparent);
     --color-button-overlay-text-default-default: var(--color-base-white);
     --color-icon-overlay-border-default-default: var(--color-base-white);
 
     /* Select Background */
-    --color-select-background-defualt: color-mix(in srgb, var(--color-indigo-500) 8%, transparent);
+    --color-select-background-defualt: color-mix(in srgb, var(--color-base-white) 85%, transparent);
     --color-select-background-hover: color-mix(in srgb, var(--color-indigo-500) 8%, transparent);
     --color-select-background-focus: color-mix(in srgb, var(--color-indigo-500) 15%, transparent);
 
@@ -180,6 +180,12 @@
 
     /* Divider Background */
     --color-divider-background: var(--color-gray-200);
+
+    /* Modal Backdrop */
+    --color-overlay-backdrop: rgba(0, 0, 0, 0.45);
+
+    /* Media Frame Surface Backgound */
+    --color-surface-media-dark: hsl(0 0% 10%);
 
     /* Typography */
     /* Button */
@@ -316,8 +322,13 @@
 
     /* Button Overlay */
     --size-button-overlay-desktop-height: 40px;
-    --size-button-overlay-tablet-height: 36px;
-    --size-button-overlay-mobile-height: 32px;
+    --size-button-overlay-tablet-height: 38px;
+    --size-button-overlay-mobile-height: 36px;
+
+    /* Tag Overlay */
+    --size-tag-overlay-desktop-height: 38px;
+    --size-tag-overlay-tablet-height: 36px;
+    --size-tag-overlay-mobile-height: 34px;
 
     /* Navigation Header */
     --size-navigation-header-desktop-width: 1440px;
@@ -442,9 +453,9 @@
     --size-icon-container-heading-3-mobile-diameter: 20px;
 
     /* Icon Button Element */
-    --size-icon-button-element-desktop-diameter: 16px;
-    --size-icon-button-element-tablet-diameter: 14px;
-    --size-icon-button-element-mobile-diameter: 12px;
+    --size-icon-button-element-desktop-diameter: 18px;
+    --size-icon-button-element-tablet-diameter: 17px;
+    --size-icon-button-element-mobile-diameter: 16px;
 
     /* Icon Button Element Large */
     --size-icon-button-element-large-desktop-diameter: 20px;
@@ -604,6 +615,9 @@
     --spacing-card-container-desktop-padding-y: 24px;
     --spacing-card-container-tablet-padding-y: 20px;
     --spacing-card-container-mobile-padding-y: 16px;
+    --spacing-card-media-content-desktop-gap: 32px;
+    --spacing-card-media-content-tablet-gap: 24px;
+    --spacing-card-media-content-mobile-gap: 16px;
 
     /* Badge */
     --spacing-badge-padding-x: 16px;
@@ -746,6 +760,7 @@
     --spacing-card-wrapper-buffer-padding-top: 4px;
     --spacing-card-wrapper-buffer-padding-bottom: 8px;
 
+
     /* Radius */
     /* Button */
     --radius-button-base: var(--radius-lg);
@@ -753,6 +768,9 @@
 
     /* Button Overlay */
     --radius-button-overlay-base: var(--radius-lg);
+
+    /* Tag Overlay */
+    --radius-tag-overlay-base: var(--radius-xl);
 
     /* Card Wrapper */
     --radius-card-wrapper-base: var(--radius-xl);
@@ -842,7 +860,7 @@
     --shadow-card-wrapper: 0px 2px 6px 0px rgba(0, 0, 0, 0.06);
 
     /* Card Container */
-    --shadow-card-container: 0px 2px 12px 0px;
+    --shadow-card-container: 0px 2px 12px 0px var(--color-card-container-shadow);
 
     /* Carousel Contianer */
     --shadow-carousel-container: 0px 4px 12px 0px rgba(0, 0, 0, 0.8);
@@ -864,5 +882,11 @@
     --effect-card-wrapper-background-blur: 6px;
 
     /* Card Container */
-    --effect-card-container-background-blur: 0px;
+    --effect-card-container-background-blur: 6px;
+
+    /* Modal Backdrop */
+    --effect-overlay-blur: 6px;
+
+    /* Button Overaly Default Backdrop */
+    --effect-button-overlay-default-blur: 6px;
 }

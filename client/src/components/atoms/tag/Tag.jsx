@@ -3,8 +3,15 @@ import clsx from "clsx";
 import { baseTag, variantMap } from "./tag.config";
 import {iconPaintClasses} from "./icon.paint.config";
 
+const resolveClasses = (value, size) => {
+  if (!value) return "";
+  if (typeof value === "string") return value;
+  return value[size] || value.default || "";
+};
+
 const Tag = ({
   variant = "overlay",
+  size = "default",
   label = "",
   iconLeft: IconLeft = null,
   iconRight: IconRight = null,
@@ -18,11 +25,12 @@ const Tag = ({
   const classes = clsx(
     baseTag,
     variantConfig.baseClasses,
+    resolveClasses(variantConfig.sizes, size),
     className
   );
 
   const getIconClasses = (type) => clsx(
-      variantConfig.iconClasses, 
+      resolveClasses(variantConfig.iconClasses, size), 
       type && iconPaintClasses[type] 
   );
 
