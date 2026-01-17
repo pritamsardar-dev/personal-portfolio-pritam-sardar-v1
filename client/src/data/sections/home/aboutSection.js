@@ -8,7 +8,7 @@ import {
   aboutSubtitleEducationDegrees,
   aboutTitleCardblock,
   aboutHeading,
-} from '../../../../assets/icons/content';
+} from '../../../assets/icons/content';
 
 export const homeAboutSection = {
   id: "about-home",
@@ -32,7 +32,7 @@ export const homeAboutSection = {
     label: "More About Me →",
     onClick: () => {},
   },
-  dataBlocks: [
+  blocks: [
     {
       id: "about-textblock",
       type: "aboutTextBlock",

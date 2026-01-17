@@ -8,7 +8,7 @@ import {
   projectsCarouselSampleSlide7,
   projectsCarouselSampleSlide8,
   projectsCarouselSampleSlide9,
-} from "../../../../assets/images/projectscarouselsample";
+} from "../../../assets/images/projectscarouselsample";
 
 import {
   ArrowBottomIcon,
@@ -29,7 +29,7 @@ import {
   PauseFilledIcon,
   TagTimeDurationIcon,
   TagTimeDurationIconType,
-} from "../../../../assets/icons/system";
+} from "../../../assets/icons/system";
 
 import {
   projectsSubtitleChallengesSolved,
@@ -41,7 +41,7 @@ import {
   projectsSubtitleProjectGoal,
   projectsSubtitleTechstack,
   projectsTitleTextblock,
-} from "../../../../assets/icons/content";
+} from "../../../assets/icons/content";
 
 const demoProjectsRow = (idNumber, topOrderNumber) => {
     return {

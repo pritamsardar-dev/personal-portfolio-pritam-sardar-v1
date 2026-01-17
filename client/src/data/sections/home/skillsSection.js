@@ -19,7 +19,7 @@ import {
   skillsSubtitleProcessOriented,
   skillsSubtitleFlexibleAndDedicated,
   skillsHeading,
-} from "../../../../assets/icons/content";
+} from "../../../assets/icons/content";
 
 export const homeSkillsSection = {
   id: "skills-home",

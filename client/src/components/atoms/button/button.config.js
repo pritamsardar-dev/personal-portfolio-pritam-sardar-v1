@@ -480,8 +480,12 @@ export const variantMap = {
       font-(-text-body-large-font-weight)
       rounded-(--radius-button-overlay-base)
       
-      hover:underline
-      active:underline
+      underline
+      decoration-(--color-text-primary)
+      decoration-transparent
+
+      hover:decoration-(--color-text-primary)
+      active:decoration-(--color-text-primary)
     `,
 
     iconClasses: `
@@ -509,8 +513,12 @@ export const variantMap = {
       font-(-text-body-small-font-weight)
       rounded-(--radius-button-overlay-base)
       
-      hover:underline
-      active:underline
+      underline
+      decoration-(--color-text-primary)
+      decoration-transparent
+
+      hover:decoration-(--color-text-primary)
+      active:decoration-(--color-text-primary)
     `,
 
     iconClasses: `

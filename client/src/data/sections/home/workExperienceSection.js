@@ -3,7 +3,7 @@ import {
   workExperienceTitleTextblock,
   workExperienceTitleCardblock,
   workExperienceSubtitleOfficeBuilding,
-} from "../../../../assets/icons/content";
+} from "../../../assets/icons/content";
 
 export const homeWorkExperienceSection = {
   id: "work-experience-home",

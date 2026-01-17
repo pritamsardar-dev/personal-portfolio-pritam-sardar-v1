@@ -1,5 +1,5 @@
 import demoProjectsRow from "./demoProjectsRow";
-import { filterBar } from "../../../filter/filterBar";
+import { filterBarSection } from "../shared/filterBarSection";
 
 import {
   projectsCarouselSampleSlide1,
@@ -11,10 +11,9 @@ import {
   projectsCarouselSampleSlide7,
   projectsCarouselSampleSlide8,
   projectsCarouselSampleSlide9,
-} from "../../../../assets/images/projectscarouselsample";
+} from "../../../assets/images/projectscarouselsample";
 
 import {
-  ArrowBottomIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
   FullscreenIcon,
@@ -32,7 +31,7 @@ import {
   PauseFilledIcon,
   TagTimeDurationIcon,
   TagTimeDurationIconType,
-} from "../../../../assets/icons/system";
+} from "../../../assets/icons/system";
 
 import {
   projectsHeading,
@@ -45,7 +44,7 @@ import {
   projectsSubtitleProjectGoal,
   projectsSubtitleTechstack,
   projectsTitleTextblock,
-} from "../../../../assets/icons/content";
+} from "../../../assets/icons/content";
 
 export const projectsSection = {
   id: "projects",
@@ -78,7 +77,7 @@ export const projectsSection = {
         }
       },
     },
-  filterBar: {...filterBar},
+  filterBar: {...filterBarSection},
   buttonProps: {
     variant: "secondary",
     label: "View All Projects →",

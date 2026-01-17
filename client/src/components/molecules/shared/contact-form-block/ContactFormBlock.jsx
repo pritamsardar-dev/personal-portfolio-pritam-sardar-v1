@@ -1,19 +1,31 @@
+/**
+ * Role: CMS-driven contact form block
+ * Used by: Mounted via BlockRenderer based on block.type
+ * Responsibilities:
+ *   - Render a configurable list of form fields
+ *   - Render a submit CTA defined by CMS data
+ *   - React to scroll state to optimize blur performance
+ * Guardrails:
+ *   - Fully data-driven, no form logic or submission handling
+ *   - No page-specific assumptions or hardcoded field configs
+ *   - Safe to mount, reorder, or toggle via CMS
+ */
+
 import React from "react";
 import clsx from "clsx";
-import FormField from "../../atoms/formfield/FormField";
-import Button from "../../atoms/button/Button";
-import { homeContactForm } from "../../../data/home/homeContactForm";
+import FormField from "../../../atoms/formfield/FormField";
+import Button from "../../../atoms/button/Button";
+import { useScrolling } from "../../../../hooks/useScrolling";
 
 const outerContainerClasses = `
-    relative w-full flex flex-col
+    relative  flex flex-col
     transform-gpu will-change-transform contain-layout contain-paint
     bg-(--color-card-wrapper-fill)
     border-(length:--border-card-wrapper-base-width)
     border-(--color-card-wrapper-stroke)
     shadow-(--shadow-card-wrapper)
-    backdrop-blur-(--effect-card-wrapper-background-blur)
     rounded-(--radius-card-wrapper-base)
-    max-w-(--size-block-wrapper-mobile-max-width)
+    w-full
     sm:max-w-(--size-block-wrapper-tablet-max-width)
     lg:max-w-(--size-block-wrapper-desktop-max-width)
     px-(--spacing-text-container-mobile-padding-x)
@@ -35,28 +47,46 @@ const itemToItemClasses = `
 `;
 
 const ContactFormBlock = ({
-    content = homeContactForm,
+    data = {},
     className,
     ...props
 }) => {
-    const { formFields, submitButton} = content;
+    const {
+        id,
+        enabled = true,
+        formFields, 
+        submitButton,
+    } = data;
+
+    const isScrolling = useScrolling(150);
+
+    if (!enabled) return null;
+
+    const backdropBlur = 
+      isScrolling ? "backdrop-blur-none" 
+      : "backdrop-blur-(--effect-card-wrapper-background-blur)";
 
     return (
-        <div className={clsx(
-            outerContainerClasses,
-            className
+        <div 
+            id={id}
+            className={clsx(
+                outerContainerClasses,
+                backdropBlur,
+                className
             )}
             {...props}
-            >
-            <div className={clsx(itemToItemClasses)}>
-                {formFields.map((item, index) => (
-                    <FormField
-                    key={index}
-                    {...item}
-                    />
-                ))}
-            </div>
-            <Button {...submitButton} />
+        >
+            {/* Form fields container*/}
+            {Array.isArray(formFields) && formFields.length > 0 &&
+                <div className={clsx(itemToItemClasses)}>
+                    {formFields.map((item, index) => (
+                        <FormField
+                            key={index}
+                            {...item}
+                        />
+                    ))}
+                </div>}
+            {submitButton && <Button {...submitButton} className="sm:w-fit"/>}
         </div>
     );
 };

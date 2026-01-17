@@ -6,8 +6,8 @@ import SkillsCardBlock from '../../components/molecules/home/skills-card-block/S
 import SkillsTextBlock from '../../components/molecules/home/skills-text-block/SkillsTextBlock';
 import ProjectsCarouselBlock from '../../components/molecules/shared/projects-carousel-block/ProjectsCarouselBlock';
 import ProjectsTextBlock from '../../components/molecules/shared/projects-text-block/ProjectsTextBlock';
-
-
+import ContactTextBlock from '../../components/molecules/shared/contact-text-block/ContactTextBlock';
+import ContactFormBlock from '../../components/molecules/shared/contact-form-block/ContactFormBlock';
 
 export const BLOCK_MAP = {
   aboutTextBlock: AboutTextBlock,
@@ -18,4 +18,6 @@ export const BLOCK_MAP = {
   skillsTextBlock: SkillsTextBlock,
   projectsCarouselBlock: ProjectsCarouselBlock,
   projectsTextBlock: ProjectsTextBlock,
+  contactTextBlock: ContactTextBlock,
+  contactFormBlock: ContactFormBlock,
 };

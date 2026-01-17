@@ -60,13 +60,17 @@ const flexAlignMap = {
     right: "justify-end" 
 };
 
-const AboutSection = ({ data = {}, className, ...props }) => {
+const AboutSection = ({ 
+  data = {}, 
+  className, 
+  ...props 
+}) => {
   const {
     id,
     enabled = true,
     heading,
     buttonProps,
-    dataBlocks = [],
+    blocks = [],
     alignment = { heading: "center", cta: "center" },
   } = data;
 
@@ -75,7 +79,10 @@ const AboutSection = ({ data = {}, className, ...props }) => {
   return (
     <section
       id={id}
-      className={clsx(sectionContainerClasses, className)}
+      className={clsx(
+        sectionContainerClasses, 
+        className
+      )}
       {...props}
     >
       <div className={sectionHeadingWrapperClasses}>
@@ -91,14 +98,13 @@ const AboutSection = ({ data = {}, className, ...props }) => {
         )}
 
         {/* Blocks */}
-        {dataBlocks.length > 0 && (
+        {Array.isArray(blocks) && blocks.length > 0 && (
             <div className={blocksContainerClasses}>
-            {dataBlocks
-                .filter(block => block.enabled)
-                .sort((a, b) => a.order - b.order)
-                .map(block => (
-                <BlockRenderer key={block.id} block={block} />
-                ))}
+              {blocks
+                  .filter(block => block.enabled)
+                  .sort((a, b) => a.order - b.order)
+                  .map(block => (<BlockRenderer key={block.id} block={block} />))
+              }
             </div>
         )}
       </div>

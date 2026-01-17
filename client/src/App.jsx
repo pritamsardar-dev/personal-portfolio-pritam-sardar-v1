@@ -1,7 +1,9 @@
 // import React, { useState} from 'react'
 import ThemeToggle from './components/atoms/toggle/ThemeToggle'
-import ProjectsSection from './components/sections/shared/projects-section/ProjectsSection'
-import {projectsSection} from './data/pages/home/sections/projects'
+// import ProjectsSection from './components/sections/shared/projects-section/ProjectsSection'
+// import {projectsSection} from './data/sections/shared/projectsSection'
+import ContactSection from './components/sections/shared/contact-section/ContactSection'
+import {contactSection} from './data/sections/shared/contactSection'
 
 function App() {
   // const {register, control} = useForm();
@@ -159,9 +161,9 @@ function App() {
           data={homeSkillsSection}
         /> */}
 
-        <ProjectsSection
+        {/* <ProjectsSection
         data={projectsSection}
-        />
+        /> */}
 
         {/* <Modal
         open={true}
@@ -169,7 +171,9 @@ function App() {
           <div className='w-30 h-30 bg-red-500'></div>
         </Modal> */}
 
-
+        <ContactSection
+          data={contactSection}
+        />
     </div>
   )
 }

@@ -1,6 +1,6 @@
-import { DropdownIcon } from "../../assets/icons/system";
+import { DropdownIcon } from "../../../assets/icons/system";
 
-export const filterBar = {
+export const filterBarSection = {
     selectProps: {
         variant: "selectCustom",
         label: "",

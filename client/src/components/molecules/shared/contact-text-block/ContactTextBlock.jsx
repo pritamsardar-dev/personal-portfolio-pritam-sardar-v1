@@ -1,12 +1,24 @@
+/**
+ * Role: CMS-driven contact information block
+ * Used by: Mounted via BlockRenderer based on block.type
+ * Responsibilities:
+ *   - Render an optional block heading and description
+ *   - Render a list of contact/action links as buttons
+ *   - Respect CMS enable/disable and content ordering
+ * Guardrails:
+ *   - Fully data-driven, no hardcoded contact logic
+ *   - Presentation-only (no navigation or side effects)
+ *   - Safe for reuse across pages and layouts
+ */
+
 import React from "react";
 import clsx from "clsx";
-import Text from "../../atoms/text/Text";
-import Button from "../../atoms/button/Button";
-import { homeContactText } from "../../../data/home/homeContactText";
+import Text from "../../../atoms/text/Text";
+import Button from "../../../atoms/button/Button";
 
 const outerContainerClasses = `
-    relative w-full flex flex-col
-    max-w-(--size-block-wrapper-mobile-max-width)
+    relative  flex flex-col
+    w-full
     sm:max-w-(--size-block-wrapper-tablet-max-width)
     lg:max-w-(--size-block-wrapper-desktop-max-width)
     px-(--spacing-text-container-mobile-padding-x)
@@ -36,40 +48,52 @@ const listItemClasses = `
 `
 
 const ContactTextBlock = ({
-    content = homeContactText,
+    data = {},
     className,
     ...props
 }) => {
     const {
+        id,
+        enabled = true,
         heading, 
         description, 
         contactLinks
-    } = content;
+    } = data;
+
+    if (!enabled) return null;
     
     return (
-        <div className={clsx(outerContainerClasses)}>
+        <div 
+            id={id}
+            className={clsx(outerContainerClasses)}
+        >
             <div
                 className={clsx(
                     heading2ToHeading3Classes,
                     className
                 )}
                 {...props}
-            >
-                <Text {...heading} />
+            >   
+                {/* Block title */}
+                {heading && <Text {...heading} />}
 
-                <div className={clsx(itemToItemClasses)}>
-                    <Text {...description} />
-                  
-                    <div className={clsx(listItemClasses)}>
-                        {contactLinks.map((item) => (
-                            <Button
-                                key={item.id}
-                                {...item}
-                            />
-                        ))}
+                {(Array.isArray(contactLinks) && contactLinks.length > 0 || description) &&
+                    <div className={clsx(itemToItemClasses)}>
+
+                        {/* Block desciptions */}
+                        {description && <Text {...description} />}
+
+                        {/* Contact list items */}
+                        {<div className={clsx(listItemClasses)}>
+                            {contactLinks.map((item) => (
+                                <Button
+                                    key={item.id}
+                                    {...item}
+                                />
+                            ))}
+                        </div>}
                     </div>
-
-                </div>
+                }
             </div>
         </div>
     );
