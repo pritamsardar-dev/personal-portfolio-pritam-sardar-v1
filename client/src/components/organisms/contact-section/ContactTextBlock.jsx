@@ -13,8 +13,8 @@
 
 import React from "react";
 import clsx from "clsx";
-import Text from "../../../atoms/text/Text";
-import Button from "../../../atoms/button/Button";
+import Text from "../../atoms/text/Text";
+import Button from "../../atoms/button/Button";
 
 const outerContainerClasses = `
     relative  flex flex-col

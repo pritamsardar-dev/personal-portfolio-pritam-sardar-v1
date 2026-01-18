@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import clsx from "clsx";
-import Logo from "../../../atoms/logo/Logo";
+import Logo from "../../atoms/logo/Logo";
 import NavigationList from "../../../molecules/navigationlist/NavigationList";
-import ThemeToggle from "../../../atoms/toggle/ThemeToggle";
-import Button from "../../../atoms/button/Button";
+import ThemeToggle from "../../atoms/toggle/ThemeToggle";
+import Button from "../../atoms/button/Button";
 import { 
     HamburgerIcon,
     HamburgerIconType,
     CrossFilledIcon,
     CrossFilledIconType
      
-} from "../../../../assets/icons/system";
-import useMediaQuery from "../../../../hooks/useMediaQuery";
+} from "../../../assets/icons/system";
+import useMediaQuery from "../../../hooks/useMediaQuery";
 
 const headerShellClasses = `
     relative sticky top-0 z-50

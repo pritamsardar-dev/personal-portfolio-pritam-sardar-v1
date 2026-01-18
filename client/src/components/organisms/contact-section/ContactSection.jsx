@@ -16,8 +16,8 @@
 
 import React from "react";
 import clsx from "clsx";
-import Text from "../../../atoms/text/Text";
-import BlockRenderer from "../../../../renderers/blocks/blockRenderer";
+import Text from "../../atoms/text/Text";
+import BlockRenderer from "../../../renderers/blocks/blockRenderer";
 
 const sectionContainerClasses = `
   flex flex-col 

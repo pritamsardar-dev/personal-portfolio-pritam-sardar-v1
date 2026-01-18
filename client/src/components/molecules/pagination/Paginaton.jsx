@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
-import Button from "../../../atoms/button/Button";
-import Text from "../../../atoms/text/Text";
+import Button from "../../atoms/button/Button";
+import Text from "../../atoms/text/Text";
 
 const outerContainerClasses = `
     w-full flex flex-wrap justify-center

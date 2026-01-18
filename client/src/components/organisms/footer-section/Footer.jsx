@@ -1,10 +1,10 @@
 import React from "react";
 import clsx from "clsx";
-import Logo from "../../../atoms/logo/Logo";
+import Logo from "../../atoms/logo/Logo";
 import NavigationList from "../../../molecules/navigationlist/NavigationList";
-import ThemeToggle from "../../../atoms/toggle/ThemeToggle";
-import Button from "../../../atoms/button/Button";
-import Text from "../../../atoms/text/Text";
+import ThemeToggle from "../../atoms/toggle/ThemeToggle";
+import Button from "../../atoms/button/Button";
+import Text from "../../atoms/text/Text";
 
 const footerOuterShellClasses = `
     relative overflow-hidden

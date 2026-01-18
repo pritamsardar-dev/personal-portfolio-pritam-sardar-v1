@@ -14,9 +14,9 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import clsx from "clsx";
-import Button from "../../../atoms/button/Button";
+import Button from "../../atoms/button/Button";
 import { projectsCarouselBlockLayoutConfig } from "./projectsCarouselBlockLayout.config";
-import { useScrolling } from "../../../../hooks/useScrolling";
+import { useScrolling } from "../../../hooks/useScrolling";
 
 const ProjectsCarouselBlock = ({
     variant,

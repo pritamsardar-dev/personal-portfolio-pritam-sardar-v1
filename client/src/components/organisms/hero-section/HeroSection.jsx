@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import HeroTextBlock from "../../../molecules/herotextblock/HeroTextBlock";
-import HeroImageBlock from "../../../molecules/shared/hero-image-block/HeroImageBlock";
+import HeroImageBlock from "../../molecules/shared/hero-image-block/HeroImageBlock";
 
 const heroSectionShellClasses = `
     overflow-hidden

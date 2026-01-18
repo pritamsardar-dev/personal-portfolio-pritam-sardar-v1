@@ -1,0 +1,102 @@
+/**
+ * Role: CMS-driven Journey section
+ * Used by: Mounted at page level via section.type === "journeySection"
+ *
+ * Responsibilities:
+ *  - Render section-level heading with CMS-controlled alignment
+ *  - Orchestrate ordered journey-related content blocks
+ *  - Delegate block rendering to BlockRenderer only
+ *
+ * Guardrails:
+ *  - Fully data-driven, no page-specific or hardcoded logic
+ *  - Does not mutate block data or manage side effects
+ */
+
+import React from "react";
+import clsx from "clsx";
+import Text from "../../../atoms/text/Text";
+import BlockRenderer from "../../../../renderers/blocks/blockRenderer";
+
+const sectionContainerClasses = `
+  flex flex-col w-full
+
+  py-(--spacing-section-wrapper-mobile-padding-y)
+  sm:py-(--spacing-section-wrapper-tablet-padding-y)
+  lg:py-(--spacing-section-wrapper-desktop-padding-y)
+
+  gap-(--spacing-section-wrapper-mobile-gap)
+  sm:gap-(--spacing-section-wrapper-tablet-gap)
+  lg:gap-(--spacing-section-wrapper-desktop-gap)
+`;
+
+const sectionHeadingWrapperClasses = `
+  flex flex-col w-full
+  gap-(--spacing-heading-1-heading-2-mobile-gap)
+  sm:gap-(--spacing-heading-1-heading-2-tablet-gap)
+  lg:gap-(--spacing-heading-1-heading-2-desktop-gap)
+`;
+
+const blocksContainerClasses = `
+  flex flex-col w-full items-center
+  gap-(--spacing-section-wrapper-mobile-gap)
+  sm:gap-(--spacing-section-wrapper-tablet-gap)
+  lg:gap-(--spacing-section-wrapper-desktop-gap)
+`;
+
+const textAlignMap = { 
+    left: "text-left", 
+    center: "text-center", 
+    right: "text-right" 
+};
+const JourneySection = ({ 
+  data = {}, 
+  className, 
+  ...props 
+}) => {
+  const {
+    id,
+    enabled = true,
+    heading,
+    blocks = [],
+    alignment = { heading: "center", cta: "center" },
+  } = data;
+
+  if (!enabled) return null;
+
+  return (
+    <section
+      id={id}
+      className={clsx(
+        sectionContainerClasses, 
+        className
+      )}
+      {...props}
+    >
+      <div className={sectionHeadingWrapperClasses}>
+        {/* Section Heading */}
+        {heading && (
+            <div
+            className={clsx(
+                textAlignMap[alignment.heading]
+            )}
+            >
+            <Text {...heading} />
+            </div>
+        )}
+
+        {/* Blocks */}
+        {Array.isArray(blocks) && blocks.length > 0 && (
+            <div className={blocksContainerClasses}>
+              {blocks
+                  .filter(block => block.enabled)
+                  .sort((a, b) => a.order - b.order)
+                  .map(block => (<BlockRenderer key={block.id} block={block} />))
+              }
+            </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default JourneySection;

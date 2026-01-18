@@ -14,11 +14,11 @@
 
 import React, { useState, useRef, useLayoutEffect } from "react";
 import clsx from "clsx";
-import Text from "../../../atoms/text/Text";
-import Tag from "../../../atoms/tag/Tag";
-import Button from "../../../atoms/button/Button";
+import Text from "../../atoms/text/Text";
+import Tag from "../../atoms/tag/Tag";
+import Button from "../../atoms/button/Button";
 import { projectsTextBlockLayoutConfig } from "./projectsTextBlockLayout.config";
-import HorizontalWheelScroll from "../../../wrappers/HorizontalWheelScroll";
+import HorizontalWheelScroll from "../../wrappers/HorizontalWheelScroll";
 
 const ProjectsTextBlock = ({
     variant,

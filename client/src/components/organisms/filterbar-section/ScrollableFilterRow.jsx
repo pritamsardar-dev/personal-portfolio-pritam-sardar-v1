@@ -1,12 +1,12 @@
 import React, { useState, useRef, useLayoutEffect } from "react";
 import clsx from "clsx";
-import Button from "../../../atoms/button/Button";
+import Button from "../../atoms/button/Button";
 import {
   ArrowLeftIcon,
   ArrowLeftIconType,
   ArrowRightIcon,
   ArrowRightIconType,
-} from "../../../../assets/icons/system";
+} from "../../../assets/icons/system";
 
 const filterShellClasses = `
   relative w-full flex overflow-hidden flex-wrap

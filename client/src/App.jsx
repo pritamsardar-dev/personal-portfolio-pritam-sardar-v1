@@ -2,8 +2,12 @@
 import ThemeToggle from './components/atoms/toggle/ThemeToggle'
 // import ProjectsSection from './components/sections/shared/projects-section/ProjectsSection'
 // import {projectsSection} from './data/sections/shared/projectsSection'
-import ContactSection from './components/sections/shared/contact-section/ContactSection'
+import ContactSection from './components/organisms/contact-section/ContactSection'
 import {contactSection} from './data/sections/shared/contactSection'
+import DeveloperBlock from './components/sections/about/journey-section/DeveloperJourneyBlock'
+import { journeySection } from './data/sections/about/journeySection'
+import JourneySection from './components/sections/about/journey-section/JourneySection'
+
 
 function App() {
   // const {register, control} = useForm();
@@ -16,6 +20,7 @@ function App() {
     // max-w-(--size-section-wrapper-mobile-max-width)
     // sm:max-w-(--size-section-wrapper-tablet-max-width)
     // lg:max-w-(--size-section-wrapper-desktop-max-width)
+
     // px-(--spacing-section-wrapper-mobile-padding-x)
     // sm:px-(--spacing-section-wrapper-tablet-padding-x)
     // lg:px-(--spacing-section-wrapper-desktop-padding-x)
@@ -26,6 +31,14 @@ function App() {
 
     <div className="
     inline-flex items-center flex-col justify-center gap-10 w-full
+
+    px-(--spacing-section-wrapper-mobile-padding-x)
+    sm:px-(--spacing-section-wrapper-tablet-padding-x)
+    lg:px-(--spacing-section-wrapper-desktop-padding-x)
+
+    py-(--spacing-section-wrapper-mobile-padding-y)
+    sm:py-(--spacing-section-wrapper-tablet-padding-y)
+    lg:py-(--spacing-section-wrapper-desktop-padding-x)
 
     "
     >
@@ -171,9 +184,18 @@ function App() {
           <div className='w-30 h-30 bg-red-500'></div>
         </Modal> */}
 
-        <ContactSection
+        {/* <ContactSection
           data={contactSection}
+        /> */}
+
+        {/* <DeveloperBlock /> */}
+        {/* <AcademicBlock /> */}
+
+        <JourneySection
+          data={journeySection}
         />
+        
+
     </div>
   )
 }

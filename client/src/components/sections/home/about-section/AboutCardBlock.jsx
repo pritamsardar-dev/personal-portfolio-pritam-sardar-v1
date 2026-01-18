@@ -15,7 +15,7 @@
 
 import React, { useState, useRef, useLayoutEffect } from "react";
 import clsx from "clsx";
-import Text from "../../../atoms/text/Text";
+import Text from "../../../atoms/text/Text.jsx";
 import Button from "../../../atoms/button/Button.jsx";
 import CardRenderer from "./CardRenderer.jsx";
 

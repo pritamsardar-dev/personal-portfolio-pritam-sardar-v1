@@ -13,9 +13,9 @@
 
 import React from "react";
 import clsx from "clsx";
-import FormField from "../../../atoms/formfield/FormField";
-import Button from "../../../atoms/button/Button";
-import { useScrolling } from "../../../../hooks/useScrolling";
+import FormField from "../../atoms/formfield/FormField";
+import Button from "../../atoms/button/Button";
+import { useScrolling } from "../../../hooks/useScrolling";
 
 const outerContainerClasses = `
     relative  flex flex-col
