@@ -7,6 +7,10 @@ import {contactSection} from './data/sections/shared/contactSection'
 import DeveloperBlock from './components/sections/about/journey-section/DeveloperJourneyBlock'
 import { journeySection } from './data/sections/about/journeySection'
 import JourneySection from './components/sections/about/journey-section/JourneySection'
+import { coreValuesSection } from './data/sections/about/coreValuesSection'
+import CoreValuesBlock from './components/sections/about/core-values-section/CoreValuesBlock'
+import CoreValuesSection from './components/sections/about/core-values-section/CoreValuesSection'
+
 
 
 function App() {
@@ -191,10 +195,15 @@ function App() {
         {/* <DeveloperBlock /> */}
         {/* <AcademicBlock /> */}
 
-        <JourneySection
+        {/* <JourneySection
           data={journeySection}
         />
-        
+         */}
+
+         {/* <CoreValuesBlock data={coreValuesSection.blocks[0].data}/> */}
+         <CoreValuesSection
+          data={coreValuesSection}
+         />
 
     </div>
   )

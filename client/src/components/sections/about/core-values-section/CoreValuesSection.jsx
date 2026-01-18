@@ -1,15 +1,15 @@
 /**
- * Role: CMS-driven Journey section for About page
- * Used by: Mounted at page level via section.type === "journeySection"
+ * Role: CMS-driven Core Values section
+ * Used by: Mounted at page level via section.type === "coreValues"
  *
  * Responsibilities:
- *  - Render section-level heading with CMS-controlled alignment
- *  - Orchestrate ordered journey-related content blocks
- *  - Delegate block rendering to BlockRenderer only
+ *  - Render an optional section heading with CMS-controlled alignment
+ *  - Orchestrate and render ordered content blocks via BlockRenderer
  *
  * Guardrails:
  *  - Fully data-driven, no page-specific or hardcoded logic
- *  - Does not mutate block data or manage side effects
+ *  - Block rendering delegated strictly to BlockRenderer
+ *  - Section does not mutate block data or manage side effects
  */
 
 import React from "react";
@@ -48,7 +48,7 @@ const textAlignMap = {
     center: "text-center", 
     right: "text-right" 
 };
-const JourneySection = ({ 
+const CoreValuesSection = ({ 
   data = {}, 
   className, 
   ...props 
@@ -75,10 +75,10 @@ const JourneySection = ({
       <div className={sectionHeadingWrapperClasses}>
         {/* Section Heading */}
         {heading && (
-          <div
-            className={clsx(textAlignMap[alignment.heading])}>
-            <Text {...heading} />
-          </div>
+            <div
+                className={clsx(textAlignMap[alignment.heading])}>
+                <Text {...heading} />
+            </div>
         )}
 
         {/* Blocks */}
@@ -96,4 +96,4 @@ const JourneySection = ({
   );
 };
 
-export default JourneySection;
+export default CoreValuesSection;

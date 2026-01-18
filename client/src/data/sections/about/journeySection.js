@@ -17,10 +17,9 @@ export const journeySection = {
   order: 2,
   alignment: {
     heading: "center",
-    cta: "center",
   },
   heading: {
-    variant: "heading1",
+    variant: "heading1Subpage",
     text: "About Me",
     icon: {
         svg: aboutHeading.svg,
@@ -34,7 +33,6 @@ export const journeySection = {
       enabled: true,
       order: 1,
       data: {
-        /* ───────────────────────── TEXT BLOCK ───────────────────────── */
         alignment: {
           heading: "left",
           body: "left",
@@ -131,7 +129,7 @@ export const journeySection = {
         ],
       },
     },
-    /* ───────────────────────── CARD BLOCK ───────────────────────── */
+
     {
       id: "academic-journey",
       type: "academicJourney",

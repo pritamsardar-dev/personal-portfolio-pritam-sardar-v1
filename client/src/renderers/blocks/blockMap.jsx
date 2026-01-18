@@ -10,6 +10,7 @@ import ContactTextBlock from '../../components/organisms/contact-section/Contact
 import ContactFormBlock from '../../components/organisms/contact-section/ContactFormBlock';
 import DeveloperJourneyBlock from '../../components/sections/about/journey-section/DeveloperJourneyBlock';
 import AcademicJourneyBlock from '../../components/sections/about/journey-section/AcademicJourneyBlock';
+import CoreValuesBlock from '../../components/sections/about/core-values-section/CoreValuesBlock';
 
 export const BLOCK_MAP = {
   aboutTextBlock: AboutTextBlock,
@@ -24,4 +25,5 @@ export const BLOCK_MAP = {
   contactFormBlock: ContactFormBlock,
   developerJourney: DeveloperJourneyBlock,
   academicJourney: AcademicJourneyBlock,
+  coreValues: CoreValuesBlock,
 };
