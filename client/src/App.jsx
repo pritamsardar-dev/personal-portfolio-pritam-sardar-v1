@@ -10,7 +10,10 @@ import JourneySection from './components/sections/about/journey-section/JourneyS
 import { coreValuesSection } from './data/sections/about/coreValuesSection'
 import CoreValuesBlock from './components/sections/about/core-values-section/CoreValuesBlock'
 import CoreValuesSection from './components/sections/about/core-values-section/CoreValuesSection'
-
+import CurrentSkillsSnapshotOverviewBlock from './components/sections/about/current-skills-snapshot/currentSkillsSnapshotOverviewBlock'
+import { currentSkillsSnapshot } from './data/sections/about/currentSkillsSnapshot'
+import CurrentSkillsSnapshotSkillsBlock from './components/sections/about/current-skills-snapshot/CurrentSkillsSnapshotSkillsBlock'
+import CurrentSkillsSnapshotSection from './components/sections/about/current-skills-snapshot/currentSkillsSnapshotSection'
 
 
 function App() {
@@ -201,9 +204,25 @@ function App() {
          */}
 
          {/* <CoreValuesBlock data={coreValuesSection.blocks[0].data}/> */}
-         <CoreValuesSection
+         {/* <CoreValuesSection
           data={coreValuesSection}
+         /> */}
+
+         {/* <CurrentSkillsSnapshotOverviewBlock
+          data={currentSkillsSnapshot.blocks[0].data}
+         /> */}
+
+         {/* <CurrentSkillsSnapshotSkillsBlock
+          data={currentSkillsSnapshot.blocks[1].data}
+         /> */}
+
+         <CurrentSkillsSnapshotSection
+          data={currentSkillsSnapshot}
          />
+
+         
+        
+         
 
     </div>
   )

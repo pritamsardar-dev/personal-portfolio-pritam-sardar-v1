@@ -16,12 +16,12 @@
 import React from "react";
 import clsx from "clsx";
 import Text from "../../../atoms/text/Text";
+import { useScrolling } from "../../../../hooks/useScrolling";
 
 const blockContainerClasses = `
-    flex flex-col w-full h-auto 
-    max-w-(--size-block-wrapper-mobile-max-width)
-    sm:max-w-(--size-block-wrapper-tablet-max-width)
-    lg:max-w-(--size-block-wrapper-desktop-max-width)
+    flex flex-col w-full
+    sm:max-w-(--size-block-wrapper-single-tablet-max-width)
+    lg:max-w-(--size-block-wrapper-single-desktop-max-width)
     px-(--spacing-text-container-mobile-padding-x)
     sm:px-(--spacing-text-container-tablet-padding-x)
     lg:px-(--spacing-text-container-desktop-padding-x)
@@ -59,12 +59,8 @@ const techStackTagStyleClasses = `
     border-(length:--border-card-wrapper-base-width)
     border-(--color-card-wrapper-stroke)
     shadow-(--shadow-card-wrapper)
-    backdrop-blur-none
-    sm:backdrop-blur-none
-    lg:backdrop-blur-none
     rounded-(--radius-card-skill-wrapper-base)
-    transform-gpu
-    will-change-transform
+    transform-gpu will-change-transform
     contain-layout contain-paint
     px-(--spacing-card-wrapper-skill-mobile-padding-x)
     sm:px-(--spacing-card-wrapper-skill-tablet-padding-x)
@@ -92,6 +88,8 @@ const SkillsCardBlock = ({ data = {}, className, ...props }) => {
         },
     } = data;
 
+    const isScrolling = useScrolling(150);
+
     if (!enabled) return null;
 
     const alignmentClassHeading =
@@ -99,6 +97,10 @@ const SkillsCardBlock = ({ data = {}, className, ...props }) => {
 
     const alignmentClassBody =
         alignmentClassesMap[alignment.body] || alignmentClassesMap.left;
+
+    const backdropBlur = 
+        isScrolling ? "backdrop-blur-none" 
+        : "backdrop-blur-(--effect-card-wrapper-background-blur)";
 
     return (
         <div
@@ -135,10 +137,7 @@ const SkillsCardBlock = ({ data = {}, className, ...props }) => {
                                     {item.body.texts.map((text, index) => (
                                         <div
                                             key={index}
-                                            className={clsx(
-                                                techStackTagStyleClasses
-                                            )}
-                                        >
+                                            className={clsx(techStackTagStyleClasses, backdropBlur)}>
                                             <Text
                                                 variant={item.body.variant}
                                                 text={text}

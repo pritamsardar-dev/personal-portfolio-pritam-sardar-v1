@@ -1,17 +1,17 @@
 /**
- * Role: CMS-driven Skills section
- * Used by: Home page or any page rendering Skills via section.type === "skills"
+ * Role: CMS-driven Skills section wrapper
+ * Used by: Rendered via section.type === "skills"
  *
  * Responsibilities:
- *  - Render section heading
- *  - Render grouped rows of blocks via BlockRenderer
+ *  - Render optional section heading
+ *  - Render enabled blocks via BlockRenderer (order-controlled)
  *  - Render optional section-level CTA
- *  - Respect enabled flags and alignment from CMS
+ *  - Apply CMS-controlled alignment only at section scope
  *
  * Guardrails:
- *  - Fully data-driven (no hardcoded layout logic)
- *  - Block layout handled by molecules
- *  - Section never mutates block data
+ *  - Section owns its own schema (no shared section contract)
+ *  - Layout and visuals delegated to blocks/molecules
+ *  - No mutation of block data or behavior
  */
 
 import React from "react";
@@ -22,8 +22,6 @@ import BlockRenderer from "../../../../renderers/blocks/blockRenderer";
 
 const sectionContainerClasses = `
   flex flex-col w-full
-  max-w-(--size-section-wrapper-mobile-max-width)
-  sm:max-w-(--size-section-wrapper-tablet-max-width)
   lg:max-w-(--size-section-wrapper-desktop-max-width)
 
   px-(--spacing-section-wrapper-mobile-padding-x)
@@ -65,10 +63,10 @@ const flexAlignMap = {
   right: "justify-end",
 };
 
-const SkillsSection = ({ 
-  data = {}, 
-  className, 
-  ...props 
+const CurrentSkillsSnapshotSection = ({ 
+    data = {}, 
+    className, 
+    ...props 
 }) => {
   const {
     id,
@@ -127,4 +125,4 @@ const SkillsSection = ({
   );
 };
 
-export default SkillsSection;
+export default CurrentSkillsSnapshotSection;

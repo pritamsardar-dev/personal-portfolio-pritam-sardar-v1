@@ -11,6 +11,8 @@ import ContactFormBlock from '../../components/organisms/contact-section/Contact
 import DeveloperJourneyBlock from '../../components/sections/about/journey-section/DeveloperJourneyBlock';
 import AcademicJourneyBlock from '../../components/sections/about/journey-section/AcademicJourneyBlock';
 import CoreValuesBlock from '../../components/sections/about/core-values-section/CoreValuesBlock';
+import CurrentSkillsSnapshotOverviewBlock from '../../components/sections/about/current-skills-snapshot/currentSkillsSnapshotOverviewBlock';
+import CurrentSkillsSnapshotSkillsBlock from '../../components/sections/about/current-skills-snapshot/CurrentSkillsSnapshotSkillsBlock';
 
 export const BLOCK_MAP = {
   aboutTextBlock: AboutTextBlock,
@@ -26,4 +28,6 @@ export const BLOCK_MAP = {
   developerJourney: DeveloperJourneyBlock,
   academicJourney: AcademicJourneyBlock,
   coreValues: CoreValuesBlock,
+  currentSkillsSnapshotOverview: CurrentSkillsSnapshotOverviewBlock,
+  currentSkillsSnapshotSkills: CurrentSkillsSnapshotSkillsBlock,
 };
