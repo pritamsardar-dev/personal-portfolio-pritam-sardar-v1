@@ -14,6 +14,8 @@ import CurrentSkillsSnapshotOverviewBlock from './components/sections/about/curr
 import { currentSkillsSnapshot } from './data/sections/about/currentSkillsSnapshot'
 import CurrentSkillsSnapshotSkillsBlock from './components/sections/about/current-skills-snapshot/CurrentSkillsSnapshotSkillsBlock'
 import CurrentSkillsSnapshotSection from './components/sections/about/current-skills-snapshot/currentSkillsSnapshotSection'
+import { aboutCallToActionSection } from './data/sections/about/aboutCallToActionSection'
+import CallToActionSection from './components/organisms/call-to-action-section/CallToActionSection'
 
 
 function App() {
@@ -216,9 +218,11 @@ function App() {
           data={currentSkillsSnapshot.blocks[1].data}
          /> */}
 
-         <CurrentSkillsSnapshotSection
+         {/* <CurrentSkillsSnapshotSection
           data={currentSkillsSnapshot}
-         />
+         /> */}
+
+         <CallToActionSection data={aboutCallToActionSection} />
 
          
         
