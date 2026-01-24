@@ -1,6 +1,6 @@
 // Parent container (label + field + error)
 export const baseParentField = `
-  flex flex-col w-full
+  flex flex-col
   gap-(--spacing-form-field-stack-mobile-gap)
   sm:gap-(--spacing-form-field-stack-tablet-gap)
   lg:gap-(--spacing-form-field-stack-desktop-gap)

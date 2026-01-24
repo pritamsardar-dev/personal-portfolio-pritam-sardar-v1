@@ -1,5 +1,7 @@
 import React from "react";
 import Text from "../../../atoms/text/Text";
+import { useScrolling } from "../../../../hooks/useScrolling";
+import clsx from "clsx";
 
 const cardContainerClasses = `
   flex flex-col w-full h-auto
@@ -7,7 +9,6 @@ const cardContainerClasses = `
   border-(length:--border-card-wrapper-base-width)
   border-(--color-card-wrapper-stroke)
   shadow-(--shadow-card-wrapper)
-  backdrop-blur-(--effect-card-wrapper-background-blur)
   rounded-(--radius-card-wrapper-base)
   transform-gpu
   will-change-transform
@@ -35,29 +36,39 @@ const listItemClasses = `
 `;
 
 const CardRenderer = ({ item }) => {
-  const { heading, body } = item;
+  const {heading} = item;
+  const {timeline, institute, board, highlights, score} = item.body;
+
+  const isScrolling = useScrolling(150);
+
+  const backdropBlur = 
+    isScrolling ? "backdrop-blur-none" 
+    : "backdrop-blur-(--effect-card-wrapper-background-blur)";
 
   return (
-    <div className={cardContainerClasses}>
-      {body.timeline && <Text {...body.timeline} />}
-      {heading && <Text {...heading} />}
-      {body.institute && <Text {...body.institute} />}
-      {body.board && <Text {...body.board} />}
+    <div className={clsx(cardContainerClasses, backdropBlur)}>
+      {timeline && <Text {...timeline} />}
 
-      {body.highlights?.texts?.length > 0 && (
+      {heading && <Text {...heading} />}
+
+      {institute && <Text {...institute} />}
+
+      {board && <Text {...board} />}
+
+      {Array.isArray(highlights?.text) && highlights.text.length > 0 && (
         <ul className={listItemClasses}>
-          {body.highlights.texts.map((text, idx) => (
+          {highlights.text.map((text, idx) => (
             <Text
               key={idx}
-              variant={body.highlights.variant}
-              as={body.highlights.as}
+              variant={highlights.variant}
+              as={highlights.as}
               text={text}
             />
           ))}
         </ul>
       )}
 
-      {body.score && <Text {...body.score} />}
+      {score && <Text {...score} />}
     </div>
   );
 };

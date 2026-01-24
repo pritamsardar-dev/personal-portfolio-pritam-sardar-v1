@@ -1,7 +1,7 @@
 import AboutTextBlock from '../../components/sections/home/about-section/AboutTextBlock';
 import AboutCardBlock from '../../components/sections/home/about-section/AboutCardBlock';
-import WorkExperienceTextBlock from '../../components/sections/home/work-experience-section/WorkExperienceTextBlock';
-import WorkExperienceCardBlock from '../../components/sections/home/work-experience-section/WorkExperienceCardBlock';
+import WorkExperienceHighlightsBlock from '../../components/organisms/work-experience-section/WorkExperienceHighlightsBlock';
+import WorkExperienceMetaInfoBlock from '../../components/organisms/work-experience-section/WorkExperienceMetaInfoBlock';
 import SkillsCardBlock from '../../components/sections/home/skills-section/SkillsTextBlock';
 import SkillsTextBlock from '../../components/sections/home/skills-section/SkillsTextBlock';
 import ProjectsCarouselBlock from '../../components/organisms/projects-section/ProjectsCarouselBlock';
@@ -15,19 +15,20 @@ import CurrentSkillsSnapshotOverviewBlock from '../../components/sections/about/
 import CurrentSkillsSnapshotSkillsBlock from '../../components/sections/about/current-skills-snapshot/CurrentSkillsSnapshotSkillsBlock';
 
 export const BLOCK_MAP = {
-  aboutTextBlock: AboutTextBlock,
-  aboutCardsBlock: AboutCardBlock,
-  workExperienceTextBlock: WorkExperienceTextBlock,
-  workExperienceCardsBlock: WorkExperienceCardBlock,
+  developerJourneySummary: AboutTextBlock,
+  academicJourneySummary: AboutCardBlock,
+  workExperienceHighlights: WorkExperienceHighlightsBlock,
+  workExperienceMetaInfo: WorkExperienceMetaInfoBlock,
   skillsCardsBlock: SkillsCardBlock,
   skillsTextBlock: SkillsTextBlock,
   projectsCarouselBlock: ProjectsCarouselBlock,
   projectsTextBlock: ProjectsTextBlock,
   contactTextBlock: ContactTextBlock,
   contactFormBlock: ContactFormBlock,
-  developerJourney: DeveloperJourneyBlock,
-  academicJourney: AcademicJourneyBlock,
+  developerJourneyDetailed: DeveloperJourneyBlock,
+  academicJourneyDetailed: AcademicJourneyBlock,
   coreValues: CoreValuesBlock,
   currentSkillsSnapshotOverview: CurrentSkillsSnapshotOverviewBlock,
   currentSkillsSnapshotSkills: CurrentSkillsSnapshotSkillsBlock,
 };
+

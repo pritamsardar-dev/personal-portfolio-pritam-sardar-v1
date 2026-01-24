@@ -15,6 +15,7 @@ import clsx from "clsx";
 import Text from "../../../atoms/text/Text";
 import Button from "../../../atoms/button/Button";
 import BlockRenderer from "../../../../renderers/blocks/blockRenderer";
+import { resolveProps } from "../../../../utils/resolveProps";
 
 const sectionContainerClasses = `
   flex flex-col w-full
@@ -65,14 +66,17 @@ const AboutSection = ({
   className, 
   ...props 
 }) => {
-  const {
+  
+  const resolvedData = resolveProps(data, "home");
+
+  let {
     id,
     enabled = true,
     heading,
     buttonProps,
     blocks = [],
     alignment = { heading: "center", cta: "center" },
-  } = data;
+  } = resolvedData;
 
   if (!enabled) return null;
 

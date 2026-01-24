@@ -16,6 +16,7 @@ import React from "react";
 import clsx from "clsx";
 import Text from "../../../atoms/text/Text";
 import BlockRenderer from "../../../../renderers/blocks/blockRenderer";
+import { resolveProps } from "../../../../utils/resolveProps";
 
 const sectionContainerClasses = `
   flex flex-col w-full
@@ -53,13 +54,15 @@ const JourneySection = ({
   className, 
   ...props 
 }) => {
+  const resolvedData = resolveProps(data, "about");
+
   const {
     id,
     enabled = true,
     heading,
     blocks = [],
     alignment = { heading: "center"},
-  } = data;
+  } = resolvedData;
 
   if (!enabled) return null;
 

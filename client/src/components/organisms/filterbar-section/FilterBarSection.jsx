@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import clsx from "clsx";
-import FormField from "../../../atoms/formfield/FormField";
-import Button from "../../../atoms/button/Button";
+import FormField from "../../atoms/formfield/FormField";
+import Button from "../../atoms/button/Button";
 import ScrollableFilterRow from "./ScrollableFilterRow";
 import { useForm } from "react-hook-form";
 
@@ -68,7 +68,7 @@ const FilterBarSection = ({
         </div>
 
         <div className={clsx(interactiveRowClasses)}>
-          <FormField {...selectProps} control={control} />
+          <FormField {...selectProps} control={control} className="w-[100px]" />
           <Button {...clearButtonProps} />
         </div>
       </div>

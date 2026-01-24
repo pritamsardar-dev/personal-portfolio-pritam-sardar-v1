@@ -54,7 +54,7 @@ const alignmentClassesMap = {
 };
 
 const AboutCardBlock = ({ data = {}, className, ...props }) => {
-  const {
+  let {
     id,
     enabled = true,
     heading,

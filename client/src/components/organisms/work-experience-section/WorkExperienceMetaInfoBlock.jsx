@@ -3,9 +3,11 @@
  * Used by: Mounted via BlockRenderer based on block.type
  *
  * Responsibilities:
- *  - Render optional block heading
- *  - Render experience cards using label/value CMS model
- *  - Respect alignment and enabled flags
+ *  - Render optional block-level heading
+ *  - Render experience meta cards using label/value CMS schema
+ *  - Support timeline, tech stack, and optional card headings
+ *  - Resolve layout and width via variant (home / workExperience)
+ *  - Respect CMS alignment and enabled flags
  *
  * Guardrails:
  *  - Fully data-driven (no field invention)
@@ -15,17 +17,25 @@
 
 import React from "react";
 import clsx from "clsx";
-import Text from "../../../atoms/text/Text";
+import Text from "../../atoms/text/Text";
+import { useScrolling } from "../../../hooks/useScrolling";
 
-const blockContainerClasses = `
-  flex flex-col w-full
-  max-w-(--size-block-wrapper-mobile-max-width)
-  sm:max-w-(--size-block-wrapper-tablet-max-width)
-  lg:max-w-(--size-block-wrapper-desktop-max-width)
-  gap-(--spacing-block-block-mobile-gap)
-  sm:gap-(--spacing-block-block-tablet-gap)
-  lg:gap-(--spacing-block-block-desktop-gap)
-`;
+const blockContainer = {
+  base: `
+    flex flex-col w-full
+    gap-(--spacing-block-block-mobile-gap)
+    sm:gap-(--spacing-block-block-tablet-gap)
+    lg:gap-(--spacing-block-block-desktop-gap)
+  `,
+  home: `
+    sm:max-w-(--size-block-wrapper-tablet-max-width)
+    lg:max-w-(--size-block-wrapper-desktop-max-width)
+  `,
+  workExperience: `
+    sm:max-w-(--size-block-wrapper-single-tablet-max-width)
+    lg:max-w-(--size-block-wrapper-single-desktop-max-width)
+  `
+};
 
 const bodyItemsContainerClasses = `
   flex flex-col w-full
@@ -34,28 +44,36 @@ const bodyItemsContainerClasses = `
   lg:gap-(--spacing-item-item-desktop-gap)
 `;
 
-const cardContainerClasses = `
-  flex flex-col w-full
-  bg-(--color-card-wrapper-fill)
-  border-(length:--border-card-wrapper-base-width)
-  border-(--color-card-wrapper-stroke)
-  shadow-(--shadow-card-wrapper)
-  backdrop-blur-(--effect-card-wrapper-background-blur)
-  rounded-(--radius-card-wrapper-base)
-  contain-layout contain-paint
+const cardContainer = {
+  base: `
+    flex flex-col w-full
 
-  px-(--spacing-text-container-mobile-padding-x)
-  sm:px-(--spacing-text-container-tablet-padding-x)
-  lg:px-(--spacing-text-container-desktop-padding-x)
+    px-(--spacing-text-container-mobile-padding-x)
+    sm:px-(--spacing-text-container-tablet-padding-x)
+    lg:px-(--spacing-text-container-desktop-padding-x)
 
-  py-(--spacing-text-container-mobile-padding-y)
-  sm:py-(--spacing-text-container-tablet-padding-y)
-  lg:py-(--spacing-text-container-desktop-padding-y)
+    gap-(--spacing-list-item-mobile-gap)
+    sm:gap-(--spacing-list-item-tablet-gap)
+    lg:gap-(--spacing-list-item-desktop-gap)
+  `,
+  home: `
+    bg-(--color-card-wrapper-fill)
+    border-(length:--border-card-wrapper-base-width)
+    border-(--color-card-wrapper-stroke)
+    shadow-(--shadow-card-wrapper)
+    rounded-(--radius-card-wrapper-base)
 
-  gap-(--spacing-list-item-mobile-gap)
-  sm:gap-(--spacing-list-item-tablet-gap)
-  lg:gap-(--spacing-list-item-desktop-gap)
-`;
+    transform-gpu
+    will-change-transform
+    contain-layout contain-paint
+
+    py-(--spacing-text-container-mobile-padding-y)
+    sm:py-(--spacing-text-container-tablet-padding-y)
+    lg:py-(--spacing-text-container-desktop-padding-y)
+  `,
+  workExperience: `
+  `
+};
 
 const techStackContainerClasses = `
   flex flex-wrap w-full
@@ -74,7 +92,12 @@ const alignmentMap = {
   right: "text-right",
 };
 
-const WorkExperienceCardBlock = ({ data = {}, className, ...props }) => {
+const WorkExperienceMetaInfoBlock = ({
+  variant = "home", // home / workExperience
+  data = {}, 
+  className, 
+  ...props 
+}) => {
   const {
     id,
     enabled = true,
@@ -86,13 +109,33 @@ const WorkExperienceCardBlock = ({ data = {}, className, ...props }) => {
     },
   } = data;
 
+  const isScrolling = useScrolling(150);
+  
+  const backdropBlur = 
+    isScrolling ? "backdrop-blur-none" 
+    : "backdrop-blur-(--effect-card-wrapper-background-blur)";
+
   if (!enabled) return null;
 
+  const resolvedBlockContainerClasses = clsx(
+    blockContainer.base,
+    variant === "home" ? 
+       blockContainer.home 
+      : blockContainer.workExperience
+  );
+
+  const resolvedCardContainerClasses = clsx(
+    cardContainer.base,
+    variant === "home" ? 
+      cardContainer.home 
+      : cardContainer.workExperience
+  );
+  
   return (
     <div
       id={id}
       className={clsx(
-        blockContainerClasses,
+        resolvedBlockContainerClasses,
         alignmentMap[alignment.heading] || alignmentMap.left,
         className
       )}
@@ -110,8 +153,8 @@ const WorkExperienceCardBlock = ({ data = {}, className, ...props }) => {
           )}
         >
           {bodyItems.map(item => (
-            <div key={item.id} className={cardContainerClasses}>
-              {/* Card Heading */}
+            <div key={item.id} className={clsx(resolvedCardContainerClasses, backdropBlur)}>
+              {/* Optional card Heading */}
               {item.heading && <Text {...item.heading} />}
 
               {/* Timeline */}
@@ -150,6 +193,6 @@ const WorkExperienceCardBlock = ({ data = {}, className, ...props }) => {
   );
 };
 
-export default WorkExperienceCardBlock;
+export default WorkExperienceMetaInfoBlock;
 
 

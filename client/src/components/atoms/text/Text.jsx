@@ -20,6 +20,8 @@ const Text = ({
   className = "",
   ...props
 }) => {
+  const hasIcon = Boolean(icon?.svg || icon?.type);
+
   const variantConfig = variantMap[variant] || variantMap.bodyLarge;
   const Tag = as || variantConfig.semanticTag || "p";
 
@@ -50,7 +52,7 @@ const Text = ({
 
   return (
     <Tag className={clsx(classes)} {...props}>
-      {icon && (
+      {hasIcon && (
         <span className={iconWrapperClasses}>
           <IconRenderer
             svg={icon.svg}

@@ -5,8 +5,6 @@ import ThemeToggle from './components/atoms/toggle/ThemeToggle'
 import ContactSection from './components/organisms/contact-section/ContactSection'
 import {contactSection} from './data/sections/shared/contactSection'
 import DeveloperBlock from './components/sections/about/journey-section/DeveloperJourneyBlock'
-import { journeySection } from './data/sections/about/journeySection'
-import JourneySection from './components/sections/about/journey-section/JourneySection'
 import { coreValuesSection } from './data/sections/about/coreValuesSection'
 import CoreValuesBlock from './components/sections/about/core-values-section/CoreValuesBlock'
 import CoreValuesSection from './components/sections/about/core-values-section/CoreValuesSection'
@@ -16,7 +14,19 @@ import CurrentSkillsSnapshotSkillsBlock from './components/sections/about/curren
 import CurrentSkillsSnapshotSection from './components/sections/about/current-skills-snapshot/currentSkillsSnapshotSection'
 import { aboutCallToActionSection } from './data/sections/about/aboutCallToActionSection'
 import CallToActionSection from './components/organisms/call-to-action-section/CallToActionSection'
+import { journeySection } from './data/sections/shared/journeySection'
+import AboutSection from './components/sections/home/about-section/AboutSection'
+import { resolveProps } from './utils/resolveProps'
+import AboutTextBlock from './components/sections/home/about-section/AboutTextBlock'
+import AboutCardBlock from './components/sections/home/about-section/AboutCardBlock'
+import JourneySection from './components/sections/about/journey-section/JourneySection'
+import { workExperienceSection } from './data/sections/shared/workExperienceSection'
+import WorkExperienceSection from './components/organisms/work-experience-section/WorkExperienceSection'
+import WorkExperienceCardBlock from './components/organisms/work-experience-section/WorkExperienceMetaInfoBlock'
+import WorkExperienceTextBlock from './components/organisms/work-experience-section/WorkExperienceHighlightsBlock'
+import BlockRenderer from './renderers/blocks/blockRenderer'
 
+console.log(resolveProps(workExperienceSection.rows[0].blocks[1].data.heading, "workExperience"))
 
 function App() {
   // const {register, control} = useForm();
@@ -175,9 +185,24 @@ function App() {
 
         {/* <AboutSection data={homeAboutSection}/> */}
 
-        {/* <WorkExperienceSection
-        data={homeWorkExperienceSection}
+        <WorkExperienceSection
+        data={workExperienceSection}
+        />
+
+        {/* <WorkExperienceCardBlock
+        data={resolveProps(workExperienceSection.rows[1].blocks[0].data, "home")}
         /> */}
+
+        {/* <WorkExperienceTextBlock
+        data={resolveProps(workExperienceSection.rows[0].blocks[1].data, "workExperience")} // home / workExperience
+        /> */}
+
+        {/* <BlockRenderer
+        block={resolveProps(workExperienceSection.rows[0].blocks[0], "home")}
+        /> */}
+
+        
+
 
         {/* <SkillsSection
           data={homeSkillsSection}
@@ -202,8 +227,7 @@ function App() {
 
         {/* <JourneySection
           data={journeySection}
-        />
-         */}
+        /> */}
 
          {/* <CoreValuesBlock data={coreValuesSection.blocks[0].data}/> */}
          {/* <CoreValuesSection
@@ -222,11 +246,18 @@ function App() {
           data={currentSkillsSnapshot}
          /> */}
 
-         <CallToActionSection data={aboutCallToActionSection} />
+         {/* <CallToActionSection data={aboutCallToActionSection} /> */}
+
+         {/* <AboutSection data={journeySection}/> */}
+
+         {/* <AboutTextBlock data={resolveProps(journeySection.blocks[0].data, "home")}/> */}
+
+         {/* <AboutCardBlock data={resolveProps(journeySection.blocks[1].data, "home")}/> */}
+
 
          
         
-         
+
 
     </div>
   )

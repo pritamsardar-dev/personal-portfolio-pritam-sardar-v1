@@ -10,7 +10,7 @@ const BlockRenderer = ({
 }) => {
   if (!block || !block.enabled) return null;
 
-  const Component = BLOCK_MAP[block.type];
+  const Component = BLOCK_MAP[block.view || block.type];
 
   if (!Component) {
     console.warn(`[BlockRenderer] Unknown block type: ${block.type}`);

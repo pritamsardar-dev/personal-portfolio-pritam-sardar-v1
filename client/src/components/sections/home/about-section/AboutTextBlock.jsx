@@ -78,7 +78,7 @@ const AboutTextBlock = ({
     >
       {heading && <Text {...heading} />}
 
-      {bodyItems.length > 0 && (
+      {Array.isArray(bodyItems) && bodyItems.length > 0 && (
         <div
           className={clsx(
             bodyItemsContainerClasses,
