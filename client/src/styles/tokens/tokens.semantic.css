@@ -432,6 +432,11 @@
     --size-icon-heading-3-tablet: 13px;
     --size-icon-heading-3-mobile: 12px;
 
+    /* Icon Heading-3 */
+    --size-icon-heading-4-desktop: 12px;
+    --size-icon-heading-4-tablet: 11px;
+    --size-icon-heading-4-mobile: 10px;
+
     /* Icon Container Heading-1 */
     --size-icon-container-heading-1-desktop-diameter: 36px;
     --size-icon-container-heading-1-tablet-diameter: 32px;
@@ -451,6 +456,11 @@
     --size-icon-container-heading-3-desktop-diameter: 24px;
     --size-icon-container-heading-3-tablet-diameter: 22px;
     --size-icon-container-heading-3-mobile-diameter: 20px;
+
+    /* Icon Container Heading-4 */
+    --size-icon-container-heading-4-desktop-diameter: 20px;
+    --size-icon-container-heading-4-tablet-diameter: 18px;
+    --size-icon-container-heading-4-mobile-diameter: 16px;
 
     /* Icon Button Element */
     --size-icon-button-element-desktop-diameter: 18px;

@@ -25,8 +25,20 @@ import WorkExperienceSection from './components/organisms/work-experience-sectio
 import WorkExperienceCardBlock from './components/organisms/work-experience-section/WorkExperienceMetaInfoBlock'
 import WorkExperienceTextBlock from './components/organisms/work-experience-section/WorkExperienceHighlightsBlock'
 import BlockRenderer from './renderers/blocks/blockRenderer'
+import { skillsSection } from './data/sections/shared/skillsSection'
+import SkillsCardBlock from './components/sections/home/skills-section/SkillsCardBlock'
+// console.log(resolveProps(workExperienceSection.rows[0].blocks[1].data.heading, "workExperience"))
+import SkillsSection from './components/sections/home/skills-section/SkillsSection'
+import AtAGlanceHighlightsBlock from './components/sections/skills/skillsRowsSection/AtAGlanceHighlightsBlock'
+import AtAGlanceEffectivenessBlock from './components/sections/skills/skillsRowsSection/AtAGlanceEffectivenessBlock'
+import AtAGlanceToolbeltBlock from './components/sections/skills/skillsRowsSection/AtAGlanceToolbeltBlock'
+import ValidationCtaBlock from './components/sections/skills/skillsRowsSection/ValidationCtaBlock'
+import SkillOverviewBlock from './components/sections/skills/skillsRowsSection/SkillOverviewBlock'
+import ListContentBlock from './components/molecules/list-content-block/ListContentBlock'
+import SkillDetailsBlock from './components/sections/skills/skillsRowsSection/SkillDetailsBlock'
+import SkillsRowsSection from './components/sections/skills/skillsRowsSection/SkillsRowsSection'
 
-console.log(resolveProps(workExperienceSection.rows[0].blocks[1].data.heading, "workExperience"))
+// console.log(skillsSection.rows[0].blocks[0].data.bodyItems[0].scopeSet)
 
 function App() {
   // const {register, control} = useForm();
@@ -49,7 +61,7 @@ function App() {
     // lg:py-(--spacing-section-wrapper-desktop-padding-x)
 
     <div className="
-    inline-flex items-center flex-col justify-center gap-10 w-full
+    flex items-center flex-col justify-center gap-10 w-full
 
     px-(--spacing-section-wrapper-mobile-padding-x)
     sm:px-(--spacing-section-wrapper-tablet-padding-x)
@@ -185,9 +197,10 @@ function App() {
 
         {/* <AboutSection data={homeAboutSection}/> */}
 
-        <WorkExperienceSection
+        {/* <WorkExperienceSection
         data={workExperienceSection}
-        />
+        variant='home'
+        /> */}
 
         {/* <WorkExperienceCardBlock
         data={resolveProps(workExperienceSection.rows[1].blocks[0].data, "home")}
@@ -201,11 +214,8 @@ function App() {
         block={resolveProps(workExperienceSection.rows[0].blocks[0], "home")}
         /> */}
 
-        
-
-
         {/* <SkillsSection
-          data={homeSkillsSection}
+          data={skillsSection}
         /> */}
 
         {/* <ProjectsSection
@@ -254,10 +264,41 @@ function App() {
 
          {/* <AboutCardBlock data={resolveProps(journeySection.blocks[1].data, "home")}/> */}
 
+          {/* < SkillsCardBlock
+          data={resolveProps(skillsSection.blocks[1].data, "home")}
+          />
+          */}
+        {/* < AtAGlanceHighlightsBlock
+          data={skillsSection.atAGlance.highlights}
+        /> */}
 
-         
-        
+        {/* < AtAGlanceEffectivenessBlock 
+        data={skillsSection.atAGlance.effectiveness}
+        /> */}
 
+        {/* <AtAGlanceToolbeltBlock
+        data={skillsSection.atAGlance.toolbelt}
+        /> */}
+
+        {/* <ValidationCtaBlock
+        data={skillsSection.rows[8].blocks[1].data}
+        />  */}
+
+        {/* <SkillOverviewBlock
+        data={skillsSection.rows[0].blocks[0].data}
+        /> */}
+
+        {/* <SkillDetailsBlock
+        data={skillsSection.rows[0].blocks[1].data}
+        /> */}
+
+        {/* <ListContentBlock
+        labelValueItems={skillsSection.rows[0].blocks[0].data.bodyItems[0].narrativeList}
+        /> */}
+
+        <SkillsRowsSection
+        data={skillsSection}
+        />
 
     </div>
   )

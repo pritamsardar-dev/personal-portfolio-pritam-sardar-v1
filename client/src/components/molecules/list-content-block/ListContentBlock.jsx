@@ -19,6 +19,7 @@ const listClasses = `
 `;
 
 const labelValueRowClasses = `
+  text-(--color-text-body)
   [&>*]:inline 
   [&>*+*]:ml-(--spacing-inline-text-gap)
 `
@@ -28,6 +29,7 @@ const labelValueRowClasses = `
 const ListContentBlock = ({
   items = {},
   labelValueItems = {},
+  inlineItems = {},
   className,
 }) => {
   const hasListItems =
@@ -37,20 +39,36 @@ const ListContentBlock = ({
     Array.isArray(labelValueItems?.texts) &&
     labelValueItems.texts.length > 0;
 
-  if (!hasListItems && !hasLabelValueItems) return null;
+  const hasInlineItems =
+    Array.isArray(inlineItems?.texts) &&
+    inlineItems.texts.length > 0;
+
+
+  if (!hasListItems && !hasLabelValueItems && !hasInlineItems) return null;
 
   return (
     <div className={clsx(containerClasses, className)}>
       {/* Label / Value rows */}
       {hasLabelValueItems && (
-        <div className={listClasses}>
+        <ul className={listClasses}>
           {labelValueItems.texts.map((pair, idx) => (
-            <div key={idx} className={labelValueRowClasses}>
-              {pair.label && <Text {...pair.label} />}
-              {pair.value && <Text {...pair.value} />}
-            </div>
+            <li key={idx} className={labelValueRowClasses}>
+              {pair.label && 
+                <Text 
+                  variant={labelValueItems.variant} 
+                  modifiers={labelValueItems.modifiers}
+                  text= {pair.label}
+                />
+              }
+              {pair.value && 
+                <Text
+                  variant={labelValueItems.variant} 
+                  text={pair.value}
+                />
+              }
+            </li>
           ))}
-        </div>
+        </ul>
       )}
 
       {/* List items */}
@@ -65,6 +83,27 @@ const ListContentBlock = ({
             />
           ))}
         </ul>
+      )}
+
+      {/* Inline delimited list */}
+      {hasInlineItems && (
+        <div>
+          {inlineItems.texts.map((text, idx) => (
+            <React.Fragment key={idx}>
+              <Text
+                variant={inlineItems.variant}
+                text={text}
+                className="inline"
+              />
+              {idx < inlineItems.texts.length - 1 && (
+                <Text
+                  text={inlineItems.separator ?? " · "}
+                  className="inline"
+                />
+              )}
+            </React.Fragment>
+          ))}
+        </div>
       )}
     </div>
   );

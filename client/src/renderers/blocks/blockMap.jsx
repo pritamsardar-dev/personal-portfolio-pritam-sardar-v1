@@ -2,7 +2,7 @@ import AboutTextBlock from '../../components/sections/home/about-section/AboutTe
 import AboutCardBlock from '../../components/sections/home/about-section/AboutCardBlock';
 import WorkExperienceHighlightsBlock from '../../components/organisms/work-experience-section/WorkExperienceHighlightsBlock';
 import WorkExperienceMetaInfoBlock from '../../components/organisms/work-experience-section/WorkExperienceMetaInfoBlock';
-import SkillsCardBlock from '../../components/sections/home/skills-section/SkillsTextBlock';
+import SkillsCardBlock from '../../components/sections/home/skills-section/SkillsCardBlock';
 import SkillsTextBlock from '../../components/sections/home/skills-section/SkillsTextBlock';
 import ProjectsCarouselBlock from '../../components/organisms/projects-section/ProjectsCarouselBlock';
 import ProjectsTextBlock from '../../components/organisms/projects-section/ProjectsTextBlock';
@@ -13,14 +13,17 @@ import AcademicJourneyBlock from '../../components/sections/about/journey-sectio
 import CoreValuesBlock from '../../components/sections/about/core-values-section/CoreValuesBlock';
 import CurrentSkillsSnapshotOverviewBlock from '../../components/sections/about/current-skills-snapshot/currentSkillsSnapshotOverviewBlock';
 import CurrentSkillsSnapshotSkillsBlock from '../../components/sections/about/current-skills-snapshot/CurrentSkillsSnapshotSkillsBlock';
+import ValidationCtaBlock from '../../components/sections/skills/skillsRowsSection/ValidationCtaBlock';
+import SkillOverviewBlock from '../../components/sections/skills/skillsRowsSection/SkillOverviewBlock';
+import SkillDetailsBlock from '../../components/sections/skills/skillsRowsSection/SkillDetailsBlock';
 
 export const BLOCK_MAP = {
   developerJourneySummary: AboutTextBlock,
   academicJourneySummary: AboutCardBlock,
   workExperienceHighlights: WorkExperienceHighlightsBlock,
   workExperienceMetaInfo: WorkExperienceMetaInfoBlock,
-  skillsCardsBlock: SkillsCardBlock,
-  skillsTextBlock: SkillsTextBlock,
+  skillsSkillSetBlockHome: SkillsCardBlock,
+  skillsStrengthsBlockHome: SkillsTextBlock,
   projectsCarouselBlock: ProjectsCarouselBlock,
   projectsTextBlock: ProjectsTextBlock,
   contactTextBlock: ContactTextBlock,
@@ -30,5 +33,8 @@ export const BLOCK_MAP = {
   coreValues: CoreValuesBlock,
   currentSkillsSnapshotOverview: CurrentSkillsSnapshotOverviewBlock,
   currentSkillsSnapshotSkills: CurrentSkillsSnapshotSkillsBlock,
+  validationBlock: ValidationCtaBlock,
+  contextBlock: SkillOverviewBlock,
+  contentBlock: SkillDetailsBlock,
 };
 

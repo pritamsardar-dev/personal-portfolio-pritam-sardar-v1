@@ -19,10 +19,11 @@ import clsx from "clsx";
 import Text from "../../../atoms/text/Text";
 import Button from "../../../atoms/button/Button";
 import BlockRenderer from "../../../../renderers/blocks/blockRenderer";
+import { resolveProps } from "../../../../utils/resolveProps";
+import { resolveSkillsBlocks } from "./resolveSkillsBlocks";
 
 const sectionContainerClasses = `
   flex flex-col w-full
-  max-w-(--size-section-wrapper-mobile-max-width)
   sm:max-w-(--size-section-wrapper-tablet-max-width)
   lg:max-w-(--size-section-wrapper-desktop-max-width)
 
@@ -70,17 +71,21 @@ const SkillsSection = ({
   className, 
   ...props 
 }) => {
+  const resolvedData = resolveProps(data, "home");
+  
   const {
     id,
     enabled = true,
     heading,
     buttonProps,
-    blocks = [],
     alignment = {
       heading: "center",
       cta: "center",
     },
-  } = data;
+  } = resolvedData;
+
+  const blocks = resolveSkillsBlocks(resolvedData);
+  console.log(blocks)
 
   if (!enabled) return null;
 

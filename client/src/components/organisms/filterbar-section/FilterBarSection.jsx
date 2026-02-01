@@ -52,25 +52,25 @@ const FilterBarSection = ({
       <div className={clsx(outerShellClasses, className)} {...props}>
         <div className={clsx(interactiveVerticalClasses)}>
   
-          <ScrollableFilterRow
+          {primaryFiltersProps && <ScrollableFilterRow
             items={primaryFiltersProps}
             selectionMode="single"
             activeIds={primaryActiveIds}
             onChange={setPrimaryActiveIds}
-          />
+          />}
 
-          <ScrollableFilterRow
+          {secondaryFiltersProps && <ScrollableFilterRow
             items={secondaryFiltersProps}
             selectionMode="multiple"
             activeIds={secondaryActiveIds}
             onChange={setSecondaryActiveIds}
-          />
+          />}
         </div>
 
-        <div className={clsx(interactiveRowClasses)}>
-          <FormField {...selectProps} control={control} className="w-[100px]" />
-          <Button {...clearButtonProps} />
-        </div>
+        {(selectProps || clearButtonProps) && <div className={clsx(interactiveRowClasses)}>
+          {selectProps && <FormField {...selectProps} control={control} className="w-[100px]" />}
+          {clearButtonProps && <Button {...clearButtonProps} />}
+        </div>}
       </div>
   );
 };

@@ -275,8 +275,45 @@ export const variantMap = {
       `,
     },
 
-    iconWrapperClasses: {},
-    iconClasses: {},
+    iconWrapperClasses: {
+      default: `
+        ${iconWrapperClassesBase}
+        inline-flex items-center justify-center
+        bg-(--color-text-primary)
+        w-(--size-icon-container-heading-4-mobile-diameter)
+        sm:w-(--size-icon-container-heading-4-tablet-diameter)
+        lg:w-(--size-icon-container-heading-4-desktop-diameter)
+        h-(--size-icon-container-heading-4-mobile-diameter)
+        sm:h-(--size-icon-container-heading-4-tablet-diameter)
+        lg:h-(--size-icon-container-heading-4-desktop-diameter)
+        rounded-(--radius-icon-contaniner-base)
+      `,
+
+      compact: `
+        ${iconWrapperClassesBase}
+        inline-flex items-center justify-center
+        bg-(--color-text-primary)
+        w-(--size-icon-container-heading-4-mobile-diameter)
+        h-(--size-icon-container-heading-4-mobile-diameter)
+        rounded-(--radius-icon-contaniner-base)
+      `,
+    },
+
+    iconClasses: {
+      default: `
+        text-(--color-content-icon-stroke-default)
+        w-(--size-icon-heading-4-mobile)
+        sm:w-(--size-icon-heading-4-tablet)
+        lg:w-(--size-icon-heading-4-desktop)
+        h-auto
+      `,
+
+      compact: `
+        text-(--color-content-icon-stroke-default)
+        w-(--size-icon-heading-4-mobile)
+        h-auto
+      `,
+    },
   },
 
 

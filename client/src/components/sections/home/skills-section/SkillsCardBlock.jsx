@@ -16,7 +16,6 @@
 import React from "react";
 import clsx from "clsx";
 import Text from "../../../atoms/text/Text";
-import { useScrolling } from "../../../../hooks/useScrolling";
 
 const blockContainerClasses = `
     flex flex-col w-full
@@ -76,6 +75,8 @@ const alignmentClassesMap = {
     right: "text-right",
 };
 
+
+
 const SkillsCardBlock = ({ data = {}, className, ...props }) => {
     const {
         id,
@@ -88,8 +89,6 @@ const SkillsCardBlock = ({ data = {}, className, ...props }) => {
         },
     } = data;
 
-    const isScrolling = useScrolling(150);
-
     if (!enabled) return null;
 
     const alignmentClassHeading =
@@ -97,10 +96,6 @@ const SkillsCardBlock = ({ data = {}, className, ...props }) => {
 
     const alignmentClassBody =
         alignmentClassesMap[alignment.body] || alignmentClassesMap.left;
-
-    const backdropBlur = 
-        isScrolling ? "backdrop-blur-none" 
-        : "backdrop-blur-(--effect-card-wrapper-background-blur)";
 
     return (
         <div
@@ -137,7 +132,7 @@ const SkillsCardBlock = ({ data = {}, className, ...props }) => {
                                     {item.body.texts.map((text, index) => (
                                         <div
                                             key={index}
-                                            className={clsx(techStackTagStyleClasses, backdropBlur)}>
+                                            className={clsx(techStackTagStyleClasses)}>
                                             <Text
                                                 variant={item.body.variant}
                                                 text={text}

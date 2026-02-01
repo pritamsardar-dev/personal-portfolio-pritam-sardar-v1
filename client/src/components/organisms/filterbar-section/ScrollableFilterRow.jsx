@@ -54,6 +54,10 @@ const ScrollableFilterRow = ({
   const viewportRef = useRef(null);
   const trackRef = useRef(null);
   const itemRefs = useRef([]);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const MIN_SWIPE_DISTANCE = 40;
 
   const getGapX = (container) => {
     if (!container) return 0;
@@ -119,64 +123,99 @@ const ScrollableFilterRow = ({
     }
   };
 
-  return (
-    <div ref={viewportRef} className={filterShellClasses}>
-      {showLeft && <div className={maskContainerLeftClasses} />}
-      {showLeft && (
-        <div className={arrowLeftClasses}>
-          <Button
-            variant="iconOnlyCircularOverlay"
-            iconLeft={ArrowLeftIcon}
-            iconLeftType={ArrowLeftIconType}
-            onClick={handleLeft}
-          />
-        </div>
-      )}
+  const onTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
 
-      <div
-        ref={trackRef}
-        className={clsx(interactiveToInteractiveClasses, "z-10")}
-        style={{
-          transform: `translateX(-${translateX}px)`,
-          transition: "transform 500ms ease",
-        }}
+  const onTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const onTouchEnd = () => {
+    const distance = touchStartX.current - touchEndX.current;
+
+    if (Math.abs(distance) < MIN_SWIPE_DISTANCE) return;
+
+    if (distance > 0) {
+      // swipe left → move right
+      if (showRight) {
+        handleRight();
+      }
+    } else {
+      // swipe right → move left
+      if (showLeft) {
+        handleLeft();
+      }
+    }
+  };
+
+  return (
+    <div className="relative w-full">
+      <div 
+        ref={viewportRef} 
+        className={filterShellClasses}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
       >
-        {items.map((item, index) => (
-          <React.Fragment key={item.id}>
-            <Button
-              ref={(el) => (itemRefs.current[index] = el)}
-              {...item}
-              onClick={() => handleSelect(item.id)}
-              className={clsx(
-                activeIds.includes(item.id) &&
-                  `
-                    bg-[var(--color-button-overlay-background-active)]
-                    text-[var(--color-button-overlay-text-active)]
-                  `
-              )}
-            >
-              <span className="flex items-center gap-1">
-                <span>{item.label}</span>
-                {typeof item.count === "number" && (
-                  <span className="opacity-70">({item.count})</span>
+        <div
+          ref={trackRef}
+          className={clsx(interactiveToInteractiveClasses, "z-10")}
+          style={{
+            transform: `translateX(-${translateX}px)`,
+            transition: "transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+          }}
+        >
+          {items.map((item, index) => (
+            <React.Fragment key={item.id}>
+              <Button
+                ref={(el) => (itemRefs.current[index] = el)}
+                {...item}
+                onClick={() => handleSelect(item.id)}
+                className={clsx(
+                  activeIds.includes(item.id) &&
+                    `
+                      bg-[var(--color-button-overlay-background-active)]
+                      text-[var(--color-button-overlay-text-active)]
+                    `
                 )}
-              </span>
-            </Button>  
-          </React.Fragment>
-        ))}
+              >
+                <span className="flex items-center gap-1">
+                  <span>{item.label}</span>
+                  {typeof item.count === "number" && (
+                    <span className="opacity-70">({item.count})</span>
+                  )}
+                </span>
+              </Button>  
+            </React.Fragment>
+          ))}
+        </div>
       </div>
 
-      {showRight && <div className={maskContainerRightClasses} />}
-      {showRight && (
-        <div className={arrowRightClasses}>
-          <Button
-            variant="iconOnlyCircularOverlay"
-            iconLeft={ArrowRightIcon}
-            iconLeftType={ArrowRightIconType}
-            onClick={handleRight}
-          />
-        </div>
-      )}
+      {/* Floating arrows */}
+      {showLeft && <div className={maskContainerLeftClasses} />}
+        {showLeft && (
+          <div className={arrowLeftClasses}>
+            <Button
+              variant="iconOnlyCircularOverlay"
+              iconLeft={ArrowLeftIcon}
+              iconLeftType={ArrowLeftIconType}
+              onClick={handleLeft}
+            />
+          </div>
+        )}
+
+        {showRight && <div className={maskContainerRightClasses} />}
+        {showRight && (
+          <div className={arrowRightClasses}>
+            <Button
+              variant="iconOnlyCircularOverlay"
+              iconLeft={ArrowRightIcon}
+              iconLeftType={ArrowRightIconType}
+              onClick={handleRight}
+            />
+          </div>
+        )}
     </div>
   );
 };

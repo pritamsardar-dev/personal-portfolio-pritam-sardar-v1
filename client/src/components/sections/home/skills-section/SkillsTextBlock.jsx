@@ -19,7 +19,6 @@ import Text from "../../../atoms/text/Text";
 
 const blockContainerOuterClasses = `
     flex flex-col w-full h-auto 
-    max-w-(--size-block-wrapper-mobile-max-width)
     sm:max-w-(--size-block-wrapper-tablet-max-width)
     lg:max-w-(--size-block-wrapper-desktop-max-width)
     px-(--spacing-text-container-mobile-padding-x)
@@ -68,6 +67,8 @@ const SkillsTextBlock = ({ data = {}, className, ...props }) => {
             body: "left",
         },
     } = data;
+
+    //   console.log("SkillsetItmes Test:", bodyItems[0].body);
 
     if (!enabled) return null;
 

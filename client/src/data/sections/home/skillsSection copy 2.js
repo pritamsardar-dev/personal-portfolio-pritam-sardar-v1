@@ -20,6 +20,7 @@ import {
   skillsSubtitleFlexibleAndDedicated,
   skillsHeading,
 } from "../../../assets/icons/content";
+import { DropdownIcon } from "../../../assets/icons/system";
 
 export const homeSkillsSection = {
   id: "skills-home",
@@ -31,20 +32,156 @@ export const homeSkillsSection = {
     heading: "center",
     cta: "center",
   },
-
   heading: {
-    variant: "heading1",
+    variant: {
+      home: "heading1",
+      workExperience: "heading1Subpage",
+    },
     text: "My Skills",
     icon: {
-        svg: skillsHeading.svg,
-        type: skillsHeading.type,
-    }
+      svg: skillsHeading.svg,
+      type: skillsHeading.type,
+    },
   },
-
   buttonProps: {
     variant: "secondary",
     label: "More About My Skills →",
     onClick: () => {},
+  },
+  filters: {
+    selectProps: {
+        variant: "selectCustom",
+        label: "",
+        name: "choice",
+        placeholder: "Select one",
+        options: [
+            { value: "option1", label: "Option One" },
+            { value: "option2", label: "Option Two" },
+            { value: "option3", label: "Option Three" },
+        ],
+        Icon: DropdownIcon,
+        error: "",
+    },
+
+    clearButtonProps: {
+        id: "action-clear",
+        variant: "tag",
+        label: "Clear",
+        onClick: () => {}
+    },
+
+    primaryFiltersProps: [
+        {
+            id: "primary-filter-all",
+            variant: "tag",
+            label: "All",
+            count: 12,
+            onClick: () => {}
+        },
+        {
+            id: "primary-filter-frontend",
+            variant: "tag",
+            label: "Frontend",
+            count: 1,
+            onClick: () => {}
+        },
+        {
+            id: "primary-filter-frontend",
+            variant: "tag",
+            label: "Frontend",
+            count: 4,
+            onClick: () => {}
+        },
+        {
+            id: "primary-filter-backend",
+            variant: "tag",
+            label: "Backend",
+            count: 1,
+            onClick: () => {}
+        },
+        {
+            id: "primary-filter-full-Stack",
+            variant: "tag",
+            label: "Full-Stack",
+            count: 1,
+            onClick: () => {}
+        },
+    ],
+
+    secondaryFiltersProps: [
+        {
+            id: "secondary-filter-internship",
+            variant: "tag",
+            label: "Internship",
+            count: 0,
+            onClick: () => {}
+        },
+        {
+            id: "secondary-filter-freelance",
+            variant: "tag",
+            label: "Freelance",
+            count: 1,
+            onClick: () => {}
+        },
+        {
+            id: "secondary-filter-full-time",
+            variant: "tag",
+            label: "Fulltime",
+            count: 0,
+            onClick: () => {}
+        },
+        {
+            id: "secondary-filter-open-source",
+            variant: "tag",
+            label: "Open-source",
+            count: 0,
+            onClick: () => {}
+        }
+    ],
+  },
+  atAGlance: {
+    heading: "At a Glance",
+    description:
+      "A quick glance at the technologies and areas I’m confident working with.",
+
+    highlights: [
+      {
+        title: "End-to-End MERN",
+        description:
+          "From API design and data modeling to responsive React UIs and deployment.",
+      },
+      {
+        title: "Auth & Security Basics",
+        description:
+          "JWT-based auth, protected routes, and role-aware access control.",
+      },
+      {
+        title: "MongoDB Done Right",
+        description:
+          "Schemas, indexing, and production-ready queries.",
+      },
+    ],
+
+    columns: {
+      effectiveness: [
+        "Build REST APIs with clean route modules",
+        "Implement auth flows with JWT",
+        "Translate Figma designs into React UIs",
+      ],
+
+      toolbelt: [
+        "React",
+        "Redux Toolkit",
+        "React Router",
+        "Tailwind CSS",
+        "Node.js",
+        "Express",
+        "Mongoose",
+        "JWT",
+      ],
+    },
+
+    ctas: ["projects", "github", "resume", "contact"],
   },
 
   blocks: [
