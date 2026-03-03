@@ -1,4 +1,4 @@
-export const projectsTextBlockLayoutConfig = {
+export const workItemsTextBlockLayoutConfig = {
   outerContainer: {
     collapsed: {
       default: `

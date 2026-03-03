@@ -37,12 +37,17 @@ const FilterBarSection = ({
     const {
         selectProps,
         clearButtonProps,
+        scopeFiltersProps,
         primaryFiltersProps,
         secondaryFiltersProps,
     } = data;
     const { control } = useForm();
 
     const defaultPrimaryId = primaryFiltersProps?.[0]?.id;
+    const defaultScopeId = scopeFiltersProps?.[0]?.id;
+    const [scopeActiveIds, setScopeActiveIds] = useState(
+        defaultScopeId ? [defaultScopeId] : []
+    );
     const [primaryActiveIds, setPrimaryActiveIds] = useState(
         defaultPrimaryId ? [defaultPrimaryId] : []
     );
@@ -52,6 +57,13 @@ const FilterBarSection = ({
       <div className={clsx(outerShellClasses, className)} {...props}>
         <div className={clsx(interactiveVerticalClasses)}>
   
+          {scopeFiltersProps && <ScrollableFilterRow
+            items={scopeFiltersProps}
+            selectionMode="single"
+            activeIds={scopeActiveIds}
+            onChange={setScopeActiveIds}
+          />}
+
           {primaryFiltersProps && <ScrollableFilterRow
             items={primaryFiltersProps}
             selectionMode="single"

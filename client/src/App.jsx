@@ -22,8 +22,6 @@ import AboutCardBlock from './components/sections/home/about-section/AboutCardBl
 import JourneySection from './components/sections/about/journey-section/JourneySection'
 import { workExperienceSection } from './data/sections/shared/workExperienceSection'
 import WorkExperienceSection from './components/organisms/work-experience-section/WorkExperienceSection'
-import WorkExperienceCardBlock from './components/organisms/work-experience-section/WorkExperienceMetaInfoBlock'
-import WorkExperienceTextBlock from './components/organisms/work-experience-section/WorkExperienceHighlightsBlock'
 import BlockRenderer from './renderers/blocks/blockRenderer'
 import { skillsSection } from './data/sections/shared/skillsSection'
 import SkillsCardBlock from './components/sections/home/skills-section/SkillsCardBlock'
@@ -37,8 +35,15 @@ import SkillOverviewBlock from './components/sections/skills/skillsRowsSection/S
 import ListContentBlock from './components/molecules/list-content-block/ListContentBlock'
 import SkillDetailsBlock from './components/sections/skills/skillsRowsSection/SkillDetailsBlock'
 import SkillsRowsSection from './components/sections/skills/skillsRowsSection/SkillsRowsSection'
+import { workItemsSection } from './data/sections/shared/workItemsSection'
+import ProjectsSection from './components/organisms/projects-section/ProjectsSection'
+import CaseStudyImageBlock from './components/organisms/work-items-section/CaseStudyImageBlock'
+import WorkItemsTextBlock from './components/organisms/work-items-section/WorkItemsTextBlock'
+import WorkItemsSection from './components/organisms/work-items-section/WorkItemsSection'
+
 
 // console.log(skillsSection.rows[0].blocks[0].data.bodyItems[0].scopeSet)
+// console.log(workItemsSection.rows[0].blocks[0].data.images[0].src)
 
 function App() {
   // const {register, control} = useForm();
@@ -198,7 +203,7 @@ function App() {
         {/* <AboutSection data={homeAboutSection}/> */}
 
         {/* <WorkExperienceSection
-        data={workExperienceSection}
+        data={workItemsSection}
         variant='home'
         /> */}
 
@@ -219,7 +224,8 @@ function App() {
         /> */}
 
         {/* <ProjectsSection
-        data={projectsSection}
+        data={workItemsSection}
+        
         /> */}
 
         {/* <Modal
@@ -296,8 +302,34 @@ function App() {
         labelValueItems={skillsSection.rows[0].blocks[0].data.bodyItems[0].narrativeList}
         /> */}
 
-        <SkillsRowsSection
+        {/* <SkillsRowsSection
         data={skillsSection}
+        /> */}
+
+        {/* <CaseStudyImageBlock
+        data={workItemsSection.rows[0].blocks[0].data}
+        /> */}
+
+        {/* <WorkItemsTextBlock
+        variant="expanded"
+        data={resolveProps(resolveProps(workItemsSection.rows[5].blocks[1].data, "caseStudy"), "preview")}
+        row={resolveProps(resolveProps(workItemsSection.rows[5], "caseStudy"), "preview")}
+        block={resolveProps(resolveProps(workItemsSection.rows[5].blocks[1], "caseStudy"), "preview")}
+        /> */}
+
+        {/* <CaseStudyProjectTextBlock
+        data={resolveProps(workItemsSection.rows[0].blocks[1].data, "project")}
+        row={resolveProps(workItemsSection.rows[0], "project")}
+        block={resolveProps(resolveProps(workItemsSection.rows[0].blocks[1], "project"), "")}
+        />  */}
+
+        {/* <CaseStudyWorkExperienceTextBlock
+        data={resolveProps(workItemsSection.rows[5], "caseStudy")}
+        /> */}
+
+        <WorkItemsSection
+        variant="fullscreenProjectsHomePage" // projectsHomePage / projectsPage / fullscreenProjectsHomePage / fullscreenProjectsPage / caseStudyPage /fullscreenCaseStudyPage / fullscreenCaseStudyPageRead
+        data={workItemsSection}
         />
 
     </div>

@@ -425,5 +425,10 @@ export const variantMap = {
     `,
     iconClasses: `
     `,
+    modifiers: {
+      italic: `
+        italic
+      `,
+    },
   },
 };

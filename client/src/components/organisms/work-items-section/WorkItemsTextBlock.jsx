@@ -1,15 +1,22 @@
 /**
- * Role: CMS-driven text block for Projects section
+ * Role: CMS-driven text block for Projects and Work Experience sections
  * Used by: BlockRenderer via `block.type`
+ *
  * Responsibilities:
- *   - Render project metadata (heading, tags, overview, description)
- *   - Support collapsed ↔ expanded interactive states
- *   - Resolve CTA behavior (toggle details, like action) via data config
- *   - Animate height transitions and manage scroll positioning
- * Guardrails:
- *   - Fully data-driven (no page-level or hardcoded logic)
- *   - CMS-safe: supports enable/disable, ordering, and CRUD updates
- *   - Layout & spacing controlled only via tokenized config
+ *   - Render project or experience metadata (heading, tags, overview, description)
+ *   - Support display variants (collapsed / expanded / full)
+ *   - Resolve data from either `block` (project mode) or `row` (experience mode)
+ *   - Manage internal interactive state (details toggle, like state)
+ *   - Animate expand/collapse via measured max-height transitions
+ *   - Render flexible content types (text, list, label-value list, image)
+ *   - Delegate nested media rendering to BlockRenderer
+ *   - Resolve CTA configuration dynamically (order, variant, label, icon, action)
+ *   - Adjust layout based on size mode (default / compact)
+ *
+ * Notes:
+ *   - Description content is order-sorted and filtered by `enabled`
+ *   - CTA behavior is configuration-driven via `ctaProps`
+ *   - Experience mode supports case study preview rendering
  */
 
 import React, { useState, useRef, useLayoutEffect } from "react";
@@ -17,37 +24,89 @@ import clsx from "clsx";
 import Text from "../../atoms/text/Text";
 import Tag from "../../atoms/tag/Tag";
 import Button from "../../atoms/button/Button";
-import { projectsTextBlockLayoutConfig } from "./projectsTextBlockLayout.config";
+import { workItemsTextBlockLayoutConfig } from "./workItemsTextBlockLayout.config";
 import HorizontalWheelScroll from "../../wrappers/HorizontalWheelScroll";
 import ListContentBlock from "../../molecules/list-content-block/ListContentBlock";
+import BlockRenderer from "../../../renderers/blocks/blockRenderer";
+import { resolveProps } from "../../../utils/resolveProps";
 
-const ProjectsTextBlock = ({
-    variant,
+const WorkItemsTextBlock = ({
+    variant = "expanded", // collapsed / expanded / full
+    mode,
     size = "default", // default / compact
-    data,
+    row, // For work experience data
+    block,
+    data, // For project data
+    handlers,
     className,
     ...props
 
 }) => {
-    const {
-        id,
-        enabled = true,
-        heading, 
-        tags, 
-        overview, 
-        ctaDefault, 
-        description, 
-        ctaExpanded,
-    } = data;
+    const isExperience = row?.domain === "experience";
 
-    const sortedCtaDefault = [...ctaDefault].sort(
-        (a, b) => (a.order ?? 0) - (b.order ?? 0)
+    // Image block single source of truth
+    const imageBlock = row?.blocks?.find(block => block?.type === "imageBlock");
+
+    // Work experience meta block
+    const metaBlock = isExperience
+    ? row?.blocks?.find(block => block.id === "work-experience-meta-info")
+    : null;
+
+    // Work experience highlights block
+    const highlightsBlock = isExperience
+    ? row?.blocks?.find(block => block.id === "work-experience-highlights")
+    : null;
+
+    // Resolve common fields
+    const id = isExperience ? row?.id : block?.id;
+    const enabled = isExperience ? row?.enabled : block?.enabled;
+
+    const heading = isExperience
+    ? metaBlock?.data?.bodyItems?.find(item => item.id === "metaInfo")?.heading
+    : data?.heading;
+    
+    const tags = isExperience ? row?.tags : data?.tags;
+
+    const overview = isExperience
+    ? resolveProps(
+        highlightsBlock?.data?.bodyItems?.find(
+            item => item.id === "keyContributionsAndImpact"
+        )?.overview,
+        "home"
+        )
+    : data?.overview;
+
+    const description = isExperience 
+    ? variant === "expanded" ? resolveProps(row?.blocks.filter(block => block.id !== "work-experience-image-block"), "workExperience") 
+        : row?.fullCaseStudy
+    : data?.description;
+
+    const ctaProps = isExperience ? row?.ctaProps : data?.ctaProps;
+    // const ctaExpanded = isExperience ? row?.ctaProps : data?.ctaProps;
+    const likeBtn = ctaProps?.find(b => b?.id === "like");
+
+    // Further sort and filter data
+    const sortedDescription = [...(Array.isArray(description) ? description : [])].sort(
+            (a, b) => (a.order ?? 0) - (b.order ?? 0)
+        );
+
+    const sortedCtaProps = [...Array.isArray(ctaProps) ? ctaProps : []].sort(
+        (a, b) =>
+            (resolveProps(a.order, variant) ?? 0) -
+            (resolveProps(b.order, variant) ?? 0)
+        );
+
+    const resolvedCtaExpanded = sortedCtaProps.filter(
+        item =>
+            variant === "full" ?
+            item.id !== "like" &&
+            item.id !== "view-details-toggle" &&
+            item.id !== "case-study-link" 
+            : item.id !== "like"
     );
 
     const isCollapsedMode = variant === "collapsed";
     const isCompactSize = size === "compact";
-
-    const likeBtn = sortedCtaDefault.find(b => b.id === "projects-like");
 
     const [isDetailsExpanded, setIsDetailsExpanded] = useState(() => (!isCollapsedMode ? true: false));
     const [isLiked, setIsLiked] = useState(false);
@@ -55,6 +114,19 @@ const ProjectsTextBlock = ({
 
     const blockRef = useRef(null);
     const contentRef = useRef(null);
+
+
+    const resolvedCtaDefault = sortedCtaProps
+        .filter(item =>
+            item.id === "view-details-toggle" ||
+            item.id === "case-study-link"
+        )
+        .sort((a, b) => {
+            const priority = id =>
+            mode === "project" && !isDetailsExpanded && id === "view-details-toggle" ? -1 : 0;
+
+            return priority(a.id) - priority(b.id);
+        });
 
     useLayoutEffect(() => {
         if (contentRef.current) {
@@ -66,7 +138,7 @@ const ProjectsTextBlock = ({
                 setMaxHeight(0);
             }
         }
-    }, [isDetailsExpanded, data.description]);
+    }, [isDetailsExpanded, sortedDescription]);
 
     if (!enabled) return null;
 
@@ -80,7 +152,7 @@ const ProjectsTextBlock = ({
         textBlockHeading3ToBody,
         tagContainer,
         cardContainerPaddingBottom,
-    } = projectsTextBlockLayoutConfig;
+    } = workItemsTextBlockLayoutConfig;
 
     const outerContainerClasses = isCollapsedMode
         ? outerContainer.collapsed[size] || outerContainer.collapsed.default
@@ -149,39 +221,60 @@ const ProjectsTextBlock = ({
         "rounded-full"
     );
 
-    const resolveButtonLabel = (item) => {
-        if (item.id === "projects-like") {
-            return isLiked
-            ? item.labels.active
-            : item.labels.default;
-        }
-
-        if (item.labels) {
+    const resolveButtonVariant = (item) => {
+        if (item?.variant?.collapsed && item?.variant?.expanded) {
             return isDetailsExpanded
-            ? item.labels.expanded
-            : item.labels.collapsed;
+            ? item.variant?.expanded
+            : item.variant?.collapsed;
         }
 
-        return item.label;
+        return  item.variant;
+    };
+
+    const resolveButtonLabel = (item) => {
+        if (item.id === "like") {
+            return isLiked
+            ? item.label?.active
+            : item.label?.default;
+        }
+
+        if (item?.label?.collapsed && item?.label?.expanded) {
+            return isDetailsExpanded
+            ? item.label?.expanded
+            : item.label?.collapsed;
+        }
+
+        return  item.label;
     };
 
     const resolveButtonIcon = (item) => {
         switch (item.id) {
-            case "projects-like":
+            case "like":
             return isLiked
-                ? item.iconsLeft?.active
-                : item.iconsLeft?.default;
+                ? item.iconLeft?.active
+                : item.iconLeft?.default;
 
             default:
             return item.iconLeft;
         }
     };
 
+    const resolveButtonIconType = (item) => {
+        switch (item.id) {
+            case "like":
+            return isLiked
+                ? item.iconLeftType?.active
+                : item.iconLeftType?.default;
+
+            default:
+            return item.iconLeftType;
+        }
+    };
+
     const resolveButtonAction = (item) => {
         return (e) => {
             switch (item.id) {
-            case "projects-view-details-toggle":
-            case "projects-view-less-toggle":
+            case "view-details-toggle":
                 if (!isCollapsedMode) {
                 const nextExpanded = !isDetailsExpanded;
                 setIsDetailsExpanded(nextExpanded);
@@ -208,7 +301,7 @@ const ProjectsTextBlock = ({
                 }
                 break;
 
-            case "projects-like":
+            case "like":
                 setIsLiked(t => !t);
                 break;
 
@@ -218,6 +311,35 @@ const ProjectsTextBlock = ({
 
             item.onClick?.(e);
         };
+    };
+
+    const renderCaseStudyBlock = (item) => {
+        if (!item?.type) return null;
+
+        switch (item.type) {
+            case "text":
+            if (!item) return null;
+            return <Text variant={item.variant} text={item.text} size={size}/>;
+
+            case "list":
+            return <ListContentBlock items={item} />;
+
+            case "labelValueList":
+             return <ListContentBlock labelValueItems={item} />;
+
+            case "image":
+            if (!item || isCollapsedMode || !imageBlock) return null;
+            return <BlockRenderer
+                        variant="content"
+                        size={size}
+                        imageid={item.imageId}
+                        row={row}
+                        block={imageBlock}
+                        handlers={handlers}
+                    />
+            default:
+            return null;
+        }
     };
 
     return (
@@ -256,7 +378,7 @@ const ProjectsTextBlock = ({
 
                                 onClick={resolveButtonAction(likeBtn)}
 
-                                className={clsx(likeBtn.id === "projects-like" &&
+                                className={clsx(likeBtn.id === "like" &&
                                     likeBtnClasses
                                 )} 
                             />
@@ -284,8 +406,18 @@ const ProjectsTextBlock = ({
                                         size={size}
                                     />
                                 ))}
-                            </HorizontalWheelScroll>}
-                            
+                            </HorizontalWheelScroll >}
+
+                            {/* Optional cover image expanded case study custom positioned */}
+                            {!isCollapsedMode && imageBlock && <BlockRenderer
+                                variant="content"
+                                size={size}
+                                imageid={imageBlock?.data?.coverImageId}
+                                row={row}
+                                block={imageBlock}
+                                handlers={handlers}
+                            />}
+                        
                             {/* Overview text collapsed */}
                             {overview && <Text 
                                 {...overview} 
@@ -296,24 +428,22 @@ const ProjectsTextBlock = ({
                         </div>}
 
                     {/* Cta buttons container collapsed */}
-                    {Array.isArray(sortedCtaDefault) && sortedCtaDefault.length > 0 && !isDetailsExpanded && 
+                    {Array.isArray(resolvedCtaDefault) && resolvedCtaDefault.length > 0 && !isDetailsExpanded && 
                         <div 
                             className={clsx(textBlockInteractiveToInteractiveClasses)}
                         >
-                            {sortedCtaDefault
-                                .filter(item => item.id !== "projects-like")
+                            {resolvedCtaDefault
+                                .filter(item => item.id !== "like")
                                 .map((item) => (
                                     <Button
                                         key={item.id}
                                         variant={item.variant}
                                         size={size}
-
                                         label={resolveButtonLabel(item)}
                                         iconLeft={resolveButtonIcon(item)}
-
+                                        iconLeftType={resolveButtonIconType(item)}
                                         onClick={resolveButtonAction(item)}
-
-                                        className={clsx(item.id === "projects-like" &&
+                                        className={clsx(item.id === "like" &&
                                             likeBtnClasses
                                         )}
                                     />
@@ -333,30 +463,63 @@ const ProjectsTextBlock = ({
                 style={{ maxHeight: `${maxHeight}px` }}
             >
                 {/* Text items container expanded */}
-                {Array.isArray(description) && description.length > 0 && 
-                    <div className={clsx(textBlockItemToItemClasses)}>
-                        {description.map((item, index) => (
-                            <div 
-                                key={index}
-                                className={clsx(textBlockHeading3ToBodyClasses)}
-                            >
-                                {item.heading && <Text {...item.heading} size={size}/>}
+                {Array.isArray(sortedDescription) && sortedDescription.length > 0 && 
+                    <div className={clsx(
+                        variant === "full" || isExperience && variant === "expanded" ? textBlockToBlockClasses 
+                        : textBlockItemToItemClasses
+                    )}>
+                        {/* isExperience && variant !== "expanded" && (gap isuee need to be fixed) */}
+                        {!(isExperience && variant === "expanded") && sortedDescription
+                            .filter(item => item?.enabled !== false)
+                            .map((item, index) => (
+                                <div 
+                                    key={index}
+                                    className={clsx(textBlockHeading3ToBodyClasses)}
+                                >
+                                    {item.heading && <Text {...item.heading} size={size}/>}
 
-                                {/* item list */}
-                                <ListContentBlock items={item.body}/>
-                            </div>
-                        ))}
+                                    {/* Flexible rendering based on data type */}
+                                    {Array.isArray(item?.body) && item.body.length > 0 ? (
+                                        <div className={clsx(textBlockItemToItemClasses)}>
+                                            {item.body
+                                                .filter(item => item?.enabled !== false)
+                                                .map((block, index) => (
+                                                    <React.Fragment key={index}>
+                                                        {renderCaseStudyBlock(block)}
+                                                    </React.Fragment>
+                                                ))}
+                                        </div>
+                                    ) : (
+                                        renderCaseStudyBlock(item.body)
+                                    )}
+                                </div>
+                            ))}
+
+                            {/* Optional work experience case study preview mode only*/}
+                            {isExperience && variant === "expanded" && Array.isArray(sortedDescription) && sortedDescription.length > 0 &&
+                                sortedDescription
+                                .filter(block => block?.enabled !== false)
+                                .map(block => (
+                                <BlockRenderer
+                                    variant="caseStudy"
+                                    key={block.id}
+                                    block={block}
+                                />
+                            ))}
                     </div>
                 }
 
                 {/* Cta buttons expanded */}
-                {Array.isArray(ctaExpanded) && ctaExpanded.length > 0 && 
+                {Array.isArray(resolvedCtaExpanded) && resolvedCtaExpanded.length > 0 && 
                     <div className={clsx(textBlockInteractiveToInteractiveClasses)}>
-                        {ctaExpanded.map((item) => (
+                        {resolvedCtaExpanded.map((item) => (
                             <Button
                                 key={item.id}
-                                {...item}
+                                variant={resolveButtonVariant(item)}
                                 size={size}
+                                label={resolveButtonLabel(item)}
+                                iconLeft={resolveButtonIcon(item)}
+                                iconLeftType={resolveButtonIconType(item)}
                                 onClick={resolveButtonAction(item)}
                             />
                         ))}
@@ -366,4 +529,4 @@ const ProjectsTextBlock = ({
     );
 };
 
-export default ProjectsTextBlock;
+export default WorkItemsTextBlock;

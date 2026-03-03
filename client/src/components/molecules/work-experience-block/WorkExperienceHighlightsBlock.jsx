@@ -77,7 +77,7 @@ const alignmentMap = {
 };
 
 const WorkExperienceHighlightsBlock = ({ 
-  variant = "home", // home / workExperince
+  variant = "home", // home / workExperince / caseStudy
   data = {}, 
   className, 
   ...props 
@@ -95,6 +95,8 @@ const WorkExperienceHighlightsBlock = ({
   } = data;
 
   if (!enabled) return null;
+
+  const isCaseStudy = variant === "caseStudy";
 
   const blockContainerClasses = clsx(
       blockContainer.base,
@@ -150,7 +152,7 @@ const WorkExperienceHighlightsBlock = ({
                 </div>
               ))}
 
-            {buttonProps && (
+            {buttonProps && !isCaseStudy && (
               <div>
                 <Button {...buttonProps} />
               </div>

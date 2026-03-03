@@ -1,8 +1,12 @@
 import { BLOCK_MAP } from "./blockMap";
 
 const BlockRenderer = ({
-  variant, 
-  size, 
+  customView,
+  variant,
+  mode,
+  size,
+  imageid,
+  row, 
   block, 
   ui, 
   handlers,
@@ -10,7 +14,9 @@ const BlockRenderer = ({
 }) => {
   if (!block || !block.enabled) return null;
 
-  const Component = BLOCK_MAP[block.view || block.type];
+  const viewKey = customView || block.view || block.type;
+
+  const Component = BLOCK_MAP[viewKey];
 
   if (!Component) {
     console.warn(`[BlockRenderer] Unknown block type: ${block.type}`);
@@ -20,12 +26,15 @@ const BlockRenderer = ({
   return (
     <Component
       variant={variant}
+      mode={mode}
       size={size}
+      imageid={imageid}
       data={{
         ...block.data,
         id: block.id,
         enabled: block.enabled,
       }}
+      row={row}
       block={block}
       ui={ui}
       handlers={handlers}

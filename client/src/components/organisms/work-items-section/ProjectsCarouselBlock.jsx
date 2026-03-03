@@ -2,12 +2,12 @@
  * Role: CMS-driven, interactive media carousel for Projects section
  * Used by: BlockRenderer via `block.type`
  * Responsibilities:
- *   - Render image slides with autoplay, manual navigation, and swipe support
+ *   - Render image images with autoplay, manual navigation, and swipe support
  *   - Manage interaction states (hover, focus, keyboard, touch)
  *   - Control fullscreen lifecycle (enter/exit, play/pause, feedback overlay)
  *   - Auto-hide and reveal controls based on user activity and viewport visibility
  * Guardrails:
- *   - Fully data-driven (slides, buttons, behaviors from CMS config)
+ *   - Fully data-driven (images, buttons, behaviors from CMS config)
  *   - Viewport-aware and performance-safe (IntersectionObserver, timers cleanup)
  *   - No page-specific logic; layout & behavior governed by tokenized config
  */
@@ -29,7 +29,7 @@ const ProjectsCarouselBlock = ({
     const {
         id,
         enabled = true,
-        slides,
+        images,
         buttonProps, 
     } = data;
 
@@ -199,7 +199,7 @@ const ProjectsCarouselBlock = ({
 
     const handleNext = useCallback(() => {
         setActiveIndex((i) => {
-            if (i === slides.length - 1) {
+            if (i === images.length - 1) {
             setTransitionMode("none");
             return 0;
             }
@@ -207,30 +207,30 @@ const ProjectsCarouselBlock = ({
             setTransitionMode("slide");
             return i + 1;
         });
-    }, [slides.length]);
+    }, [images.length]);
 
     const handlePrev = useCallback(() => {
         setActiveIndex((i) => {
             if (i === 0) {
             setTransitionMode("none");
-            return slides.length - 1;
+            return images.length - 1;
             }
 
             setTransitionMode("slide");
             return i - 1;
         });
-    }, [slides.length]);
+    }, [images.length]);
 
     const advanceSlide = useCallback(() => {
         setActiveIndex(i => {
-            if (i === slides.length - 1) {
+            if (i === images.length - 1) {
             setTransitionMode("none");
             return 0;
             }
             setTransitionMode("slide");
             return i + 1;
         });
-    }, [slides.length]);
+    }, [images.length]);
 
     const startAutoHideTimer = () => {
         if(autoHideTimeoutRef.current) {
@@ -279,10 +279,14 @@ const ProjectsCarouselBlock = ({
         } else {
             setIsAutoPlayEnabled(true);
             setIsManuallyPaused(false); 
-            handlers?.onRequestFullscreen?.(variant, block, rect);
+            handlers?.onRequestFullscreen?.({
+                variant, 
+                block, 
+                originRect: rect,
+            });
         }
 
-    }, [handlers, variant, block, isFullScreenMode, blockRef]);
+    }, [handlers, variant,  block, isFullScreenMode, blockRef]);
 
     const onPointerDown = (e) => {
         swipeStartRef.current = {
@@ -399,7 +403,7 @@ const ProjectsCarouselBlock = ({
 
         const interval = setInterval(() => {
             setActiveIndex(i => {
-            if (i === slides.length - 1) {
+            if (i === images.length - 1) {
                 setTransitionMode("none");
                 return 0;
             }
@@ -414,7 +418,7 @@ const ProjectsCarouselBlock = ({
         };
     }, [
         shouldAutoPlay,
-        slides.length,
+        images.length,
         advanceSlide,
         SLIDE_ANIMATION_INTERVAL,
         isFullScreenMode
@@ -501,7 +505,7 @@ const ProjectsCarouselBlock = ({
                 >
                  
                 {/* Track container */}
-                {Array.isArray(slides) && slides?.length > 0 && <div
+                {Array.isArray(images) && images?.length > 0 && <div
                     className={clsx(slidesTrackClasses)}
                         style={{
                             transform: `translateX(-${activeIndex * 100}%)`,
@@ -511,7 +515,7 @@ const ProjectsCarouselBlock = ({
                                 : "0ms",
                         }}
                 >
-                    {slides.map((slide) => (
+                    {images.map((slide) => (
                         <div
                             key={slide.id}
                             className="
@@ -614,7 +618,7 @@ const ProjectsCarouselBlock = ({
                 </div>}
 
                 {/* Dot buttons container */}
-                {Array.isArray(slides) && slides.length > 0 && 
+                {Array.isArray(images) && images.length > 0 && 
                     <div className={clsx(
                             carouselDotContainerClasses,
                             isFullScreenMode && dotsVisiblityClasses,
@@ -624,7 +628,7 @@ const ProjectsCarouselBlock = ({
                         onFocusCapture={() => setIsInteractingWithControls(true)}
                         onBlurCapture={() => setIsInteractingWithControls(false)}
                     >
-                    {slides.map((_, index) => (
+                    {images.map((_, index) => (
                         <Button
                             key={index}
                             variant="carouselDot"

@@ -47,16 +47,15 @@ const bodyItemsContainerClasses = `
 const cardContainer = {
   base: `
     flex flex-col w-full
-
-    px-(--spacing-text-container-mobile-padding-x)
-    sm:px-(--spacing-text-container-tablet-padding-x)
-    lg:px-(--spacing-text-container-desktop-padding-x)
-
     gap-(--spacing-list-item-mobile-gap)
     sm:gap-(--spacing-list-item-tablet-gap)
     lg:gap-(--spacing-list-item-desktop-gap)
   `,
   home: `
+    px-(--spacing-text-container-mobile-padding-x)
+    sm:px-(--spacing-text-container-tablet-padding-x)
+    lg:px-(--spacing-text-container-desktop-padding-x)
+
     bg-(--color-card-wrapper-fill)
     border-(length:--border-card-wrapper-base-width)
     border-(--color-card-wrapper-stroke)
@@ -72,6 +71,9 @@ const cardContainer = {
     lg:py-(--spacing-text-container-desktop-padding-y)
   `,
   workExperience: `
+    px-(--spacing-text-container-mobile-padding-x)
+    sm:px-(--spacing-text-container-tablet-padding-x)
+    lg:px-(--spacing-text-container-desktop-padding-x)
   `
 };
 
@@ -93,7 +95,7 @@ const alignmentMap = {
 };
 
 const WorkExperienceMetaInfoBlock = ({
-  variant = "home", // home / workExperience
+  variant = "home", // home / workExperience / caseStudy
   data = {}, 
   className, 
   ...props 
@@ -108,6 +110,8 @@ const WorkExperienceMetaInfoBlock = ({
       body: "left",
     },
   } = data;
+
+  const isCaseStudy = variant === "caseStudy";
 
   const isScrolling = useScrolling(150);
   
@@ -126,9 +130,11 @@ const WorkExperienceMetaInfoBlock = ({
 
   const resolvedCardContainerClasses = clsx(
     cardContainer.base,
-    variant === "home" ? 
-      cardContainer.home 
-      : cardContainer.workExperience
+    !isCaseStudy ?
+      variant === "home" ? 
+        cardContainer.home 
+        : cardContainer.workExperience
+      : ""
   );
   
   return (
@@ -155,7 +161,7 @@ const WorkExperienceMetaInfoBlock = ({
           {bodyItems.map(item => (
             <div key={item.id} className={clsx(resolvedCardContainerClasses, backdropBlur)}>
               {/* Optional card Heading */}
-              {item.heading && <Text {...item.heading} />}
+              {item.heading && !isCaseStudy && <Text {...item.heading} />}
 
               {/* Timeline */}
               {item.body?.timeline && <Text {...item.body.timeline} />}

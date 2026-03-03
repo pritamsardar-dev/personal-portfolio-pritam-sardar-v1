@@ -1,11 +1,10 @@
 import AboutTextBlock from '../../components/sections/home/about-section/AboutTextBlock';
 import AboutCardBlock from '../../components/sections/home/about-section/AboutCardBlock';
-import WorkExperienceHighlightsBlock from '../../components/organisms/work-experience-section/WorkExperienceHighlightsBlock';
-import WorkExperienceMetaInfoBlock from '../../components/organisms/work-experience-section/WorkExperienceMetaInfoBlock';
+import WorkExperienceHighlightsBlock from '../../components/molecules/work-experience-block/WorkExperienceHighlightsBlock';
+import WorkExperienceMetaInfoBlock from '../../components/molecules/work-experience-block/WorkExperienceMetaInfoBlock';
 import SkillsCardBlock from '../../components/sections/home/skills-section/SkillsCardBlock';
 import SkillsTextBlock from '../../components/sections/home/skills-section/SkillsTextBlock';
-import ProjectsCarouselBlock from '../../components/organisms/projects-section/ProjectsCarouselBlock';
-import ProjectsTextBlock from '../../components/organisms/projects-section/ProjectsTextBlock';
+import ProjectsCarouselBlock from '../../components/organisms/work-items-section/ProjectsCarouselBlock';
 import ContactTextBlock from '../../components/organisms/contact-section/ContactTextBlock';
 import ContactFormBlock from '../../components/organisms/contact-section/ContactFormBlock';
 import DeveloperJourneyBlock from '../../components/sections/about/journey-section/DeveloperJourneyBlock';
@@ -16,6 +15,8 @@ import CurrentSkillsSnapshotSkillsBlock from '../../components/sections/about/cu
 import ValidationCtaBlock from '../../components/sections/skills/skillsRowsSection/ValidationCtaBlock';
 import SkillOverviewBlock from '../../components/sections/skills/skillsRowsSection/SkillOverviewBlock';
 import SkillDetailsBlock from '../../components/sections/skills/skillsRowsSection/SkillDetailsBlock';
+import WorkItemsTextBlock from '../../components/organisms/work-items-section/WorkItemsTextBlock';
+import CaseStudyImageBlock from '../../components/organisms/work-items-section/CaseStudyImageBlock';
 
 export const BLOCK_MAP = {
   developerJourneySummary: AboutTextBlock,
@@ -24,8 +25,6 @@ export const BLOCK_MAP = {
   workExperienceMetaInfo: WorkExperienceMetaInfoBlock,
   skillsSkillSetBlockHome: SkillsCardBlock,
   skillsStrengthsBlockHome: SkillsTextBlock,
-  projectsCarouselBlock: ProjectsCarouselBlock,
-  projectsTextBlock: ProjectsTextBlock,
   contactTextBlock: ContactTextBlock,
   contactFormBlock: ContactFormBlock,
   developerJourneyDetailed: DeveloperJourneyBlock,
@@ -36,5 +35,8 @@ export const BLOCK_MAP = {
   validationBlock: ValidationCtaBlock,
   contextBlock: SkillOverviewBlock,
   contentBlock: SkillDetailsBlock,
+  carouselBlock: ProjectsCarouselBlock,
+  imageBlock: CaseStudyImageBlock,
+  workItemsTextBlock: WorkItemsTextBlock
 };
 

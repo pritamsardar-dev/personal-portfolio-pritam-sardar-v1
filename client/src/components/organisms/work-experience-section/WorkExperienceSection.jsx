@@ -102,12 +102,15 @@ const flexAlignMap = {
 };
 
 const WorkExperienceSection = ({
-  variant = "workExperience", // home / workExperience
+  variant = "home", // home / workExperience
   data = {}, 
   className, 
   ...props
-}) => {  
-  const resolvedData = resolveProps(data, variant);
+}) => {
+  const domain = "experience"; // project / experience
+    
+  const resolvedByDomain = resolveProps(data, domain);
+  const resolvedData = resolveProps(resolvedByDomain, variant);
 
   const {
     id,
@@ -177,7 +180,7 @@ const WorkExperienceSection = ({
         {Array.isArray(rows) && rows.length > 0 && (
             <div className={rowsContainerClasses}>
             {rows
-                .filter(row => row?.enabled !== false)
+                .filter(row => row?.enabled !== false && row?.domain === domain)
                 .map(row => (
                   <div
                       key={row.id}

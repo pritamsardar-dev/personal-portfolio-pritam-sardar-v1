@@ -1,19 +1,22 @@
 /**
- * Role: CMS-driven Projects section
- * Used by: Home page and Projects page via section.type === "projects"
+ * Role: CMS-driven Projects & Case Study section
+ * Used by: Home page, Projects page, Case Study page, and fullscreen variants
  *
  * Responsibilities:
- *  - Render section heading with variant-based typography
- *  - Orchestrate project rows and blocks via BlockRenderer
- *  - Manage fullscreen modal lifecycle and block expansion
- *  - Render optional filter bar, CTA, and pagination
- *  - Respect CMS-driven alignment, ordering, and enabled flags
+ *   - Resolve section data based on high-level variant (project / caseStudy / preview / full)
+ *   - Render heading with variant-specific typography, text, and icons
+ *   - Orchestrate rows and nested blocks via BlockRenderer
+ *   - Control section-scoped fullscreen modal lifecycle for image blocks
+ *   - Pass fullscreen handlers and renderMode state to child blocks
+ *   - Support collapsed, expanded, related, and read-full-case-study flows
+ *   - Render optional filter bar, CTA, and pagination depending on page variant
+ *   - Handle compact sizing when in fullscreen preview mode
+ *   - Apply scroll-based visual effects (backdrop blur, overlay fade)
  *
- * Guardrails:
- *  - Fully data-driven (no hardcoded project or page logic)
- *  - Block rendering delegated to BlockRenderer
- *  - Fullscreen and modal state scoped to the section only
- *  - Section never mutates row or block data
+ * Notes:
+ *   - Data is resolved through layered `resolveProps` calls (domain + view mode)
+ *   - Row and block rendering is filtered by `enabled` flags
+ *   - Section manages modal state but does not mutate row or block data
  */
 
 import React, { useState, useMemo } from "react";
@@ -25,15 +28,41 @@ import FilterBarSection from "../filterbar-section/FilterBarSection";
 import Pagination from "../../molecules/pagination/Paginaton";
 import Modal from "../../overlays/modal/Modal";
 import { useScrolling } from "../../../hooks/useScrolling";
-import { projectsSectionLayoutConfig } from "./projectsSectionLayout.config";
+import { caseStudySectionLayoutConfig } from "./caseStudySectionLayout.config";
 import { resolveProps } from "../../../utils/resolveProps";
 
-const ProjectsSection = ({
-    variant = "fullscreenProjectsPage", // homePage / projectsPage / fullscreenHomePage /fullscreenProjectsPage
+const WorkItemsSection = ({
+    variant = "projectsHomePage", // projectsHomePage / projectsPage / fullscreenProjectsHomePage /fullscreenProjectsPage / caseStudyPage / fullscreenCaseStudyPage readFullCaseStudyPage
     data = {},
 }) => {
-  const domain = "project"; // project / experience
-  const resolvedData = resolveProps(data, domain);
+
+  const mode = (variant === "projectsHomePage" || variant === "projectsPage" || variant === "fullscreenProjectsHomePage" || variant === "fullscreenProjectsPage") ? "project" : "caseStudy"
+
+  const resolvedData = (data, variant) => {
+      if (!data) return null;
+
+      switch (variant) {
+          case "projectsHomePage":
+          case "projectsPage":
+          case "fullscreenProjectsHomePage":
+          case "fullscreenProjectsPage":
+          return resolveProps(resolveProps(data, "project"), "preview");
+
+          case "caseStudyPage":
+          return resolveProps(resolveProps(data, "caseStudy"), "preview");
+
+          case "fullscreenCaseStudyPage":
+          return resolveProps(resolveProps(data, "caseStudy"), "preview");
+
+          case "fullscreenCaseStudyPageRead":
+          return resolveProps(resolveProps(data, "caseStudy"), "full");
+
+          default:
+          return null;
+      }
+  };
+
+  // console.log(resolvedData(data, variant))
 
   const {
     id,
@@ -47,7 +76,7 @@ const ProjectsSection = ({
     },
     buttonProps,
     rows,
-  } = resolvedData;
+  } = resolvedData(data, variant);
 
     const [modal, setModal] = useState({
       open: false,
@@ -67,7 +96,7 @@ const ProjectsSection = ({
       blocksContainer,
       textAlignMap,
       flexAlignMap
-    } = projectsSectionLayoutConfig;
+    } = caseStudySectionLayoutConfig;
     
     const backdropBlur = 
       isScrolling ? "backdrop-blur-none" 
@@ -103,11 +132,12 @@ const ProjectsSection = ({
     );
 
     const modalHandlers = useMemo(() => ({
-      onRequestFullscreen: (variant, block, originRect) => {
+      onRequestFullscreen: ({ variant, imageid, block, originRect }) => {
         // Mount modal at origin position
         setModal({
           open: true,
           isFullscreen: false,
+          imageid: imageid,
           variant: variant,
           content: block,
           originRect,
@@ -134,6 +164,15 @@ const ProjectsSection = ({
 
     if (!enabled) return null;
 
+    const getBlockVariant = (block, variant) => {
+      switch (block?.type) {
+        case "imageBlock":
+          return "cover";
+        default:
+          return variant;
+      }
+    };
+
     const overlayFadeStyle = {
       opacity: modal.open ? 0.75 : 1,
       pointerEvents: modal.open ? "none" : "auto",
@@ -141,27 +180,29 @@ const ProjectsSection = ({
       willChange: modal.open ? "opacity" : "auto",
     };
 
-    const isFullScreenMode = variant === "fullscreenHomePage" || 
-      variant === "fullscreenProjectsPage";
+    const isFullScreenMode = variant === "fullscreenProjectsHomePage" || 
+      variant === "fullscreenProjectsPage" || variant === "fullscreenCaseStudyPage";
 
     let headingVariant;
 
     switch (variant) {
       case "projectsPage":
-        headingVariant = heading.variants.projectsPage;
+      case "caseStudyPage":
+        headingVariant = heading?.variants?.subPage;
         break;
 
-      case "homePage":
-        headingVariant = heading.variants.homePage;
+      case "projectsHomePage":
+        headingVariant = heading?.variants?.homePage;
         break;
 
-      case "fullscreenHomePage":
+      case "fullscreenProjectsHomePage":
       case "fullscreenProjectsPage":
-        headingVariant = heading.variants.fullScreenPage;
+      case "fullscreenCaseStudyPage":
+        headingVariant = heading?.variants?.fullScreenPage;
         break;
 
       default:
-        headingVariant = heading.variants.default;
+        headingVariant = heading?.variants?.default;
     }
 
     // const homePageRows = rows
@@ -170,9 +211,13 @@ const ProjectsSection = ({
     //   .sort((a, b) => a.topOrder - b.topOrder)
     //   .slice(0, 4);
 
-    const viewDetailsRow = rows
-      .filter(row => row?.enabled !== false && row?.domain === domain)
-      .find(row => row.id === "project-row-devfolio");
+    const viewDetailsRow = (rows
+      ?.filter(row => row?.enabled !== false)
+      .find(row => row.id === "tech-nova-solutions")); 
+
+      // tech-nova-solutions / project-row-devfolio
+
+      // console.log(rows)
 
     return (
       <section
@@ -193,6 +238,7 @@ const ProjectsSection = ({
               setModal({
                 open: false,
                 isFullscreen: false,
+                imageid: null,
                 variant: "",
                 content: null,
                 originRect: null,
@@ -200,6 +246,7 @@ const ProjectsSection = ({
             }}
           >
             <BlockRenderer
+              imageid={modal.imageid}
               block={modal.content}
               variant={modal.variant}
               state={{ renderMode: "fullscreen" }}
@@ -209,26 +256,29 @@ const ProjectsSection = ({
         )}
 
         {/* Optional viewDetails block */}
-          {isFullScreenMode && rows &&
+          {(isFullScreenMode || variant === "fullscreenCaseStudyPageRead") && rows &&
           <div 
-            className={clsx(blocksContainerRelatedProjectsClasses)}
+            className={clsx( variant !== "fullscreenCaseStudyPageRead" && blocksContainerRelatedProjectsClasses)}
             style={overlayFadeStyle}
           >
-            {Array.isArray(viewDetailsRow.blocks) &&
+            {Array.isArray(viewDetailsRow?.blocks) &&
               viewDetailsRow.blocks 
-                .filter(block => block?.enabled !== false)
+                .filter(block => block?.enabled !== false && block.id !== "work-experience-meta-info")
                 .map(block => (
                   <BlockRenderer
+                      customView={block.id === "work-experience-highlights" ? "workItemsTextBlock" : null}
                       key={block.id}
+                      row={viewDetailsRow}
                       block={block}
-                      variant="expanded"
+                      variant={getBlockVariant(block, variant === "fullscreenCaseStudyPageRead" ? "full" : "expanded")}
+                      mode={mode}
                       handlers={modalHandlers}
                   />
                 ))}
           </div>}
 
         {/* Collapsed projects section / Related projects block */}
-        <div className={clsx(
+        {variant !== "fullscreenCaseStudyPageRead" && <div className={clsx(
               isFullScreenMode ? blockHeadingWrapperClasses 
               : sectionHeadingWrapperClasses 
           )}
@@ -240,11 +290,11 @@ const ProjectsSection = ({
                 {...heading} 
                 variant={headingVariant}
                 text={
-                  isFullScreenMode ? heading.texts.fullScreenPage 
+                  isFullScreenMode ? heading?.texts?.fullScreenPage 
                     : heading.texts.default
                 }
                 icon={
-                  isFullScreenMode ? heading.icons.fullscreenPage 
+                  isFullScreenMode ? heading?.icons?.fullscreenPage 
                     : heading.icons.default
                 }
               />
@@ -255,7 +305,7 @@ const ProjectsSection = ({
             style={overlayFadeStyle}
           >
             {/* Filter Section */}
-            {variant === "projectsPage" && 
+            {(variant === "projectsPage" || variant === "caseStudyPage") && 
               <div className={clsx()}>
                 <FilterBarSection data={filters}/>
               </div>}
@@ -270,7 +320,7 @@ const ProjectsSection = ({
                 )}
                 >
                   {rows
-                    .filter(row => row?.enabled !== false && row?.domain === domain)
+                    .filter(row => row?.enabled !== false)
                     .map((row) => (
                       <div
                         key={row.id}
@@ -278,12 +328,16 @@ const ProjectsSection = ({
                       >
                         {Array.isArray(row.blocks) &&
                           row.blocks 
-                            .filter(block => block?.enabled !== false)
+                            .filter(block => block?.enabled !== false && block.id !== "work-experience-meta-info")
                             .map(block => (
                               <BlockRenderer
+                                  customView={block.id === "work-experience-highlights" ? "workItemsTextBlock" : null}
                                   key={block.id}
+                                  imageid={block?.data?.coverImageId}
+                                  row={row}
                                   block={block}
-                                  variant="collapsed"
+                                  variant={getBlockVariant(block, "collapsed")}
+                                  mode={mode}
                                   size={isFullScreenMode ? "compact" : "default"}
                                   handlers={modalHandlers}
                                 />
@@ -293,7 +347,7 @@ const ProjectsSection = ({
               </div>}
 
             {/* Optional Section CTA */}
-            {variant === "homePage" && buttonProps && (
+            {variant === "projectsHomePage" && buttonProps && (
               <div
                 className={clsx(
                   "w-full flex",
@@ -305,7 +359,7 @@ const ProjectsSection = ({
             )}
 
             {/* Pagination */}
-            {variant === "projectsPage" && <div className={clsx(
+            {(variant === "projectsPage" || variant === "caseStudyPage") && <div className={clsx(
                   "w-full flex",
                   flexAlignMap[alignment.pagination]
                 )}
@@ -313,9 +367,9 @@ const ProjectsSection = ({
               <Pagination />
             </div>}
           </div>
-      </div>
+      </div>}
     </section>
   );
 };
 
-export default ProjectsSection;
+export default WorkItemsSection;
