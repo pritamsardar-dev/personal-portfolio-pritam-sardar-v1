@@ -21,19 +21,17 @@ import BlockRenderer from "../../../renderers/blocks/blockRenderer";
 import { resolveProps } from "../../../utils/resolveProps";
 import FilterBarSection from "../filterbar-section/FilterBarSection";
 import { useScrolling } from "../../../hooks/useScrolling";
+import { useCTA } from "../../../hooks/useCTA";
 
 const sectionContainerClasses = `
-  flex flex-col w-full 
+  flex flex-col w-full
+
   sm:max-w-(--size-section-wrapper-tablet-max-width)
   lg:max-w-(--size-section-wrapper-desktop-max-width)
 
   px-(--spacing-section-wrapper-mobile-padding-x)
   sm:px-(--spacing-section-wrapper-tablet-padding-x)
   lg:px-(--spacing-section-wrapper-desktop-padding-x)
-
-  py-(--spacing-section-wrapper-mobile-padding-y)
-  sm:py-(--spacing-section-wrapper-tablet-padding-y)
-  lg:py-(--spacing-section-wrapper-desktop-padding-y)
 
   gap-(--spacing-section-wrapper-mobile-gap)
   sm:gap-(--spacing-section-wrapper-tablet-gap)
@@ -114,10 +112,8 @@ const WorkExperienceSection = ({
 
   const {
     id,
-    enabled = true,
     heading,
-    filters,
-    buttonProps,
+    WorkExperienceHomeCtaProps,
     rows = [],
     alignment = {
       heading: "center",
@@ -125,16 +121,9 @@ const WorkExperienceSection = ({
     },
   } = resolvedData;
 
-  // const ResolvedRows = rows
-  //   .filter(row => row?.enabled !== false)
-  //   .filter(row => typeof row?.topOrder === "number")
-  //   .sort((a, b) => a.topOrder - b.topOrder)
-  //   .slice(0, 1);
-
   const isScrolling = useScrolling(150);
+  const { handleCTA } = useCTA(); 
     
-  if (!enabled) return null;
-  
   const backdropBlur = 
     isScrolling ? "backdrop-blur-none" 
     : "backdrop-blur-(--effect-card-container-background-blur)";
@@ -170,12 +159,6 @@ const WorkExperienceSection = ({
             </div>
         )}
 
-        {/* Optional Filter Section */}
-        {variant === "workExperience" && 
-          <div className={clsx()}>
-            <FilterBarSection data={filters}/>
-          </div>}
-
         {/* CMS-driven Blocks */}
         {Array.isArray(rows) && rows.length > 0 && (
             <div className={rowsContainerClasses}>
@@ -193,6 +176,8 @@ const WorkExperienceSection = ({
                         <BlockRenderer
                             variant={variant}
                             key={block.id}
+                            section={resolvedData}
+                            row={row}
                             block={block}
                         />
                       ))}
@@ -203,9 +188,13 @@ const WorkExperienceSection = ({
       </div>     
 
       {/* Section CTA */}
-      {buttonProps && (
+      {variant === "home" && WorkExperienceHomeCtaProps && (
         <div className={clsx("w-full flex", ctaAlignClass)}>
-          <Button {...buttonProps} />
+          <Button 
+            variant={WorkExperienceHomeCtaProps.variant} 
+            label={WorkExperienceHomeCtaProps.label}
+            onClick={() => handleCTA(WorkExperienceHomeCtaProps)}
+          />
         </div>
       )}
     </section>

@@ -1,7 +1,7 @@
 export const headerNavItems = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
-  { label: "Work Experience", to: "/experience" },
+  { label: "Work Experience", to: "/work-experience" },
   { label: "Skills", to: "/skills" },
   { label: "Projects", to: "/projects" },
   { label: "Case Studies", to: "/case-studies" },

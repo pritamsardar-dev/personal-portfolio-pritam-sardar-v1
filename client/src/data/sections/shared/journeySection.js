@@ -13,8 +13,6 @@ import {
 export const journeySection = {
   id: "journey",
   type: "journey", 
-  enabled: true,
-  orders: 2,
   alignment: {
     heading: "center",
       cta: "center",
@@ -33,7 +31,8 @@ export const journeySection = {
   buttonProps: {
     variant: "secondary",
     label: "More About Me →",
-    onClick: () => {},
+    action: "navigate",
+    target: "/about"
   },
   blocks: [
     {

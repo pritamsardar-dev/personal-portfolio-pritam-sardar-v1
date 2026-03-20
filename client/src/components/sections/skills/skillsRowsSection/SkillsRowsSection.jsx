@@ -17,7 +17,6 @@
 import React from "react";
 import clsx from "clsx";
 import Text from "../../../atoms/text/Text";
-import Button from "../../../atoms/button/Button";
 import BlockRenderer from "../../../../renderers/blocks/blockRenderer";
 import { resolveProps } from "../../../../utils/resolveProps";
 import FilterBarSection from "../../../organisms/filterbar-section/FilterBarSection";
@@ -25,7 +24,6 @@ import { useScrolling } from "../../../../hooks/useScrolling";
 import AtAGlanceHighlightsBlock from "./AtAGlanceHighlightsBlock";
 import AtAGlanceEffectivenessBlock from "./AtAGlanceEffectivenessBlock";
 import AtAGlanceToolbeltBlock from "./AtAGlanceToolbeltBlock";
-
 
 const sectionContainerClasses = `
   flex flex-col w-full 
@@ -35,10 +33,6 @@ const sectionContainerClasses = `
   px-(--spacing-section-wrapper-mobile-padding-x)
   sm:px-(--spacing-section-wrapper-tablet-padding-x)
   lg:px-(--spacing-section-wrapper-desktop-padding-x)
-
-  py-(--spacing-section-wrapper-mobile-padding-y)
-  sm:py-(--spacing-section-wrapper-tablet-padding-y)
-  lg:py-(--spacing-section-wrapper-desktop-padding-y)
 
   gap-(--spacing-section-wrapper-mobile-gap)
   sm:gap-(--spacing-section-wrapper-tablet-gap)
@@ -120,9 +114,7 @@ const SkillsRowsSection = ({
 
   const {
     id,
-    enabled = true,
     heading,
-    filters,
     atAGlance,
     rows = [],
     alignment = {
@@ -137,8 +129,6 @@ const SkillsRowsSection = ({
 
   const isScrolling = useScrolling(150);
     
-  if (!enabled) return null;
-  
   const backdropBlur = 
     isScrolling ? "backdrop-blur-none" 
     : "backdrop-blur-(--effect-card-container-background-blur)";
@@ -160,10 +150,6 @@ const SkillsRowsSection = ({
                 <Text {...heading} />
             </div>
         )}
-
-        {/* Optional Filter Section */}
-        {filters && <FilterBarSection data={filters}/>}
-
 
         {/* Optional at a glance Section */}
         {atAGlance && atAGlance?.enabled !== false && (
@@ -208,6 +194,7 @@ const SkillsRowsSection = ({
                 .filter(row => row?.enabled !== false)
                 .map(row => (
                   <div
+                      id={row.id} 
                       key={row.id}
                       className={clsx(blocksContainerClasses, backdropBlur)}
                   >

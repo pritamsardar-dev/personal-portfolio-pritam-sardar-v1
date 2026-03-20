@@ -11,22 +11,8 @@ import {
 } from "../../../assets/images/projectscarouselsample";
 
 import {
-  ArrowBottomIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  FullscreenIcon,
-  OverlayCloseIcon,
-  OverlayFigmaIcon,
-  OverlayGitIcon,
-  OverlayPlayIcon,
-  HeartReactIcon,
-  HeartReactIconType,
   TagEyeIcon,
   TagEyeIconType,
-  TagHeartFillIcon,
-  TagHeartFillIconType,
-  PlayFilledIcon,
-  PauseFilledIcon,
   TagTimeDurationIcon,
   TagTimeDurationIconType,
 } from "../../../assets/icons/system";
@@ -42,18 +28,32 @@ import {
   projectsTitleTextblock,
 } from "../../../assets/icons/content";
 
-const demoProjectsRow = (idNumber, topOrderNumber) => {
+const demoProjectsRow = (idNumber, topOrderNumber, featured, primaryCategory) => {
     return {
+      /** CMS / FILTERING META */
       id: `project-row-devfolio-${idNumber}`,
       enabled: true,
       domain: "project", // project / experience
+      order: {
+        project: 1,
+        experience: 1,
+        caseStudy: 1,
+      },   
 
       /** CMS / FILTERING META */
       createdAt: "2025-08-15T00:00:00.000Z",
-      topOrder: topOrderNumber, // 1 = highest quality
-      primaryCategory: "MERN",
-      secondaryCategories: ["Backend", "Portfolio"],
+      topOrder: { // 1 = highest quality
+        project: topOrderNumber,
+        experience: topOrderNumber,
+        caseStudy: topOrderNumber,
+      },
+      primaryCategory: primaryCategory,
+      secondaryCategories: [
+        { key: "backend", label: "Backend"},
+        { key: "portfolio", label: "Portfolio"},
+      ],
       tags: ["MERN", "Backend"],
+      featured: featured,
 
       blocks: [
         /* ────────────────────────
@@ -80,82 +80,6 @@ const demoProjectsRow = (idNumber, topOrderNumber) => {
               { id: "slide-7", src: projectsCarouselSampleSlide7, alt: "projectsCarouselSampleSlide7" },
               { id: "slide-8", src: projectsCarouselSampleSlide8, alt: "projectsCarouselSampleSlide8" },
               { id: "slide-9", src: projectsCarouselSampleSlide9, alt: "projectsCarouselSampleSlide9"},
-            ],
-
-            /**
-             * onClick handlers are OPTIONAL
-             * Mode handling is done inside molecule
-             */
-            buttonProps: [
-              {
-                id: "arrow-left",
-                role: "navigation",
-                variant: "iconOnlyCircularOverlay",
-                iconLeft: ArrowLeftIcon,
-                onClick: () => {},
-              },
-              {
-                id: "arrow-right",
-                role: "navigation",
-                variant: "iconOnlyCircularOverlay",
-                iconLeft: ArrowRightIcon,
-                onClick: () => {},
-              },
-              {
-                id: "play",
-                role: "utility",
-                variant: "iconOnlyCircularOverlay",
-                iconLeft: PlayFilledIcon,
-                onClick: () => {},
-              },
-              {
-                id: "pause",
-                role: "utility",
-                variant: "iconOnlyCircularOverlay",
-                iconLeft: PauseFilledIcon,
-                onClick: () => {},
-              },
-              {
-                id: "fullscreen",
-                role: "utility",
-                variant: "iconOnlyRectangularOverlay",
-                iconLeft: FullscreenIcon,
-                onClick: () => {},
-              },
-              {
-                id: "close-fullscreen",
-                role: "utility",
-                variant: "iconOnlyRectangularOverlay",
-                iconLeft: OverlayCloseIcon,
-                onClick: () => {},
-              },
-              {
-                id: "live-demo",
-                order: 1,
-                role: "cta",
-                variant: "overlayDefault",
-                label: "Live Demo",
-                iconLeft: OverlayPlayIcon,
-                onClick: () => {},
-              },
-              {
-                id: "github",
-                order: 1,
-                role: "cta",
-                variant: "overlayDefault",
-                label: "Source Code",
-                iconLeft: OverlayGitIcon,
-                onClick: () => {},
-              },
-              {
-                id: "figma",
-                order: 3,
-                role: "cta",
-                variant: "overlayDefault",
-                label: "Design File",
-                iconLeft: OverlayFigmaIcon,
-                onClick: () => {},
-              },
             ],
           },
         },
@@ -205,175 +129,6 @@ const demoProjectsRow = (idNumber, topOrderNumber) => {
               text:
                 "A professional full-stack portfolio designed to showcase my work, optimized for performance, scalability, and an engaging recruiter experience.",
             },
-
-            ctaProps: [
-              {
-                id: "view-details-toggle",
-                order: {
-                  project: {
-                    collapsed: 1,
-                    expanded: 5,
-                  },
-                  caseStudy: {
-                    collapsed: 2,
-                    expanded: 5,
-                  },
-                },
-                role: "toggle",
-                variant: {
-                  project: {
-                    collapsed: "primary",
-                    expanded: "secondary",
-                  },
-                  caseStudy: "secondary",
-                },
-                label: {
-                  project: {
-                    collapsed: "View details",
-                    expanded: "Show less",
-                  },
-                  caseStudy: {
-                    collapsed: "Preview",
-                    expanded: "Show less",
-                  },
-                },
-                onClick: () => {},
-              },
-              {
-                id: "case-study-link",
-                order: {
-                  project: {
-                    collapsed: 2,
-                    expanded: 4,
-                  },
-                  caseStudy: 1,
-                },
-                role: "primary-action",
-                variant: {
-                  project: "secondary",
-                  caseStudy: {
-                    collapsed: "primary",
-                    expanded: "priamry",
-                    full: "primary",
-                  },
-                },
-                label: {
-                  project: "Full Case Study",
-                  caseStudy: {
-                    collapsed: "Read",
-                    expanded: "Full Case Study",
-                  }
-                },
-                onClick: () => {},
-              },
-              {
-                id: "live-demo-link",
-                order: {
-                  project: {
-                    expanded: 1,
-                  },
-                  caseStudy: 2,
-                },
-                role: "primary-action",
-                variant: {
-                  project: "primary",
-                  caseStudy: {
-                    collapsed: "secondary",
-                    expanded: "secondary",
-                    full: "primary",
-                  }
-                },
-                label: "Live demo",
-                onClick: () => {},
-              },
-              {
-                order: {
-                  project: {
-                    expanded: 2,
-                  },
-                  caseStudy: 2,
-                },
-                id: "source-code-link",
-                role: "secondary-action",
-                variant: "secondary",
-                label: "Source code",
-                onClick: () => {},
-              },
-              {
-                order: {
-                  project: {
-                    expanded: 3,
-                  },
-                  caseStudy: 2,
-                },
-                id: "design-file-link",
-                role: "secondary-action",
-                variant: "secondary",
-                label: "Design file",
-                onClick: () => {},
-              },
-              {
-                id: "like",
-                order: 6,
-                role: "utility",
-                variant: "overlay",
-                iconLeft: {
-                  default: HeartReactIcon,
-                  active: TagHeartFillIcon,
-                },
-                iconLeftType: {
-                  default: HeartReactIconType,
-                  active: TagHeartFillIconType,
-                },
-                label: {
-                  default: "249",
-                  active: "250",
-                },
-                onClick: () => {},
-              },
-            ],
-
-            /**
-             * DEFAULT MODE CTA
-             * Toggle + Redirect + Utility
-             */
-            ctaDefault: [
-              {
-                id: "projects-view-details-toggle",
-                role: "toggle",
-                variant: "secondary",
-                labels: {
-                  collapsed: "View details",
-                  expanded: "Show less",
-                },
-                onClick: () => {},
-              },
-              {
-                id: "projects-case-study-link",
-                role: "primary-action",
-                variant: "primary",
-                label: "Full Case Study",
-                onClick: () => {},
-              },
-              {
-                id: "projects-like",
-                role: "utility",
-                variant: "overlay",
-                iconsLeft: {
-                  default: HeartReactIcon,
-                  active: TagHeartFillIcon,
-                },
-                iconsLeftType: {
-                  default: HeartReactIconType,
-                  active: TagHeartFillIconType,
-                },
-                labels: {
-                  default: "249",
-                  active: "250",
-                },
-                onClick: () => {},
-              },
-            ],
 
             description: [
               {
@@ -892,47 +647,6 @@ const demoProjectsRow = (idNumber, topOrderNumber) => {
                     ],
                   },
                 ]
-              },
-            ],
-
-            /**
-             * EXPANDED MODE CTA
-             */
-            ctaExpanded: [
-              {
-                id: "projects-live-demo-link",
-                role: "primary-action",
-                variant: "primary",
-                label: "Live demo",
-                onClick: () => {},
-              },
-              {
-                id: "projects-source-code-link",
-                role: "secondary-action",
-                variant: "secondary",
-                label: "Source code",
-                onClick: () => {},
-              },
-              {
-                id: "projects-design-file-link",
-                role: "secondary-action",
-                variant: "secondary",
-                label: "Design file",
-                onClick: () => {},
-              },
-              {
-                id: "projects-case-study-link",
-                role: "secondary-action",
-                variant: "secondary",
-                label: "Full case study",
-                onClick: () => {},
-              },
-              {
-                id: "projects-view-less-toggle",
-                role: "toggle",
-                variant: "secondary",
-                label: "Show less",
-                onClick: () => {},
               },
             ],
           },

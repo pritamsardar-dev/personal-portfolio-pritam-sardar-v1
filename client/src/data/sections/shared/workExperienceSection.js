@@ -85,6 +85,20 @@ export const workExperienceSection = {
             count: 1,
             onClick: () => {}
         },
+        {
+            id: "primary-filter-backendss",
+            variant: "tag",
+            label: "Backend",
+            count: 7,
+            onClick: () => {}
+        },
+        {
+            id: "primary-filter-full-Stacksss",
+            variant: "tag",
+            label: "Full-Stack",
+            count: 8,
+            onClick: () => {}
+        },
     ],
 
     secondaryFiltersProps: [

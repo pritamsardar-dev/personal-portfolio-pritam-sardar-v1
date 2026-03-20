@@ -1,3 +1,5 @@
+import HeroImageBlock from "../../components/organisms/hero-section/HeroImageBlock"
+import HeroTextBlock from "../../components/organisms/hero-section/HeroTextBlock"
 import AboutTextBlock from '../../components/sections/home/about-section/AboutTextBlock';
 import AboutCardBlock from '../../components/sections/home/about-section/AboutCardBlock';
 import WorkExperienceHighlightsBlock from '../../components/molecules/work-experience-block/WorkExperienceHighlightsBlock';
@@ -19,6 +21,8 @@ import WorkItemsTextBlock from '../../components/organisms/work-items-section/Wo
 import CaseStudyImageBlock from '../../components/organisms/work-items-section/CaseStudyImageBlock';
 
 export const BLOCK_MAP = {
+  heroImage: HeroImageBlock,
+  heroText: HeroTextBlock,
   developerJourneySummary: AboutTextBlock,
   academicJourneySummary: AboutCardBlock,
   workExperienceHighlights: WorkExperienceHighlightsBlock,

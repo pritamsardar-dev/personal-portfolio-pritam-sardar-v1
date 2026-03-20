@@ -4,6 +4,8 @@ import {
 } from "../../../assets/icons/content";
 
 import {
+  CollapseContentRoundedDiagonalIcon,
+  CollapseContentRoundedDiagonalIconType,
   ContactLinkEmailIcon,
   ContactLinkEmailIconType,
   ContactLinkGithubIcon,
@@ -18,10 +20,12 @@ import {
   ContactLinkResumeIconType,
   ContactLinkWhatsappIcon,
   ContactLinkWhatsappIconType,
+  ExpandContentRoundedDiagonalIcon,
+  ExpandContentRoundedDiagonalIconType,
 } from "../../../assets/icons/system";
 
 export const contactSection = {
-  id: "contact-home",
+  id: "contact",
   type: "contact",
   enabled: true,
   order: 6,
@@ -42,12 +46,6 @@ export const contactSection = {
     },
   },
 
-  overview: {
-    variant: "bodyLarge",
-    text:
-      "Open to full-time opportunities where I can design, build, and deliver scalable MERN stack solutions that drive business results.",
-  },
-
   blocks: [
     /* ───────────────────────── CONTACT TEXT BLOCK ───────────────────────── */
     {
@@ -64,7 +62,7 @@ export const contactSection = {
 
         heading: {
           variant: "heading2",
-          text: "Let’s Talk",
+          text: "Connect Directly",
           icon: {
             svg: contactTitleCardblock.svg,
             type: contactTitleCardblock.type,
@@ -74,7 +72,7 @@ export const contactSection = {
         description: {
           variant: "bodyLarge",
           text:
-            "Always glad to connect—feel free to reach out.",
+            "Reach out through your preferred channel—whether it’s email, WhatsApp, or professional networks.",
         },
 
         contactLinks: [
@@ -85,7 +83,9 @@ export const contactSection = {
             label: "+91 99999 99999",
             iconLeft: ContactLinkPhoneIcon,
             iconLeftType: ContactLinkPhoneIconType,
-            onClick: () => {},
+            action: "external",
+            target: "tel:+919999999999",
+            copyMessage: "Phone number copied!"
           },
           {
             id: "contact-email",
@@ -94,54 +94,66 @@ export const contactSection = {
             label: "you@example.com",
             iconLeft: ContactLinkEmailIcon,
             iconLeftType: ContactLinkEmailIconType,
-            onClick: () => {},
+            action: "external",
+            target: "mailto:you@example.com",
+            copyMessage: "Email address copied!"
           },
           {
             id: "contact-whatsapp",
             role: "contact-link",
             variant: "link",
-            label: "Chat on WhatsApp",
+            label: "Chat on WhatsApp ↗",
             iconLeft: ContactLinkWhatsappIcon,
             iconLeftType: ContactLinkWhatsappIconType,
-            onClick: () => {},
+            action: "external",
+            target: "https://wa.me/+917797303740",
+            copyMessage: "WhatsApp link copied!"
           },
           {
             id: "contact-github",
             role: "contact-link",
             variant: "link",
-            label: "GitHub",
+            label: "GitHub ↗",
             iconLeft: ContactLinkGithubIcon,
             iconLeftType: ContactLinkGithubIconType,
-            onClick: () => {},
+            action: "external",
+            target: "https://github.com/yourusername",
+            copyMessage: "GitHub profile link copied!"
           },
           {
             id: "contact-linkedin",
             role: "contact-link",
             variant: "link",
-            label: "LinkedIn",
+            label: "LinkedIn ↗",
             iconLeft: ContactLinkLinkedinIcon,
             iconLeftType: ContactLinkLinkedinIconType,
-            onClick: () => {},
+            action: "external",
+            target: "https://linkedin.com/in/yourusername",
+            copyMessage: "LinkedIn profile link copied!"
           },
           {
             id: "contact-resume",
             role: "contact-link",
             variant: "link",
-            label: "Resume",
+            label: "Resume ↗",
             iconLeft: ContactLinkResumeIcon,
             iconLeftType: ContactLinkResumeIconType,
-            onClick: () => {},
+            action: "download",
+            target: "/assets/resume.pdf",
+            copyMessage: "Resume download link copied!"
           },
           {
             id: "contact-location",
             role: "contact-link",
             variant: "link",
-            label: "Kolkata, India",
+            label: "Kolkata, India ↗",
             iconLeft: ContactLinkLocationIcon,
             iconLeftType: ContactLinkLocationIconType,
-            onClick: () => {},
+            action: "external",
+            target: "https://maps.google.com/?q=Kolkata",
+            copyMessage: "Location map link copied!"
           },
-        ],
+        ]
       },
     },
 
@@ -154,8 +166,25 @@ export const contactSection = {
 
       data: {
         alignment: {
+          heading: "left",
+          body: "left",
           form: "left",
           cta: "left",
+        },
+
+        heading: {
+          variant: "heading2",
+          text: "Send a Message",
+          icon: {
+            svg: contactTitleCardblock.svg,
+            type: contactTitleCardblock.type,
+          },
+        },
+
+        description: {
+          variant: "bodyLarge",
+          text:
+            "Have a project, opportunity, or question? Drop a message and I’ll get back to you soon.",
         },
 
         formFields: [
@@ -164,14 +193,18 @@ export const contactSection = {
             label: "Name",
             placeholder: "Your Name",
             name: "name",
-            maxLength: 50,
           },
           {
             variant: "email",
             label: "Email",
             placeholder: "you@example.com",
             name: "email",
-            maxLength: 50,
+          },
+          {
+            variant: "input",
+            label: "Subject",
+            placeholder: "Your Subject",
+            name: "subject",
           },
           {
             variant: "textarea",
@@ -185,9 +218,67 @@ export const contactSection = {
         submitButton: {
           id: "contact-form-submit",
           role: "primary-action",
+          type: "submit",
           variant: "primary",
-          label: "Send message",
-          onClick: () => {},
+          label: "Send Message",
+        },
+        popupMessages: [
+          {
+            id: "success",
+            role: "success",
+            title: "Message Sent",
+            message: "Thank you for reaching out! If your contact details are valid, I will get back to you as soon as possible.",
+            variant: "success",
+            autoCloseMs: 10000,
+          },
+         {
+          
+            id: "error",
+            role: "error",
+            title: "Submission Error",
+            message: "There was an error sending your request. Please check your details and try again.",
+            variant: "error",
+            autoCloseMs: 5000,
+          },
+        ],
+        altContactButtons: [
+          {
+            id: "contact-whatsapp",
+            label: "WhatsApp",
+            type: "whatsapp",
+            phone: "917908137571",
+            role: "secondary-action",
+            action: "external",
+            variant: "overlay",
+            iconLeft: ContactLinkWhatsappIcon,
+            iconLeftType: ContactLinkWhatsappIconType,
+          },
+          {
+            id: "contact-email",
+            label: "Email",
+            type: "email",
+            email: "you@example.com",
+            action: "external",
+            role: "secondary-action",
+            variant: "overlay",
+            iconLeft: ContactLinkEmailIcon,
+            iconLeftType: ContactLinkEmailIconType,
+          }
+        ],
+        toggleFullFormViewButton: {
+          id: "toggle-form-full-view",
+          type: "button",
+          variant: "iconOnlyCircular",
+          iconLeft: {
+            expand: ExpandContentRoundedDiagonalIcon,
+            collapse: CollapseContentRoundedDiagonalIcon
+          },
+          iconLeftType: {
+            expand: ExpandContentRoundedDiagonalIconType,
+            collapse: CollapseContentRoundedDiagonalIconType
+          },
+          action: "scroll",
+          target: "contact-form-block"
         },
       },
     },

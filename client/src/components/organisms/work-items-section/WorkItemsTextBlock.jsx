@@ -29,12 +29,16 @@ import HorizontalWheelScroll from "../../wrappers/HorizontalWheelScroll";
 import ListContentBlock from "../../molecules/list-content-block/ListContentBlock";
 import BlockRenderer from "../../../renderers/blocks/blockRenderer";
 import { resolveProps } from "../../../utils/resolveProps";
+import { useNavigate, useLocation  } from "react-router-dom";
+import { useCTA } from "../../../hooks/useCTA";
+import { useLinkCTAHandler } from "./utils/useLinkCTAHandler"
 
 const WorkItemsTextBlock = ({
     variant = "expanded", // collapsed / expanded / full
     mode,
     size = "default", // default / compact
-    row, // For work experience data
+    section, // For shared button props
+    row,
     block,
     data, // For project data
     handlers,
@@ -64,6 +68,10 @@ const WorkItemsTextBlock = ({
     const heading = isExperience
     ? metaBlock?.data?.bodyItems?.find(item => item.id === "metaInfo")?.heading
     : data?.heading;
+
+    const subTitle = isExperience
+    ? metaBlock?.data?.bodyItems?.find(item => item.id === "metaInfo")?.body?.labelValueItems.find(item => item?.id === "organization")?.value
+    : data?.subHeading;
     
     const tags = isExperience ? row?.tags : data?.tags;
 
@@ -81,7 +89,7 @@ const WorkItemsTextBlock = ({
         : row?.fullCaseStudy
     : data?.description;
 
-    const ctaProps = isExperience ? row?.ctaProps : data?.ctaProps;
+    const ctaProps = section?.textBlockCtaProps;
     // const ctaExpanded = isExperience ? row?.ctaProps : data?.ctaProps;
     const likeBtn = ctaProps?.find(b => b?.id === "like");
 
@@ -99,10 +107,22 @@ const WorkItemsTextBlock = ({
     const resolvedCtaExpanded = sortedCtaProps.filter(
         item =>
             variant === "full" ?
-            item.id !== "like" &&
-            item.id !== "view-details-toggle" &&
-            item.id !== "case-study-link" 
-            : item.id !== "like"
+                isExperience ? 
+                        item.id !== "like" &&
+                        item.id !== "view-details-toggle" &&
+                        item.id !== "case-study-link" &&
+                        item.id !== "live-demo-link" &&
+                        item.id !== "source-code-link" &&
+                        item.id !== "design-file-link"
+                    : item.id !== "like" &&
+                        item.id !== "view-details-toggle" &&
+                        item.id !== "case-study-link"
+            : isExperience ?
+                    item.id !== "live-demo-link" &&
+                    item.id !== "source-code-link" &&
+                    item.id !== "design-file-link" &&
+                    item.id !== "like"
+                : item.id !== "like"
     );
 
     const isCollapsedMode = variant === "collapsed";
@@ -115,6 +135,27 @@ const WorkItemsTextBlock = ({
     const blockRef = useRef(null);
     const contentRef = useRef(null);
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const query = new URLSearchParams(location.search);
+    const existingSource = query.get("source");
+    const { handleCTA } = useCTA(); 
+
+    const { handleLinkCTA } = useLinkCTAHandler(row);
+
+    const getPageSource = () => {
+        // If source already exists in URL, reuse it
+        if (existingSource) return existingSource;
+
+        // Otherwise detect from pathname
+        const path = location.pathname;
+
+        if (path === "/") return "home";
+        if (path.startsWith("/projects")) return "projects";
+        if (path.startsWith("/case-studies")) return "case-studies";
+
+        return "unknown";
+    };
 
     const resolvedCtaDefault = sortedCtaProps
         .filter(item =>
@@ -238,6 +279,14 @@ const WorkItemsTextBlock = ({
             : item.label?.default;
         }
 
+        if(variant === "expanded" && !isDetailsExpanded && item?.id === "view-details-toggle") {
+            return `${item?.label?.collapsed || item?.label} ↓`
+        }
+
+        if(variant === "collapsed" && item?.id === "view-details-toggle") {
+            return `${item?.label?.collapsed || item?.label} →`
+        }
+
         if (item?.label?.collapsed && item?.label?.expanded) {
             return isDetailsExpanded
             ? item.label?.expanded
@@ -272,9 +321,14 @@ const WorkItemsTextBlock = ({
     };
 
     const resolveButtonAction = (item) => {
-        return (e) => {
+        return () => {
             switch (item.id) {
             case "view-details-toggle":
+                if (isCollapsedMode) {
+                    const source = getPageSource();
+                    navigate(`/view-details/${row?.id}?source=${source}`);
+                    return;
+                }
                 if (!isCollapsedMode) {
                 const nextExpanded = !isDetailsExpanded;
                 setIsDetailsExpanded(nextExpanded);
@@ -301,15 +355,20 @@ const WorkItemsTextBlock = ({
                 }
                 break;
 
+            case "case-study-link": {
+                const source = getPageSource();
+                navigate(`/full-case-study/${row?.id}?source=${source}`);
+                break;
+            }
+                
             case "like":
                 setIsLiked(t => !t);
                 break;
 
             default:
-                break;
+                handleLinkCTA(item);
+                // handleCTA(item, resolveCtaTarget(row, item?.id));
             }
-
-            item.onClick?.(e);
         };
     };
 
@@ -334,6 +393,7 @@ const WorkItemsTextBlock = ({
                         size={size}
                         imageid={item.imageId}
                         row={row}
+                        section={section}
                         block={imageBlock}
                         handlers={handlers}
                     />
@@ -358,12 +418,23 @@ const WorkItemsTextBlock = ({
                 {/* Project heading container */}
                 {(heading || likeBtn && isDetailsExpanded) && 
                     <div className={clsx(headerBlockClasses)}>
-                        {heading && 
-                            <Text 
+                        {heading &&
+                            <div className={clsx(textBlockHeading3ToBody.default,
+                            "flex flex-col")}>
+                                <Text 
                                 {...heading} 
                                 size={size}
                                 className={isCollapsedMode && "!line-clamp-2"}
                             />
+                                {variant === "full" && subTitle && 
+                                    <Button 
+                                        variant={subTitle?.variant}
+                                        label={subTitle?.label}
+                                        className="w-fit"
+                                        onClick={() => handleCTA(subTitle)}
+                                    />
+                                }
+                            </div>
                         }
 
                         {/* Like button Expanded*/}
@@ -384,6 +455,7 @@ const WorkItemsTextBlock = ({
                             />
                         }
                     </div>}
+                    
 
                 <div className={clsx(textBlockToBlockClasses)}>
 
@@ -414,6 +486,7 @@ const WorkItemsTextBlock = ({
                                 size={size}
                                 imageid={imageBlock?.data?.coverImageId}
                                 row={row}
+                                section={section}
                                 block={imageBlock}
                                 handlers={handlers}
                             />}
@@ -504,6 +577,7 @@ const WorkItemsTextBlock = ({
                                     variant="caseStudy"
                                     key={block.id}
                                     block={block}
+                                    section={section}
                                 />
                             ))}
                     </div>
@@ -523,7 +597,7 @@ const WorkItemsTextBlock = ({
                                 onClick={resolveButtonAction(item)}
                             />
                         ))}
-                    </div>}
+                    </div>}                                
             </div>
         </div>
     );

@@ -11,26 +11,31 @@
  *   - Safe for reuse across pages and layouts
  */
 
-import React from "react";
+import { useState, useEffect, useRef } from "react";
 import clsx from "clsx";
 import Text from "../../atoms/text/Text";
 import Button from "../../atoms/button/Button";
+import { useCTA } from "../../../hooks/useCTA";
+import { CopyClipboardIcon, CopyClipboardIconType } from "../../../assets/icons/system";
 
 const outerContainerClasses = `
     relative  flex flex-col
     w-full
-    sm:max-w-(--size-block-wrapper-tablet-max-width)
-    lg:max-w-(--size-block-wrapper-desktop-max-width)
+    sm:max-w-(--size-block-wrapper-single-tablet-max-width)
+    lg:max-w-(--size-block-wrapper-single-desktop-max-width)
     px-(--spacing-text-container-mobile-padding-x)
     sm:px-(--spacing-text-container-tablet-padding-x)
     lg:px-(--spacing-text-container-desktop-padding-x)
+    gap-(--spacing-block-block-mobile-gap)
+    sm:gap-(--spacing-block-block-tablet-gap)
+    lg:gap-(--spacing-block-block-desktop-gap)
 `;
 
-const heading2ToHeading3Classes = `
+const heading2ToBodyClasses = `
     w-full flex flex-col 
-    gap-(--spacing-heading-2-heading-3-mobile-gap)
-    sm:gap-(--spacing-heading-2-heading-3-tablet-gap)
-    lg:gap-(--spacing-heading-2-heading-3-desktop-gap)
+    gap-(--spacing-heading-3-body-mobile-gap)
+    sm:gap-(--spacing-heading-3-body-tablet-gap)
+    lg:gap-(--spacing-heading-3-body-desktop-gap)
 `;
 
 const itemToItemClasses = `
@@ -41,7 +46,7 @@ const itemToItemClasses = `
 `;
 
 const listItemClasses = `
-    w-full flex flex-col items-start
+    relative flex items-center gap-2 
     gap-(--spacing-list-item-mobile-gap)
     sm:gap-(--spacing-list-item-tablet-gap)
     lg:gap-(--spacing-list-item-desktop-gap)
@@ -55,46 +60,129 @@ const ContactTextBlock = ({
     const {
         id,
         enabled = true,
+        alignment,
         heading, 
         description, 
         contactLinks
     } = data;
 
+    const blockRef = useRef(null);
+    const [isInView, setIsInView] = useState(false);
+
+    console.log(isInView)
+
+    useEffect(() => {
+        if (!blockRef.current) return;
+
+        const observer = new IntersectionObserver(
+        ([entry]) => {
+            if (entry.intersectionRatio >= 0.50) {
+            setIsInView(true);
+
+            // Reset after 3000ms
+            setTimeout(() => setIsInView(false), 3000);
+            }
+        },
+        { threshold: [0.50] }
+        );
+
+        observer.observe(blockRef.current);
+
+        return () => observer.disconnect();
+    }, []);
+
+    const { handleCTA } = useCTA();
+
+    const [copiedItems, setCopiedItems] = useState({});
+
+    const handleCopy = async (item) => {
+        // Use label for phone/email, target for others
+        const textToCopy =
+            item.id === "contact-phone" || item.id === "contact-email"
+                ? item.label
+                : item.target;
+
+        if (!textToCopy) return;
+
+        try {
+            await navigator.clipboard.writeText(textToCopy);
+
+            setCopiedItems((prev) => ({ ...prev, [item.id]: true }));
+
+            setTimeout(() => {
+                setCopiedItems((prev) => ({ ...prev, [item.id]: false }));
+            }, 1200);
+
+        } catch {
+            alert("Copy failed. Please copy manually.");
+        }
+    };
+
     if (!enabled) return null;
-    
+
     return (
-        <div 
+        <div
+            ref={blockRef}
             id={id}
-            className={clsx(outerContainerClasses)}
-        >
-            <div
-                className={clsx(
-                    heading2ToHeading3Classes,
-                    className
-                )}
-                {...props}
-            >   
+            className={clsx(
+                outerContainerClasses,
+                className
+            )}
+            {...props}
+        > 
+            <div className={heading2ToBodyClasses}>
                 {/* Block title */}
-                {heading && <Text {...heading} />}
-
-                {(Array.isArray(contactLinks) && contactLinks.length > 0 || description) &&
-                    <div className={clsx(itemToItemClasses)}>
-
-                        {/* Block desciptions */}
-                        {description && <Text {...description} />}
-
-                        {/* Contact list items */}
-                        {<div className={clsx(listItemClasses)}>
-                            {contactLinks.map((item) => (
-                                <Button
-                                    key={item.id}
-                                    {...item}
-                                />
-                            ))}
-                        </div>}
-                    </div>
-                }
+                {heading && <Text {...heading} className={`text-${alignment?.heading}`} />}
+                {/* Block desciptions */}
+                {description && <Text {...description} className={`text-${alignment?.body}`} />}
             </div>
+
+            {(Array.isArray(contactLinks) && contactLinks.length > 0 || description) &&
+                <div className={clsx(itemToItemClasses)}>
+                    {contactLinks.map((item) => (
+                        <div key={item.id} className={listItemClasses}>
+                            {/* Main CTA button */}
+                            <Button
+                                variant={item?.variant}
+                                iconLeft={item?.iconLeft}
+                                iconLeftType={item?.iconLeftType}
+                                onClick={() => handleCTA(item)}
+                                className={clsx(
+                                    isInView 
+                                        ? `!decoration-(--color-text-primary) 
+                                        !text-(--color-text-primary)
+                                        transition-all duration-3000 ease-in-out
+                                        `
+                                        : ""
+                                )}
+                            >
+                                <span className="select-text">
+                                    {item?.label}
+                                </span>
+                            </Button>
+
+                            {/* Copy icon / feedback */}
+                            <div className="relative flex items-center transition-all duration-300"
+                            onClick={() => handleCopy(item)}
+                            >
+                                {copiedItems[item.id] ? 
+                                    <Text
+                                        variant="labelDefault"
+                                        text={`✅ ${item?.copyMessage}`} 
+                                    /> 
+
+                                    : <Button
+                                        variant="linkSmall"
+                                        size="compact"
+                                        iconLeft={CopyClipboardIcon}
+                                        iconLeftType={CopyClipboardIconType}
+                                        /> 
+                                }
+                            </div>
+                        </div>
+                        ))}
+                </div>
+            }
         </div>
     );
 };

@@ -54,7 +54,6 @@ import {
 export const workItemsSection = {
   id: "work-items",
   type: "workItems",
-  enabled: true,
   alignment: {
     project: {
       heading: "center",
@@ -133,9 +132,9 @@ export const workItemsSection = {
         name: "choice",
         placeholder: "Select one",
         options: [
-          { value: "option1", label: "Option One" },
-          { value: "option2", label: "Option Two" },
-          { value: "option3", label: "Option Three" },
+          { value: "top", label: "Top" },
+          { value: "newest", label: "Newest" },
+          { value: "popular", label: "Popular" }
         ],
         Icon: DropdownIcon,
         error: "",
@@ -147,167 +146,6 @@ export const workItemsSection = {
           label: "Clear",
           onClick: () => {}
       },
-
-      primaryFiltersProps: [
-        {
-          id: "primary-filter-all",
-          variant: "tag",
-          label: "All",
-          count: 12,
-          onClick: () => {}
-        },
-        {
-          id: "primary-filter-mern",
-          variant: "tag",
-          label: "MERN",
-          count: 5,
-          onClick: () => {}
-        },
-        {
-          id: "primary-filter-frontend",
-          variant: "tag",
-          label: "Frontend",
-          count: 4,
-          onClick: () => {}
-        },
-        {
-          id: "primary-filter-backend",
-          variant: "tag",
-          label: "Backend",
-          count: 3,
-          onClick: () => {}
-        },
-        {
-          id: "primary-filter-full-Stack",
-          variant: "tag",
-          label: "Full-Stack",
-          count: 5,
-          onClick: () => {}
-        },
-      ],
-
-      secondaryFiltersProps: [
-        {
-          id: "secondary-filter-ai-ml",
-          variant: "tag",
-          label: "AI/ML",
-          count: 2,
-          onClick: () => {}
-        },
-        {
-          id: "secondary-filter-data apps",
-          variant: "tag",
-          label: "Data Apps",
-          count: 3,
-          onClick: () => {}
-        },
-        {
-          id: "secondary-filter-api-dev",
-          variant: "tag",
-          label: "API Dev",
-          count: 4,
-          onClick: () => {}
-        },
-        {
-          id: "secondary-filter-real-time",
-          variant: "tag",
-          label: "Real-Time",
-          count: 3,
-          onClick: () => {}
-        }
-      ],
-    },
-
-    experience: {
-      selectProps: {
-        variant: "selectCustom",
-        label: "",
-        name: "choice",
-        placeholder: "Select one",
-        options: [
-          { value: "option1", label: "Option One" },
-          { value: "option2", label: "Option Two" },
-          { value: "option3", label: "Option Three" },
-        ],
-        Icon: DropdownIcon,
-        error: "",
-      },
-
-      clearButtonProps: {
-        id: "action-clear",
-        variant: "tag",
-        label: "Clear",
-        onClick: () => {}
-      },
-
-      primaryFiltersProps: [
-        {
-          id: "primary-filter-all",
-          variant: "tag",
-          label: "All",
-          count: 12,
-          onClick: () => {}
-        },
-        {
-          id: "primary-filter-ai",
-          variant: "tag",
-          label: "AI",
-          count: 1,
-          onClick: () => {}
-        },
-        {
-          id: "primary-filter-frontend",
-          variant: "tag",
-          label: "Frontend",
-          count: 4,
-          onClick: () => {}
-        },
-        {
-          id: "primary-filter-backend",
-          variant: "tag",
-          label: "Backend",
-          count: 1,
-          onClick: () => {}
-        },
-        {
-          id: "primary-filter-full-Stack",
-          variant: "tag",
-          label: "Full-Stack",
-          count: 1,
-          onClick: () => {}
-        },
-      ],
-
-      secondaryFiltersProps: [
-        {
-          id: "secondary-filter-internship",
-          variant: "tag",
-          label: "Internship",
-          count: 0,
-          onClick: () => {}
-        },
-        {
-          id: "secondary-filter-freelance",
-          variant: "tag",
-          label: "Freelance",
-          count: 1,
-          onClick: () => {}
-        },
-        {
-          id: "secondary-filter-full-time",
-          variant: "tag",
-          label: "Fulltime",
-          count: 0,
-          onClick: () => {}
-        },
-        {
-          id: "secondary-filter-open-source",
-          variant: "tag",
-          label: "Open-source",
-          count: 0,
-          onClick: () => {}
-        }
-      ],
     },
 
     caseStudy: {
@@ -317,9 +155,9 @@ export const workItemsSection = {
         name: "choice",
         placeholder: "Select one",
         options: [
-          { value: "option1", label: "Option One" },
-          { value: "option2", label: "Option Two" },
-          { value: "option3", label: "Option Three" },
+          { value: "top", label: "Top" },
+          { value: "newest", label: "Newest" },
+          { value: "popular", label: "Popular" }
         ],
         Icon: DropdownIcon,
         error: "",
@@ -331,107 +169,237 @@ export const workItemsSection = {
           label: "Clear",
           onClick: () => {}
       },
-
-      scopeFiltersProps: [
-        {
-          id: "scope-filter-all",
-          variant: "tag",
-          label: "All",
-          count: 12,
-          onClick: () => {}
-        },
-        {
-          id: "scope-filter-projects",
-          variant: "tag",
-          label: "Projects",
-          count: 5,
-          onClick: () => {}
-        },
-        {
-          id: "scope-filter-work-experience",
-          variant: "tag",
-          label: "Work Experience",
-          count: 4,
-          onClick: () => {}
-        },
-      ],
-
-      primaryFiltersProps: [
-        {
-          id: "primary-filter-all",
-          variant: "tag",
-          label: "All",
-          count: 12,
-          onClick: () => {}
-        },
-        {
-          id: "primary-filter-mern",
-          variant: "tag",
-          label: "MERN",
-          count: 5,
-          onClick: () => {}
-        },
-        {
-          id: "primary-filter-frontend",
-          variant: "tag",
-          label: "Frontend",
-          count: 4,
-          onClick: () => {}
-        },
-        {
-          id: "primary-filter-backend",
-          variant: "tag",
-          label: "Backend",
-          count: 3,
-          onClick: () => {}
-        },
-        {
-          id: "primary-filter-full-Stack",
-          variant: "tag",
-          label: "Full-Stack",
-          count: 5,
-          onClick: () => {}
-        },
-      ],
-
-      secondaryFiltersProps: [
-        {
-          id: "secondary-filter-ai-ml",
-          variant: "tag",
-          label: "AI/ML",
-          count: 2,
-          onClick: () => {}
-        },
-        {
-          id: "secondary-filter-data apps",
-          variant: "tag",
-          label: "Data Apps",
-          count: 3,
-          onClick: () => {}
-        },
-        {
-          id: "secondary-filter-api-dev",
-          variant: "tag",
-          label: "API Dev",
-          count: 4,
-          onClick: () => {}
-        },
-        {
-          id: "secondary-filter-real-time",
-          variant: "tag",
-          label: "Real-Time",
-          count: 3,
-          onClick: () => {}
-        }
-      ],
     },
   },
+
+  workExperienceHighlightsCtaProps: {
+    variant: {
+      home: "secondary",
+      workExperience: "primary",
+    },
+    label: "View Full Case Study →",
+    action: "navigate",
+    target: "/full-case-study",
+  },
   
-  buttonProps: {
+  WorkExperienceHomeCtaProps: {
+    variant: "secondary",
+    label: "View All Work Experience →",
+    action: "navigate",
+    target: "/work-experience",
+  },
+
+  projectsHomeCtaProps: {
     variant: "secondary",
     label: "View All Projects →",
-    onClick: () => {},
+    action: "navigate",
+    target: "/projects",
   },
+
+  carouselBlockButtonProps: [
+    {
+      id: "arrow-left",
+      role: "navigation",
+      variant: "iconOnlyCircularOverlay",
+      iconLeft: ArrowLeftIcon,
+    },
+    {
+      id: "arrow-right",
+      role: "navigation",
+      variant: "iconOnlyCircularOverlay",
+      iconLeft: ArrowRightIcon,
+    },
+    {
+      id: "play",
+      role: "utility",
+      variant: "iconOnlyCircularOverlay",
+      iconLeft: PlayFilledIcon,
+    },
+    {
+      id: "pause",
+      role: "utility",
+      variant: "iconOnlyCircularOverlay",
+      iconLeft: PauseFilledIcon,
+    },
+    {
+      id: "fullscreen",
+      role: "utility",
+      variant: "iconOnlyRectangularOverlay",
+      iconLeft: FullscreenIcon,
+    },
+    {
+      id: "close-fullscreen",
+      role: "utility",
+      variant: "iconOnlyRectangularOverlay",
+      iconLeft: OverlayCloseIcon,
+    },
+    {
+      id: "live-demo-link",
+      order: 1,
+      role: "cta",
+      variant: "overlayDefault",
+      label: "Live Demo",
+      iconLeft: OverlayPlayIcon,
+      action: "external",
+    },
+    {
+      id: "source-code-link",
+      order: 1,
+      role: "cta",
+      variant: "overlayDefault",
+      label: "Source Code",
+      iconLeft: OverlayGitIcon,
+      action: "external",
+    },
+    {
+      id: "design-file-link",
+      order: 3,
+      role: "cta",
+      variant: "overlayDefault",
+      label: "Design File",
+      iconLeft: OverlayFigmaIcon,
+      action: "external",
+    },
+  ],
+
+  textBlockCtaProps: [
+    {
+      id: "view-details-toggle",
+      order: {
+        project: {
+          collapsed: 1,
+          expanded: 5,
+        },
+        caseStudy: {
+          collapsed: 2,
+          expanded: 5,
+        },
+      },
+      role: "toggle",
+      variant: {
+        project: {
+          collapsed: "primary",
+          expanded: "secondary",
+        },
+        caseStudy: "secondary",
+      },
+      label: {
+        project: {
+          collapsed: "View details",
+          expanded: "Show less ↑",
+        },
+        caseStudy: {
+          collapsed: "Preview",
+          expanded: "Show less ↑",
+        },
+      },
+    },
+    {
+      id: "case-study-link",
+      order: {
+        project: {
+          collapsed: 2,
+          expanded: 4,
+        },
+        caseStudy: 1,
+      },
+      role: "primary-action",
+      variant: {
+        project: "secondary",
+        caseStudy: {
+          collapsed: "primary",
+          expanded: "priamry",
+          full: "primary",
+        },
+      },
+      label: {
+        project: "Full Case Study →",
+        caseStudy: {
+          collapsed: "Read →",
+          expanded: "Full Case Study →",
+        }
+      },
+    },
+    {
+      id: "live-demo-link",
+      order: {
+        project: {
+          expanded: 1,
+        },
+        caseStudy: 2,
+      },
+      role: "primary-action",
+      variant: {
+        project: "primary",
+        caseStudy: {
+          collapsed: "secondary",
+          expanded: "secondary",
+          full: "primary",
+        }
+      },
+      label: "Live demo ↗",
+      action: "external",
+    },
+    {
+      order: {
+        project: {
+          expanded: 2,
+        },
+        caseStudy: 2,
+      },
+      id: "source-code-link",
+      role: "secondary-action",
+      variant: "secondary",
+      label: "Source code ↗",
+      action: "external",
+    },
+    {
+      order: {
+        project: {
+          expanded: 3,
+        },
+        caseStudy: 2,
+      },
+      id: "design-file-link",
+      role: "secondary-action",
+      variant: "secondary",
+      label: "Design file ↗",
+      action: "external",
+    },
+    {
+      id: "like",
+      order: 6,
+      role: "utility",
+      variant: "overlay",
+      iconLeft: {
+        default: HeartReactIcon,
+        active: TagHeartFillIcon,
+      },
+      iconLeftType: {
+        default: HeartReactIconType,
+        active: TagHeartFillIconType,
+      },
+      label: {
+        default: "249",
+        active: "250",
+      },
+    },
+  ],
+
+  relatedWorkItemsCtas: [
+    {
+      id: "load-more",
+      role: "action",
+      variant: "overlay",
+      label: "Load More ↓",
+    },
+    {
+      id: "return-to-source",
+      role: "navigation",
+      variant: "overlay",
+      label: "← Return to Source",
+    },
+  ],
 
   /**
    * Used by:
@@ -464,6 +432,39 @@ export const workItemsSection = {
         { key: "portfolio", label: "Portfolio"},
       ],
       tags: ["MERN", "Backend"],
+      featured: true,
+
+      // linkss: {
+      //   liveDemo: "http://localhost:5173",
+      //   sourceCode: "https://github.com/pritamsardar-dev",
+      //   designFile: "https://www.figma.com"
+      // },
+
+      links: {
+        liveDemo: {
+          url: "",
+          message: {
+            title: "Live Demo Not Available",
+            text: "This project is the portfolio site you are currently viewing."
+          }
+        },
+
+        sourceCode: {
+          url: "https://github.com",
+          message: {
+            title: "Source Code Private",
+            text: "The repository is currently private but can be shared upon request."
+          }
+        },
+
+        designFile: {
+          url: "https://www.figma.com",
+          message: {
+            title: "Design File Not Public",
+            text: "The design file is not publicly available yet."
+          }
+        }
+      },
 
       blocks: [
         /* ────────────────────────
@@ -490,82 +491,6 @@ export const workItemsSection = {
               { id: "slide-7", src: projectsCarouselSampleSlide7, alt: "projectsCarouselSampleSlide7" },
               { id: "slide-8", src: projectsCarouselSampleSlide8, alt: "projectsCarouselSampleSlide8" },
               { id: "slide-9", src: projectsCarouselSampleSlide9, alt: "projectsCarouselSampleSlide9"},
-            ],
-
-            /**
-             * onClick handlers are OPTIONAL
-             * Mode handling is done inside molecule
-             */
-            buttonProps: [
-              {
-                id: "arrow-left",
-                role: "navigation",
-                variant: "iconOnlyCircularOverlay",
-                iconLeft: ArrowLeftIcon,
-                onClick: () => {},
-              },
-              {
-                id: "arrow-right",
-                role: "navigation",
-                variant: "iconOnlyCircularOverlay",
-                iconLeft: ArrowRightIcon,
-                onClick: () => {},
-              },
-              {
-                id: "play",
-                role: "utility",
-                variant: "iconOnlyCircularOverlay",
-                iconLeft: PlayFilledIcon,
-                onClick: () => {},
-              },
-              {
-                id: "pause",
-                role: "utility",
-                variant: "iconOnlyCircularOverlay",
-                iconLeft: PauseFilledIcon,
-                onClick: () => {},
-              },
-              {
-                id: "fullscreen",
-                role: "utility",
-                variant: "iconOnlyRectangularOverlay",
-                iconLeft: FullscreenIcon,
-                onClick: () => {},
-              },
-              {
-                id: "close-fullscreen",
-                role: "utility",
-                variant: "iconOnlyRectangularOverlay",
-                iconLeft: OverlayCloseIcon,
-                onClick: () => {},
-              },
-              {
-                id: "live-demo",
-                order: 1,
-                role: "cta",
-                variant: "overlayDefault",
-                label: "Live Demo",
-                iconLeft: OverlayPlayIcon,
-                onClick: () => {},
-              },
-              {
-                id: "github",
-                order: 1,
-                role: "cta",
-                variant: "overlayDefault",
-                label: "Source Code",
-                iconLeft: OverlayGitIcon,
-                onClick: () => {},
-              },
-              {
-                id: "figma",
-                order: 3,
-                role: "cta",
-                variant: "overlayDefault",
-                label: "Design File",
-                iconLeft: OverlayFigmaIcon,
-                onClick: () => {},
-              },
             ],
           },
         },
@@ -615,137 +540,6 @@ export const workItemsSection = {
               text:
                 "A professional full-stack portfolio designed to showcase my work, optimized for performance, scalability, and an engaging recruiter experience.",
             },
-
-            /**
-             * DEFAULT MODE CTA
-             * Toggle + Redirect + Utility
-             */
-            ctaProps: [
-              {
-                id: "view-details-toggle",
-                order: {
-                  project: {
-                    collapsed: 1,
-                    expanded: 5,
-                  },
-                  caseStudy: {
-                    collapsed: 2,
-                    expanded: 5,
-                  },
-                },
-                role: "toggle",
-                variant: {
-                  project: {
-                    collapsed: "primary",
-                    expanded: "secondary",
-                  },
-                  caseStudy: "secondary",
-                },
-                label: {
-                  project: {
-                    collapsed: "View details",
-                    expanded: "Show less",
-                  },
-                  caseStudy: {
-                    collapsed: "Preview",
-                    expanded: "Show less",
-                  },
-                },
-                onClick: () => {},
-              },
-              {
-                id: "case-study-link",
-                order: {
-                  project: {
-                    collapsed: 2,
-                    expanded: 4,
-                  },
-                  caseStudy: 1,
-                },
-                role: "primary-action",
-                variant: {
-                  project: "secondary",
-                  caseStudy: {
-                    collapsed: "primary",
-                    expanded: "priamry",
-                    full: "primary",
-                  },
-                },
-                label: {
-                  project: "Full Case Study",
-                  caseStudy: {
-                    collapsed: "Read",
-                    expanded: "Full Case Study",
-                  }
-                },
-                onClick: () => {},
-              },
-              {
-                id: "live-demo-link",
-                order: {
-                  project: {
-                    expanded: 1,
-                  },
-                  caseStudy: 2,
-                },
-                role: "primary-action",
-                variant: {
-                  project: "primary",
-                  caseStudy: {
-                    collapsed: "secondary",
-                    expanded: "secondary",
-                    full: "primary",
-                  }
-                },
-                label: "Live demo",
-                onClick: () => {},
-              },
-              {
-                order: {
-                  project: {
-                    expanded: 2,
-                  },
-                  caseStudy: 2,
-                },
-                id: "source-code-link",
-                role: "secondary-action",
-                variant: "secondary",
-                label: "Source code",
-                onClick: () => {},
-              },
-              {
-                order: {
-                  project: {
-                    expanded: 3,
-                  },
-                  caseStudy: 2,
-                },
-                id: "design-file-link",
-                role: "secondary-action",
-                variant: "secondary",
-                label: "Design file",
-                onClick: () => {},
-              },
-              {
-                id: "like",
-                order: 6,
-                role: "utility",
-                variant: "overlay",
-                iconLeft: {
-                  default: HeartReactIcon,
-                  active: TagHeartFillIcon,
-                },
-                iconLeftType: {
-                  default: HeartReactIconType,
-                  active: TagHeartFillIconType,
-                },
-                label: {
-                  default: "249",
-                  active: "250",
-                },
-                onClick: () => {},
-              },
-            ],
 
             description: [
               {
@@ -1280,14 +1074,14 @@ export const workItemsSection = {
       ],
     },
 
-    demoProjectsRow(2, 2),
-    demoProjectsRow(3, 3),
-    demoProjectsRow(4, 4),
-    demoProjectsRow(5, 5),
+    demoProjectsRow(5, 5, true, { key: "react", label: "React" }),
+    demoProjectsRow(3, 3, true, { key: "node", label: "Node.js" }),
+    demoProjectsRow(4, 4, true, { key: "react", label: "React" }),
+    demoProjectsRow(2, 2, false, { key: "express", label: "Express" }),
 
     /* ───────────── ROW 6 ───────────── */
     {
-      id: "tech-nova-solutions",
+      id: "fullstack-developer-technova-solutions",
       enabled: {
         project: false,
         experience: true,
@@ -1328,61 +1122,6 @@ export const workItemsSection = {
           iconLeftType: TagTimeDurationIconType 
         },
         { label: "618", iconLeft: TagEyeIcon, iconLeftType: TagEyeIconType },
-      ],
-
-      ctaProps: [
-        {
-          id: "view-details-toggle",
-          order: {
-            caseStudy: {
-              collapsed: 2,
-              expanded: 5,
-            },
-          },
-          role: "toggle",
-          variant: "secondary",
-          label: {
-            caseStudy: {
-              collapsed: "Preview",
-              expanded: "Show less",
-            },
-          },
-          onClick: () => {},
-        },
-        {
-          id: "case-study-link",
-          order: {
-            caseStudy: 1,
-          },
-          role: "primary-action",
-          variant: "primary",
-          label: {
-            caseStudy: {
-              collapsed: "Read",
-              expanded: "Full Case Study",
-            }
-          },
-          onClick: () => {},
-        },
-        {
-          id: "like",
-          order: 6,
-          role: "utility",
-          variant: "overlay",
-          iconLeft: {
-            default: HeartReactIcon,
-            active: TagHeartFillIcon,
-          },
-          iconLeftType: {
-            default: HeartReactIconType,
-            active: TagHeartFillIconType,
-          },
-          label: {
-            default: "249",
-            active: "250",
-          },
-          onClick: () => {},
-        },
       ],
 
       fullCaseStudy: [
@@ -1720,22 +1459,6 @@ export const workItemsSection = {
               { id: "slide-8", src: projectsCarouselSampleSlide8, alt: "projectsCarouselSampleSlide8" },
               { id: "slide-9", src: projectsCarouselSampleSlide9, alt: "projectsCarouselSampleSlide9"},
             ],
-            buttonProps: [
-              {
-                id: "fullscreen",
-                role: "utility",
-                variant: "iconOnlyRectangularOverlay",
-                iconLeft: FullscreenIcon,
-                onClick: () => {},
-              },
-              {
-                id: "close-fullscreen",
-                role: "utility",
-                variant: "iconOnlyRectangularOverlay",
-                iconLeft: OverlayCloseIcon,
-                onClick: () => {},
-              },
-            ],
           },
         },
 
@@ -1762,7 +1485,7 @@ export const workItemsSection = {
                       full: "heading1Subpage",
                     },
                   },
-                  text: "TechNova Solutions",
+                  text: "Full-stack Developer",
                   icon: {
                     svg: workExperienceSubtitleOfficeBuilding.svg,
                     type: workExperienceSubtitleOfficeBuilding.type,
@@ -1776,6 +1499,19 @@ export const workItemsSection = {
 
                   labelValueItems: [
                     {
+                      id: "organization",
+                      label: { 
+                        variant: "bodyBase", 
+                        modifiers: ["strong"], 
+                        text: "Organization:" },
+                      value: {
+                        variant: "link",
+                        label: "TechNova Solutions ↗",
+                        action: "external",
+                        target: "https://aws.amazon.com/"
+                      },
+                    },
+                    {
                       label: { 
                         variant: "bodyBase", 
                         modifiers: ["strong"], 
@@ -1783,16 +1519,6 @@ export const workItemsSection = {
                       value: {
                         variant: "bodyBase",
                         text: "Bengaluru, India (Hybrid)",
-                      },
-                    },
-                    {
-                      label: { 
-                        variant: "bodyBase", 
-                        modifiers: ["strong"], 
-                        text: "Role:" },
-                      value: {
-                        variant: "bodyBase",
-                        text: "Full-stack Developer",
                       },
                     },
                     {
@@ -1934,13 +1660,6 @@ export const workItemsSection = {
                 },
               },
             ],
-            buttonProps: {
-              variant: {
-                home: "secondary",
-                workExperience: "primary",
-              },
-              label: "View TechNova Case Study →",
-            },
           },
         },
       ],

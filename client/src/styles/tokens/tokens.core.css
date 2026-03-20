@@ -66,6 +66,16 @@
     --color-blue-600: #0366d6;
     --color-blue-300: #8AB4F8;
 
+    /* Green (Success) */
+    --color-green-600: #059669;
+    --color-green-500: #10B981;
+    --color-green-400: #34D399;
+
+    /* Amber (Warning) */
+    --color-amber-600: #D97706;
+    --color-amber-500: #F59E0B;
+    --color-amber-400: #FBBF24;
+
 
     /* Typography */
     /* Font Family */
@@ -180,5 +190,7 @@
     --z-modal: 1300;
     --z-popover: 1400;
     --z-toast: 1500;
+    --z-popup-backdrop: 1600; 
+    --z-popup-content: 1700;  
 }
 

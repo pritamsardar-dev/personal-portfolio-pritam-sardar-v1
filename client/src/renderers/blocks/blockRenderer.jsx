@@ -6,11 +6,13 @@ const BlockRenderer = ({
   mode,
   size,
   imageid,
+  section,
   row, 
   block, 
   ui, 
   handlers,
   state,
+  ...rest
 }) => {
   if (!block || !block.enabled) return null;
 
@@ -34,11 +36,13 @@ const BlockRenderer = ({
         id: block.id,
         enabled: block.enabled,
       }}
+      section={section}
       row={row}
       block={block}
       ui={ui}
       handlers={handlers}
       state={state}
+      {...rest}
     />
   );
 };

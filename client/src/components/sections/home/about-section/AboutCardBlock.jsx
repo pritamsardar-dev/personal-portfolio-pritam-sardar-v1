@@ -24,7 +24,6 @@ const BOTTOM_BUFFER = 8;
 
 const blockContainerClasses = `
   flex flex-col w-full h-auto
-  max-w-(--size-block-wrapper-mobile-max-width)
   sm:max-w-(--size-block-wrapper-tablet-max-width)
   lg:max-w-(--size-block-wrapper-desktop-max-width)
   gap-(--spacing-heading-2-heading-3-mobile-gap)

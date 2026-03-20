@@ -5,7 +5,7 @@ html.dark {
   --color-navigation-text-active: var(--color-indigo-300);
 
   /* Navigation - Mobile Panel */
-  --color-navigation-panel-mobile-background: var(--color-gray-800);
+  --color-navigation-panel-mobile-background: var(--color-zinc-700);
 
   /* Global Text Roles */
   --color-text-primary: var(--color-violet-400);
@@ -100,6 +100,11 @@ html.dark {
 
   /* Tag Icon */
   --color-tag-icon-defualt: color-mix(in srgb, var(--color-base-white) 80%, transparent);
+
+  /* Icon feedback for Popup */
+  --color-feedback-success-icon: var(--color-green-400);
+  --color-feedback-warning-icon: var(--color-amber-400);
+  --color-feedback-error-icon: var(--color-red-400);
 
   /* Card Container */
   --color-card-container-background: color-mix(in srgb, var( --color-zinc-700) 6%, transparent);

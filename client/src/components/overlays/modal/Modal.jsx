@@ -14,13 +14,13 @@
  *  - Content-agnostic: renders children without mutation
  */
 
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 
 const MODAL_VARIANTS = {
   fullscreen: {
-    role: "dialog",
+    role: "fullscreen",
     backdrop: false,
     esc: true,
     scrollLock: true,
@@ -36,17 +36,15 @@ const MODAL_VARIANTS = {
     scrollLock: true,
     container: `
     fixed
-    top-1/2
+    top-[10%]
     left-1/2
-    z-(--z-modal)
+    z-(--z-popup-content)
     max-w-lg
     w-full
-    -translate-x-1/2
-    -translate-y-1/2
   `,
   },
   panel: {
-    role: "dialog",
+    role: "panel",
     backdrop: false,
     esc: true,
     scrollLock: false,
@@ -59,6 +57,9 @@ const MODAL_VARIANTS = {
   },
 };
 
+// global modalstack
+let modalStack = [];
+
 const Modal = ({
   variant = "dialog",
   open,
@@ -69,33 +70,97 @@ const Modal = ({
   children,
   className,
 }) => {
+
+  const [isMounted, setIsMounted] = useState(open);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const closeTimerRef = useRef(null);
+
   const config = MODAL_VARIANTS[variant];
+
+  
 
   // ESC handling
   useEffect(() => {
-    if (!open || !config.esc) return;
+    if (!open) return;
 
-    const handler = (e) => {
-      if (e.key === "Escape") onClose?.();
+    // Push this modal onto the stack
+    modalStack.push(variant);
+
+    const handleEsc = (e) => {
+      if (e.key !== "Escape") return;
+
+      // Only topmost modal reacts
+      if (modalStack[modalStack.length - 1] !== variant) return;
+
+      e.stopPropagation();
+      onClose?.();
     };
 
-    document.addEventListener("keydown", handler);
-    return () => document.removeEventListener("keydown", handler);
-  }, [open, onClose, config.esc]);
+    document.addEventListener("keydown", handleEsc);
+
+    return () => {
+      document.removeEventListener("keydown", handleEsc);
+
+      // Remove only the topmost instance of this modal
+      if (modalStack[modalStack.length - 1] === variant) {
+        modalStack.pop();
+      } else {
+        // fallback: remove any leftover (rare)
+        const idx = modalStack.lastIndexOf(variant);
+        if (idx >= 0) modalStack.splice(idx, 1);
+      }
+    };
+  }, [open, variant, onClose]);
 
   // Scroll lock
   useEffect(() => {
     if (!open || !config.scrollLock) return;
 
-    const prev = document.body.style.overflow;
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+
+    const prevOverflow = document.body.style.overflow;
+    const prevPadding = document.body.style.paddingRight;
+
     document.body.style.overflow = "hidden";
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
 
     return () => {
-      document.body.style.overflow = prev;
+      document.body.style.overflow = prevOverflow;
+      document.body.style.paddingRight = prevPadding;
     };
   }, [open, config.scrollLock]);
 
-  if (!open) return null;
+  useEffect(() => {
+
+    if (open) {
+
+      requestAnimationFrame(() => setIsMounted(true));
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsVisible(true);
+        });
+      });
+
+    } else {
+
+      requestAnimationFrame(() => setIsVisible(false));
+
+      if (variant === "dialog") {
+
+        closeTimerRef.current = setTimeout(() => {
+          setIsMounted(false);
+          onExited?.();
+        }, 500); // match animation
+
+      }
+    }
+    return () => clearTimeout(closeTimerRef.current);
+  }, [open, variant, onExited]);
+
+  if (!isMounted) return null;
 
   // Modal Animations
   let scale = 1;
@@ -104,38 +169,75 @@ const Modal = ({
     scale = originRect.width / window.innerWidth;
   }
 
-  const modalStyle = originRect
-    ? {
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100dvw",
-        height: "100dvh",
-        transform: isFullscreen
-          ? "translate(0px, 0px) scale(1)"
-          : `translate(${originRect.left}px, ${originRect.top}px) scale(${scale})`,
-        transformOrigin: "top left",
-        willChange: "transform, opacity",
-        transition:
-          "transform 520ms cubic-bezier(0.4,0,0.2,1), opacity 180ms ease-out",
-        opacity: isFullscreen ? 1 : 0.96,
-        backfaceVisibility: "hidden",
-        WebkitBackfaceVisibility: "hidden",
-        transformStyle: "preserve-3d",
-      }
-    : {};
+  const modalStyle =
+    variant === "fullscreen" && originRect
+      ? {
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100dvw",
+          height: "100dvh",
 
+          transform: isFullscreen
+            ? "translate(0px, 0px) scale(1)"
+            : `translate(${originRect.left}px, ${originRect.top}px) scale(${scale})`,
+
+          transformOrigin: "top left",
+
+          willChange: "transform, opacity",
+
+          transition:
+            "transform 520ms cubic-bezier(0.4,0,0.2,1), opacity 180ms ease-out",
+
+          opacity: isFullscreen ? 1 : 0.96,
+
+          backfaceVisibility: "hidden",
+          WebkitBackfaceVisibility: "hidden",
+          transformStyle: "preserve-3d",
+      }
+
+      : variant === "dialog"
+      ? {
+          transform: isVisible
+            ? "translate(-50%, 0px) scale(1)"
+            : "translate(-50%, 0px) scale(0.06)",
+
+          opacity: isVisible ? 1 : 0,
+
+          transformOrigin: "center center",
+
+          willChange: "transform, opacity",
+
+          transition: isVisible
+            ? `
+                transform 480ms cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 220ms ease-out
+              `
+            : `
+                transform 280ms cubic-bezier(0.4, 0, 1, 1),
+                opacity 180ms ease-in
+              `,
+
+          backfaceVisibility: "hidden",
+          WebkitBackfaceVisibility: "hidden",
+          transformStyle: "preserve-3d",
+      }
+      : {};
+
+  
   return createPortal(
     <>
       {/* Backdrop */}
       {config.backdrop && (
         <div
           className={clsx(
-            `
-            u-modal-backdrop-fullscreen
+            config?.role === "dialog" && clsx(
+              "u-modal-backdrop-dialog transition-opacity duration-300 !z-(--z-popup-backdrop)",
+              isVisible ? "opacity-100" : "opacity-0"
+            ),
+            config?.role === "fullscreen" && `u-modal-backdrop-fullscreen
             transition-opacity
-            duration-200
-          `
+            duration-200 ` 
           )}
           onClick={onClose}
         />
@@ -150,8 +252,15 @@ const Modal = ({
         
         onTransitionEnd={(e) => {
           if (e.target !== e.currentTarget) return;
-          if (!isFullscreen) onExited?.();
+
+          if (variant === "dialog") return;
+
+          if (variant === "fullscreen" && !isFullscreen) {
+            setIsMounted(false);
+            onExited?.();
+          }
         }}
+        tabIndex={-1}
       >
         {children}
       </div>

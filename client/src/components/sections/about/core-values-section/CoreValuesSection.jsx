@@ -20,9 +20,12 @@ import BlockRenderer from "../../../../renderers/blocks/blockRenderer";
 const sectionContainerClasses = `
   flex flex-col w-full
 
-  py-(--spacing-section-wrapper-mobile-padding-y)
-  sm:py-(--spacing-section-wrapper-tablet-padding-y)
-  lg:py-(--spacing-section-wrapper-desktop-padding-y)
+  sm:max-w-(--size-section-wrapper-tablet-max-width)
+  lg:max-w-(--size-section-wrapper-desktop-max-width)
+
+  px-(--spacing-section-wrapper-mobile-padding-x)
+  sm:px-(--spacing-section-wrapper-tablet-padding-x)
+  lg:px-(--spacing-section-wrapper-desktop-padding-x)
 
   gap-(--spacing-section-wrapper-mobile-gap)
   sm:gap-(--spacing-section-wrapper-tablet-gap)
@@ -55,13 +58,10 @@ const CoreValuesSection = ({
 }) => {
   const {
     id,
-    enabled = true,
     heading,
     blocks = [],
     alignment = { heading: "center"},
   } = data;
-
-  if (!enabled) return null;
 
   return (
     <section

@@ -19,6 +19,7 @@ import clsx from "clsx";
 import Text from "../../../atoms/text/Text";
 import Button from "../../../atoms/button/Button";
 import { resolveProps } from "../../../../utils/resolveProps";
+import { useCTA } from "../../../../hooks/useCTA";
 
 const blockContainer = {
   base: `
@@ -85,6 +86,9 @@ const ValidationCtaBlock = ({
   className,
   ...props
 }) => {
+
+  const { handleCTA } = useCTA();
+  
   const resolvedData = resolveProps(data, variant);
   const {
     id,
@@ -146,7 +150,9 @@ const ValidationCtaBlock = ({
                         {item.ctaButtons.map((button, index) => (
                             <Button
                               key={index}
-                              {...button}
+                              variant={button.variant}
+                              label={button.label}
+                              onClick={() => handleCTA(button)}
                             />
                         ))}
                     </div>

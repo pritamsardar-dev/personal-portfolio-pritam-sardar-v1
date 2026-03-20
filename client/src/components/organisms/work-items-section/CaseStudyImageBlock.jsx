@@ -27,6 +27,7 @@ const CaseStudyImageBlock = ({
   size = "default", // default / compact
   imageid,
   data,
+  section,
   block,
   handlers,
   state,
@@ -35,12 +36,13 @@ const CaseStudyImageBlock = ({
     id,
     enabled = true,
     images,
-    buttonProps,
   } = data;
 
+  const buttonProps = section?.carouselBlockButtonProps;
+
   const image = images.find(img => img?.id === imageid);
-  const fullscreenBtn = buttonProps.find(b => b.id === "fullscreen");
-  const fullscreenCloseBtn = buttonProps.find(b => b.id === "close-fullscreen");
+  const fullscreenBtn = buttonProps?.find(b => b.id === "fullscreen");
+  const fullscreenCloseBtn = buttonProps?.find(b => b.id === "close-fullscreen");
 
   const blockRef = useRef(null);
   const isCompact = size === "compact";
@@ -77,11 +79,12 @@ const CaseStudyImageBlock = ({
         handlers?.onRequestFullscreen?.({
             variant,
             imageid,
+            section,
             block, 
             originRect: rect,
         });
     }
-  }, [handlers, variant, imageid, block, isFullScreenMode]);
+  }, [handlers, variant, imageid, section, block, isFullScreenMode]);
 
   if (!enabled || !image?.src) return null;
 

@@ -30,7 +30,8 @@ export const skillsSection = {
 
   alignment: {
     heading: "center",
-    body: "center"
+    body: "center",
+    cta: "center",
   },
   heading: {
     variant: {
@@ -84,72 +85,10 @@ export const skillsSection = {
   buttonProps: {
     variant: "secondary",
     label: "More About My Skills →",
-    onClick: () => {},
+    action: "navigate",
+    target: "/skills",
   },
-  filters: {
-    primaryFiltersProps: [
-      {
-        id: "primary-filter-all",
-        variant: "tag",
-        label: "All",
-        onClick: () => {}
-      },
-      {
-        id: "primary-filter-core-mern",
-        variant: "tag",
-        label: "Core MERN",
-        onClick: () => {}
-      },
-      {
-        id: "primary-filter-frontend",
-        variant: "tag",
-        label: "Frontend",
-        onClick: () => {}
-      },
-      {
-        id: "primary-filter-backend",
-        variant: "tag",
-        label: "Backend",
-        onClick: () => {}
-      },
-      {
-        id: "primary-filter-database",
-        variant: "tag",
-        label: "Database",
-        onClick: () => {}
-      },
-      {
-        id: "primary-filter-dev-and-testing",
-        variant: "tag",
-        label: "Dev & Testing",
-        onClick: () => {}
-      },
-      {
-        id: "primary-filter-dta-and-programming",
-        variant: "tag",
-        label: "Dsa & Programming",
-        onClick: () => {}
-      },
-      {
-        id: "primary-filter-ui-ux",
-        variant: "tag",
-        label: "UI/UX",
-        onClick: () => {}
-      },
-      {
-        id: "primary-filter-workflow-and-soft-skills",
-        variant: "tag",
-        label: "Workflow & Soft Skills",
-        onClick: () => {}
-      },
-      {
-        id: "primary-filter-proof-hightlights",
-        variant: "tag",
-        label: "Proof / Highlights",
-        onClick: () => {}
-      },
-    ],
-  },
+  
   atAGlance: {
     id: "at-a-glance",
     enabled: true,
@@ -1289,23 +1228,33 @@ export const skillsSection = {
                 ctaButtons: [
                   {
                     variant: "primary",
-                    label: "View Projects",
-                    onClick: () => {},
+                    label: "View Projects →",
+                    action: "navigate",
+                    target: "/projects",
                   },
                   {
                     variant: "secondary",
-                    label: "GitHub Repos",
-                    onClick: () => {},
+                    label: "GitHub Repos ↗",
+                    action: "external",
+                    target: "https://github.com/pritamsardar-dev",
                   },
                   {
                     variant: "secondary",
-                    label: "Download Resume",
-                    onClick: () => {},
+                    label: "LeetCode Profile ↗",
+                    action: "external",
+                    target: "https://leetcode.com/u/pritamsardardev",
                   },
                   {
                     variant: "secondary",
-                    label: "Contact Me",
-                    onClick: () => {},
+                    label: "View Resume ↗",
+                    action: "download",
+                    target: "/resume/pritaм-resume.pdf"
+                  },
+                  {
+                    variant: "secondary",
+                    label: "Contact Me →",
+                    action: "navigate",
+                    target: "/contact",
                   },
                 ]
 

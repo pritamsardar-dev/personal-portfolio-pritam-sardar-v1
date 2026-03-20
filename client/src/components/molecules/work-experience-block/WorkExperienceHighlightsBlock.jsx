@@ -16,6 +16,7 @@ import clsx from "clsx";
 import Text from "../../atoms/text/Text";
 import Button from "../../atoms/button/Button";
 import ListContentBlock from "../../molecules/list-content-block/ListContentBlock";
+import { useCTA } from "../../../hooks/useCTA";
 
 const blockContainer = {
   base: `
@@ -70,6 +71,12 @@ const bodyItemContainer = {
   `
 };
 
+const ctaClass = `
+    px-(--spacing-text-container-mobile-padding-x)
+    sm:px-(--spacing-text-container-tablet-padding-x)
+    lg:px-(--spacing-text-container-desktop-padding-x)
+  `;
+
 const alignmentMap = {
   left: "text-left",
   center: "text-center",
@@ -78,7 +85,9 @@ const alignmentMap = {
 
 const WorkExperienceHighlightsBlock = ({ 
   variant = "home", // home / workExperince / caseStudy
-  data = {}, 
+  data = {},
+  row, 
+  section,
   className, 
   ...props 
 }) => {
@@ -87,14 +96,17 @@ const WorkExperienceHighlightsBlock = ({
     enabled = true,
     heading,
     bodyItems = [],
-    buttonProps,
     alignment = {
       heading: "left",
       body: "left",
     },
   } = data;
 
+  const { handleCTA } = useCTA();
+
   if (!enabled) return null;
+
+  const buttonProps = section?.workExperienceHighlightsCtaProps;
 
   const isCaseStudy = variant === "caseStudy";
 
@@ -153,8 +165,12 @@ const WorkExperienceHighlightsBlock = ({
               ))}
 
             {buttonProps && !isCaseStudy && (
-              <div>
-                <Button {...buttonProps} />
+              <div className={ctaClass}>
+                <Button
+                  variant={buttonProps.variant}
+                  label={buttonProps.label}
+                  onClick={() => handleCTA(buttonProps, row?.id)}
+                />
               </div>
             )}
           </div>

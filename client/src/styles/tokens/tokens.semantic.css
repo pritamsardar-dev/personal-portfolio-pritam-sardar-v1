@@ -14,7 +14,7 @@
     --color-text-body: var(--color-neutral-600);
 
     /* Card Wrapper */
-    --color-card-wrapper-fill: var(--color-base-white);
+    --color-card-wrapper-fill: color-mix(in srgb, var(--color-base-white) 12%, transparent);
     --color-card-wrapper-stroke: var(--color-gray-200);
 
     /* Icon Button Overlay */
@@ -126,6 +126,11 @@
 
     /* Tag Icon */
     --color-tag-icon-defualt: color-mix(in srgb, var(--color-base-black) 60%, transparent);
+
+    /* Icon feedback for Popup */
+    --color-feedback-success-icon: var(--color-green-600);
+    --color-feedback-warning-icon: var(--color-amber-600);
+    --color-feedback-error-icon: var(--color-red-600);
 
     /* Card Container */
     --color-card-container-background: var(--color-base-white);
@@ -332,9 +337,9 @@
 
     /* Navigation Header */
     --size-navigation-header-desktop-width: 1440px;
-    --size-navigation-header-desktop-height: 80px;
+    --size-navigation-header-desktop-height: 72px;
     --size-navigation-header-tablet-width: 1024px;
-    --size-navigation-header-tablet-height: 72px;
+    --size-navigation-header-tablet-height: 70px;
     --size-navigation-header-mobile-width: 390px;
     --size-navigation-header-mobile-height: 64px;
 
@@ -370,6 +375,11 @@
     --size-icon-button-toggle-knob-tablet-diameter: 28px;
     --size-icon-button-toggle-knob-mobile-diameter: 24px;
 
+    /* Icon Feedback for Popup  */
+    --size-feedback-icon-diameter-desktop: 72px;
+    --size-feedback-icon-diameter-tablet: 64px;
+    --size-feedback-icon-diameter-mobile: 56px;
+    
     /* Carousel Dot */
     --size-carousel-dot-all-diameter: 10px;
 
@@ -390,6 +400,11 @@
     --size-form-field-expandable-desktop-max-height: 256px;
     --size-form-field-expandable-tablet-max-height: 216px;
     --size-form-field-expandable-mobile-max-height: 180px;
+
+    /* Form Field Select (Filter Sort) */
+    --size-form-field-select-desktop-min-width: 140px;
+    --size-form-field-select-tablet-min-width: 130px;
+    --size-form-field-select-mobile-min-width: 120px;
 
     /* Tag Static */
     --size-tag-static-desktop-height: 32px;
@@ -471,6 +486,9 @@
     --size-icon-button-element-large-desktop-diameter: 20px;
     --size-icon-button-element-large-tablet-diameter: 18px;
     --size-icon-button-element-large-mobile-diameter: 16px;
+    --size-icon-button-element-small-desktop-diameter: 16px;
+    --size-icon-button-element-small-tablet-diameter: 15px;
+    --size-icon-button-element-small-mobile-diameter: 14px;
     --size-icon-only-circular-button-element-large-desktop-diameter: 28px;
     --size-icon-only-circular-button-element-large-tablet-diameter: 26px;
     --size-icon-only-circular-button-element-large-mobile-diameter: 24px;
@@ -492,6 +510,24 @@
     --size-image-tablet-max-width: 400px;
     --size-image-mobile-max-width: 300px;
 
+    /* Logo Size */
+    --size-logo-header-desktop-width: 230px;
+    --size-logo-header-tablet-width: 220px;
+    --size-logo-header-mobile-width: 200px;
+    --size-logo-footer-desktop-width: 200px;
+    --size-logo-footer-tablet-width: 190px;
+    --size-logo-footer-mobile-width: 180px;
+
+    /* Popup Container Size */
+    --size-popup-container-mobile-max-width: 90dvw;
+    --size-popup-container-tablet-max-width: 520px;
+    --size-popup-container-desktop-max-width: 640px;
+
+    /* Loader Spinner Inner Button Element */
+    --size-spinner-button-element-desktop-diameter: 18px;
+    --size-spinner-button-element-tablet-diameter: 17px;
+    --size-spinner-button-element-mobile-diameter: 16px;
+
 
     /* Spacing */
     /* Button Content Gap */
@@ -506,13 +542,16 @@
 
     /* Navigaiton Link Group */
     --spacing-navigation-link-group-desktop-gap: 24px;
-    --spacing-navigation-link-group-tablet-gap: 16px;
-    --spacing-navigation-link-group-mobile-gap-vertical: 16px;
+    --spacing-navigation-link-group-tablet-gap: 20px;
+    --spacing-navigation-link-group-mobile-gap-vertical: 24px;
 
     /* Navigaiton Header */
     --spacing-navigation-header-padding-x-desktop: 64px;
     --spacing-navigation-header-padding-x-tablet: 32px;
     --spacing-navigation-header-padding-x-mobile: 16px;
+    --spacing-navigation-header-padding-y-desktop: 12px;
+    --spacing-navigation-header-padding-y-tablet: 12px;
+    --spacing-navigation-header-padding-y-mobile: 8px;
 
     /* Navigaiton Footer Link Group */
     --spacing-navigation-footer-link-group-gap-vertical-desktop: 8px;
@@ -520,10 +559,12 @@
     --spacing-navigation-footer-link-group-gap-vertical-mobile: 4px;
 
     /* Closet Panel */
-    --spacing-closet-panel-mobile-padding-x: 16px;
+    --spacing-closet-panel-mobile-padding-x: 24px;
+    --spacing-closet-panel-mobile-padding-y: 16px;
     --spacing-closet-panel-mobile-padding-top: 20px;
     --spacing-closet-panel-mobile-padding-bottom: 32px;
-    --spacing-closet-panel-mobile-section-gap: 24px;
+    --spacing-closet-panel-mobile-section-gap: 32px;
+    --spacing-closet-panel-mobile-padding-top: 80px;
 
     /* Section Wrapper */
     --spacing-section-wrapper-desktop-padding-x: 64px;
@@ -720,9 +761,9 @@
     --spacing-block-block-mobile-gap: 16px;
 
     /* Footer-List-List */
-    --spacing-footer-list-list-desktop-gap: 10px;
-    --spacing-footer-list-list-tablet-gap: 8px;
-    --spacing-footer-list-list-mobile-gap: 6px;
+    --spacing-footer-list-list-desktop-gap: 14px;
+    --spacing-footer-list-list-tablet-gap: 12px;
+    --spacing-footer-list-list-mobile-gap: 14px;
 
     /* Footer-Heading-List */
     --spacing-footer-heading-list-desktop-gap: 16px;
@@ -769,7 +810,6 @@
     --spacing-card-wrapper-buffer-padding-x: 6px;
     --spacing-card-wrapper-buffer-padding-top: 4px;
     --spacing-card-wrapper-buffer-padding-bottom: 8px;
-
 
     /* Radius */
     /* Button */
@@ -829,6 +869,9 @@
 
     /* Hero Image Contanier Block */
     --radius-hero-image-block-base: var(--radius-2xl);
+
+    /* Popup Container */
+    --radius-popup-container-base: var(--radius-3xl);
     
 
     /* Border */
@@ -859,6 +902,9 @@
 
     /* Icon Stroke */
     --border-icon-base-width: var(--border-2);
+
+    /* Loader Spinner Inner Button Element */
+    --border-spinner-base-width: var(--border-2);
 
     /* Focus Visible */
     --border-focus-visible-width: var(--border-2);

@@ -1,346 +1,93 @@
-// import React, { useState} from 'react'
-import ThemeToggle from './components/atoms/toggle/ThemeToggle'
-// import ProjectsSection from './components/sections/shared/projects-section/ProjectsSection'
-// import {projectsSection} from './data/sections/shared/projectsSection'
-import ContactSection from './components/organisms/contact-section/ContactSection'
-import {contactSection} from './data/sections/shared/contactSection'
-import DeveloperBlock from './components/sections/about/journey-section/DeveloperJourneyBlock'
-import { coreValuesSection } from './data/sections/about/coreValuesSection'
-import CoreValuesBlock from './components/sections/about/core-values-section/CoreValuesBlock'
-import CoreValuesSection from './components/sections/about/core-values-section/CoreValuesSection'
-import CurrentSkillsSnapshotOverviewBlock from './components/sections/about/current-skills-snapshot/currentSkillsSnapshotOverviewBlock'
-import { currentSkillsSnapshot } from './data/sections/about/currentSkillsSnapshot'
-import CurrentSkillsSnapshotSkillsBlock from './components/sections/about/current-skills-snapshot/CurrentSkillsSnapshotSkillsBlock'
-import CurrentSkillsSnapshotSection from './components/sections/about/current-skills-snapshot/currentSkillsSnapshotSection'
-import { aboutCallToActionSection } from './data/sections/about/aboutCallToActionSection'
-import CallToActionSection from './components/organisms/call-to-action-section/CallToActionSection'
-import { journeySection } from './data/sections/shared/journeySection'
-import AboutSection from './components/sections/home/about-section/AboutSection'
-import { resolveProps } from './utils/resolveProps'
-import AboutTextBlock from './components/sections/home/about-section/AboutTextBlock'
-import AboutCardBlock from './components/sections/home/about-section/AboutCardBlock'
-import JourneySection from './components/sections/about/journey-section/JourneySection'
-import { workExperienceSection } from './data/sections/shared/workExperienceSection'
-import WorkExperienceSection from './components/organisms/work-experience-section/WorkExperienceSection'
-import BlockRenderer from './renderers/blocks/blockRenderer'
-import { skillsSection } from './data/sections/shared/skillsSection'
-import SkillsCardBlock from './components/sections/home/skills-section/SkillsCardBlock'
-// console.log(resolveProps(workExperienceSection.rows[0].blocks[1].data.heading, "workExperience"))
-import SkillsSection from './components/sections/home/skills-section/SkillsSection'
-import AtAGlanceHighlightsBlock from './components/sections/skills/skillsRowsSection/AtAGlanceHighlightsBlock'
-import AtAGlanceEffectivenessBlock from './components/sections/skills/skillsRowsSection/AtAGlanceEffectivenessBlock'
-import AtAGlanceToolbeltBlock from './components/sections/skills/skillsRowsSection/AtAGlanceToolbeltBlock'
-import ValidationCtaBlock from './components/sections/skills/skillsRowsSection/ValidationCtaBlock'
-import SkillOverviewBlock from './components/sections/skills/skillsRowsSection/SkillOverviewBlock'
-import ListContentBlock from './components/molecules/list-content-block/ListContentBlock'
-import SkillDetailsBlock from './components/sections/skills/skillsRowsSection/SkillDetailsBlock'
-import SkillsRowsSection from './components/sections/skills/skillsRowsSection/SkillsRowsSection'
-import { workItemsSection } from './data/sections/shared/workItemsSection'
-import ProjectsSection from './components/organisms/projects-section/ProjectsSection'
-import CaseStudyImageBlock from './components/organisms/work-items-section/CaseStudyImageBlock'
-import WorkItemsTextBlock from './components/organisms/work-items-section/WorkItemsTextBlock'
-import WorkItemsSection from './components/organisms/work-items-section/WorkItemsSection'
-
-
-// console.log(skillsSection.rows[0].blocks[0].data.bodyItems[0].scopeSet)
-// console.log(workItemsSection.rows[0].blocks[0].data.images[0].src)
+import ModalProvider from "./providers/ModalProvider";
+import RefsProvider from "./providers/RefsProvider";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./layout/Layout";
+import PageRenderer from "./renderers/pages/PageRenderer";
+import { homePage } from "./data/pages/homePage";
+import { aboutPage } from "./data/pages/aboutPage";
+import { workExperiencePage } from "./data/pages/workExperiencePage";
+import { skillsPage } from "./data/pages/skillsPage";
+import { projectsPage } from "./data/pages/projectsPage";
+import { caseStudiesPage } from "./data/pages/caseStudiesPage";
+import { fullCaseStudyPage } from "./data/pages/fullCaseStudyPage";
+import { viewDetailsPage } from "./data/pages/viewDetailsPage";
+import ContactPageContainer from "./modules/contact/ContactPageContainer";
 
 function App() {
-  // const {register, control} = useForm();
-  // const {register, } = useForm();
-  // const {control} = useForm();
-  // const [currentPage, setCurrentPage] = useState(1);
-
-
   return (
-    // max-w-(--size-section-wrapper-mobile-max-width)
-    // sm:max-w-(--size-section-wrapper-tablet-max-width)
-    // lg:max-w-(--size-section-wrapper-desktop-max-width)
-
-    // px-(--spacing-section-wrapper-mobile-padding-x)
-    // sm:px-(--spacing-section-wrapper-tablet-padding-x)
-    // lg:px-(--spacing-section-wrapper-desktop-padding-x)
-
-    // py-(--spacing-section-wrapper-mobile-padding-y)
-    // sm:py-(--spacing-section-wrapper-tablet-padding-y)
-    // lg:py-(--spacing-section-wrapper-desktop-padding-x)
-
-    <div className="
-    flex items-center flex-col justify-center gap-10 w-full
-
-    px-(--spacing-section-wrapper-mobile-padding-x)
-    sm:px-(--spacing-section-wrapper-tablet-padding-x)
-    lg:px-(--spacing-section-wrapper-desktop-padding-x)
-
-    py-(--spacing-section-wrapper-mobile-padding-y)
-    sm:py-(--spacing-section-wrapper-tablet-padding-y)
-    lg:py-(--spacing-section-wrapper-desktop-padding-x)
-
-    "
-    >
-      
-      <ThemeToggle />
-    
-      {/* <Logo theme="light" /> */}
-      
-      {/* <Button label="+917908137571" isDisabled={false} variant="link" iconLeft={<ContactLinkPhoneIcon/>}  /> */}
-
-      {/* <Button label="Click me" isDisabled={false} variant="overlay" /> */}
-{/*     
-      <Text variant="heading3"  text="Hello world !"
-        icon={MoonIcon}/> */}
-
-{/*        
-        <div className="inline-flex items-center justify-center gap-10">
-          <NavigationItem variant="footer" isButtonStyle={false} label="Home"  to="/" />
-          <NavigationItem variant="footer" isButtonStyle={false} label="About"  to="/about" />
-        </div>
-
+    <RefsProvider>
+      <ModalProvider>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-        </Routes> */}
+          <Route element={<Layout />}>
+            <Route
+              path="/"
+              element={<PageRenderer data={homePage} />}
+            />
+          </Route>
 
-      {/* <Tag label='Love react' iconLeft={<TagClockIcon/>}/> */}
+          <Route element={<Layout />}>
+            <Route
+              path="/about"
+              element={<PageRenderer data={aboutPage} />}
+            />
+          </Route>
 
-    {/* <Avatar image={avatarTestImage} /> */}
-    {/* <Avatar name='p' /> */}
+          <Route element={<Layout />}>
+            <Route
+              path="/work-experience"
+              element={<PageRenderer data={workExperiencePage} />}
+            />
+          </Route>
 
-    {/* <FormField icon={<HeartReactIcon />}/> */}
-    {/* <FormField variant="selectCustom" placeholder="Enter your full name" label="Your name" error="Invlaid!" options={[
-    { label: "Option One", value: "optionOne" },
-    { label: "Option Two", value: "optionTwo" },
-    { label: "Option Three", value: "optionThree" }
-  ]}/> */}
+          <Route element={<Layout />}>
+            <Route
+              path="/skills"
+              element={<PageRenderer data={skillsPage} />}
+            />
+          </Route>
 
-    {/* <CustomFormField /> */}
+          <Route element={<Layout />}>
+            <Route
+              path="/projects"
+              element={<PageRenderer data={projectsPage} />}
+            />
+          </Route>
 
-    {/* <FormField variant="email" placeholder="Enter your email" register={register("text")}/> */}
+          <Route element={<Layout />}>
+            <Route
+              path="/case-studies"
+              element={<PageRenderer data={caseStudiesPage} />}
+            />
+          </Route>
 
-    {/* <FormField variant="textarea" placeholder="Enter your email" register={register} name="textarea" 
-    rules={{
-    maxLength: {
-      value: 50,
-      message: "Max limit reached!" 
-    }
-  }}
-  error=""
-  maxLength={50}
- /> */}
+          <Route element={<Layout />}>
+            <Route
+              path="/contact"
+              element={<ContactPageContainer  />}
+            />
+          </Route>
 
-    {/* <FormField
-      variant="selectCustom"
-      label="Choose an option"
-      name="choice"
-      placeholder="Select one"
-      options={[
-        { value: "option1", label: "Option One" },
-        { value: "option2", label: "Option Two" },
-        { value: "option3", label: "Option Three" },
-        { value: "option4", label: "Option Four" },
-        { value: "option5", label: "Option Five" },
-        { value: "option6", label: "Option Six" },
-      ]}
-      control={control}
-      error=''
-      icon={<DropdownIcon />}
-    /> */}
+          {/* Dynamic Routes */}
+          <Route element={<Layout />}>
+            <Route
+              path="/full-case-study/:fullscreenRowId"
+              element={<PageRenderer data={fullCaseStudyPage}/>}
+            />
+          </Route>
 
-    {/* <NavigationList items={headerNavItems} variant="header" showCenterGroup splitLastItem /> */}
+          <Route element={<Layout />}>
+            <Route
+              path="/view-details/:fullscreenRowId"
+              element={<PageRenderer data={viewDetailsPage}/>}
+            />
+          </Route>
 
-    {/* <HeroImageBlock src={heroImgeTest}/> */}
-
-    {/* <HeroTextBlock /> */}
-
-      {/* <AboutTextBlock /> */}
-      {/* <AboutCardBlock/> */}
-      {/* <WorkExperienceCardBlock /> */}
-      {/* <WorkExperienceTextBlock /> */}
-      {/* <SkillsCardBlock /> */}
-      {/* <SkillsTextBlock /> */}
-      {/* <ProjectsCarouselBlock /> */}
-      {/* <ProjectsTextBlock /> */}
-      {/* <ContactTextBlock /> */}
-      {/* <ContactFormBlock /> */}
-      {/* <Paginaiton
-        currentPage={currentPage}
-        onPageChange={setCurrentPage}
-      />
-    */}
-{/* 
-        <Header 
-            navigationItems={{
-              variant: "header",
-              items: headerNavItems,
-              splitLastItem: true,
-              showCenterGroup: true
-             }}
-             showThemeToggle = {true}
-            
-        /> */}
-
-         {/* <Footer 
-            navigationItems={{
-              variant: "footer",
-              items: footer.navItems,
-             }}
-             brandTagline={footer.brandTagline}
-             quickLinksHeading={footer.quickLinksHeading}
-             contactLinksHeading={footer.contactLinksHeading}
-             contactLinks={footer.contactLinks}
-             availabilityHeading={footer.availabilityHeading}
-             availabilityTagline={footer.availabilityTagline}
-             copyright={footer.copyright}
-        /> */}
-
-        {/* <HeroSecion
-          heroTextBlockProps={homeHeroText}
-          heroImageBlockProps={{src: homeHero}}
-        /> */}
-
-        {/* <FilterBarSection config={filterBar}/> */}
-
-        {/* <AboutSection data={homeAboutSection}/> */}
-
-        {/* <WorkExperienceSection
-        data={workItemsSection}
-        variant='home'
-        /> */}
-
-        {/* <WorkExperienceCardBlock
-        data={resolveProps(workExperienceSection.rows[1].blocks[0].data, "home")}
-        /> */}
-
-        {/* <WorkExperienceTextBlock
-        data={resolveProps(workExperienceSection.rows[0].blocks[1].data, "workExperience")} // home / workExperience
-        /> */}
-
-        {/* <BlockRenderer
-        block={resolveProps(workExperienceSection.rows[0].blocks[0], "home")}
-        /> */}
-
-        {/* <SkillsSection
-          data={skillsSection}
-        /> */}
-
-        {/* <ProjectsSection
-        data={workItemsSection}
-        
-        /> */}
-
-        {/* <Modal
-        open={true}
-        >
-          <div className='w-30 h-30 bg-red-500'></div>
-        </Modal> */}
-
-        {/* <ContactSection
-          data={contactSection}
-        /> */}
-
-        {/* <DeveloperBlock /> */}
-        {/* <AcademicBlock /> */}
-
-        {/* <JourneySection
-          data={journeySection}
-        /> */}
-
-         {/* <CoreValuesBlock data={coreValuesSection.blocks[0].data}/> */}
-         {/* <CoreValuesSection
-          data={coreValuesSection}
-         /> */}
-
-         {/* <CurrentSkillsSnapshotOverviewBlock
-          data={currentSkillsSnapshot.blocks[0].data}
-         /> */}
-
-         {/* <CurrentSkillsSnapshotSkillsBlock
-          data={currentSkillsSnapshot.blocks[1].data}
-         /> */}
-
-         {/* <CurrentSkillsSnapshotSection
-          data={currentSkillsSnapshot}
-         /> */}
-
-         {/* <CallToActionSection data={aboutCallToActionSection} /> */}
-
-         {/* <AboutSection data={journeySection}/> */}
-
-         {/* <AboutTextBlock data={resolveProps(journeySection.blocks[0].data, "home")}/> */}
-
-         {/* <AboutCardBlock data={resolveProps(journeySection.blocks[1].data, "home")}/> */}
-
-          {/* < SkillsCardBlock
-          data={resolveProps(skillsSection.blocks[1].data, "home")}
-          />
-          */}
-        {/* < AtAGlanceHighlightsBlock
-          data={skillsSection.atAGlance.highlights}
-        /> */}
-
-        {/* < AtAGlanceEffectivenessBlock 
-        data={skillsSection.atAGlance.effectiveness}
-        /> */}
-
-        {/* <AtAGlanceToolbeltBlock
-        data={skillsSection.atAGlance.toolbelt}
-        /> */}
-
-        {/* <ValidationCtaBlock
-        data={skillsSection.rows[8].blocks[1].data}
-        />  */}
-
-        {/* <SkillOverviewBlock
-        data={skillsSection.rows[0].blocks[0].data}
-        /> */}
-
-        {/* <SkillDetailsBlock
-        data={skillsSection.rows[0].blocks[1].data}
-        /> */}
-
-        {/* <ListContentBlock
-        labelValueItems={skillsSection.rows[0].blocks[0].data.bodyItems[0].narrativeList}
-        /> */}
-
-        {/* <SkillsRowsSection
-        data={skillsSection}
-        /> */}
-
-        {/* <CaseStudyImageBlock
-        data={workItemsSection.rows[0].blocks[0].data}
-        /> */}
-
-        {/* <WorkItemsTextBlock
-        variant="expanded"
-        data={resolveProps(resolveProps(workItemsSection.rows[5].blocks[1].data, "caseStudy"), "preview")}
-        row={resolveProps(resolveProps(workItemsSection.rows[5], "caseStudy"), "preview")}
-        block={resolveProps(resolveProps(workItemsSection.rows[5].blocks[1], "caseStudy"), "preview")}
-        /> */}
-
-        {/* <CaseStudyProjectTextBlock
-        data={resolveProps(workItemsSection.rows[0].blocks[1].data, "project")}
-        row={resolveProps(workItemsSection.rows[0], "project")}
-        block={resolveProps(resolveProps(workItemsSection.rows[0].blocks[1], "project"), "")}
-        />  */}
-
-        {/* <CaseStudyWorkExperienceTextBlock
-        data={resolveProps(workItemsSection.rows[5], "caseStudy")}
-        /> */}
-
-        <WorkItemsSection
-        variant="fullscreenProjectsHomePage" // projectsHomePage / projectsPage / fullscreenProjectsHomePage / fullscreenProjectsPage / caseStudyPage /fullscreenCaseStudyPage / fullscreenCaseStudyPageRead
-        data={workItemsSection}
-        />
-
-    </div>
-  )
+          {/* Optional 404 */}
+          <Route path="*" element={<div>Page Not Found</div>} />
+        </Routes>
+      </ModalProvider>
+    </RefsProvider>
+  );
 }
 
-
-export default App
-
-// textParts={[
-//     { text: "Hello ", color: "primary" },
-//     { text: "World", color: "heading" },
-//     { text: "!", color: "heading" },
-//   ]}
+export default App;

@@ -16,9 +16,7 @@ import Text from "../../../atoms/text/Text";
 
 const blockContainerClasses = `
   flex flex-col w-full h-auto
-  max-w-(--size-block-wrapper-mobile-max-width)
-  sm:max-w-(--size-block-wrapper-tablet-max-width)
-  lg:max-w-(--size-block-wrapper-desktop-max-width)
+  
   px-(--spacing-text-container-mobile-padding-x)
   sm:px-(--spacing-text-container-tablet-padding-x)
   lg:px-(--spacing-text-container-desktop-padding-x)

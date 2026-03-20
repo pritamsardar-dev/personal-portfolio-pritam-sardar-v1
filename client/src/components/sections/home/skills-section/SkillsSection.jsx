@@ -21,6 +21,7 @@ import Button from "../../../atoms/button/Button";
 import BlockRenderer from "../../../../renderers/blocks/blockRenderer";
 import { resolveProps } from "../../../../utils/resolveProps";
 import { resolveSkillsBlocks } from "./resolveSkillsBlocks";
+import { useCTA } from "../../../../hooks/useCTA";
 
 const sectionContainerClasses = `
   flex flex-col w-full
@@ -30,10 +31,6 @@ const sectionContainerClasses = `
   px-(--spacing-section-wrapper-mobile-padding-x)
   sm:px-(--spacing-section-wrapper-tablet-padding-x)
   lg:px-(--spacing-section-wrapper-desktop-padding-x)
-
-  py-(--spacing-section-wrapper-mobile-padding-y)
-  sm:py-(--spacing-section-wrapper-tablet-padding-y)
-  lg:py-(--spacing-section-wrapper-desktop-padding-y)
 
   gap-(--spacing-section-wrapper-mobile-gap)
   sm:gap-(--spacing-section-wrapper-tablet-gap)
@@ -75,7 +72,6 @@ const SkillsSection = ({
   
   const {
     id,
-    enabled = true,
     heading,
     buttonProps,
     alignment = {
@@ -85,9 +81,7 @@ const SkillsSection = ({
   } = resolvedData;
 
   const blocks = resolveSkillsBlocks(resolvedData);
-  console.log(blocks)
-
-  if (!enabled) return null;
+  const { handleCTA } = useCTA();
 
   return (
     <section
@@ -125,7 +119,11 @@ const SkillsSection = ({
             flexAlignMap[alignment.cta]
           )}
         >
-          <Button {...buttonProps} />
+          <Button
+            variant={buttonProps.variant}
+            label={buttonProps.label}
+            onClick={() => handleCTA(buttonProps)}
+          />
         </div>
       )}
     </section>

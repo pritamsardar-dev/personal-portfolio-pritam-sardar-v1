@@ -1,13 +1,10 @@
-export const caseStudySectionLayoutConfig = {
+export const workItemsSectionLayoutConfig = {
   sectionContainer: `
     flex flex-col lg:flex-row w-full justify-center
     lg:max-w-(--size-section-wrapper-desktop-max-width)
     px-(--spacing-section-wrapper-mobile-padding-x)
     sm:px-(--spacing-section-wrapper-tablet-padding-x)
     lg:px-(--spacing-section-wrapper-desktop-padding-x)
-    py-(--spacing-section-wrapper-mobile-padding-y)
-    sm:py-(--spacing-section-wrapper-tablet-padding-y)
-    lg:py-(--spacing-section-wrapper-desktop-padding-y)
     gap-(--spacing-section-wrapper-mobile-gap)
     sm:gap-(--spacing-section-wrapper-tablet-gap)
     lg:gap-(--spacing-section-wrapper-desktop-gap)
@@ -76,6 +73,16 @@ export const caseStudySectionLayoutConfig = {
       h-fit
     `,
   },
+
+  interactiveToInteractive: `
+      w-full flex flex-wrap items-center justify-center
+      gap-x-(--spacing-interactive-interactive-mobile-gap-horizontal)
+      sm:gap-x-(--spacing-interactive-interactive-tablet-gap-horizontal)
+      lg:gap-x-(--spacing-interactive-interactive-desktop-gap-horizontal)
+      gap-y-(--spacing-interactive-interactive-mobile-gap-vertical)
+      sm:gap-y-(--spacing-interactive-interactive-tablet-gap-vertical)
+      lg:gap-y-(--spacing-interactive-interactive-desktop-gap-vertical)
+   `,
 
   textAlignMap: {
     left: "text-left",

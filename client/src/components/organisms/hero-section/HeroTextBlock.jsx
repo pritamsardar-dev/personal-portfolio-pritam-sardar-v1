@@ -2,15 +2,18 @@ import React from "react";
 import clsx from "clsx";
 import Text from "../../atoms/text/Text";
 import Button from "../../atoms/button/Button";
+import { useCTA } from "../../../hooks/useCTA";
 
 const blockContainerClasses = `
     flex flex-col w-full h-auto 
-    max-w-(--size-block-wrapper-mobile-max-width)
-    sm:max-w-(--size-block-wrapper-tablet-max-width)
-    lg:max-w-(--size-block-wrapper-desktop-max-width)
+
+    sm:max-w-(--size-block-wrapper-single-tablet-max-width)
+    lg:max-w-(--size-block-wrapper-single-desktop-max-width)
+
     px-(--spacing-text-container-mobile-padding-x)
     sm:px-(--spacing-text-container-tablet-padding-x)
     lg:px-(--spacing-text-container-desktop-padding-x)
+
     gap-(--spacing-hero-text-block-button-mobile-gap)
     sm:gap-(--spacing-hero-text-block-button-tablet-gap)
     lg:gap-(--spacing-hero-text-block-button-desktop-gap)
@@ -37,6 +40,13 @@ const heroHeadingTaglineClasses = `
     lg:gap-(--spacing-hero-heading-tagline-desktop-gap)
 `;
 
+const bodyItemsContainerClasses = `
+  flex flex-col w-full
+  gap-(--spacing-item-item-mobile-gap)
+  sm:gap-(--spacing-item-item-tablet-gap)
+  lg:gap-(--spacing-item-item-desktop-gap)
+`;
+
 const alignmentClassesMap = {
     left: "text-left",
     center: "text-center",
@@ -44,23 +54,20 @@ const alignmentClassesMap = {
 };
 
 const HeroTextBlock = ({
-    heroIntro = { variant: "heroIntro", text: "HERO INTRO" },
-    heroHeading = { 
-        variant: "heroHeading", 
-        textParts: [
-            { text: "Hero", color: "heading" }, 
-            { text: "Heading", color: "primary" }
-        ] 
-    },
-    heroTagline = { variant: "heroTagline", text: "Hero Tagline" },
-    cta = [
-        { variant: "primary", label: "Primary", onClick: () => {} },
-        { variant: "secondary", label: "Secondary", onClick: () => {} },
-    ],
-    alignment = "left",
+    data,
     className,
     ...props
 }) => {
+
+    const {
+        heroIntro,
+        heroHeading,
+        heroTagline,
+        cta,
+        alignment,
+    } = data;
+
+    const { handleCTA } = useCTA(); 
 
     const alignmentClass = alignmentClassesMap[alignment] || alignmentClassesMap.left;
 
@@ -74,12 +81,29 @@ const HeroTextBlock = ({
                     <Text {...heroIntro} />
                     <Text {...heroHeading} />
                 </div>
-                <Text {...heroTagline} />
+
+                {Array.isArray(heroTagline.text) && heroTagline.text.length > 0 ?
+                    <div className={bodyItemsContainerClasses}>
+                        {heroTagline.text.map((text, index) =>(
+                            <Text
+                                key={index}
+                                variant={heroTagline.variant}
+                                text={text}
+                            />
+                        ))}
+                        
+                    </div>
+                    : <Text {...heroTagline} />}
             </div>
 
             <div className={clsx(buttonContainerClasses)}>
                 {cta.map((btnProps, index) => (
-                    <Button key={index} {...btnProps} />
+                    <Button 
+                        key={index} 
+                        variant={btnProps.variant}
+                        label={btnProps.label}
+                        onClick={() => handleCTA(btnProps)}
+                    />
                 ))}
             </div>
         </div>

@@ -9,11 +9,11 @@ import {
 } from "../../../assets/icons/system";
 
 const filterShellClasses = `
-  relative w-full flex overflow-hidden flex-wrap
+   relative w-full overflow-hidden min-w-0 
 `;
 
 const interactiveToInteractiveClasses = `
-  flex
+  flex 
   gap-(--spacing-interactive-interactive-mobile-gap-horizontal)
   sm:gap-(--spacing-interactive-interactive-tablet-gap-horizontal)
   lg:gap-(--spacing-interactive-interactive-desktop-gap-horizontal)
@@ -42,7 +42,7 @@ const arrowRightClasses = `
 const ScrollableFilterRow = ({
   items = [],
   selectionMode = "single", 
-  activeIds = [],
+  activeKeys = [],
   onChange = () => {},
 }) => {
   const [startIndex, setStartIndex] = useState(0);
@@ -111,14 +111,14 @@ const ScrollableFilterRow = ({
     setStartIndex((prev) => Math.min(prev + 1, items.length - 1));
   };
 
-  const handleSelect = (id) => {
+  const handleSelect = (key) => {
     if (selectionMode === "single") {
-      onChange([id]);
+      onChange([key]);
     } else {
       onChange(
-        activeIds.includes(id)
-          ? activeIds.filter((x) => x !== id)
-          : [...activeIds, id]
+        activeKeys.includes(key)
+          ? activeKeys.filter((x) => x !== key)
+          : [...activeKeys, key]
       );
     }
   };
@@ -150,7 +150,7 @@ const ScrollableFilterRow = ({
   };
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full min-w-0">
       <div 
         ref={viewportRef} 
         className={filterShellClasses}
@@ -167,13 +167,14 @@ const ScrollableFilterRow = ({
           }}
         >
           {items.map((item, index) => (
-            <React.Fragment key={item.id}>
+            <React.Fragment key={item.key}>
               <Button
                 ref={(el) => (itemRefs.current[index] = el)}
-                {...item}
-                onClick={() => handleSelect(item.id)}
+                variant={item.variant}
+                label={item.label}
+                onClick={() => handleSelect(item.key)}
                 className={clsx(
-                  activeIds.includes(item.id) &&
+                  activeKeys.includes(item.key) &&
                     `
                       bg-[var(--color-button-overlay-background-active)]
                       text-[var(--color-button-overlay-text-active)]
@@ -194,28 +195,28 @@ const ScrollableFilterRow = ({
 
       {/* Floating arrows */}
       {showLeft && <div className={maskContainerLeftClasses} />}
-        {showLeft && (
-          <div className={arrowLeftClasses}>
-            <Button
-              variant="iconOnlyCircularOverlay"
-              iconLeft={ArrowLeftIcon}
-              iconLeftType={ArrowLeftIconType}
-              onClick={handleLeft}
-            />
-          </div>
-        )}
+      {showLeft && (
+        <div className={arrowLeftClasses}>
+          <Button
+            variant="iconOnlyCircularOverlay"
+            iconLeft={ArrowLeftIcon}
+            iconLeftType={ArrowLeftIconType}
+            onClick={handleLeft}
+          />
+        </div>
+      )}
 
-        {showRight && <div className={maskContainerRightClasses} />}
-        {showRight && (
-          <div className={arrowRightClasses}>
-            <Button
-              variant="iconOnlyCircularOverlay"
-              iconLeft={ArrowRightIcon}
-              iconLeftType={ArrowRightIconType}
-              onClick={handleRight}
-            />
-          </div>
-        )}
+      {showRight && <div className={maskContainerRightClasses} />}
+      {showRight && (
+        <div className={arrowRightClasses}>
+          <Button
+            variant="iconOnlyCircularOverlay"
+            iconLeft={ArrowRightIcon}
+            iconLeftType={ArrowRightIconType}
+            onClick={handleRight}
+          />
+        </div>
+      )}
     </div>
   );
 };

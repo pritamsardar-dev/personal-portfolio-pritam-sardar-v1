@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import FormField from "../../atoms/formfield/FormField";
 import Button from "../../atoms/button/Button";
@@ -6,17 +6,22 @@ import ScrollableFilterRow from "./ScrollableFilterRow";
 import { useForm } from "react-hook-form";
 
 const outerShellClasses = `
-    w-full flex flex-col sm:flex-row lg:flex-row justify-between 
-    max-w-(--size-section-wrapper-mobile-max-width);
+    w-full flex flex-col sm:flex-row lg:flex-row justify-between
+
+    px-(--spacing-text-container-mobile-padding-x)
+    sm:px-(--spacing-text-container-tablet-padding-x)
+    lg:px-(--spacing-text-container-desktop-padding-x)
+
     sm:max-w-(--size-section-wrapper-tablet-max-width);
     lg:max-w-(--size-section-wrapper-desktop-max-width);
+
     gap-(--spacing-section-wrapper-mobile-gap)
     sm:gap-(--spacing-section-wrapper-tablet-gap)
     lg:gap-(--spacing-section-wrapper-desktop-gap)
 `;
 
 const interactiveRowClasses = `
-    flex shrink-0
+    flex shrink-0 
     gap-(--spacing-interactive-interactive-mobile-gap-horizontal)
     sm:gap-(--spacing-interactive-interactive-tablet-gap-horizontal)
     lg:gap-(--spacing-interactive-interactive-desktop-gap-horizontal)
@@ -30,60 +35,161 @@ const interactiveVerticalClasses = `
 `;
 
 const FilterBarSection = ({
-    data,
-    className,
-    ...props
+  data,
+  filtersPayload,
+  className,
+  onFilterChange,
+  ...props
 }) => {
-    const {
-        selectProps,
-        clearButtonProps,
-        scopeFiltersProps,
-        primaryFiltersProps,
-        secondaryFiltersProps,
-    } = data;
-    const { control } = useForm();
 
-    const defaultPrimaryId = primaryFiltersProps?.[0]?.id;
-    const defaultScopeId = scopeFiltersProps?.[0]?.id;
-    const [scopeActiveIds, setScopeActiveIds] = useState(
-        defaultScopeId ? [defaultScopeId] : []
-    );
-    const [primaryActiveIds, setPrimaryActiveIds] = useState(
-        defaultPrimaryId ? [defaultPrimaryId] : []
-    );
-    const [secondaryActiveIds, setSecondaryActiveIds] = useState([]);
+  const {
+    selectProps,
+    clearButtonProps,
+    scopeFiltersProps,
+    primaryFiltersProps,
+    secondaryFiltersProps,
+  } = data;
 
-    return (
-      <div className={clsx(outerShellClasses, className)} {...props}>
-        <div className={clsx(interactiveVerticalClasses)}>
-  
-          {scopeFiltersProps && <ScrollableFilterRow
+  const { control, reset } = useForm({
+    defaultValues: {
+      sort: filtersPayload?.sort ?? "top"
+    }
+  });
+
+  const defaultPrimaryKey = primaryFiltersProps?.[0]?.key;
+  const defaultScopeKey = scopeFiltersProps?.[0]?.key;
+
+  // Derived state (no useState needed)
+  const scopeActiveKeys = filtersPayload?.scope ? [filtersPayload.scope] : [];
+  const primaryActiveKeys = filtersPayload?.primary ? [filtersPayload.primary] : [];
+  const secondaryActiveKeys = filtersPayload?.secondary ?? [];
+
+  const activePrimaryDomain =
+    primaryFiltersProps?.find(p => p.key === filtersPayload?.primary)?.domain ??
+    null;
+
+  const emitFilterChange = (override = {}) => {
+    onFilterChange?.({
+      scope: override.scope ?? scopeActiveKeys?.[0] ?? "all",
+      primary: override.primary ?? primaryActiveKeys?.[0] ?? "all",
+      secondary: override.secondary ?? secondaryActiveKeys,
+      sort: override.sort ?? filtersPayload?.sort ?? "top"
+    });
+  };
+
+  // Scope change handler
+  const handleScopeChange = (keys) => {
+    const newScopeKey = keys?.[0] ?? "all";
+
+    emitFilterChange({
+      scope: newScopeKey,
+      primary: defaultPrimaryKey ?? "all",
+      secondary: []
+    });
+  };
+
+  // Primary change handler
+  const handlePrimaryChange = (keys) => {
+    const newPrimaryKey = keys?.[0] ?? "all";
+
+    const newPrimaryDomain =
+      newPrimaryKey === "all"
+        ? "all"
+        : primaryFiltersProps.find(p => p.key === newPrimaryKey)?.domain;
+
+    let newSecondary = secondaryActiveKeys;
+
+    if (
+      activePrimaryDomain &&
+      newPrimaryDomain &&
+      activePrimaryDomain !== "all" &&
+      newPrimaryDomain !== "all" &&
+      activePrimaryDomain !== newPrimaryDomain
+    ) {
+      newSecondary = [];
+    }
+
+    emitFilterChange({
+      primary: newPrimaryKey,
+      secondary: newPrimaryDomain !== "all" ? [] : newSecondary
+    });
+  };
+
+  const handleClearFilters = () => {
+    reset();
+
+    emitFilterChange({
+      scope: defaultScopeKey ?? "all",
+      primary: defaultPrimaryKey ?? "all",
+      secondary: [],
+      sort: "top"
+    });
+  };
+
+  // Sync react-hook-form with URL state
+  useEffect(() => {
+    reset({
+      sort: filtersPayload?.sort ?? "top"
+    });
+  }, [filtersPayload?.sort, reset]);
+
+  return (
+    <div className={clsx(outerShellClasses, className)} {...props}>
+      <div className={clsx(interactiveVerticalClasses)}>
+
+        {scopeFiltersProps && (
+          <ScrollableFilterRow
             items={scopeFiltersProps}
             selectionMode="single"
-            activeIds={scopeActiveIds}
-            onChange={setScopeActiveIds}
-          />}
+            activeKeys={scopeActiveKeys}
+            onChange={handleScopeChange}
+          />
+        )}
 
-          {primaryFiltersProps && <ScrollableFilterRow
+        {primaryFiltersProps && (
+          <ScrollableFilterRow
             items={primaryFiltersProps}
             selectionMode="single"
-            activeIds={primaryActiveIds}
-            onChange={setPrimaryActiveIds}
-          />}
+            activeKeys={primaryActiveKeys}
+            onChange={handlePrimaryChange}
+          />
+        )}
 
-          {secondaryFiltersProps && <ScrollableFilterRow
+        {secondaryFiltersProps && (
+          <ScrollableFilterRow
             items={secondaryFiltersProps}
             selectionMode="multiple"
-            activeIds={secondaryActiveIds}
-            onChange={setSecondaryActiveIds}
-          />}
-        </div>
+            activeKeys={secondaryActiveKeys}
+            onChange={(keys) => {
+              emitFilterChange({ secondary: keys });
+            }}
+          />
+        )}
 
-        {(selectProps || clearButtonProps) && <div className={clsx(interactiveRowClasses)}>
-          {selectProps && <FormField {...selectProps} control={control} className="w-[100px]" />}
-          {clearButtonProps && <Button {...clearButtonProps} />}
-        </div>}
       </div>
+
+      {(selectProps || clearButtonProps) && (
+        <div className={clsx(interactiveRowClasses)}>
+          {selectProps &&
+            <FormField
+              {...selectProps}
+              control={control}
+              name="sort"
+              onChange={(value) => {
+                emitFilterChange({ sort: value });
+              }}
+            />
+          }
+
+          {clearButtonProps &&
+            <Button
+              {...clearButtonProps}
+              onClick={handleClearFilters}
+            />
+          }
+        </div>
+      )}
+    </div>
   );
 };
 

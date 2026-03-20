@@ -2,6 +2,7 @@ import React, { useState, useRef} from "react";
 import clsx from "clsx";
 import { baseParentField, baseField, variantMap } from "./formField.config.js";
 import { getFieldElement } from "./FormField.Utils.jsx";
+import { autoResize } from "./FormField.Utils.jsx";
 
 const FormField = ({
   variant = "input",
@@ -17,6 +18,20 @@ const FormField = ({
   rules = {},               
   ...props
 }) => {
+
+  const [isExpanded, setIsExpanded] = useState(false);
+  const toggleExpand = () => {
+    setIsExpanded(prev => {
+      const next = !prev;
+
+      // Manually resize textarea after state change
+      if (textareaRef.current) {
+        autoResize({ target: textareaRef.current }, next);
+      }
+
+      return next;
+    });
+  };
 
   const variantConfig = variantMap[variant] || variantMap.input;
 
@@ -41,7 +56,8 @@ const FormField = ({
   return (
     <div className={clsx(
       baseParentField,
-        variant === "slectCustom" ? "w-full" : "w-fit"
+        variant === "slectCustom" ? "w-full" : "w-fit",
+        className,
       )}
       >
       
@@ -59,13 +75,16 @@ const FormField = ({
           variant,
           Icon,
           classes,
-          register(name, rules),
+          register,
           control,
           name,
+          rules,
           {
             ...props, 
             handleTextAreaChange,
-            textareaRef 
+            textareaRef,
+            isExpanded,
+            toggleExpand
           },
           count,
           maxLength,

@@ -22,7 +22,8 @@ export const currentSkillsSnapshot = {
   buttonProps: {
     variant: "secondary",
     label: "View Full Skills →",
-    onClick: () => {},
+    action: "navigate",
+    target: "/skills",
   },
   blocks: [
     /* ───────────────────────── Text BLOCK ───────────────────────── */

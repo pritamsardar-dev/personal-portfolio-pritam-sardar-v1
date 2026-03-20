@@ -1,45 +1,73 @@
-import React, { useEffect, useState } from 'react';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import clsx from "clsx";
 
-// Import all pre-sized Figma logs
-import LogoLightSm from "../../../assets/logos/light/logo-sm.svg";
-import LogoLightMd from "../../../assets/logos/light/logo-md.svg";
-import LogoLightLg from "../../../assets/logos/light/logo-lg.svg";
+import LogoLight from "../../../assets/logos/light/logo-light.svg";
+import LogoDark from "../../../assets/logos/dark/logo-dark.svg";
 
-import LogoDarkSm from "../../../assets/logos/dark/logo-sm.svg";
-import LogoDarkMd from "../../../assets/logos/dark/logo-md.svg";
-import LogoDarkLg from "../../../assets/logos/dark/logo-lg.svg";
-
-// Map logos by theme and size
-const logos = {
-  light: {sm: LogoLightSm, md: LogoLightMd, lg: LogoLightLg},
-  dark: {sm: LogoDarkSm, md: LogoDarkMd, lg: LogoDarkLg},
+const variantClasses = {
+  header: `
+    w-(--size-logo-header-mobile-width)
+    sm:w-(--size-logo-header-tablet-width)
+    lg:w-(--size-logo-header-desktop-width)
+  `,
+  footer: `
+    w-(--size-logo-footer-mobile-width)
+    sm:w-(--size-logo-footer-tablet-width)
+    lg:w-(--size-logo-footer-desktop-width)
+  `,
 };
 
+const Logo = ({
+  variant = "header",
+  to = "/",
+  className,
+  ...props
+}) => {
 
-const Logo = ({theme = "light"}) => {
-  const [size, setSize] = useState("lg");
-  const [logoSrc, setLogoSrc] = useState(logos[theme][size]);
+  const navigate = useNavigate();
 
-  // Hook to handle screen resize
-  useEffect(() => {
-    const updateSize = () => {
-      const width = window.innerWidth;
-      if(width < 640) setSize("sm");
-      else if (width < 1024) setSize("md")
-      else setSize("lg");
-    };
+  const handleClick = (e) => {
+    e.preventDefault(); // prevent default Link behavior
 
-    updateSize();
-    window.addEventListener("resize", updateSize);
-    return () => window.removeEventListener("resize", updateSize);
-    }, []);
+    // Navigate to home page
+    navigate(to);
 
-  // Hook to handle theme or size change
-  useEffect(() => {
-    setLogoSrc(logos[theme][size]);
-  }, [theme, size]);
+    // Scroll instantly to top
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  };
 
-  return <img src={logoSrc} alt="App Logo" style={{display: "block"}} />;
+  return (
+    <Link
+      to={to}
+      onClick={handleClick}
+      className={clsx(
+        "shrink-0 block",
+        variantClasses[variant],
+        className
+      )}
+      aria-label="Go to homepage"
+      {...props}
+    >
+      {/* Light logo */}
+      <img
+        src={LogoLight}
+        alt="Logo"
+        className="block dark:hidden w-full h-auto"
+      />
+
+      {/* Dark logo */}
+      <img
+        src={LogoDark}
+        alt="Logo"
+        className="hidden dark:block w-full h-auto"
+      />
+    </Link>
+  );
 };
 
 export default Logo;

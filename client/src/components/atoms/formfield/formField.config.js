@@ -176,7 +176,7 @@ export const variantMap = {
 
   textarea: {
     baseClassesWrapper: `
-      relative w-full 
+      relative w-full
       border-(length:--border-form-field-width)
       border-(--color-form-field-border-default)
       hover:border-(--color-form-field-border-focus)
@@ -197,7 +197,7 @@ export const variantMap = {
 
     baseClasses: `
       w-full
-      resize-none outline-none
+      outline-none resize-none
       min-h-(--size-form-field-expandable-mobile-min-height)
       sm:min-h-(--size-form-field-expandable-tablet-min-height)
       lg:min-h-(--size-form-field-expandable-desktop-min-height)
@@ -236,7 +236,7 @@ export const variantMap = {
 
   textareaNative: {
     baseClasses: `
-      resize-none
+      resize-y
       border-(length:--border-form-field-width)
       border-(--color-form-field-border-default)
       hover:border-(--color-form-field-border-focus)
@@ -291,14 +291,18 @@ export const variantMap = {
 // Custom select element
 export const customSelectClasses = {
   wrapper: `
-    w-full relative
+    w-full relative 
     text-(length:--text-body-large-mobile-font-size)
     sm:text-(length:--text-body-large-tablet-font-size)
     lg:text-(length:--text-body-large-desktop-font-size)
     font-(--text-body-large-font-weight)
+
+    min-w-(--size-form-field-select-mobile-min-width)
+    sm:min-w-(--size-form-field-select-tablet-min-width)
+    lg:min-w-(--size-form-field-select-desktop-min-width)
   `,
   selectedBoxParent: `
-    group relative cursor-pointer
+    group relative cursor-pointer 
   `,
   selectedBox: `
     group flex justify-between items-center
@@ -325,11 +329,11 @@ export const customSelectClasses = {
     u-focus-visible-outline
   `,
   selectedBoxTextDefault: `
-    text-(--color-text-placeholder-default)
+    text-(--color-text-placeholder-default) 
     group-hover:text-(--color-select-text-contrast-on-brand)
   `,
   selectedBoxTextSelected: `
-    text-(--color-select-text-defualt)
+    text-(--color-select-text-defualt) 
     group-hover:text-(--color-select-text-contrast-on-brand)
   `,
   iconClasses: `

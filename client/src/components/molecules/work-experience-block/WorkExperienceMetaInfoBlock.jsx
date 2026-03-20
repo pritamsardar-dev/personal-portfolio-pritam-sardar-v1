@@ -19,6 +19,8 @@ import React from "react";
 import clsx from "clsx";
 import Text from "../../atoms/text/Text";
 import { useScrolling } from "../../../hooks/useScrolling";
+import Button from "../../atoms/button/Button";
+import { useCTA } from "../../../hooks/useCTA";
 
 const blockContainer = {
   base: `
@@ -114,6 +116,7 @@ const WorkExperienceMetaInfoBlock = ({
   const isCaseStudy = variant === "caseStudy";
 
   const isScrolling = useScrolling(150);
+  const { handleCTA } = useCTA(); 
   
   const backdropBlur = 
     isScrolling ? "backdrop-blur-none" 
@@ -164,14 +167,22 @@ const WorkExperienceMetaInfoBlock = ({
               {item.heading && !isCaseStudy && <Text {...item.heading} />}
 
               {/* Timeline */}
-              {item.body?.timeline && <Text {...item.body.timeline} />}
+              {!isCaseStudy && item.body?.timeline && <Text {...item.body.timeline} />}
 
               {/* Label / Value rows */}
               {item.body?.labelValueItems?.length > 0 &&
                 item.body.labelValueItems.map((pair, index) => (
                   <div key={index} className={labelValueRowClasses}>
-                    {pair.label && <Text {...pair.label} />}
-                    {pair.value && <Text {...pair.value} />}
+                    {pair?.label && <Text {...pair.label} />}
+                    {pair?.value?.variant !== "link" && pair?.value && <Text {...pair.value} />}
+                    {pair?.value?.variant === "link" && 
+                      <Button 
+                        variant={pair?.value?.variant}
+                        label={pair?.value?.label}
+                        className="!h-0 !py-0 !px-0"
+                        onClick={() => handleCTA(pair?.value)}
+                      />
+                    }
                   </div>
                 ))}
 

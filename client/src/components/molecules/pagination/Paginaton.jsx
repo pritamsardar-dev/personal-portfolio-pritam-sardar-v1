@@ -9,6 +9,11 @@ const outerContainerClasses = `
 
 const innerContainerClasses = `
     flex flex-wrap
+    
+    py-(--spacing-section-wrapper-mobile-padding-y)
+    sm:py-(--spacing-section-wrapper-tablet-padding-y)
+    lg:py-(--spacing-section-wrapper-desktop-padding-y)
+
     gap-x-(--spacing-interactive-interactive-desktop-gap-horizontal)
     sm:gap-x-(--spacing-interactive-interactive-desktop-gap-horizontal)
     lg:gap-x-(--spacing-interactive-interactive-desktop-gap-horizontal)

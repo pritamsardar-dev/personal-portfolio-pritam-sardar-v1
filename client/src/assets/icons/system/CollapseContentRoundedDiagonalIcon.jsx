@@ -1,0 +1,8 @@
+import * as React from "react";
+
+const CollapseContentRoundedDiagonalIcon = (props) => (
+<svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M9 15H6q-.425 0-.712-.288T5 14q0-.425.288-.712T6 13h4q.425 0 .713.288T11 14v4q0 .425-.288.713T10 19q-.425 0-.712-.288T9 18zm6-6h3q.425 0 .713.288T19 10q0 .425-.288.713T18 11h-4q-.425 0-.712-.288T13 10V6q0-.425.288-.712T14 5q.425 0 .713.288T15 6z"/></svg>
+);
+
+export default CollapseContentRoundedDiagonalIcon;
+export const CollapseContentRoundedDiagonalIconType = "fill";

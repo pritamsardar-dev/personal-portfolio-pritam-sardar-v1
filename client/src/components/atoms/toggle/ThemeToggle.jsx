@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import {SunIcon, MoonIcon} from '../../../assets/icons/system'
 
-const ThemeToggle = () => {
+const ThemeToggle = ({onClick}) => {
+
   const [isOn, setIsOn] = useState(() => {
     const saved = localStorage.getItem("theme") || "light";
     return saved === "dark";
@@ -17,6 +18,9 @@ const ThemeToggle = () => {
     const themeName = next ? "dark" : "light";
     localStorage.setItem("theme", themeName);
     document.documentElement.classList.toggle("dark", next);
+    
+    // notify parent (Header) to close mobile menu
+    if (onClick) onClick();
   };
 
   const iconClassesBase = `

@@ -1,10 +1,11 @@
 import React from "react";
 import clsx from "clsx";
-import NavigationItem from "../../atoms/navigationitem/NavigationItem.jsx";
+import NavigationItem from "../../atoms/navigation-item/NavigationItem";
 
 const NavigationList = ({
   items = [],
   variant = "header",
+  onItemClick,
   className = "",
   splitLastItem = false,
   showCenterGroup = false,
@@ -52,14 +53,19 @@ const NavigationList = ({
       {/* Main navigation group */}
       <ul
         className={clsx(
+          isFooter && "flex flex-row flex-wrap sm:flex-col",
           directionClasses,
           gapClasses,
-          showCenterGroup && "sm:flex-1 sm:justify-center"
+          showCenterGroup && "sm:flex-1 sm:justify-center",
         )}
       >
         {mainItems.map((item, index) => (
           <li key={index}>
-            <NavigationItem {...item} variant={variant} />
+            <NavigationItem 
+              {...item} 
+              variant={variant}
+              onClick={onItemClick}
+            />
           </li>
         ))}
       </ul>
@@ -67,7 +73,11 @@ const NavigationList = ({
       {/* CTA (right-aligned only on desktop and tablet) */}
       {lastItem && !isFooter && (
         <div className="flex">
-          <NavigationItem {...lastItem} variant={variant} />
+          <NavigationItem 
+            {...lastItem} 
+            variant={variant}
+            onClick={onItemClick}
+          />
         </div>
       )}
     </div>

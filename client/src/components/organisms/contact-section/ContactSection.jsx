@@ -14,7 +14,7 @@
  *  - Section does not mutate block data or manage side effects
  */
 
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import Text from "../../atoms/text/Text";
 import BlockRenderer from "../../../renderers/blocks/blockRenderer";
@@ -28,10 +28,6 @@ const sectionContainerClasses = `
   px-(--spacing-section-wrapper-mobile-padding-x)
   sm:px-(--spacing-section-wrapper-tablet-padding-x)
   lg:px-(--spacing-section-wrapper-desktop-padding-x)
-
-  py-(--spacing-section-wrapper-mobile-padding-y)
-  sm:py-(--spacing-section-wrapper-tablet-padding-y)
-  lg:py-(--spacing-section-wrapper-desktop-padding-y)
 
   gap-(--spacing-heading-1-heading-2-mobile-gap)
   sm:gap-(--spacing-heading-1-heading-2-tablet-gap)
@@ -55,7 +51,7 @@ const sectionHeadingContainerClasses = `
 `;
 
 const blocksContainerClasses = `
-  flex flex-col sm:flex-row w-full
+  w-full flex
   gap-(--spacing-section-wrapper-mobile-gap)
   sm:gap-(--spacing-section-wrapper-tablet-gap)
   lg:gap-(--spacing-section-wrapper-desktop-gap)
@@ -73,11 +69,14 @@ const flexAlignMap = {
 };
 
 const ContactSection = ({
-    data = {}
+    data = {},
+    handlers,
+    ui,
+    state,
+    ...rest
 }) => {
     const {
         id,
-        enabled = true,
         heading,
         overview,
         alignment = {
@@ -88,7 +87,15 @@ const ContactSection = ({
         blocks,
     } = data;
 
-    if (!enabled) return null;
+    const [isFormFullViewMode,  setIsFormFullViewMode] = useState(false);
+
+    const sectionUI = {
+        ...ui,
+        form: {
+            isFullView: isFormFullViewMode,
+            toggleFullView: setIsFormFullViewMode,
+        }
+    };
 
     return (
         <section
@@ -122,11 +129,25 @@ const ContactSection = ({
 
             {/* Blocks */}
             {Array.isArray(blocks) && blocks.length > 0 && (
-                <div className={blocksContainerClasses}>
+                <div className={clsx(
+                    blocksContainerClasses,
+                    "transition-all duration-500 ease-in-out",
+                    isFormFullViewMode 
+                        ? "flex-col items-center" : "flex-col sm:flex-row"
+                    )}>
                 {blocks
                     .filter(block => block.enabled)
                     .sort((a, b) => a.order - b.order)
-                    .map(block => (<BlockRenderer key={block.id} block={block} />))
+                    .map(block => (
+                        <BlockRenderer 
+                            key={block.id} 
+                            block={block}
+                            handlers={handlers}
+                            ui={sectionUI}
+                            state={state}
+                            {...rest}
+                        />
+                    ))
                 }
                 </div>
             )}

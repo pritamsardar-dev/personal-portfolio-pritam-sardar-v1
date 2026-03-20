@@ -17,6 +17,7 @@ import React from "react";
 import clsx from "clsx";
 import Text from "../../atoms/text/Text";
 import Button from "../../atoms/button/Button";
+import { useCTA } from "../../../hooks/useCTA";
 
 const sectionContainerClasses = `
   flex flex-col justify-center items-center
@@ -27,10 +28,6 @@ const sectionContainerClasses = `
   px-(--spacing-text-container-mobile-padding-x)
   sm:px-(--spacing-text-container-tablet-padding-x)
   lg:px-(--spacing-text-container-desktop-padding-x)
-
-  py-(--spacing-section-wrapper-mobile-padding-y)
-  sm:py-(--spacing-section-wrapper-tablet-padding-y)
-  lg:py-(--spacing-section-wrapper-desktop-padding-y)
 
   gap-(--spacing-section-wrapper-mobile-gap)
   sm:gap-(--spacing-section-wrapper-tablet-gap)
@@ -63,11 +60,12 @@ const flexAlignMap = {
 };
 
 const CallToActionSection = ({
+    variant = "aboutCtaSection",
     data = {}
 }) => {
+    const resolvedData = data.rows.find(row => row.type === variant)
     const {
         id,
-        enabled = true,
         heading,
         body,
         alignment = {
@@ -77,9 +75,9 @@ const CallToActionSection = ({
             cta: "center",
         },
         ctaButtons,
-    } = data;
+    } = resolvedData;
 
-    if (!enabled) return null;
+    const { handleCTA } = useCTA();
 
     return (
         <section
@@ -114,7 +112,12 @@ const CallToActionSection = ({
                     {ctaButtons
                         .sort((a, b) => a.order - b.order)
                         .map((ctaButton) => (
-                            <Button key={ctaButton.id} {...ctaButton} />
+                            <Button 
+                                key={ctaButton.id} 
+                                variant={ctaButton.variant}
+                                label={ctaButton.label}
+                                onClick={() => handleCTA(ctaButton)}
+                            />
                     ))}
                 </div>
             }

@@ -21,9 +21,9 @@ import { resolveProps } from "../../../../utils/resolveProps";
 const sectionContainerClasses = `
   flex flex-col w-full
 
-  py-(--spacing-section-wrapper-mobile-padding-y)
-  sm:py-(--spacing-section-wrapper-tablet-padding-y)
-  lg:py-(--spacing-section-wrapper-desktop-padding-y)
+  px-(--spacing-section-wrapper-mobile-padding-x)
+  sm:px-(--spacing-section-wrapper-tablet-padding-x)
+  lg:px-(--spacing-section-wrapper-desktop-padding-x)
 
   gap-(--spacing-section-wrapper-mobile-gap)
   sm:gap-(--spacing-section-wrapper-tablet-gap)
@@ -58,13 +58,10 @@ const JourneySection = ({
 
   const {
     id,
-    enabled = true,
     heading,
     blocks = [],
     alignment = { heading: "center"},
   } = resolvedData;
-
-  if (!enabled) return null;
 
   return (
     <section

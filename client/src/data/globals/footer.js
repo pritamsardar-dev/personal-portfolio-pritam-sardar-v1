@@ -2,7 +2,7 @@ export const footer = {
   navItems: [
     { label: "Home", to: "/" },
     { label: "About", to: "/about" },
-    { label: "Work Experience", to: "/experience" },
+    { label: "Work Experience", to: "/work-experience" },
     { label: "Skills", to: "/skills" },
     { label: "Projects", to: "/projects" },
     { label: "Case Studies", to: "/case-studies" },
@@ -13,35 +13,44 @@ export const footer = {
         text: "MERN Stack Developer building scalable and accessible web apps."
     },
     quickLinksHeading: {
-        variant: "bodyLargeStrong", 
+        modifiers: ["strong"],
+        variant: "bodyLarge", 
         text: "Quick Links"
     },
     contactLinksHeading: {
-        variant: "bodyLargeStrong", 
+        modifiers: ["strong"],
+        variant: "bodyLarge", 
         text: "Contact"
     },
     contactLinks: [
         {
-            id: "contactPhone",
-            variant: "linkSmall", 
+            id: "contact-phone",
+            role: "contact-link",
+            variant: "link",
             label: "+91 99999 99999",
-            onClick: () => {}
+            action: "external",
+            target: "tel:+919999999999",
         },
         {
-            id: "contactEmail",
-            variant: "linkSmall", 
+            id: "contact-email",
+            role: "contact-link",
+            variant: "link",
             label: "you@example.com",
-            onClick: () => {}
+            action: "external",
+            target: "mailto:you@example.com",
         },
         {
-            id: "contactLocation",
-            variant: "linkSmall", 
+            id: "contact-location",
+            role: "contact-link",
+            variant: "link",
             label: "Kolkata, India",
-            onClick: () => {}
-        }
+            action: "external",
+            target: "https://maps.google.com/?q=Kolkata",
+        },
     ],
     availabilityHeading: {
-        variant: "bodyLargeStrong", 
+        modifiers: ["strong"],
+        variant: "bodyLarge", 
         text: "Availability"
     },
     availabilityTagline: {
@@ -50,7 +59,7 @@ export const footer = {
     },
     copyright: {
         variant: "captionDefault", 
-        text: "© 2025 Pritam Sardar. All rights reserved."
+        text: "Pritam Sardar. All rights reserved."
     }
 };
 

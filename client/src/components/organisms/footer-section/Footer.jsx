@@ -1,16 +1,16 @@
 import React from "react";
 import clsx from "clsx";
 import Logo from "../../atoms/logo/Logo";
-import NavigationList from "../../../molecules/navigationlist/NavigationList";
-import ThemeToggle from "../../atoms/toggle/ThemeToggle";
+import NavigationList from "../../../components/molecules/navigation-list/NavigationList";
 import Button from "../../atoms/button/Button";
 import Text from "../../atoms/text/Text";
+import { useCTA } from "../../../hooks/useCTA";
 
 const footerOuterShellClasses = `
     relative overflow-hidden
     w-full flex flex-col items-center
     bg-(--color-footer-section-background)
-    max-w-(--size-navigation-header-mobile-width)
+    
     sm:max-w-(--size-navigation-header-tablet-width)
     lg:max-w-(--size-navigation-header-desktop-width)
 
@@ -26,7 +26,12 @@ const footerOuterShellClasses = `
     sm:py-(--spacing-section-wrapper-tablet-padding-y)
     lg:py-(--spacing-section-wrapper-desktop-padding-y)
 
+    mt-(--spacing-section-wrapper-mobile-padding-y)
+    sm:mt-(--spacing-section-wrapper-tablet-padding-y)
+    lg:mt-(--spacing-section-wrapper-desktop-padding-y)
+
     rounded-(--radius-header-base)
+    
 `;
 
 const footerInnerShellClasses = `
@@ -67,6 +72,10 @@ const Footer = ({
     ...props
 }) => {
 
+    const { handleCTA } = useCTA();
+
+    const currentYear = new Date().getFullYear();
+
     return (
         <footer className={clsx(
                     footerOuterShellClasses,
@@ -77,7 +86,7 @@ const Footer = ({
 
             <div className={clsx(footerInnerShellClasses)}>
                 <div className={clsx(headingToListClasses)}>
-                    <Logo />
+                    <Logo variant="footer"/>
                     <Text {...brandTagline} />
                 </div>
 
@@ -93,7 +102,17 @@ const Footer = ({
                     <ul className={clsx(ListToListClasses)}>
                         {contactLinks.map((item) => (
                             <li key={item.id}>
-                                <Button {...item} />
+                                <Button
+                                    variant={item?.variant}
+                                    iconLeft={item?.iconLeft}
+                                    iconLeftType={item?.iconLeftType}
+                                    className="!p-0 !h-0"
+                                    onClick={() => handleCTA(item)}
+                                >
+                                    <span className="select-text">
+                                        {item?.label}
+                                    </span>
+                                </Button>
                             </li>
                         ))}
                     </ul>
@@ -110,7 +129,10 @@ const Footer = ({
             className={clsx(" w-full border-none h-px bg-(--color-divider-background)")}
             />
 
-            <Text {...copyright} />
+            <Text
+                variant={copyright?.variant}
+                text={`© 2025-${currentYear} ${copyright?.text}`}
+             />
         </footer>
     );
 };

@@ -17,11 +17,14 @@ import clsx from "clsx";
 import Button from "../../atoms/button/Button";
 import { projectsCarouselBlockLayoutConfig } from "./projectsCarouselBlockLayout.config";
 import { useScrolling } from "../../../hooks/useScrolling";
+import { useLinkCTAHandler } from "./utils/useLinkCTAHandler";
 
 const ProjectsCarouselBlock = ({
     variant,
     size = "default",  // default / compact
     data,
+    section,
+    row,
     block,
     handlers,
     state,
@@ -30,8 +33,9 @@ const ProjectsCarouselBlock = ({
         id,
         enabled = true,
         images,
-        buttonProps, 
     } = data;
+
+    const buttonProps = section?.carouselBlockButtonProps;
 
     const isCollapsedMode = variant === "collapsed";
     const isCompactSize = size === "compact";
@@ -67,6 +71,8 @@ const ProjectsCarouselBlock = ({
     const [showCenterFeedback, setShowCenterFeedback] = useState(false);
     const [feedbackAction, setFeedbackAction] = useState(null);
     const isScrolling = useScrolling(150);
+
+    const { handleLinkCTA } = useLinkCTAHandler(row);
 
     const autoHideTimeoutRef = useRef(null);
     const swipeStartRef = useRef({ x: 0, y: 0 });
@@ -190,11 +196,8 @@ const ProjectsCarouselBlock = ({
         setActiveIndex(index);
     }
 
-    const handleCtaClick = (e) => {
-        e.preventDefault();
-
-        // testing purpose
-        window.open("https://www.google.com", "_blank");
+    const handleCtaClick = (item) => {
+        handleLinkCTA(item);
     };
 
     const handleNext = useCallback(() => {
@@ -281,12 +284,14 @@ const ProjectsCarouselBlock = ({
             setIsManuallyPaused(false); 
             handlers?.onRequestFullscreen?.({
                 variant, 
+                section,
+                row,
                 block, 
                 originRect: rect,
             });
         }
 
-    }, [handlers, variant,  block, isFullScreenMode, blockRef]);
+    }, [handlers, variant, section, row, block, isFullScreenMode, blockRef]);
 
     const onPointerDown = (e) => {
         swipeStartRef.current = {
@@ -568,7 +573,7 @@ const ProjectsCarouselBlock = ({
                                 label={btn.label}
                                 iconLeft={btn.iconLeft}
                                 className={clsx(backdropBlur, "cursor-pointer pointer-events-auto")}
-                                onClick={handleCtaClick}
+                                onClick={() => handleCtaClick(btn)}
                             />
                         ))}
                 </div>}

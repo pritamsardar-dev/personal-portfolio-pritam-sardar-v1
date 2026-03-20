@@ -246,7 +246,7 @@ export const variantMap = {
       w-(--size-icon-button-element-mobile-diameter)
       sm:w-(--size-icon-button-element-tablet-diameter)
       lg:w-(--size-icon-button-element-desktop-diameter)
-      h-auto
+      h-(--size-icon-button-element-mobile-diameter)
     `,
   },
 
@@ -483,6 +483,7 @@ export const variantMap = {
       underline
       decoration-(--color-text-primary)
       decoration-transparent
+      
 
       hover:decoration-(--color-text-primary)
       active:decoration-(--color-text-primary)
@@ -523,10 +524,13 @@ export const variantMap = {
 
     iconClasses: `
       text-(--color-button-icon-link-background-default)
+      opacity-60
+      hover:opacity-100
+      active:opacity-100
       stroke-(length:--border-icon-base-width)
-      w-(--size-icon-button-element-large-mobile-diameter)
-      sm:w-(--size-icon-button-element-large-tablet-diameter)
-      lg:w-(--size-icon-button-element-large-desktop-diameter)
+      w-(--size-icon-button-element-small-mobile-diameter)
+      sm:w-(--size-icon-button-element-small-tablet-diameter)
+      lg:w-(--size-icon-button-element-small-desktop-diameter)
       h-auto
     `,
   },
