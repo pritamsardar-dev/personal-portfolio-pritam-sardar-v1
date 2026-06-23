@@ -10,7 +10,7 @@ import Text from "../../atoms/text/Text";
 import Button from "../../atoms/button/Button";
 
 const blockContainerClasses = `
-    flex flex-col w-full h-auto 
+    flex flex-col w-full h-auto min-w-0
 
     sm:max-w-(--size-block-wrapper-single-tablet-max-width)
     lg:max-w-(--size-block-wrapper-single-desktop-max-width)
@@ -58,7 +58,22 @@ const alignmentClassesMap = {
   right: "text-right",
 };
 
-const HeroTextBlock = ({ data, className, ...props }) => {
+// Only these two hero pages need a shorter secondary CTA label on mobile
+const MOBILE_SHORT_LABEL_VARIANTS = ["workExperienceHero", "caseStudyHero"];
+
+// Drops the first word of a label, used only for the mobile-short case below
+const getMobileShortLabel = (label) => {
+  if (typeof label !== "string") return label;
+  const words = label.trim().split(" ");
+  if (words.length <= 1) return label;
+  return words.slice(1).join(" ");
+};
+
+// True only for the secondary CTA on the work experience / case study heroes
+const shouldShortenLabelOnMobile = (heroVariant, btnProps) =>
+  MOBILE_SHORT_LABEL_VARIANTS.includes(heroVariant) && btnProps.variant === "secondary";
+
+const HeroTextBlock = ({ data, variant, className, ...props }) => {
   const { heroIntro, heroHeading, heroTagline, heroStatus, cta, alignment } = data;
 
   const { handleCTA } = useCTA();
@@ -87,15 +102,27 @@ const HeroTextBlock = ({ data, className, ...props }) => {
       </div>
 
       <div className={clsx(buttonContainerClasses)}>
-        {cta.map((btnProps, index) => (
-          <Button
-            key={index}
-            variant={btnProps.variant}
-            label={btnProps.label}
-            iconRight={btnProps.icon ? ctaIconMap[btnProps.icon] : null}
-            onClick={() => handleCTA(btnProps)}
-          />
-        ))}
+        {cta.map((btnProps, index) => {
+          const isShortenable = shouldShortenLabelOnMobile(variant, btnProps);
+
+          return (
+            <Button
+              key={index}
+              variant={btnProps.variant}
+              label={btnProps.label}
+              iconRight={btnProps.icon ? ctaIconMap[btnProps.icon] : null}
+              onClick={() => handleCTA(btnProps)}
+              className={clsx(variant === "caseStudyHero" ? "pl-[7px] pr-[5px]" : "px-[10px]")}
+            >
+              {isShortenable && (
+                <>
+                  <span className="hidden sm:inline">{btnProps.label}</span>
+                  <span className="inline sm:hidden">{getMobileShortLabel(btnProps.label)}</span>
+                </>
+              )}
+            </Button>
+          );
+        })}
       </div>
     </div>
   );

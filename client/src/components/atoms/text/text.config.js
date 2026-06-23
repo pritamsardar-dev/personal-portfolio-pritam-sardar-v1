@@ -47,7 +47,7 @@ export const variantMap = {
   heroHeadingSubpage: {
     baseClasses: `
       text-(length:--text-hero-heading-subpage-mobile-font-size)
-      sm:text-(length: --text-hero-heading-subpage-tablet-font-size)
+      sm:text-(length:--text-hero-heading-subpage-tablet-font-size)
       lg:text-(length:--text-hero-heading-subpage-desktop-font-size)
       font-(--text-hero-heading-subpage-font-weight)
       capitalize
@@ -88,6 +88,11 @@ export const variantMap = {
       h-(--size-icon-container-heading-1-mobile-diameter)
       sm:h-(--size-icon-container-heading-1-tablet-diameter)
       lg:h-(--size-icon-container-heading-1-desktop-diameter)
+    `,
+    iconAlignClasses: `
+      mt-(--icon-align-heading-1-mobile)
+      sm:mt-(--icon-align-heading-1-tablet)
+      lg:mt-(--icon-align-heading-1-desktop)
     `,
     iconClasses: `
       text-(--color-content-icon-stroke-default)
@@ -165,6 +170,18 @@ export const variantMap = {
       `,
     },
 
+    iconAlignClasses: {
+      default: `
+        mt-(--icon-align-heading-2-mobile)
+        sm:mt-(--icon-align-heading-2-tablet)
+        lg:mt-(--icon-align-heading-2-desktop)
+      `,
+
+      compact: `
+        mt-(--icon-align-heading-2-mobile)
+      `,
+    },
+
     iconClasses: {
       default: `
         text-(--color-content-icon-stroke-default)
@@ -222,6 +239,18 @@ export const variantMap = {
         w-(--size-icon-container-heading-3-mobile-diameter)
         h-(--size-icon-container-heading-3-mobile-diameter)
         rounded-(--radius-icon-contaniner-base)
+      `,
+    },
+
+    iconAlignClasses: {
+      default: `
+        mt-(--icon-align-heading-3-mobile)
+        sm:mt-(--icon-align-heading-3-tablet)
+        lg:mt-(--icon-align-heading-3-desktop)
+      `,
+
+      compact: `
+        mt-(--icon-align-heading-3-mobile)
       `,
     },
 

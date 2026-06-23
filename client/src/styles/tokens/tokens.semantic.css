@@ -285,7 +285,7 @@
   /* Hero Heading */
   --text-hero-heading-desktop-font-size: var(--font-size-3xl-plus-2);
   --text-hero-heading-tablet-font-size: var(--font-size-3xl);
-  --text-hero-heading-mobile-font-size: var(--font-size-xl-plus);
+  --text-hero-heading-mobile-font-size: var(--font-size-2xl);
   --text-hero-heading-font-weight: var(--font-weight-extrabold);
 
   /* Hero Heading Subpage */
@@ -377,7 +377,7 @@
   --size-button-desktop-height:    48px;
   --size-button-tablet-padding-x:  16px;
   --size-button-tablet-height:     42px;
-  --size-button-mobile-padding-x:  14px;
+  --size-button-mobile-padding-x:  16px;
   --size-button-mobile-height:     40px;
 
   /* Button Base */
@@ -1037,6 +1037,21 @@
   --icon-align-meta-heading-mobile: 3px;
   --icon-align-meta-heading-tablet: 2px;
   --icon-align-meta-heading-desktop: 3px;
+
+  /* Text component's own built-in icon (heading1 / heading2 / heading3)
+     Same formula: mt = (line-height − icon-container-diameter) / 2
+     Assumed line-height ratio: 1.5 × font-size */
+  --icon-align-heading-1-mobile: 7px;
+  --icon-align-heading-1-tablet: 8px;
+  --icon-align-heading-1-desktop: 10px;
+
+  --icon-align-heading-2-mobile: 1px;
+  --icon-align-heading-2-tablet: 2px;
+  --icon-align-heading-2-desktop: 2px;
+
+  --icon-align-heading-3-mobile: 1px;
+  --icon-align-heading-3-tablet: 1px;
+  --icon-align-heading-3-desktop: 1px;
 
   /* Button Overlay Default Backdrop */
   --effect-button-overlay-default-blur: 6px;

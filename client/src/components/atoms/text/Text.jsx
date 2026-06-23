@@ -31,6 +31,7 @@ const Text = ({
   const modifierClasses = modifiers.map((m) => variantConfig.modifiers?.[m]);
   const iconWrapperClasses = resolveClasses(variantConfig.iconWrapperClasses, size);
   const iconClasses = resolveClasses(variantConfig.iconClasses, size);
+  const iconAlignClasses = resolveClasses(variantConfig.iconAlignClasses, size);
 
   const classes = clsx(
     baseText,
@@ -38,14 +39,14 @@ const Text = ({
     variantConfig.baseClasses,
     sizeClasses,
     modifierClasses,
-    hasIcon && "inline-flex items-center",
+    hasIcon && (iconAlignClasses ? "inline-flex items-start" : "inline-flex items-center"),
     className,
   );
 
   return (
     <Tag className={clsx(classes)} {...props}>
       {hasIcon && (
-        <span className={iconWrapperClasses}>
+        <span className={clsx(iconWrapperClasses, iconAlignClasses)}>
           <IconRenderer src={icon.src} type={icon.type} className={iconClasses} />
         </span>
       )}

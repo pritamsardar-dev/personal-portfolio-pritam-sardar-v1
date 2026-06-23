@@ -658,7 +658,7 @@ const ProjectsCarouselBlock = ({
         {Array.isArray(ctaButtons) && ctaButtons.length > 0 && (
           <div className={clsx(carouselCtaContainerClasses, ctaVisiblityClasses)}>
             {ctaButtons.map((btn) => (
-              <div key={btn.id} className="relative inline-flex">
+              <div key={btn.id} className="relative inline-flex w-fit">
                 <Button
                   variant={btn.variant}
                   size={size}

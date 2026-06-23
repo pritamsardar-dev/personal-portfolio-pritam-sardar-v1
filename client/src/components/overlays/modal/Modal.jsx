@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 const MODAL_VARIANTS = {
   fullscreen: {
     role: "fullscreen",
-    backdrop: false,
+    backdrop: true,
     esc: true,
     scrollLock: true,
     container: `
@@ -201,8 +201,16 @@ const Modal = ({
                 isVisible ? "opacity-100" : "opacity-0",
               ),
             config?.role === "fullscreen" &&
-              clsx("u-modal-backdrop-fullscreen", "transition-opacity duration-200"),
+              clsx("u-modal-backdrop-fullscreen", "!z-(--z-modal-backdrop-low)"),
           )}
+          style={
+            config?.role === "fullscreen"
+              ? {
+                opacity: isFullscreen ? 1 : 0,
+                transition: "opacity 520ms cubic-bezier(0.4,0,0.2,1)",
+              }
+              : undefined
+          }
           onClick={onClose}
         />
       )}
