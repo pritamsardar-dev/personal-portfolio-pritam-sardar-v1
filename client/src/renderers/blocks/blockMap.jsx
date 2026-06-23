@@ -11,7 +11,7 @@ import ContactTextBlock from "../../components/organisms/contact-section/Contact
 import ContactFormBlock from "../../components/organisms/contact-section/ContactFormBlock";
 import DeveloperJourneyBlock from "../../components/sections/about/journey-section/DeveloperJourneyBlock";
 import AcademicJourneyBlock from "../../components/sections/about/journey-section/AcademicJourneyBlock";
-import CurrentSkillsSnapshotOverviewBlock from "../../components/sections/about/current-skills-snapshot/currentSkillsSnapshotOverviewBlock";
+import CurrentSkillsSnapshotOverviewBlock from "../../components/sections/about/current-skills-snapshot/CurrentSkillsSnapshotOverviewBlock";
 import CurrentSkillsSnapshotSkillsBlock from "../../components/sections/about/current-skills-snapshot/CurrentSkillsSnapshotSkillsBlock";
 import ValidationCtaBlock from "../../components/sections/skills/skillsRowsSection/ValidationCtaBlock";
 import SkillOverviewBlock from "../../components/sections/skills/skillsRowsSection/SkillOverviewBlock";

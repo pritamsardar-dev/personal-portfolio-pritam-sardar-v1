@@ -11,7 +11,7 @@ import ProjectsPageContainer from "../modules/projects/ProjectsPageContainer";
 import CaseStudiesPageContainer from "../modules/case-studies/CaseStudiesPageContainer";
 import ContactPageContainer from "../modules/contact/ContactPageContainer";
 import ViewDetailsPageContainer from "../modules/view-details/ViewDetailsPageContainer";
-import FullCaseStudyPageContainer from "../modules/full-case-study/fullCaseStudyPageContainer";
+import FullCaseStudyPageContainer from "../modules/full-case-study/FullCaseStudyPageContainer";
 import ContactInboxContainer from "../modules/contact-inbox/ContactInboxContainer";
 
 import Layout from "../layout/Layout";
