@@ -7,7 +7,7 @@ import "./src/models/index.js";
 import pageRoutes from "./src/routes/page.routes.js";
 import workItemsRoutes from "./src/routes/workitems.routes.js";
 import globalRoutes from "./src/routes/global.routes.js";
-import messageRoutes from "./src/routes/Message.routes.js";
+import messageRoutes from "./src/routes/message.routes.js";
 
 import authAdminRoutes from "./src/routes/admin/auth.admin.routes.js";
 import pageAdminRoutes from "./src/routes/admin/page.admin.routes.js";
