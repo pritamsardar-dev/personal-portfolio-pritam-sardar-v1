@@ -20,12 +20,19 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: process.env.CORS_ORIGIN.split(","),
     credentials: true,
   }),
 );
 app.use(express.json());
 app.use(cookieParser());
+
+// Health check
+app.get("/api/v1/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+  });
+});
 
 // Public routes
 app.use("/api/v1/pages", pageRoutes);

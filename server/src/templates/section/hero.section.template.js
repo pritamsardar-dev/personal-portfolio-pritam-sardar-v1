@@ -439,16 +439,12 @@ export const heroSectionTemplate = {
                   color: "primary",
                 },
                 {
-                  text: "&",
+                  text: "& Work",
                   color: "heading",
-                },
-                {
-                  text: "Work",
-                  color: "primary",
                 },
                 {
                   text: "Experience",
-                  color: "heading",
+                  color: "primary",
                 },
               ],
             },
