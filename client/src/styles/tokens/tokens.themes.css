@@ -14,13 +14,14 @@ html.dark {
 
   /* Card Wrapper */
   --color-card-wrapper-fill: color-mix(in srgb, var(--color-zinc-700) 6%, transparent);
+  --color-card-wrapper-header-fill: color-mix(in srgb, var(--color-violet-400) 6%, transparent);
   --color-card-wrapper-stroke: color-mix(in srgb, var(--color-base-white) 8%, transparent);
 
   /* Icon Button Icon Only */
   --color-icon-button-icon-only: var(--color-base-white);
 
   /* Icon Button Toggle Tracker */
-  --color-icon-button-toggle-tracker-background-default: var( --color-gray-600);
+  --color-icon-button-toggle-tracker-background-default: var(--color-gray-600);
   --color-icon-button-toggle-tracker-background-hover: var(--color-base-black);
   --color-icon-button-toggle-tracker-icon-border-default: var(--color-neutral-300);
   --color-icon-button-toggle-tracker-icon-background-hover: var(--color-zinc-100);
@@ -28,10 +29,13 @@ html.dark {
   /* Icon Button Toggle Knob */
   --color-icon-button-toggle-knob-background: var(--color-gray-300);
   --color-icon-button-toggle-knob-icon-background: var(--color-zinc-100);
-  
 
   /* Tech Stack Tag*/
-  --color-tech-stack-tag-background-default: color-mix(in srgb, var(--color-zinc-600) 60%, transparent);
+  --color-tech-stack-tag-background-default: color-mix(
+    in srgb,
+    var(--color-zinc-600) 60%,
+    transparent
+  );
 
   /* Tech Stack Tag Border*/
   --color-tech-stack-tag-border-default: var(--color-gray-700);
@@ -74,15 +78,29 @@ html.dark {
   --color-button-overlay-text-active: var(--color-base-white);
 
   /* Button Overlay Background*/
-  --color-button-overlay-background-deault: color-mix(in srgb, var(--color-base-white) 3%, transparent);
-  --color-button-whitelay-background-hover: color-mix(in srgb, var(--color-base-white) 6%, transparent);
-  --color-button-overlay-background-active: color-mix(in srgb, var(--color-indigo-500) 20%, transparent);
+  --color-button-overlay-background-deault: color-mix(
+    in srgb,
+    var(--color-base-white) 3%,
+    transparent
+  );
+  --color-button-whitelay-background-hover: color-mix(
+    in srgb,
+    var(--color-base-white) 6%,
+    transparent
+  );
+  --color-button-overlay-background-active: color-mix(
+    in srgb,
+    var(--color-indigo-500) 20%,
+    transparent
+  );
+
+  /* tTooltip Background */
+  --color-tooltip-background: var(--color-zinc-700);
 
   /* Select Background */
   --color-select-background-defualt: color-mix(in srgb, var(--color-zinc-700) 75%, transparent);
   --color-select-background-hover: color-mix(in srgb, var(--color-indigo-500) 5%, transparent);
   --color-select-background-focus: color-mix(in srgb, var(--color-indigo-500) 10%, transparent);
-  
 
   /* Select Border */
   --color-select-border-defualt: color-mix(in srgb, var(--color-base-white) 6%, transparent);
@@ -107,7 +125,7 @@ html.dark {
   --color-feedback-error-icon: var(--color-red-400);
 
   /* Card Container */
-  --color-card-container-background: color-mix(in srgb, var( --color-zinc-700) 6%, transparent);
+  --color-card-container-background: color-mix(in srgb, var(--color-zinc-700) 6%, transparent);
   --color-card-container-border: color-mix(in srgb, var(--color-base-white) 8%, transparent);
   --color-card-container-shadow: color-mix(in srgb, var(--color-base-black) 30%, transparent);
 
@@ -122,7 +140,11 @@ html.dark {
   --color-badge-primary-border: color-mix(in srgb, var(--color-violet-400) 28%, transparent);
 
   /* Badge Neutral */
-  --color-badge-neutral-background: color-mix(in srgb, var( --color-base-white) neutral%, transparent);
+  --color-badge-neutral-background: color-mix(
+    in srgb,
+    var(--color-base-white) neutral%,
+    transparent
+  );
   --color-badge-neutral-text: var(--color-zinc-100);
   --color-badge-neutral-border: color-mix(in srgb, var(--color-base-white) 12%, transparent);
 
@@ -143,23 +165,36 @@ html.dark {
   /* App Background */
   --color-app-background: var(--color-zinc-700);
 
+  /* Skeleton colors */
+  --color-skeleton-base: rgba(255, 255, 255, 0.08);
+  --color-skeleton-shimmer: rgba(255, 255, 255, 0.2);
+  --color-surface-skeleton: rgba(255, 255, 255, 0.03);
+  --color-border-skeleton: rgba(255, 255, 255, 0.06);
+
   /* Focus Visible */
   --color-focus-visible-border: var(--color-violet-300);
   --color-focus-visible-background: color-mix(in srgb, var(--color-indigo-500) 15%, transparent);
 
   /* Custom Scrollbar Background */
-  --color-custom-scrollbar-background-default: color-mix(in srgb, var(--color-indigo-500) 25%, transparent);
-  --color-custom-scrollbar-background-hover: color-mix(in srgb, var(--color-indigo-500) 80%, transparent);
+  --color-custom-scrollbar-background-default: color-mix(
+    in srgb,
+    var(--color-indigo-500) 25%,
+    transparent
+  );
+  --color-custom-scrollbar-background-hover: color-mix(
+    in srgb,
+    var(--color-indigo-500) 80%,
+    transparent
+  );
 
   /* Divider Background */
   --color-divider-background: var(--color-gray-700);
 
   /* Modal Backdrop */
   --color-overlay-backdrop: rgba(0, 0, 0, 0.65);
-  
+
   /* Media Frame Surface Backgound */
   --color-surface-media-dark: hsl(0 0% 10%);
-
 
   /* Shadows */
   /* Card Wrapper */

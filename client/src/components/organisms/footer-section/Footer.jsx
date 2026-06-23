@@ -1,140 +1,166 @@
 import React from "react";
+
 import clsx from "clsx";
-import Logo from "../../atoms/logo/Logo";
-import NavigationList from "../../../components/molecules/navigation-list/NavigationList";
-import Button from "../../atoms/button/Button";
-import Text from "../../atoms/text/Text";
+
 import { useCTA } from "../../../hooks/useCTA";
 
-const footerOuterShellClasses = `
-    relative overflow-hidden
-    w-full flex flex-col items-center
-    bg-(--color-footer-section-background)
-    
-    sm:max-w-(--size-navigation-header-tablet-width)
-    lg:max-w-(--size-navigation-header-desktop-width)
+import { footerLayoutConfig } from "./footerLayout.config";
 
-    gap-(--spacing-block-block-mobile-gap)
-    sm:gap-(--spacing-block-block-tablet-gap)
-    lg:gap-(--spacing-block-block-desktop-gap)
+import Logo from "../../atoms/logo/Logo";
+import NavigationList from "../../../components/molecules/navigation-list/NavigationList";
+import Text from "../../atoms/text/Text";
+import Button from "../../atoms/button/Button";
+import FooterNavigationListSkeleton from "./skeletons/FooterNavigationListSkeleton";
 
-    px-(--spacing-navigation-header-padding-x-mobile)
-    sm:px-(--spacing-navigation-header-padding-x-tablet)
-    lg:px-(--spacing-navigation-header-padding-x-desktop)
+const {
+  footerOuterShell: footerOuterShellClasses,
+  footerInnerShell: footerInnerShellClasses,
+  headingToList: headingToListClasses,
+  listToList: ListToListClasses,
+} = footerLayoutConfig;
 
-    py-(--spacing-section-wrapper-mobile-padding-y)
-    sm:py-(--spacing-section-wrapper-tablet-padding-y)
-    lg:py-(--spacing-section-wrapper-desktop-padding-y)
+const Footer = ({ data = {}, isLoading, className, ...props }) => {
+  const navigationItems = data?.navigationItems || { items: [] };
+  const brandTagline = data?.brandTagline || {};
+  const quickLinksHeading = data?.quickLinksHeading || {};
+  const contactLinksHeading = data?.contactLinksHeading || {};
+  const contactLinks = data?.contactLinks || [];
+  const availabilityHeading = data?.availabilityHeading || {};
+  const availabilityTagline = data?.availabilityTagline || {};
+  const copyright = data?.copyright || {};
+  const attribution = data?.attribution || {};
 
-    mt-(--spacing-section-wrapper-mobile-padding-y)
-    sm:mt-(--spacing-section-wrapper-tablet-padding-y)
-    lg:mt-(--spacing-section-wrapper-desktop-padding-y)
+  const { handleCTA } = useCTA();
+  const currentYear = new Date().getFullYear();
 
-    rounded-(--radius-header-base)
-    
-`;
-
-const footerInnerShellClasses = `
-    w-full flex flex-col sm:flex-row lg:flex-row
-    gap-(--spacing-section-wrapper-mobile-gap)
-    sm:gap-(--spacing-section-wrapper-tablet-gap)
-    lg:gap-(--spacing-section-wrapper-desktop-gap)
-
-    px-(--spacing-text-container-mobile-padding-x)
-    sm:px-(--spacing-text-container-tablet-padding-x)
-    lg:px-(--spacing-text-container-desktop-padding-x)
-`;
-
-const headingToListClasses = `
-    w-full flex flex-col
-    gap-(--spacing-footer-heading-list-mobile-gap)
-    sm:gap-(--spacing-footer-heading-list-tablet-gap)
-    lg:gap-(--spacing-footer-heading-list-desktop-gap)
-`;
-
-const ListToListClasses = `
-    w-full flex flex-col
-    gap-(--spacing-footer-list-list-mobile-gap)
-    sm:gap-(--spacing-footer-list-list-tablet-gap)
-    lg:gap-(--spacing-footer-list-list-desktop-gap)
-`;
-
-const Footer = ({
-    navigationItems = {items: []},
-    brandTagline = {},
-    quickLinksHeading = {},
-    contactLinksHeading = {},
-    contactLinks = [],
-    availabilityHeading = {},
-    availabilityTagline = {},
-    copyright,
-    className,
-    ...props
-}) => {
-
-    const { handleCTA } = useCTA();
-
-    const currentYear = new Date().getFullYear();
-
-    return (
-        <footer className={clsx(
-                    footerOuterShellClasses,
-                    className
-                )}
-            {...props}
-            >
-
-            <div className={clsx(footerInnerShellClasses)}>
-                <div className={clsx(headingToListClasses)}>
-                    <Logo variant="footer"/>
-                    <Text {...brandTagline} />
-                </div>
-
-                <div className={clsx(headingToListClasses)}>
-                    <Text {...quickLinksHeading} />
-                    <nav>
-                        <NavigationList {...navigationItems} />
-                    </nav>
-                </div>
-
-                <div className={clsx(headingToListClasses)}>
-                    <Text {...contactLinksHeading} />
-                    <ul className={clsx(ListToListClasses)}>
-                        {contactLinks.map((item) => (
-                            <li key={item.id}>
-                                <Button
-                                    variant={item?.variant}
-                                    iconLeft={item?.iconLeft}
-                                    iconLeftType={item?.iconLeftType}
-                                    className="!p-0 !h-0"
-                                    onClick={() => handleCTA(item)}
-                                >
-                                    <span className="select-text">
-                                        {item?.label}
-                                    </span>
-                                </Button>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                <div className={clsx(headingToListClasses)}>
-                    <Text {...availabilityHeading} />
-                    <Text {...availabilityTagline} />
-                </div>
+  return (
+    <footer className={clsx(footerOuterShellClasses, className)} {...props}>
+      <div className={clsx(footerInnerShellClasses)}>
+        {/* Logo and Tagline */}
+        <div className={clsx(headingToListClasses)}>
+          <Logo variant="footer" />
+          {isLoading ? (
+            <div className="flex flex-col gap-2">
+              <div className="skeleton h-4 w-full rounded" />
+              <div className="skeleton h-4 w-4/5 rounded" />
             </div>
+          ) : (
+            <Text {...brandTagline} />
+          )}
+        </div>
 
-            <hr
-            aria-hidden="true"
-            className={clsx(" w-full border-none h-px bg-(--color-divider-background)")}
+        {/* Quick Links */}
+        <div className={clsx(headingToListClasses)}>
+          {isLoading ? (
+            <div className="skeleton h-4 w-24 rounded" />
+          ) : (
+            <Text {...quickLinksHeading} />
+          )}
+          <nav>
+            {isLoading ? (
+              <FooterNavigationListSkeleton itemCount={7} />
+            ) : (
+              <NavigationList {...navigationItems} />
+            )}
+          </nav>
+        </div>
+
+        {/* Contact Links */}
+        <div className={clsx(headingToListClasses)}>
+          {isLoading ? (
+            <div className="skeleton h-4 w-20 rounded" />
+          ) : (
+            <Text {...contactLinksHeading} />
+          )}
+          {isLoading ? (
+            <div className={clsx(ListToListClasses)}>
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="skeleton h-4 w-36 rounded" />
+              ))}
+            </div>
+          ) : (
+            <ul className={clsx(ListToListClasses)}>
+              {contactLinks.map((item) => (
+                <li key={item.id}>
+                  <Button
+                    variant={item?.variant}
+                    iconLeft={item?.iconLeft}
+                    iconLeftType={item?.iconLeftType}
+                    className="!p-0 !h-0"
+                    onClick={() => handleCTA(item)}
+                  >
+                    <span className="select-text">{item?.label}</span>
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        {/* Availability */}
+        <div className={clsx(headingToListClasses)}>
+          {isLoading ? (
+            <div className="skeleton h-4 w-24 rounded" />
+          ) : (
+            <Text {...availabilityHeading} />
+          )}
+          {isLoading ? (
+            <div className="flex flex-col gap-2">
+              <div className="skeleton h-4 w-full rounded" />
+              <div className="skeleton h-4 w-11/12 rounded" />
+              <div className="skeleton h-4 w-4/5 rounded" />
+            </div>
+          ) : (
+            <Text {...availabilityTagline} />
+          )}
+        </div>
+      </div>
+
+      <hr aria-hidden="true" className="w-full border-none h-px bg-(--color-divider-background)" />
+
+      <div className="flex flex-col gap-1.5 opacity-90">
+        {/* Copyright */}
+        {isLoading ? (
+          <div className="skeleton h-3 w-64 rounded" />
+        ) : (
+          <Text variant={copyright?.variant} text={`© 2025-${currentYear} ${copyright?.text}`} />
+        )}
+
+        {/* Attributions */}
+        {!isLoading && Array.isArray(attribution?.items) && attribution.items.length > 0 && (
+          <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 opacity-90">
+            <Text
+              variant={attribution?.variant || "captionDefault"}
+              text={attribution?.label || "Attributions:"}
+              className="opacity-70"
             />
 
-            <Text
-                variant={copyright?.variant}
-                text={`© 2025-${currentYear} ${copyright?.text}`}
-             />
-        </footer>
-    );
+            {attribution.items.map((item, index) => (
+              <span key={item.id} className="flex items-center gap-1.5">
+                <Text
+                  as="a"
+                  variant={attribution?.variant || "captionDefault"}
+                  text={item.text}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="!text-(--color-text-primary) hover:underline"
+                />
+
+                {index < attribution.items.length - 1 && (
+                  <Text
+                    variant={attribution?.variant || "captionDefault"}
+                    text="·"
+                    className="opacity-50"
+                  />
+                )}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

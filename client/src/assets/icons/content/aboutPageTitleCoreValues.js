@@ -6,5 +6,5 @@ export const aboutPageTitleCoreValues = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

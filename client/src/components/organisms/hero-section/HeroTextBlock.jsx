@@ -1,8 +1,13 @@
 import React from "react";
+
 import clsx from "clsx";
+
+import { useCTA } from "../../../hooks/useCTA";
+
+import { ctaIconMap } from "../../../assets/icons/system/ctaIconMap";
+
 import Text from "../../atoms/text/Text";
 import Button from "../../atoms/button/Button";
-import { useCTA } from "../../../hooks/useCTA";
 
 const blockContainerClasses = `
     flex flex-col w-full h-auto 
@@ -11,8 +16,8 @@ const blockContainerClasses = `
     lg:max-w-(--size-block-wrapper-single-desktop-max-width)
 
     px-(--spacing-text-container-mobile-padding-x)
-    sm:px-(--spacing-text-container-tablet-padding-x)
-    lg:px-(--spacing-text-container-desktop-padding-x)
+    sm:pl-(--spacing-text-container-tablet-padding-x)
+    lg:pl-(--spacing-text-container-desktop-padding-x)
 
     gap-(--spacing-hero-text-block-button-mobile-gap)
     sm:gap-(--spacing-hero-text-block-button-tablet-gap)
@@ -41,73 +46,59 @@ const heroHeadingTaglineClasses = `
 `;
 
 const bodyItemsContainerClasses = `
-  flex flex-col w-full
-  gap-(--spacing-item-item-mobile-gap)
-  sm:gap-(--spacing-item-item-tablet-gap)
-  lg:gap-(--spacing-item-item-desktop-gap)
+    flex flex-col w-full
+    gap-(--spacing-item-item-mobile-gap)
+    sm:gap-(--spacing-item-item-tablet-gap)
+    lg:gap-(--spacing-item-item-desktop-gap)
 `;
 
 const alignmentClassesMap = {
-    left: "text-left",
-    center: "text-center",
-    right: "text-right",
+  left: "text-left",
+  center: "text-center",
+  right: "text-right",
 };
 
-const HeroTextBlock = ({
-    data,
-    className,
-    ...props
-}) => {
+const HeroTextBlock = ({ data, className, ...props }) => {
+  const { heroIntro, heroHeading, heroTagline, heroStatus, cta, alignment } = data;
 
-    const {
-        heroIntro,
-        heroHeading,
-        heroTagline,
-        cta,
-        alignment,
-    } = data;
+  const { handleCTA } = useCTA();
 
-    const { handleCTA } = useCTA(); 
+  const alignmentClass = alignmentClassesMap[alignment] || alignmentClassesMap.left;
 
-    const alignmentClass = alignmentClassesMap[alignment] || alignmentClassesMap.left;
-
-    return (
-        <div
-            className={clsx(blockContainerClasses, alignmentClass, className)}
-            {...props}
-        >
-            <div className={clsx(heroHeadingTaglineClasses)}>
-                <div className={clsx(heroIntroHeadingClasses)}>
-                    <Text {...heroIntro} />
-                    <Text {...heroHeading} />
-                </div>
-
-                {Array.isArray(heroTagline.text) && heroTagline.text.length > 0 ?
-                    <div className={bodyItemsContainerClasses}>
-                        {heroTagline.text.map((text, index) =>(
-                            <Text
-                                key={index}
-                                variant={heroTagline.variant}
-                                text={text}
-                            />
-                        ))}
-                        
-                    </div>
-                    : <Text {...heroTagline} />}
-            </div>
-
-            <div className={clsx(buttonContainerClasses)}>
-                {cta.map((btnProps, index) => (
-                    <Button 
-                        key={index} 
-                        variant={btnProps.variant}
-                        label={btnProps.label}
-                        onClick={() => handleCTA(btnProps)}
-                    />
-                ))}
-            </div>
+  return (
+    <div className={clsx(blockContainerClasses, alignmentClass, className)} {...props}>
+      <div className={clsx(heroHeadingTaglineClasses)}>
+        <div className={clsx(heroIntroHeadingClasses)}>
+          <Text {...heroIntro} />
+          <Text {...heroHeading} />
         </div>
-    );
+
+        {Array.isArray(heroTagline.text) && heroTagline.text.length > 0 ? (
+          <div className={bodyItemsContainerClasses}>
+            {heroTagline.text.map((text, index) => (
+              <Text key={index} variant={heroTagline.variant} text={text} />
+            ))}
+          </div>
+        ) : (
+          <Text {...heroTagline} />
+        )}
+
+        {heroStatus && <Text {...heroStatus} />}
+      </div>
+
+      <div className={clsx(buttonContainerClasses)}>
+        {cta.map((btnProps, index) => (
+          <Button
+            key={index}
+            variant={btnProps.variant}
+            label={btnProps.label}
+            iconRight={btnProps.icon ? ctaIconMap[btnProps.icon] : null}
+            onClick={() => handleCTA(btnProps)}
+          />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default HeroTextBlock;

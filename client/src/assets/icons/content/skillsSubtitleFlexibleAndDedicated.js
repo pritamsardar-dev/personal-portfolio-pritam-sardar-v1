@@ -5,5 +5,5 @@ export const skillsSubtitleFlexibleAndDedicated = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

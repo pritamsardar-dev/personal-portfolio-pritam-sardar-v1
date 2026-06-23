@@ -24,6 +24,7 @@ export const workItemsSectionLayoutConfig = {
       sm:gap-(--spacing-heading-1-heading-2-tablet-gap)
       lg:gap-(--spacing-heading-1-heading-2-desktop-gap)
     `,
+
     block: `
       flex flex-col
       gap-(--spacing-heading-2-heading-3-mobile-gap)
@@ -39,6 +40,7 @@ export const workItemsSectionLayoutConfig = {
       sm:gap-(--spacing-section-wrapper-tablet-gap)
       lg:gap-(--spacing-section-wrapper-desktop-gap)
     `,
+
     relatedProjects: `
       w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1
       xl:max-w-(--size-block-wrapper-mobile-max-width)
@@ -53,12 +55,10 @@ export const workItemsSectionLayoutConfig = {
   blocksContainer: {
     base: `
       flex flex-col w-full
+      overflow-visible
       gap-(--spacing-card-media-content-mobile-gap)
-      sm:gap-(--spacing-card-media-content-tablet-gap)
-      lg:gap-(--spacing-card-media-content-desktop-gap)
-      py-(--spacing-card-container-mobile-padding-y)
-      sm:py-(--spacing-card-container-tablet-padding-y)
-      lg:py-(--spacing-card-container-desktop-padding-y)
+      pt-(--spacing-text-container-mobile-padding-x)
+      pb-(--spacing-text-container-mobile-padding-x)
       bg-(--color-card-container-background)
       border-(--color-card-container-border)
       border-(length:--border-card-container-base-width)
@@ -67,22 +67,24 @@ export const workItemsSectionLayoutConfig = {
       transform-gpu
       will-change-transform
     `,
+
     default: `
     `,
+
     relatedProjects: `
       h-fit
     `,
   },
 
   interactiveToInteractive: `
-      w-full flex flex-wrap items-center justify-center
-      gap-x-(--spacing-interactive-interactive-mobile-gap-horizontal)
-      sm:gap-x-(--spacing-interactive-interactive-tablet-gap-horizontal)
-      lg:gap-x-(--spacing-interactive-interactive-desktop-gap-horizontal)
-      gap-y-(--spacing-interactive-interactive-mobile-gap-vertical)
-      sm:gap-y-(--spacing-interactive-interactive-tablet-gap-vertical)
-      lg:gap-y-(--spacing-interactive-interactive-desktop-gap-vertical)
-   `,
+    w-full flex flex-wrap items-center justify-center
+    gap-x-(--spacing-interactive-interactive-mobile-gap-horizontal)
+    sm:gap-x-(--spacing-interactive-interactive-tablet-gap-horizontal)
+    lg:gap-x-(--spacing-interactive-interactive-desktop-gap-horizontal)
+    gap-y-(--spacing-interactive-interactive-mobile-gap-vertical)
+    sm:gap-y-(--spacing-interactive-interactive-tablet-gap-vertical)
+    lg:gap-y-(--spacing-interactive-interactive-desktop-gap-vertical)
+  `,
 
   textAlignMap: {
     left: "text-left",

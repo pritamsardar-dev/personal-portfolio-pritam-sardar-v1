@@ -5,5 +5,5 @@ export const aboutSubtitleBuildingBeyondBoundaries = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

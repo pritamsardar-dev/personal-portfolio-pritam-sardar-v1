@@ -1,23 +1,11 @@
-/**
- * Role: CMS-driven Call To Action (CTA) section
- * Used by: Typically placed at the end of a page via section.type === "callToAction"
- *
- * Responsibilities:
- *  - Render a prominent section-level heading and supporting body text
- *  - Present one or more primary/secondary CTA buttons
- *  - Apply CMS-controlled alignment for heading, body, and CTAs
- *
- * Guardrails:
- *  - Fully data-driven (no page-specific or hardcoded logic)
- *  - No side effects or navigation logic inside the section
- *  - Button behavior and routing handled externally
- */
-
 import React from "react";
+
 import clsx from "clsx";
+
+import { useCTA } from "../../../hooks/useCTA";
+
 import Text from "../../atoms/text/Text";
 import Button from "../../atoms/button/Button";
-import { useCTA } from "../../../hooks/useCTA";
 
 const sectionContainerClasses = `
   flex flex-col justify-center items-center
@@ -48,82 +36,77 @@ const sectionHeadingContainerClasses = `
   lg:gap-(--spacing-heading-1-body-desktop-gap)
 `;
 
-const textAlignMap = { 
-    left: "text-left", 
-    center: "text-center", 
-    right: "text-right" 
-};
-const flexAlignMap = { 
-    left: "justify-start", 
-    center: "justify-center items-center", 
-    right: "justify-end" 
+const textAlignMap = {
+  left: "text-left",
+  center: "text-center",
+  right: "text-right",
 };
 
-const CallToActionSection = ({
-    variant = "aboutCtaSection",
-    data = {}
-}) => {
-    const resolvedData = data.rows.find(row => row.type === variant)
-    const {
-        id,
-        heading,
-        body,
-        alignment = {
-            headingContainer: "center",
-            heading: "center",
-            body: "left",
-            cta: "center",
-        },
-        ctaButtons,
-    } = resolvedData;
+const flexAlignMap = {
+  left: "justify-start",
+  center: "justify-center items-center",
+  right: "justify-end",
+};
 
-    const { handleCTA } = useCTA();
+// CMS driven Call To Action section.
+// Renders a heading, optional body, and one or more CTA buttons.
+// Alignment and button behavior are fully CMS controlled.
+const CallToActionSection = ({ variant = "aboutCtaSection", data = {} }) => {
+  const resolvedData = data.rows.find((row) => row.type === variant);
+  const {
+    id,
+    heading,
+    body,
+    alignment = {
+      headingContainer: "center",
+      heading: "center",
+      body: "left",
+      cta: "center",
+    },
+    ctaButtons,
+  } = resolvedData;
 
-    return (
-        <section
-            id={id}
-            className={clsx(sectionContainerClasses)}
+  const { handleCTA } = useCTA();
+
+  return (
+    <section id={id} className={clsx(sectionContainerClasses)}>
+      {/* Section Heading */}
+      {(heading || body) && (
+        <div
+          className={clsx(sectionHeadingContainerClasses, flexAlignMap[alignment.headingContainer])}
         >
-            {/* Section heading */}
-            {(heading || body) && 
-                <div className={clsx(
-                        sectionHeadingContainerClasses,
-                        flexAlignMap[alignment.headingContainer]
-                    )}
-                >
-                    {heading && 
-                        <div className={clsx(textAlignMap[alignment.heading])}>
-                            <Text {...heading}/>
-                        </div>
-                    }
+          {heading && (
+            <div className={clsx(textAlignMap[alignment.heading])}>
+              <Text {...heading} />
+            </div>
+          )}
 
-                    {/* Optional body */}
-                    {body && 
-                        <div className={clsx(textAlignMap[alignment.body])}>
-                            <Text {...body}/>
-                        </div>
-                    }
-                </div>
-            }
+          {/* Body */}
+          {body && (
+            <div className={clsx(textAlignMap[alignment.body])}>
+              <Text {...body} />
+            </div>
+          )}
+        </div>
+      )}
 
-            {/* Cta buttons */}
-            {Array.isArray(ctaButtons) && ctaButtons.length > 0 &&
-                <div className={clsx(buttonContainerClasses, flexAlignMap[alignment.cta])}>
-                    {ctaButtons
-                        .sort((a, b) => a.order - b.order)
-                        .map((ctaButton) => (
-                            <Button 
-                                key={ctaButton.id} 
-                                variant={ctaButton.variant}
-                                label={ctaButton.label}
-                                onClick={() => handleCTA(ctaButton)}
-                            />
-                    ))}
-                </div>
-            }
-        </section>
-    );
-
+      {/* CTA Buttons */}
+      {Array.isArray(ctaButtons) && ctaButtons.length > 0 && (
+        <div className={clsx(buttonContainerClasses, flexAlignMap[alignment.cta])}>
+          {ctaButtons
+            .sort((a, b) => a.order - b.order)
+            .map((ctaButton) => (
+              <Button
+                key={ctaButton.id}
+                variant={ctaButton.variant}
+                label={ctaButton.label}
+                onClick={() => handleCTA(ctaButton)}
+              />
+            ))}
+        </div>
+      )}
+    </section>
+  );
 };
 
 export default CallToActionSection;

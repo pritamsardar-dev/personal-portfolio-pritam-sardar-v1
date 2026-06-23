@@ -7,5 +7,5 @@ export const skillsSubtitleBackendWithRealWorldApproach = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

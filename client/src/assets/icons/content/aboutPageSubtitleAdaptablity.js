@@ -5,5 +5,5 @@ export const aboutPageSubtitleAdaptablity = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

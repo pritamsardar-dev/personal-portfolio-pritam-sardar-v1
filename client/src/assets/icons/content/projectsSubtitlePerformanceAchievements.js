@@ -5,5 +5,5 @@ export const projectsSubtitlePerformanceAchievements = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

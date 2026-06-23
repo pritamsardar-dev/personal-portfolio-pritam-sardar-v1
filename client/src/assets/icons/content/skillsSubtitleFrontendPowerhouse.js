@@ -6,5 +6,5 @@ export const skillsSubtitleFrontendPowerhouse = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

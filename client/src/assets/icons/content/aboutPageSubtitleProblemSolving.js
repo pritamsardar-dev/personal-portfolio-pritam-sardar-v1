@@ -5,5 +5,5 @@ export const aboutPageSubtitleProblemSolving = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

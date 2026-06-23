@@ -1,96 +1,58 @@
-/**
- * Role: CMS-driven Journey section for About page
- * Used by: Mounted at page level via section.type === "journeySection"
- *
- * Responsibilities:
- *  - Render section-level heading with CMS-controlled alignment
- *  - Orchestrate ordered journey-related content blocks
- *  - Delegate block rendering to BlockRenderer only
- *
- * Guardrails:
- *  - Fully data-driven, no page-specific or hardcoded logic
- *  - Does not mutate block data or manage side effects
- */
-
 import React from "react";
+
 import clsx from "clsx";
+
+import { resolveProps } from "../../../../utils/resolveProps";
+import { journeySectionLayoutConfig } from "./journeySectionLayout.config";
+
 import Text from "../../../atoms/text/Text";
 import BlockRenderer from "../../../../renderers/blocks/blockRenderer";
-import { resolveProps } from "../../../../utils/resolveProps";
+import JourneySectionSkeleton from "./skeletons/JourneySectionSkeleton";
 
-const sectionContainerClasses = `
-  flex flex-col w-full
+const {
+  sectionContainer: sectionContainerClasses,
+  sectionHeadingWrapper: sectionHeadingWrapperClasses,
+  blocksContainer: blocksContainerClasses,
+  textAlignMap,
+} = journeySectionLayoutConfig;
 
-  px-(--spacing-section-wrapper-mobile-padding-x)
-  sm:px-(--spacing-section-wrapper-tablet-padding-x)
-  lg:px-(--spacing-section-wrapper-desktop-padding-x)
-
-  gap-(--spacing-section-wrapper-mobile-gap)
-  sm:gap-(--spacing-section-wrapper-tablet-gap)
-  lg:gap-(--spacing-section-wrapper-desktop-gap)
-`;
-
-const sectionHeadingWrapperClasses = `
-  flex flex-col w-full
-  gap-(--spacing-heading-1-heading-2-mobile-gap)
-  sm:gap-(--spacing-heading-1-heading-2-tablet-gap)
-  lg:gap-(--spacing-heading-1-heading-2-desktop-gap)
-`;
-
-const blocksContainerClasses = `
-  flex flex-col w-full items-center
-  gap-(--spacing-section-wrapper-mobile-gap)
-  sm:gap-(--spacing-section-wrapper-tablet-gap)
-  lg:gap-(--spacing-section-wrapper-desktop-gap)
-`;
-
-const textAlignMap = { 
-    left: "text-left", 
-    center: "text-center", 
-    right: "text-right" 
-};
-const JourneySection = ({ 
-  data = {}, 
-  className, 
-  ...props 
-}) => {
+// CMS driven Journey section for the About page.
+// Renders section heading and ordered blocks with about domain prop resolution.
+const JourneySection = ({ data = {}, isLoading, className }) => {
   const resolvedData = resolveProps(data, "about");
 
-  const {
-    id,
-    heading,
-    blocks = [],
-    alignment = { heading: "center"},
-  } = resolvedData;
+  const { id, heading, rows = [], alignment = { heading: "center" } } = resolvedData;
+
+  if (isLoading) {
+    return <JourneySectionSkeleton />;
+  }
 
   return (
-    <section
-      id={id}
-      className={clsx(
-        sectionContainerClasses, 
-        className
-      )}
-      {...props}
-    >
+    <section id={id} className={clsx(sectionContainerClasses, className)}>
       <div className={sectionHeadingWrapperClasses}>
         {/* Section Heading */}
         {heading && (
-          <div
-            className={clsx(textAlignMap[alignment.heading])}>
+          <div className={clsx(textAlignMap[alignment.heading])}>
             <Text {...heading} />
           </div>
         )}
 
-        {/* Blocks */}
-        {Array.isArray(blocks) && blocks.length > 0 && (
-            <div className={blocksContainerClasses}>
-              {blocks
-                  .filter(block => block.enabled)
-                  .sort((a, b) => a.order - b.order)
-                  .map(block => (<BlockRenderer key={block.id} block={block} />))
-              }
-            </div>
-        )}
+        {/* Rows */}
+        {Array.isArray(rows) &&
+          rows.length > 0 &&
+          rows
+            .filter((row) => row.enabled)
+            .sort((a, b) => a.order - b.order)
+            .map((row) => (
+              <div key={row.id} className={blocksContainerClasses}>
+                {Array.isArray(row.blocks) &&
+                  row.blocks.length > 0 &&
+                  row.blocks
+                    .filter((block) => block.enabled)
+                    .sort((a, b) => a.order - b.order)
+                    .map((block) => <BlockRenderer key={block.id} block={block} />)}
+              </div>
+            ))}
       </div>
     </section>
   );

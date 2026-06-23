@@ -5,5 +5,5 @@ export const skillsSubtitleWorkflowAndSoftSkills = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

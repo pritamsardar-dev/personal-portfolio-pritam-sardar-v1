@@ -91,10 +91,9 @@ export const variantMap = {
     `,
     iconClasses: `
       text-(--color-content-icon-stroke-default)
-      w-(--size-icon-heading-1-mobile)
-      sm:w-(--size-icon-heading-1-tablet)
-      lg:w-(--size-icon-heading-1-desktop)
-      h-auto
+      w-[65%]
+      h-[65%]
+      stroke-[1.5px]
     `,
   },
 
@@ -119,9 +118,8 @@ export const variantMap = {
     `,
     iconClasses: `
       text-(--color-content-icon-stroke-default)
-      w-(--size-icon-heading-1-subpage-mobile)
-      sm:w-(--size-icon-heading-1-subpage-tablet)
-      lg:w-(--size-icon-heading-1-subpage-desktop)
+      w-[65%]
+      h-[65%]
       h-auto
       stroke-(length:--border-icon-base-width)
     `,
@@ -170,9 +168,9 @@ export const variantMap = {
     iconClasses: {
       default: `
         text-(--color-content-icon-stroke-default)
-        w-(--size-icon-heading-2-mobile)
-        sm:w-(--size-icon-heading-2-tablet)
-        h-auto
+        w-[65%]
+        h-[65%]
+        stroke-[1.5px]
       `,
 
       compact: `
@@ -182,7 +180,6 @@ export const variantMap = {
       `,
     },
   },
-
 
   heading3: {
     semanticTag: "h3",
@@ -208,7 +205,7 @@ export const variantMap = {
       default: `
         ${iconWrapperClassesBase}
         inline-flex items-center justify-center
-        bg-(--color-text-primary)
+      
         w-(--size-icon-container-heading-3-mobile-diameter)
         sm:w-(--size-icon-container-heading-3-tablet-diameter)
         lg:w-(--size-icon-container-heading-3-desktop-diameter)
@@ -231,10 +228,9 @@ export const variantMap = {
     iconClasses: {
       default: `
         text-(--color-content-icon-stroke-default)
-        w-(--size-icon-heading-3-mobile)
-        sm:w-(--size-icon-heading-3-tablet)
-        lg:w-(--size-icon-heading-3-desktop)
-        h-auto
+        w-[65%]
+        h-[65%]
+        stroke-[1.5px]
       `,
 
       compact: `
@@ -244,7 +240,6 @@ export const variantMap = {
       `,
     },
   },
-
 
   bodyLarge: {
     semanticTag: "p",
@@ -272,6 +267,9 @@ export const variantMap = {
 
       strong: `
         font-(--text-body-base-strong-font-weight)
+      `,
+      italic: `
+        italic
       `,
     },
 
@@ -316,7 +314,6 @@ export const variantMap = {
     },
   },
 
-
   bodyBase: {
     semanticTag: "p",
 
@@ -344,7 +341,6 @@ export const variantMap = {
     iconWrapperClasses: {},
     iconClasses: {},
   },
-
 
   bodyBaseTag: {
     semanticTag: "span",
@@ -380,7 +376,6 @@ export const variantMap = {
     iconWrapperClasses: {},
     iconClasses: {},
   },
-
 
   bodySmall: {
     baseClasses: `

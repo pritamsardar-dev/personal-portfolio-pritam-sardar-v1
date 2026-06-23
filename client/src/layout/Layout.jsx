@@ -1,48 +1,41 @@
-import {React } from "react";
-import { Outlet } from "react-router-dom";
-import Header from "../components/organisms/header-section/Header";
-import Footer from "../components/organisms/footer-section/Footer";
-import { headerNavItems } from "../data/globals/headerNav"
-import { footer } from "../data/globals/footer"
+import { useEffect } from "react";
+
+import { useNavigate, Outlet } from "react-router-dom";
+
+import HeaderContainer from "../modules/header/HeaderContainer";
 import ScrollRestoration from "../components/system/ScrollRestoration";
+import FooterContainer from "../modules/footer/FooterContainer";
+import SectionNavPanel from "../components/system/SectionNavPanel";
 
 const sectionLayoutClasses = `
-  flex items-center flex-col justify-center w-full
-  gap-(--spacing-section-wrapper-mobile-padding-y)
-  sm:gap-(--spacing-section-wrapper-tablet-padding-y)
-  lg:gap-(--spacing-section-wrapper-desktop-padding-y) 
+    flex items-center flex-col justify-center w-full
+    gap-(--spacing-section-wrapper-mobile-padding-y)
+    sm:gap-(--spacing-section-wrapper-tablet-padding-y)
+    lg:gap-(--spacing-section-wrapper-desktop-padding-y)
 `;
 
+// Root layout wrapper with scroll restoration and Ctrl+Alt+A admin shortcut
 const Layout = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.ctrlKey && e.altKey && e.key === "a") {
+        navigate("/admin");
+      }
+    };
+
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [navigate]);
 
   return (
     <div className={sectionLayoutClasses}>
       <ScrollRestoration />
-      <Header
-        navigationItems={{
-            variant: "header",
-            items: headerNavItems,
-            splitLastItem: true,
-            showCenterGroup: true
-        }}
-        showThemeToggle = {true}
-      />
-
+      <HeaderContainer />
       <Outlet />
-
-      <Footer
-        navigationItems={{
-            variant: "footer",
-            items: footer.navItems,
-        }}
-        brandTagline={footer.brandTagline}
-        quickLinksHeading={footer.quickLinksHeading}
-        contactLinksHeading={footer.contactLinksHeading}
-        contactLinks={footer.contactLinks}
-        availabilityHeading={footer.availabilityHeading}
-        availabilityTagline={footer.availabilityTagline}
-        copyright={footer.copyright}
-        />
+      <FooterContainer />
+      <SectionNavPanel />
     </div>
   );
 };

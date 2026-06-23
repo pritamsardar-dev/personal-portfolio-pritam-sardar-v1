@@ -5,5 +5,5 @@ export const skillsSubtitleTeamCommunicationAndWorkEthic = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

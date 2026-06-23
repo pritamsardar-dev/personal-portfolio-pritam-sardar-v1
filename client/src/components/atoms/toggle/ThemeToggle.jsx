@@ -1,30 +1,42 @@
-import { useState, useEffect } from "react";
-import {SunIcon, MoonIcon} from '../../../assets/icons/system'
+import { useState } from "react";
 
-const ThemeToggle = ({onClick}) => {
+import { applyTheme } from "../../../utils/theme/applyTheme";
 
+import { MoonStarsIcon, SunHighIcon } from "../../../assets/icons/system";
+
+const ThemeToggle = ({ onClick }) => {
   const [isOn, setIsOn] = useState(() => {
-    const saved = localStorage.getItem("theme") || "light";
+    const saved = localStorage.getItem("ps:theme") || "light";
     return saved === "dark";
   });
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isOn);
-  }, [isOn]);
 
   const toggle = () => {
     const next = !isOn;
     setIsOn(next);
+
     const themeName = next ? "dark" : "light";
-    localStorage.setItem("theme", themeName);
+    localStorage.setItem("ps:theme", themeName);
+
+    // Temporarily enable transition class for smooth theme switch
+    document.documentElement.classList.add("theme-transition");
+
+    // Force reflow to ensure transition applies before class change
+    document.body.offsetHeight;
+
     document.documentElement.classList.toggle("dark", next);
-    
-    // notify parent (Header) to close mobile menu
+
+    setTimeout(() => {
+      document.documentElement.classList.remove("theme-transition");
+    }, 600);
+
+    applyTheme(next);
+
+    // Notify parent to close mobile menu
     if (onClick) onClick();
   };
 
   const iconClassesBase = `
-    w-(--size-icon-button-element-mobile-diameter)
+    w-(--size-icon-button-element-mobile-diameter) 
     sm:w-(--size-icon-button-element-tablet-diameter)
     lg:w-(--size-icon-button-element-desktop-diameter)
     h-auto
@@ -33,7 +45,8 @@ const ThemeToggle = ({onClick}) => {
 
   const iconClassesKnob = `
     ${iconClassesBase}
-    text-(--color-icon-button-toggle-knob-icon-background) fill-(--color-icon-button-toggle-knob-icon-background)
+    text-(--color-icon-button-toggle-knob-icon-background)
+    fill-(--color-icon-button-toggle-knob-icon-background)
   `;
 
   return (
@@ -48,10 +61,9 @@ const ThemeToggle = ({onClick}) => {
         h-(--size-icon-button-toggle-track-mobile-height)
         sm:h-(--size-icon-button-toggle-track-tablet-height)
         lg:h-(--size-icon-button-toggle-track-desktop-height)
-        
-        border-(length:--border-icon-button-toggle-width) 
-        border-(--color-icon-button-toggle-border) 
-        bg-(--color-icon-button-toggle-tracker-background-default) 
+        border-(length:--border-icon-button-toggle-width)
+        border-(--color-icon-button-toggle-border)
+        bg-(--color-icon-button-toggle-tracker-background-default)
         hover:bg-(--color-icon-button-toggle-tracker-background-hover)
         shrink-0 u-focus-visible-outline"
     >
@@ -65,12 +77,11 @@ const ThemeToggle = ({onClick}) => {
           fill-transparent
           group-hover:fill-(--color-icon-button-toggle-tracker-icon-background-hover)
           ${isOn ? "opacity-100 scale-100" : "opacity-0 scale-75"}
-          
         `}
       >
-        <SunIcon className="" />
+        <SunHighIcon className="" />
       </span>
-      
+
       {/* Moon */}
       <span
         className={`
@@ -81,10 +92,9 @@ const ThemeToggle = ({onClick}) => {
           fill-transparent
           group-hover:fill-(--color-icon-button-toggle-tracker-icon-background-hover)
           ${isOn ? "opacity-0 scale-75" : "opacity-100 scale-100"}
-          
         `}
       >
-        <MoonIcon className="" />
+        <MoonStarsIcon className="" />
       </span>
 
       {/* Knob */}
@@ -100,20 +110,11 @@ const ThemeToggle = ({onClick}) => {
           sm:h-(--size-icon-button-toggle-knob-tablet-diameter)
           lg:h-(--size-icon-button-toggle-knob-desktop-diameter)
           bg-(--color-icon-button-toggle-knob-background)
-          
-          ${isOn
-            ? "left-full -translate-x-full"
-            : "left-0 translate-x-0"
-          }
+          ${isOn ? "left-full -translate-x-full" : "left-0 translate-x-0"}
         `}
       >
-        {isOn ? (
-          <MoonIcon className={iconClassesKnob} />
-        ) : (
-          <SunIcon className={iconClassesKnob} />
-        )}
+        {isOn ? <MoonStarsIcon className={iconClassesKnob} /> : <SunHighIcon className={iconClassesKnob} />}
       </span>
-
     </button>
   );
 };

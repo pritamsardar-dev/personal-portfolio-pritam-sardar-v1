@@ -5,5 +5,5 @@ export const workExperienceHeading = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

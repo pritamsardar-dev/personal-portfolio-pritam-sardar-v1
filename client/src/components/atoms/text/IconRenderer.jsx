@@ -1,53 +1,87 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import clsx from "clsx";
+
 import { iconPaintClasses } from "./icon.paint.config";
 
-export const IconRenderer = ({ svg, type = "stroke", className = "" }) => {
-  if (!svg) return null;
+const svgCache = {};
+
+export const IconRenderer = ({ src, type = "stroke", className = "" }) => {
+  const [fetchedSvg, setFetchedSvg] = useState("");
 
   const paintClasses = iconPaintClasses[type] || "";
-
   const finalClassName = clsx(className, paintClasses);
 
-  // JSX Component
-  if (typeof svg === "function") {
-    return React.createElement(svg, { className: finalClassName });
+  const isUrl =
+    typeof src === "string" &&
+    (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("blob:"));
+
+  useEffect(() => {
+    if (!isUrl) return;
+
+    let isMounted = true;
+
+    const loadSvg = async () => {
+      try {
+        // Return cached SVG if available
+        if (svgCache[src]) {
+          if (isMounted) setFetchedSvg(svgCache[src]);
+          return;
+        }
+
+        const res = await fetch(src);
+        const data = await res.text();
+        const cleaned = sanitize(data);
+
+        svgCache[src] = cleaned;
+
+        if (isMounted) setFetchedSvg(cleaned);
+      } catch (err) {
+        console.error("SVG fetch error:", err);
+      }
+    };
+
+    loadSvg();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [src, isUrl]);
+
+  // JSX component passed as src
+  if (typeof src === "function") {
+    return React.createElement(src, { className: finalClassName });
   }
 
-  // Reject URIs
-  if (typeof svg === "string" && svg.trim().startsWith("data:")) {
+  // Reject data URIs
+  if (typeof src === "string" && src.trim().startsWith("data:")) {
     console.warn("SVG URI detected. Use raw SVG markup instead.");
     return null;
   }
 
-  // Raw SVG markup
-  if (typeof svg === "string" && svg.trim().startsWith("<svg")) {
-    return (
-      <span
-        className={finalClassName}
-        dangerouslySetInnerHTML={{ __html: sanitize(svg) }}
-      />
-    );
+  // URL-fetched SVG
+  if (isUrl) {
+    if (!fetchedSvg) return null;
+
+    return <span className={clsx(finalClassName, "[&>svg]:w-full [&>svg]:h-full [&>svg]:block")} dangerouslySetInnerHTML={{ __html: fetchedSvg }} />;
+  }
+
+  // Raw SVG string
+  if (typeof src === "string" && src.trim().startsWith("<svg")) {
+    return <span className={clsx(finalClassName, "[&>svg]:w-full [&>svg]:h-full [&>svg]:block")} dangerouslySetInnerHTML={{ __html: sanitize(src) }} />;
   }
 
   return null;
 };
 
-
-// Utility: Remove unwanted inline width/height/fill/steoke coming from upload icons
-const sanitize = (svg) =>
-    svg
+const sanitize = (src) =>
+  src
     .replace(/\s*width="[^"]*"/g, "")
     .replace(/\s*height="[^"]*"/g, "")
     .replace(/\s*fill="[^"]*"/g, "")
+    .replace(/stroke="[^"]*"/g, 'stroke="currentColor"')
     .replace(/\s*stroke-width="[^"]*"/g, "")
     .replace(/\s*fill-opacity="[^"]*"/g, "")
-    .replace(/stroke="[^"]*"/g, 'stroke="currentColor"')
-    .replace(/\sstroke-\s*/g, " ") // Figma/Illustrator sometimes break attributes
-
-    // Wrap in JSX
     .replace(/stroke-linecap=/g, "strokeLinecap=")
     .replace(/stroke-linejoin=/g, "strokeLinejoin=")
-    .replace(/stroke-opacity=/g, "strokeOpacity=")
-  
-    
+    .replace(/stroke-opacity=/g, "strokeOpacity=");

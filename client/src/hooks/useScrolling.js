@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+// Tracks whether the user is actively scrolling.
+// Returns false after the given idle delay (ms) with no scroll events.
 export function useScrolling(idleDelay = 150) {
   const [isScrolling, setIsScrolling] = useState(false);
 

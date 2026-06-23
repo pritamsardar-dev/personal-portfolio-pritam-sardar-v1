@@ -5,5 +5,5 @@ export const projectsSubtitleProjectGoal = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

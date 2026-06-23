@@ -5,5 +5,5 @@ export const skillsSubtitleAvdancedMongoDBHandling = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

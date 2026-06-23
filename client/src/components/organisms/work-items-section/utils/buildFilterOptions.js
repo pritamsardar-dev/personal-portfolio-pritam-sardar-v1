@@ -9,16 +9,16 @@ export function buildFilterOptions({ rows, filtersPayload = {} }) {
   const primaryMap = new Map();
   const secondaryMap = new Map();
 
-  const enabledScopeRows = rows.filter(row => row.enabled !== false);
-  const categoryRows = rows.filter(row => {
-      if (filtersPayload.scope === "all") return true;
+  const enabledScopeRows = rows.filter((row) => row.enabled !== false);
 
-      return row?.domain === filtersPayload.scope;
-    });
+  const categoryRows = rows.filter((row) => {
+    if (filtersPayload.scope === "all") return true;
+    return row?.domain === filtersPayload.scope;
+  });
 
-  const enabledCategoryRows = categoryRows.filter(row => row.enabled !== false);
+  const enabledCategoryRows = categoryRows.filter((row) => row.enabled !== false);
 
-  // ---------- SCOPE DEFAULT OPTIONS ----------
+  // Scope options
   scopeMap.set("all", {
     key: "all",
     label: "All",
@@ -30,17 +30,17 @@ export function buildFilterOptions({ rows, filtersPayload = {} }) {
     key: "project",
     label: "Projects",
     variant: "tag",
-    count: enabledScopeRows.filter(r => r.domain === "project").length,
+    count: enabledScopeRows.filter((r) => r.domain === "project").length,
   });
 
   scopeMap.set("experience", {
     key: "experience",
     label: "Work Experience",
     variant: "tag",
-    count: enabledScopeRows.filter(r => r.domain === "experience").length,
+    count: enabledScopeRows.filter((r) => r.domain === "experience").length,
   });
 
-  // ---------- PRIMARY OPTIONS (use all enabledCategoryRows, do NOT modify) ----------
+  // Primary options built from all enabled category rows without modification
   enabledCategoryRows.forEach((row) => {
     const primaryCategory = row?.primaryCategory;
 
@@ -52,11 +52,12 @@ export function buildFilterOptions({ rows, filtersPayload = {} }) {
         primaryMap.set(key, {
           key,
           label,
-          domain, // keep domain for reference
+          domain,
           variant: "tag",
           count: 0,
         });
       }
+
       primaryMap.get(key).count += 1;
     }
   });
@@ -66,29 +67,26 @@ export function buildFilterOptions({ rows, filtersPayload = {} }) {
       key: "all",
       label: "All",
       variant: "tag",
-      count: enabledCategoryRows.length, // correct total count
+      count: enabledCategoryRows.length,
       domain: "all",
     },
     ...Array.from(primaryMap.values()),
   ];
 
-  // ---------- SECONDARY OPTIONS ----------
+  // Secondary options scoped to rows that match the active primary (and domain if scoped)
   let secondaryRows = [...enabledCategoryRows];
 
-  // Only limit secondaryRows when scope is "all" and primaryKey is active
-  if (scope === "all" && primaryKey !== "all") {
-    const activePrimaryDomain = primaryMap.get(primaryKey)?.domain;
-    if (activePrimaryDomain) {
-      secondaryRows = secondaryRows.filter(row => row.domain === activePrimaryDomain);
-    }
+  if (primaryKey !== "all") {
+    secondaryRows = secondaryRows.filter((row) => row?.primaryCategory?.key === primaryKey);
   }
 
-  // Build secondaryMap
   secondaryRows.forEach((row) => {
     const secondaryCategories = row?.secondaryCategories;
+
     if (Array.isArray(secondaryCategories)) {
       secondaryCategories.forEach((cat) => {
         const { key, label } = cat;
+
         if (!secondaryMap.has(key)) {
           secondaryMap.set(key, {
             key,
@@ -97,6 +95,7 @@ export function buildFilterOptions({ rows, filtersPayload = {} }) {
             count: 0,
           });
         }
+
         secondaryMap.get(key).count += 1;
       });
     }

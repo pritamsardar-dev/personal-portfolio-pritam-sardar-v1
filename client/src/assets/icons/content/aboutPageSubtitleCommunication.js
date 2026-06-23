@@ -5,5 +5,5 @@ export const aboutPageSubtitleCommunication = {
 </svg>
 
   `,
-  type: "mixed"
+  type: "mixed",
 };

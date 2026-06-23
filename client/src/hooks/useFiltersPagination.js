@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+
 import { useSearchParams, useLocation } from "react-router-dom";
 
 export function useFiltersPagination(defaultFilters = {}, scrollTargetId) {
@@ -6,28 +7,23 @@ export function useFiltersPagination(defaultFilters = {}, scrollTargetId) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const isDetailPage =
-  location.pathname.includes("/full-case-study") ||
-  location.pathname.includes("/view-details");
+    location.pathname.includes("/full-case-study") || location.pathname.includes("/view-details");
 
-  // track if pagination triggered the page change
+  // Tracks whether a pagination action triggered the last page change
   const paginationTriggeredRef = useRef(false);
 
-  // ---------- READ STATE FROM URL ----------
-
+  // Read current page and filter state from URL search params
   const page = Number(searchParams.get("page") || 1);
 
   const filters = {
     scope: searchParams.get("scope") || defaultFilters.scope || "all",
     primary: searchParams.get("primary") || defaultFilters.primary || "all",
     secondary:
-      searchParams.get("secondary")?.split(",").filter(Boolean) ||
-      defaultFilters.secondary ||
-      [],
+      searchParams.get("secondary")?.split(",").filter(Boolean) || defaultFilters.secondary || [],
     sort: searchParams.get("sort") || defaultFilters.sort || "top",
   };
 
-  // ---------- INITIAL URL NORMALIZATION ----------
-
+  // Normalize URL on mount if page param is missing
   useEffect(() => {
     if (location.pathname === "/" || isDetailPage) return;
 
@@ -48,11 +44,10 @@ export function useFiltersPagination(defaultFilters = {}, scrollTargetId) {
     searchParams,
     setSearchParams,
     location.pathname,
-    isDetailPage
+    isDetailPage,
   ]);
 
-  // ---------- UPDATE PAGE ----------
-
+  // Updates the page param and marks pagination as the trigger
   const setPage = (pageNo) => {
     if (location.pathname === "/" || isDetailPage) return;
 
@@ -64,8 +59,7 @@ export function useFiltersPagination(defaultFilters = {}, scrollTargetId) {
     setSearchParams(params);
   };
 
-  // ---------- SCROLL AFTER PAGE CHANGE (ONLY PAGINATION) ----------
-
+  // Scrolls to the target section only when pagination triggered the page change
   useEffect(() => {
     if (!scrollTargetId) return;
     if (!paginationTriggeredRef.current) return;
@@ -75,14 +69,14 @@ export function useFiltersPagination(defaultFilters = {}, scrollTargetId) {
     const element = document.getElementById(scrollTargetId);
     if (!element) return;
 
-    // jump to top first (for header hide logic)
+    // Jump to top first to trigger header hide logic
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: "instant",
     });
 
-    // smooth scroll to section
+    // Smooth scroll to section after layout settles
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         element.scrollIntoView({
@@ -91,11 +85,9 @@ export function useFiltersPagination(defaultFilters = {}, scrollTargetId) {
         });
       });
     });
-
   }, [page, scrollTargetId]);
 
-  // ---------- UPDATE FILTERS ----------
-
+  // Updates filter params and resets pagination to page 1
   const setFilters = (payload) => {
     if (location.pathname === "/" || isDetailPage) return;
 
@@ -109,7 +101,6 @@ export function useFiltersPagination(defaultFilters = {}, scrollTargetId) {
       }
     });
 
-    // reset pagination when filters change
     params.set("page", 1);
 
     setSearchParams(params, { replace: true });

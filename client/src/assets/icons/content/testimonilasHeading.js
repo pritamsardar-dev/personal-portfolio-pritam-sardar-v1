@@ -5,5 +5,5 @@ export const testimonilasHeading = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

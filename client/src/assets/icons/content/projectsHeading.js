@@ -2,5 +2,5 @@ export const projectsHeading = {
   svg: `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000000"><g fill="#000000" fill-rule="evenodd" clip-rule="evenodd"><path d="M6 13h1V7h6V6H7V3H6v3H3v1h3z"/><path d="M2.5 2h11l.5.5v11l-.5.5h-11l-.5-.5v-11zM3 13h10V3H3z"/></g></svg>
   `,
-  type: "fill"
+  type: "fill",
 };

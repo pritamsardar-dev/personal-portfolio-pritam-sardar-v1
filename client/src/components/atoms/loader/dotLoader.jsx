@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const DotLoader = ({
-  loading = true,
-  size = 8,
-  color = "#1D4ED8",
-  speed = 500,
-  text = "", // New prop for optional text
-}) => {
+const DotLoader = ({ loading = true, size = 8, color = "#1D4ED8", speed = 500, text = "" }) => {
   const [dots, setDots] = useState(0);
 
   useEffect(() => {
@@ -23,7 +17,7 @@ const DotLoader = ({
 
   return (
     <div className="flex items-center gap-1">
-      {text && <span>{text}</span>} {/* Show text if provided */}
+      {text && <span>{text}</span>}
       {[...Array(dots)].map((_, i) => (
         <span
           key={i}

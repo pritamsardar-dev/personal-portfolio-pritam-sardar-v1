@@ -1,5 +1,9 @@
 import React from "react";
+
 import clsx from "clsx";
+
+import { ctaIconMap } from "../../../assets/icons/system/ctaIconMap";
+
 import Button from "../../atoms/button/Button";
 
 const outerContainerClasses = `
@@ -31,44 +35,47 @@ const CaseStudyNavigation = ({
   onPrevious,
   onNext,
   onBack,
-  backLabel = "← Return to Source",
+  backLabel = "Return to Source",
+  backIconLeft = null,
   className,
   ...props
 }) => {
-
   const isPrevDisabled = !previous;
   const isNextDisabled = !next;
 
   return (
     <div className={clsx(outerContainerClasses, className)} {...props}>
-        <div className={clsx(innerContainerClasses)}>
-            {/* Previous */}
-            <Button
-                variant="overlay"
-                label={previous?.title ? `← ${previous.title}` : "← Previous"}
-                disabled={isPrevDisabled}
-                aria-disabled={isPrevDisabled}
-                className={clsx(isPrevDisabled && disabledButtonClasses)}
-                onClick={() => !isPrevDisabled && onPrevious()}
-            />
+      <div className={clsx(innerContainerClasses)}>
+        {/* Previous */}
+        <Button
+          variant="overlay"
+          label={previous?.title ? previous.title : "Previous"}
+          iconLeft={ctaIconMap["ChevronLeft"]}
+          disabled={isPrevDisabled}
+          aria-disabled={isPrevDisabled}
+          className={clsx(isPrevDisabled && disabledButtonClasses)}
+          onClick={() => !isPrevDisabled && onPrevious()}
+        />
 
-            {/* Back */}
-            <Button
-                variant="overlay"
-                label={backLabel}
-                onClick={onBack}
-            />
+        {/* Back */}
+        <Button
+          variant="overlay"
+          label={backLabel}
+          iconLeft={backIconLeft ?? ctaIconMap["ChevronLeft"]}
+          onClick={onBack}
+        />
 
-            {/* Next */}
-            <Button
-                variant="overlay"
-                label={next?.title ? `${next.title} →` : "Next →"}
-                disabled={isNextDisabled}
-                aria-disabled={isNextDisabled}
-                className={clsx(isNextDisabled && disabledButtonClasses)}
-                onClick={() => !isNextDisabled && onNext()}
-            />
-        </div>
+        {/* Next */}
+        <Button
+          variant="overlay"
+          label={next?.title ? next.title : "Next"}
+          iconRight={ctaIconMap["ChevronRight"]}
+          disabled={isNextDisabled}
+          aria-disabled={isNextDisabled}
+          className={clsx(isNextDisabled && disabledButtonClasses)}
+          onClick={() => !isNextDisabled && onNext()}
+        />
+      </div>
     </div>
   );
 };

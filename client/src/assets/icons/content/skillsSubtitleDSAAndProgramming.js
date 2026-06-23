@@ -5,5 +5,5 @@ export const skillsSubtitleDSAAndProgramming = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

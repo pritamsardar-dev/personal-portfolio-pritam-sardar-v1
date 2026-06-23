@@ -5,5 +5,5 @@ export const skillsSubtitleUIUXAtomicPrecision = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

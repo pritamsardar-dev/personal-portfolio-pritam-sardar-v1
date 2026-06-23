@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&amp;display=swap');
+    .br { font-family: monospace; font-size: 10px; font-weight: 700; fill: #ffffff; }
+    .p  { font-family: 'Nunito', 'Arial Rounded MT Bold', sans-serif; font-size: 23px; font-weight: 900; fill: #ffffff; }
+  </style>
+  <rect width="32" height="32" rx="7" fill="#6366F1"/>
+  <text x="6"  y="12" text-anchor="middle" class="br">&lt;</text>
+  <text x="16" y="24" text-anchor="middle" class="p">P</text>
+  <text x="21" y="28" text-anchor="middle" class="br">/&gt;</text>
+</svg>

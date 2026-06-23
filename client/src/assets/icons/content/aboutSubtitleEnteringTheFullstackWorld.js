@@ -5,5 +5,5 @@ export const aboutSubtitleEnteringTheFullstackWorld = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

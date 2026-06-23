@@ -1,95 +1,35 @@
-/**
- * Role: CMS-driven text block for the Work Experience section
- * Used by: Mounted via BlockRenderer based on block.type
- * Responsibilities:
- *   - Render a list of work experience items with rich text content
- *   - Support highlights, case-study notes, and optional CTA
- *   - Adapt layout and styling based on variant (home / work-experience)
- *   - Respect CMS controls: enabled flags, alignment, and ordering
- * Guardrails:
- *   - Fully data-driven, no page-specific logic
- *   - Designed for CRUD operations via CMS
- */
-
 import React from "react";
+
 import clsx from "clsx";
+import { useNavigate, useLocation } from "react-router-dom";
+
+import { isEnabled } from "../../../utils/normalizeEnabledState/isEnabled";
+import { workExperienceHighlightsBlockLayoutConfig } from "./workExperienceHighlightsBlockLayout.config";
+import { ctaIconMap } from "../../../assets/icons/system/ctaIconMap";
+
 import Text from "../../atoms/text/Text";
 import Button from "../../atoms/button/Button";
 import ListContentBlock from "../../molecules/list-content-block/ListContentBlock";
-import { useCTA } from "../../../hooks/useCTA";
 
-const blockContainer = {
-  base: `
-    flex flex-col w-full
-  `,
-  home: `
-    sm:max-w-(--size-block-wrapper-tablet-max-width)
-    lg:max-w-(--size-block-wrapper-desktop-max-width)
-  `,
-  workExperience: `
-    sm:max-w-(--size-block-wrapper-single-tablet-max-width)
-    lg:max-w-(--size-block-wrapper-single-desktop-max-width)
-  `
-};
+const {
+  blockContainer,
+  blockHeading: blockHeadingClasses,
+  bodyItemsContainer: bodyItemsContainerClasses,
+  bodyItemContainer,
+  ctaClass,
+  alignmentMap,
+} = workExperienceHighlightsBlockLayoutConfig;
 
-const blockHeadingClasses = `
-  flex flex-col w-ful
-  gap-(--spacing-heading-2-body-mobile-gap)
-  sm:gap-(--spacing-heading-2-body-tablet-gap)
-  lg:gap-(--spacing-heading-2-body-desktop-gap)
-`;
-
-const bodyItemsContainerClasses = `
-  flex flex-col w-full
-  gap-(--spacing-block-block-mobile-gap)
-  sm:gap-(--spacing-block-block-tablet-gap)
-  lg:gap-(--spacing-block-block-desktop-gap)
-`;
-
-const bodyItemContainer = {
-  base: `
-    flex flex-col w-full
-    px-(--spacing-text-container-mobile-padding-x)
-    sm:px-(--spacing-text-container-tablet-padding-x)
-    lg:px-(--spacing-text-container-desktop-padding-x)
-
-    gap-(--spacing-list-item-mobile-gap)
-    sm:gap-(--spacing-list-item-tablet-gap)
-    lg:gap-(--spacing-list-item-desktop-gap)
-  `,
-  workExperience: `
-    bg-(-color-badge-neutral-background)
-    border-(length:--border-card-wrapper-base-width)
-    border-(--color-badge-neutral-border)
-    rounded-(--radius-badge-base)
-
-    py-(--spacing-text-container-mobile-padding-y)
-    sm:py-(--spacing-text-container-tablet-padding-y)
-    lg:py-(--spacing-text-container-desktop-padding-y)
-  `,
-  home: `
-  `
-};
-
-const ctaClass = `
-    px-(--spacing-text-container-mobile-padding-x)
-    sm:px-(--spacing-text-container-tablet-padding-x)
-    lg:px-(--spacing-text-container-desktop-padding-x)
-  `;
-
-const alignmentMap = {
-  left: "text-left",
-  center: "text-center",
-  right: "text-right",
-};
-
-const WorkExperienceHighlightsBlock = ({ 
-  variant = "home", // home / workExperince / caseStudy
+// CMS driven Work Experience highlights block.
+// Renders rich body items with highlights, case study notes, and an optional CTA.
+// Layout adapts per variant (home / work-experience / caseStudy).
+const WorkExperienceHighlightsBlock = ({
+  variant = "home",
   data = {},
-  row, 
+  row,
   section,
-  className, 
-  ...props 
+  className,
+  ...props
 }) => {
   const {
     id,
@@ -102,27 +42,44 @@ const WorkExperienceHighlightsBlock = ({
     },
   } = data;
 
-  const { handleCTA } = useCTA();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  if (!enabled) return null;
+  // Reads the current page source from the URL query string or pathname
+  const getPageSource = () => {
+    const query = new URLSearchParams(location.search);
+
+    const existingSource = query.get("source");
+
+    if (existingSource) return existingSource;
+
+    const path = location.pathname;
+
+    if (path === "/") return "home";
+    if (path.startsWith("/work-experience")) return "work-experience";
+    return "unknown";
+  };
+
+  const resolveButtonAction = () => {
+    const source = getPageSource();
+    navigate(`/full-case-study/${row?.id}?source=${source}`);
+  };
 
   const buttonProps = section?.workExperienceHighlightsCtaProps;
 
   const isCaseStudy = variant === "caseStudy";
 
   const blockContainerClasses = clsx(
-      blockContainer.base,
-      variant === "home" ? 
-         blockContainer.home 
-        : blockContainer.workExperience
-    );
-  
-    const resolvedbodyItemContainerClasses = clsx(
-      bodyItemContainer.base,
-      variant === "home" ? 
-        bodyItemContainer.home 
-        : bodyItemContainer.workExperience
-    );
+    blockContainer.base,
+    variant === "home" ? blockContainer.home : blockContainer.workExperience,
+  );
+
+  const resolvedbodyItemContainerClasses = clsx(
+    bodyItemContainer.base,
+    variant === "home" ? bodyItemContainer.home : bodyItemContainer.workExperience,
+  );
+
+  if (!enabled) return null;
 
   return (
     <div
@@ -130,12 +87,12 @@ const WorkExperienceHighlightsBlock = ({
       className={clsx(
         blockContainerClasses,
         alignmentMap[alignment.body] || alignmentMap.left,
-        className
+        className,
       )}
       {...props}
     >
       <div className={blockHeadingClasses}>
-        {/* Optional Block Heading */}
+        {/* Block Heading */}
         {heading && (
           <div className={alignmentMap[alignment.heading] || alignmentMap.left}>
             <Text {...heading} />
@@ -146,30 +103,29 @@ const WorkExperienceHighlightsBlock = ({
         {bodyItems.length > 0 && (
           <div className={bodyItemsContainerClasses}>
             {bodyItems
-              .filter(item => item?.enabled !== false)
-              .map(item => (
+              .filter((item) => isEnabled(item?.enabled))
+              .map((item) => (
                 <div key={item.id} className={bodyItemsContainerClasses}>
                   <div className={resolvedbodyItemContainerClasses}>
-
                     {item.heading && <Text {...item.heading} />}
 
                     {item.overview?.text && <Text {...item.overview} />}
 
                     <ListContentBlock items={item.highlights} />
 
-                    {item.caseStudyAtAGlance?.text && (
-                      <Text {...item.caseStudyAtAGlance} />
-                    )}
+                    {item.caseStudyAtAGlance?.text && <Text {...item.caseStudyAtAGlance} />}
                   </div>
                 </div>
               ))}
 
+            {/* CTA Hidden On Case Study Variant */}
             {buttonProps && !isCaseStudy && (
               <div className={ctaClass}>
                 <Button
                   variant={buttonProps.variant}
                   label={buttonProps.label}
-                  onClick={() => handleCTA(buttonProps, row?.id)}
+                  iconRight={buttonProps.icon ? ctaIconMap[buttonProps.icon] : null}
+                  onClick={resolveButtonAction}
                 />
               </div>
             )}

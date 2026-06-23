@@ -1,15 +1,13 @@
 export const caseStudyImageBlockLayoutConfig = {
   outerContainerPaddingX: `
     px-(--spacing-text-container-mobile-padding-x)
-    sm:px-(--spacing-text-container-tablet-padding-x)
-    lg:px-(--spacing-text-container-desktop-padding-x)
   `,
 
   outerContainer: {
     base: `
       relative group w-full flex flex-col
-      z-0
-      cursor-zoom-in transition-transform duration-300 hover:scale-105 
+      z-0 hover:z-10
+      cursor-zoom-in transition-transform duration-300 hover:scale-[1.02]
     `,
 
     compact: `
@@ -22,7 +20,6 @@ export const caseStudyImageBlockLayoutConfig = {
       fixed inset-0
       w-[100dvw] h-[100dvh]
       flex items-center justify-center
-      bg-(--color-surface-media-dark)
       z-50
       cursor-zoom-out
     `,
@@ -34,11 +31,12 @@ export const caseStudyImageBlockLayoutConfig = {
     overflow-hidden
     rounded-(--radius-image-base)
     shadow-(--color-carousal-viewport-shadow)
-    bg-(--color-surface-media-dark)
+    border-(--color-card-container-border)
+    border-(length:--border-card-container-base-width)
   `,
 
   utilityContainer: `
-    absolute 
+    absolute
     pointer-events-none
     z-20
     right-(--spacing-carousel-utility-mobile-offset)

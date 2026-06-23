@@ -5,5 +5,5 @@ export const workExperienceSubtitleOfficeBuilding = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

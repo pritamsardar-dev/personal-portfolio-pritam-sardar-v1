@@ -7,11 +7,11 @@ import caseStudyHeroImage from "./case-study-hero.svg";
 import contactHeroImage from "./contact-hero.svg";
 
 export {
-    homeHeroImage,
-    aboutHeroImage,
-    workExperienceHeroImage,
-    skillsHeroImage,
-    projectsHeroImage,
-    caseStudyHeroImage,
-    contactHeroImage,
+  homeHeroImage,
+  aboutHeroImage,
+  workExperienceHeroImage,
+  skillsHeroImage,
+  projectsHeroImage,
+  caseStudyHeroImage,
+  contactHeroImage,
 };

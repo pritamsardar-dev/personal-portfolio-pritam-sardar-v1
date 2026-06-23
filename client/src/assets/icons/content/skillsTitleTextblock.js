@@ -5,5 +5,5 @@ export const skillsTitleTextblock = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

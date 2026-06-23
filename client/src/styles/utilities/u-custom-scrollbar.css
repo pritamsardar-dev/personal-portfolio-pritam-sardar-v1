@@ -3,6 +3,8 @@
   overflow: auto;
   scroll-behavior: smooth;
   cursor: auto;
+  z-index: var(--z-scrollbar);
+  cursor: auto;
 }
 
 /* Scrollbar size */

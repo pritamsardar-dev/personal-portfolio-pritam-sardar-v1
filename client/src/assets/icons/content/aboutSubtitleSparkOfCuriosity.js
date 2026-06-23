@@ -5,5 +5,5 @@ export const aboutSubtitleSparkOfCuriosity = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

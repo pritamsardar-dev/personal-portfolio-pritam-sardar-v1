@@ -5,5 +5,5 @@ export const skillsSubtitleStrongDSAFoundations = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

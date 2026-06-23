@@ -12,7 +12,7 @@ readdirSync(svgFolder).forEach((file) => {
 
   let svg = readFileSync(join(svgFolder, file), "utf8");
 
-  // Detect icon type BEFORE stripping attributes
+  // Infer rendering type before stripping attributes
   const hasStroke = /stroke="/.test(svg);
   const hasFill = /fill="(?!none)/.test(svg);
 
@@ -21,7 +21,7 @@ readdirSync(svgFolder).forEach((file) => {
   else if (hasFill && !hasStroke) type = "fill";
   else if (hasStroke && hasFill) type = "mixed";
 
-  //  Normalize SVG
+  // Normalize SVG attributes for dynamic sizing and theming
   svg = svg
     .replace(/\s*width="[^"]*"/g, "")
     .replace(/\s*height="[^"]*"/g, "")
@@ -30,7 +30,7 @@ readdirSync(svgFolder).forEach((file) => {
     .replace(/stroke="[^"]*"/g, 'stroke="currentColor"')
     .replace(/\sstroke-\s*/g, " ");
 
-  // JSX-compatible attributes
+  // Convert SVG attributes to JSX camelCase
   svg = svg
     .replace(/stroke-linecap=/g, "strokeLinecap=")
     .replace(/stroke-linejoin=/g, "strokeLinejoin=")

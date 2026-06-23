@@ -5,5 +5,5 @@ export const aboutPageSubtitleWorkEthic = {
 </svg>
 
   `,
-  type: "mixed"
+  type: "mixed",
 };

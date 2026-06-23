@@ -5,5 +5,5 @@ export const aboutTitleCardblock = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

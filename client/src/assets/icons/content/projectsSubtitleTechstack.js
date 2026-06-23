@@ -9,5 +9,5 @@ export const projectsSubtitleTechstack = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

@@ -5,5 +5,5 @@ export const workExperienceTitleCardblock = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

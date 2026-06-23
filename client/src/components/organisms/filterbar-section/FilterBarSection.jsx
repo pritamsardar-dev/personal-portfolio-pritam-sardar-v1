@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
+
 import clsx from "clsx";
+import { useForm } from "react-hook-form";
+
+import { CaretDownIcon } from "../../../assets/icons/system";
+
 import FormField from "../../atoms/formfield/FormField";
 import Button from "../../atoms/button/Button";
 import ScrollableFilterRow from "./ScrollableFilterRow";
-import { useForm } from "react-hook-form";
 
 const outerShellClasses = `
     w-full flex flex-col sm:flex-row lg:flex-row justify-between
@@ -34,14 +38,7 @@ const interactiveVerticalClasses = `
     lg:gap-(--spacing-interactive-interactive-desktop-gap-vertical)
 `;
 
-const FilterBarSection = ({
-  data,
-  filtersPayload,
-  className,
-  onFilterChange,
-  ...props
-}) => {
-
+const FilterBarSection = ({ data, filtersPayload, className, onFilterChange, ...props }) => {
   const {
     selectProps,
     clearButtonProps,
@@ -52,51 +49,49 @@ const FilterBarSection = ({
 
   const { control, reset } = useForm({
     defaultValues: {
-      sort: filtersPayload?.sort ?? "top"
-    }
+      sort: filtersPayload?.sort ?? "top",
+    },
   });
 
   const defaultPrimaryKey = primaryFiltersProps?.[0]?.key;
   const defaultScopeKey = scopeFiltersProps?.[0]?.key;
 
-  // Derived state (no useState needed)
   const scopeActiveKeys = filtersPayload?.scope ? [filtersPayload.scope] : [];
   const primaryActiveKeys = filtersPayload?.primary ? [filtersPayload.primary] : [];
   const secondaryActiveKeys = filtersPayload?.secondary ?? [];
 
   const activePrimaryDomain =
-    primaryFiltersProps?.find(p => p.key === filtersPayload?.primary)?.domain ??
-    null;
+    primaryFiltersProps?.find((p) => p.key === filtersPayload?.primary)?.domain ?? null;
 
+  // Merge current filter state with any overrides and emit upward
   const emitFilterChange = (override = {}) => {
     onFilterChange?.({
       scope: override.scope ?? scopeActiveKeys?.[0] ?? "all",
       primary: override.primary ?? primaryActiveKeys?.[0] ?? "all",
       secondary: override.secondary ?? secondaryActiveKeys,
-      sort: override.sort ?? filtersPayload?.sort ?? "top"
+      sort: override.sort ?? filtersPayload?.sort ?? "top",
     });
   };
 
-  // Scope change handler
   const handleScopeChange = (keys) => {
     const newScopeKey = keys?.[0] ?? "all";
 
     emitFilterChange({
       scope: newScopeKey,
       primary: defaultPrimaryKey ?? "all",
-      secondary: []
+      secondary: [],
     });
   };
 
-  // Primary change handler
   const handlePrimaryChange = (keys) => {
     const newPrimaryKey = keys?.[0] ?? "all";
 
     const newPrimaryDomain =
       newPrimaryKey === "all"
         ? "all"
-        : primaryFiltersProps.find(p => p.key === newPrimaryKey)?.domain;
+        : primaryFiltersProps.find((p) => p.key === newPrimaryKey)?.domain;
 
+    // Clear secondary filters when switching across domains
     let newSecondary = secondaryActiveKeys;
 
     if (
@@ -111,7 +106,7 @@ const FilterBarSection = ({
 
     emitFilterChange({
       primary: newPrimaryKey,
-      secondary: newPrimaryDomain !== "all" ? [] : newSecondary
+      secondary: newPrimaryDomain !== "all" ? [] : newSecondary,
     });
   };
 
@@ -122,21 +117,19 @@ const FilterBarSection = ({
       scope: defaultScopeKey ?? "all",
       primary: defaultPrimaryKey ?? "all",
       secondary: [],
-      sort: "top"
+      sort: "top",
     });
   };
 
-  // Sync react-hook-form with URL state
+  // Sync sort field with URL driven filter state
   useEffect(() => {
-    reset({
-      sort: filtersPayload?.sort ?? "top"
-    });
+    reset({ sort: filtersPayload?.sort ?? "top" });
   }, [filtersPayload?.sort, reset]);
 
   return (
     <div className={clsx(outerShellClasses, className)} {...props}>
       <div className={clsx(interactiveVerticalClasses)}>
-
+        {/* Scope Filters */}
         {scopeFiltersProps && (
           <ScrollableFilterRow
             items={scopeFiltersProps}
@@ -146,6 +139,7 @@ const FilterBarSection = ({
           />
         )}
 
+        {/* Primary Filters */}
         {primaryFiltersProps && (
           <ScrollableFilterRow
             items={primaryFiltersProps}
@@ -155,6 +149,7 @@ const FilterBarSection = ({
           />
         )}
 
+        {/* Secondary Filters */}
         {secondaryFiltersProps && (
           <ScrollableFilterRow
             items={secondaryFiltersProps}
@@ -165,28 +160,24 @@ const FilterBarSection = ({
             }}
           />
         )}
-
       </div>
 
+      {/* Sort and Clear */}
       {(selectProps || clearButtonProps) && (
         <div className={clsx(interactiveRowClasses)}>
-          {selectProps &&
+          {selectProps && (
             <FormField
               {...selectProps}
+              Icon={CaretDownIcon}
               control={control}
               name="sort"
               onChange={(value) => {
                 emitFilterChange({ sort: value });
               }}
             />
-          }
+          )}
 
-          {clearButtonProps &&
-            <Button
-              {...clearButtonProps}
-              onClick={handleClearFilters}
-            />
-          }
+          {clearButtonProps && <Button {...clearButtonProps} onClick={handleClearFilters} />}
         </div>
       )}
     </div>

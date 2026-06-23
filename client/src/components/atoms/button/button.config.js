@@ -46,7 +46,20 @@ export const variantMap = {
       `,
     },
 
-    iconClasses: ``,
+    iconClasses: {
+      default: `
+        stroke-(length:--border-icon-base-width)
+        w-(length:--text-button-mobile-font-size)
+        sm:w-(length:--text-button-tablet-font-size)
+        lg:w-(length:--text-button-desktop-font-size)
+        h-auto
+      `,
+      compact: `
+        stroke-(length:--border-icon-base-width)
+        w-(length:--text-button-mobile-font-size)
+        h-auto
+      `,
+    },
   },
 
   secondary: {
@@ -87,7 +100,20 @@ export const variantMap = {
       `,
     },
 
-    iconClasses: ``,
+    iconClasses: {
+      default: `
+        stroke-(length:--border-icon-base-width)
+        w-(length:--text-button-mobile-font-size)
+        sm:w-(length:--text-button-tablet-font-size)
+        lg:w-(length:--text-button-desktop-font-size)
+        h-auto
+      `,
+      compact: `
+        stroke-(length:--border-icon-base-width)
+        w-(length:--text-button-mobile-font-size)
+        h-auto
+      `,
+    },
   },
 
   overlayDefault: {
@@ -95,9 +121,9 @@ export const variantMap = {
       border-(--color-button-overlay-border-default-default)
       bg-(--color-button-overlay-background-default-defualt)
       hover:bg-(--color-button-overlay-background-default-hover)
-      hover:scale-[1.1]
+      hover:scale-[1.05]
       active:bg-(--color-button-overlay-background-default-hover)
-      active:scale-[1.1]
+      active:scale-[1.05]
 
       text-(--color-button-overlay-text-default-default)
 
@@ -147,15 +173,15 @@ export const variantMap = {
       `,
     },
   },
-  
+
   overlay: {
     baseClasses: `
       border-(--color-button-overlay-border)
       bg-(--color-button-overlay-background-default)
       hover:bg-(--color-button-overlay-background-hover)
-      active:scale-[1.1]
+      active:scale-[1.05]
       active:bg-(--color-button-overlay-background-active)
-      hover:scale-[1.1]
+      hover:scale-[1.05]
     
       text-(--color-button-overlay-text-default)
       hover:text-(--color-button-overlay-text-hover)
@@ -257,9 +283,12 @@ export const variantMap = {
     
       text-(--color-button-overlay-text-default-default)
 
-      w-(--size-button-overlay-desktop-height)
-      
-      h-(--size-button-overlay-desktop-height)
+      w-(--size-button-overlay-mobile-height)
+      sm:w-(--size-button-overlay-tablet-height)
+      lg:w-(--size-button-overlay-desktop-height)
+      h-(--size-button-overlay-mobile-height)
+      sm:h-(--size-button-overlay-tablet-height)
+      lg:h-(--size-button-overlay-desktop-height)
      
       font-(--text-button-font-weight)
       rounded-(--radius-icon-button-overlay)
@@ -267,10 +296,9 @@ export const variantMap = {
 
     iconClasses: `
       fill-transparent
-      text-inherit
-      stroke-(length:--border-icon-base-width)
-      w-[70%]
-      h-auto
+      stroke-[1.5px]
+      w-[60%]
+      h-[60%]
     `,
   },
 
@@ -278,6 +306,8 @@ export const variantMap = {
     baseClasses: `
       hover:bg-(--color-button-overlay-background-hover)
       active:bg-(--color-button-overlay-background-hover)
+      disabled:opacity-30
+      disabled:cursor-not-allowed
    
       text-(--color-button-overlay-text-default-default)
 
@@ -292,11 +322,9 @@ export const variantMap = {
     iconClasses: `
       fill-(--color-icon-button-icon-only)
       text-(--color-icon-button-icon-only)
-      stroke-[(length:--border-icon-base-width)]
-      w-(--size-icon-only-circular-button-element-large-mobile-diameter)
-      sm:w-(--size-icon-only-circular-button-element-large-tablet-diameter)
-      lg:w-(--size-icon-only-circular-button-element-large-desktop-diameter)
-      h-auto
+      stroke-[1.5px]
+      w-[60%]
+      h-[60%]
     `,
   },
 
@@ -304,9 +332,9 @@ export const variantMap = {
     baseClasses: `
       bg-(--color-button-overlay-background-default-defualt)
       hover:bg-(--color-button-overlay-background-default-hover)
-      hover:scale-[1.1]
+      hover:scale-[1.05]
       active:bg-(--color-button-overlay-background-default-hover)
-      active:scale-[1.1]
+      active:scale-[1.05]
 
       text-(--color-button-overlay-text-default-default)
 
@@ -334,10 +362,9 @@ export const variantMap = {
     iconClasses: {
       default: `
         stroke-(length:--border-icon-base-width)
-        w-(--size-icon-button-element-mobile-diameter)
-        sm:w-(--size-icon-button-element-tablet-diameter)
-        lg:w-(--size-icon-button-element-desktop-diameter)
-        h-auto
+        stroke-[1.5px]
+        w-[60%]
+        h-[60%]
       `,
       compact: `
         stroke-(length:--border-icon-base-width)
@@ -352,8 +379,8 @@ export const variantMap = {
       bg-(--color-button-overlay-background-default-defualt)
       hover:bg-(--color-button-overlay-background-default-hover)
       active:bg-(--color-button-overlay-background-default-hover)
-      hover:scale-[1.1]
-      active:scale-[1.1]
+      hover:scale-[1.05]
+      active:scale-[1.05]
 
       text-(--color-button-overlay-text-default-default)
 
@@ -381,10 +408,9 @@ export const variantMap = {
     iconClasses: {
       default: `
         stroke-(length:--border-icon-base-width)
-        w-(--size-icon-button-element-mobile-diameter)
-        sm:w-(--size-icon-button-element-tablet-diameter)
-        lg:w-(--size-icon-button-element-desktop-diameter)
-        h-auto
+        stroke-[1.5px]
+        w-[60%]
+        h-[60%]
       `,
       compact: `
         stroke-(length:--border-icon-base-width)
@@ -438,7 +464,7 @@ export const variantMap = {
       sm:text-(length:--text-body-large-tablet-font-size)
       lg:text-(length:--text-body-large-desktop-font-size)
 
-      font-(-text-body-large-font-weight)
+      font-(--text-body-large-font-weight)
       rounded-(--radius-button-overlay-base)
       group
     `,
@@ -490,7 +516,8 @@ export const variantMap = {
     `,
 
     iconClasses: `
-      text-(--color-button-icon-link-background-default)
+      text-(--color-navigation-link-color-default)
+      opacity-70
       stroke-(length:--border-icon-base-width)
       w-(--size-icon-button-element-large-mobile-diameter)
       sm:w-(--size-icon-button-element-large-tablet-diameter)
@@ -511,7 +538,7 @@ export const variantMap = {
       sm:text-(length:--text-body-small-tablet-font-size)
       lg:text-(length:--text-body-small-desktop-font-size)
 
-      font-(-text-body-small-font-weight)
+      font-(--text-body-small-font-weight)
       rounded-(--radius-button-overlay-base)
       
       underline
@@ -523,8 +550,8 @@ export const variantMap = {
     `,
 
     iconClasses: `
-      text-(--color-button-icon-link-background-default)
-      opacity-60
+      text-(--color-navigation-link-color-default)
+      opacity-70
       hover:opacity-100
       active:opacity-100
       stroke-(length:--border-icon-base-width)

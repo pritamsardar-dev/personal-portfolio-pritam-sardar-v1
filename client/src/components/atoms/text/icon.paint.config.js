@@ -1,14 +1,17 @@
 export const iconPaintClasses = {
   stroke: `
-    fill-none
-    stroke-current
-  `,
+        fill-none
+        stroke-current
+        text-white
+    `,
+
   fill: `
-    fill-current
-    stroke-none
-  `,
+        fill-current
+        stroke-none
+    `,
+
   mixed: `
-    fill-current
-    stroke-current
-  `,
+        fill-current
+        stroke-current
+    `,
 };

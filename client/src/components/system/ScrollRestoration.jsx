@@ -1,17 +1,17 @@
 import { useEffect } from "react";
-import { useLocation,} from "react-router-dom";
 
+import { useLocation } from "react-router-dom";
+
+// Scrolls to top instantly on every route change.
 const ScrollRestoration = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // New navigation → scroll to top
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: "instant",
     });
-
   }, [location.pathname]);
 
   return null;

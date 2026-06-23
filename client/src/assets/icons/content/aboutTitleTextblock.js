@@ -5,5 +5,5 @@ export const aboutTitleTextblock = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

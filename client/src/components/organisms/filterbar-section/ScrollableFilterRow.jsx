@@ -1,12 +1,15 @@
 import React, { useState, useRef, useLayoutEffect } from "react";
+
 import clsx from "clsx";
-import Button from "../../atoms/button/Button";
+
 import {
-  ArrowLeftIcon,
-  ArrowLeftIconType,
-  ArrowRightIcon,
-  ArrowRightIconType,
+  ChevronLeftIcon,
+  ChevronLeftIconType,
+  ChevronRightIcon,
+  ChevronRightIconType,
 } from "../../../assets/icons/system";
+
+import Button from "../../atoms/button/Button";
 
 const filterShellClasses = `
    relative w-full overflow-hidden min-w-0 
@@ -41,7 +44,7 @@ const arrowRightClasses = `
 
 const ScrollableFilterRow = ({
   items = [],
-  selectionMode = "single", 
+  selectionMode = "single",
   activeKeys = [],
   onChange = () => {},
 }) => {
@@ -59,12 +62,14 @@ const ScrollableFilterRow = ({
 
   const MIN_SWIPE_DISTANCE = 40;
 
+  // Read computed column gap from the track element
   const getGapX = (container) => {
     if (!container) return 0;
     const styles = window.getComputedStyle(container);
     return parseFloat(styles.columnGap || styles.gap || 0);
   };
 
+  // Recalculate scroll offset and arrow visibility on index or size change
   useLayoutEffect(() => {
     const viewport = viewportRef.current;
     const track = trackRef.current;
@@ -75,14 +80,11 @@ const ScrollableFilterRow = ({
 
     const offset = itemRefs.current
       .slice(0, startIndex)
-      .reduce(
-        (sum, el, i) => sum + (el?.offsetWidth || 0) + (i > 0 ? gap : 0),
-        0
-      );
+      .reduce((sum, el, i) => sum + (el?.offsetWidth || 0) + (i > 0 ? gap : 0), 0);
 
     const totalWidth = itemRefs.current.reduce(
       (sum, el, i) => sum + (el?.offsetWidth || 0) + (i > 0 ? gap : 0),
-      0
+      0,
     );
 
     setTranslateX(offset);
@@ -90,12 +92,13 @@ const ScrollableFilterRow = ({
     setShowRight(offset + viewportWidth < totalWidth - 8);
   }, [startIndex, items.length, recalcKey]);
 
+  // Trigger recalc on viewport resize
   useLayoutEffect(() => {
     const viewport = viewportRef.current;
     if (!viewport) return;
 
     const resizeObserver = new ResizeObserver(() => {
-        setRecalcKey((k) => k + 1);
+      setRecalcKey((k) => k + 1);
     });
 
     resizeObserver.observe(viewport);
@@ -116,9 +119,7 @@ const ScrollableFilterRow = ({
       onChange([key]);
     } else {
       onChange(
-        activeKeys.includes(key)
-          ? activeKeys.filter((x) => x !== key)
-          : [...activeKeys, key]
+        activeKeys.includes(key) ? activeKeys.filter((x) => x !== key) : [...activeKeys, key],
       );
     }
   };
@@ -137,22 +138,16 @@ const ScrollableFilterRow = ({
     if (Math.abs(distance) < MIN_SWIPE_DISTANCE) return;
 
     if (distance > 0) {
-      // swipe left → move right
-      if (showRight) {
-        handleRight();
-      }
+      if (showRight) handleRight();
     } else {
-      // swipe right → move left
-      if (showLeft) {
-        handleLeft();
-      }
+      if (showLeft) handleLeft();
     }
   };
 
   return (
     <div className="relative w-full min-w-0">
-      <div 
-        ref={viewportRef} 
+      <div
+        ref={viewportRef}
         className={filterShellClasses}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
@@ -174,11 +169,10 @@ const ScrollableFilterRow = ({
                 label={item.label}
                 onClick={() => handleSelect(item.key)}
                 className={clsx(
-                  activeKeys.includes(item.key) &&
-                    `
-                      bg-[var(--color-button-overlay-background-active)]
-                      text-[var(--color-button-overlay-text-active)]
-                    `
+                  activeKeys.includes(item.key) && [
+                    "bg-[var(--color-button-overlay-background-active)]",
+                    "text-[var(--color-button-overlay-text-active)]",
+                  ],
                 )}
               >
                 <span className="flex items-center gap-1">
@@ -187,32 +181,33 @@ const ScrollableFilterRow = ({
                     <span className="opacity-70">({item.count})</span>
                   )}
                 </span>
-              </Button>  
+              </Button>
             </React.Fragment>
           ))}
         </div>
       </div>
 
-      {/* Floating arrows */}
+      {/* Left Arrow and Mask */}
       {showLeft && <div className={maskContainerLeftClasses} />}
       {showLeft && (
         <div className={arrowLeftClasses}>
           <Button
             variant="iconOnlyCircularOverlay"
-            iconLeft={ArrowLeftIcon}
-            iconLeftType={ArrowLeftIconType}
+            iconLeft={ChevronLeftIcon}
+            iconLeftType={ChevronLeftIconType}
             onClick={handleLeft}
           />
         </div>
       )}
 
+      {/* Right Arrow and Mask */}
       {showRight && <div className={maskContainerRightClasses} />}
       {showRight && (
         <div className={arrowRightClasses}>
           <Button
             variant="iconOnlyCircularOverlay"
-            iconLeft={ArrowRightIcon}
-            iconLeftType={ArrowRightIconType}
+            iconLeft={ChevronRightIcon}
+            iconLeftType={ChevronRightIconType}
             onClick={handleRight}
           />
         </div>

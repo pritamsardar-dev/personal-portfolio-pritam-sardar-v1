@@ -5,5 +5,5 @@ export const projectsSubtitleChallengesSolved = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

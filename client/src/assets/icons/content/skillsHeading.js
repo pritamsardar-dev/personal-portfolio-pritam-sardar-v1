@@ -5,5 +5,5 @@ export const skillsHeading = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

@@ -5,5 +5,5 @@ export const aboutSubtitleFirstLinesOfCode = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

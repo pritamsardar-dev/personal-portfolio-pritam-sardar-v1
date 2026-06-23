@@ -9,5 +9,5 @@ export const contactTitleCardblock = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

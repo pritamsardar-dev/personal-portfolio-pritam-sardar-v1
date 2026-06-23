@@ -1,106 +1,87 @@
-import React from 'react';
-import clsx from 'clsx';
-import {NavLink, useLocation} from 'react-router-dom'
-import { baseNavigationItem, variantMap } from './navigationItem.config.js';
+import React from "react";
+
+import clsx from "clsx";
+import { NavLink, useLocation } from "react-router-dom";
+
+import { baseNavigationItem, variantMap } from "./navigationItem.config.js";
 
 const NavigationItem = ({
-   to= "/", 
-   variant = "header",
-   onClick,
-   label= "", 
-   iconLeft = null, 
-   iconRight = null, 
-   className = "",
-   isExternal = false,
-   isButtonStyle = false,
-   ...props
+  to = "/",
+  variant = "header",
+  onClick,
+  label = "",
+  iconLeft = null,
+  iconRight = null,
+  className = "",
+  isExternal = false,
+  isButtonStyle = false,
+  ...props
 }) => {
-
   const location = useLocation();
 
+  // Scroll to top and forward any external onClick
   const handleClick = (e) => {
-    // Call any external onClick
     if (onClick) onClick(e);
-
-    // Scroll instantly to top
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   };
 
-   const variantConfig = isButtonStyle
+  const variantConfig = isButtonStyle
     ? variantMap.buttonStyle
-    : (variantMap[variant] || variantMap.header);
+    : variantMap[variant] || variantMap.header;
 
-   const content = ({isActive}) => {
-
+  const content = ({ isActive }) => {
     const searchParams = new URLSearchParams(location.search);
     const source = searchParams.get("source");
 
-    // normalize route name
+    // Normalize route name for source param matching
     const navSection = to === "/" ? "home" : to.replace("/", "");
-
     const isSourceActive = source === navSection;
-
     const active = isActive || isSourceActive;
 
     const classes = clsx(
       baseNavigationItem,
       variantConfig.baseClasses,
       className,
-      active && variantConfig.activeClasses
-   );
+      active && variantConfig.activeClasses,
+    );
 
-   return (
+    return (
       <span className={classes}>
-        {iconLeft && (
-          <span className={variantConfig.iconClasses}>{iconLeft}</span>
-        )}
+        {iconLeft && <span className={variantConfig.iconClasses}>{iconLeft}</span>}
 
         {label}
 
-        {iconRight && (
-          <span className={variantConfig.iconClasses}>{iconRight}</span>
-        )}
+        {iconRight && <span className={variantConfig.iconClasses}>{iconRight}</span>}
       </span>
     );
   };
 
-  if(isExternal){
+  if (isExternal) {
     return (
-      <a 
-        href={to} 
-        target="_blank" 
+      <a
+        href={to}
+        target="_blank"
         rel="noopener noreferrer"
-        onClick={handleClick} 
-        {...props}  
-        className={clsx(
-          "u-focus-visible-outline", 
-          "rounded-(--radius-button-base)"
-          )}
-        >
-          {content({isActive: false})}
+        onClick={handleClick}
+        {...props}
+        className={clsx("u-focus-visible-outline", "rounded-(--radius-button-base)")}
+      >
+        {content({ isActive: false })}
       </a>
     );
   }
 
   return (
-    <NavLink 
-      to={to} 
+    <NavLink
+      to={to}
       end
-      onClick={handleClick}  
-      {...props} 
-      className={clsx(
-        "u-focus-visible-outline", 
-        "rounded-(--radius-button-base)"
-        )}
-      > 
-        {content}
+      onClick={handleClick}
+      {...props}
+      className={clsx("u-focus-visible-outline", "rounded-(--radius-button-base)")}
+    >
+      {content}
     </NavLink>
   );
 };
 
 export default NavigationItem;
-

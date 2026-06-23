@@ -5,5 +5,5 @@ export const contactHeading = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

@@ -5,5 +5,5 @@ export const aboutSubtitleEducationDegrees = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

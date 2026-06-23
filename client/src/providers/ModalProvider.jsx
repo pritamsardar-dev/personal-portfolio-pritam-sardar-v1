@@ -1,39 +1,28 @@
 import { useState, useCallback } from "react";
-import Modal from "../components/overlays/modal/Modal";
+
 import { ModalContext } from "../context/ModalContext";
 
-const ModalProvider = ({ children }) => {
+import Modal from "../components/overlays/modal/Modal";
 
+const ModalProvider = ({ children }) => {
   const [modalConfig, setModalConfig] = useState(null);
   const [open, setOpen] = useState(false);
 
   const openModal = useCallback((config) => {
-
     setModalConfig(config);
     setOpen(true);
-
   }, []);
 
   const closeModal = useCallback(() => {
-
     setOpen(false);
-
   }, []);
 
   const handleExited = () => {
-
     setModalConfig(null);
-
   };
 
   return (
-    <ModalContext.Provider
-      value={{
-        openModal,
-        closeModal
-      }}
-    >
-
+    <ModalContext.Provider value={{ openModal, closeModal }}>
       {children}
 
       {modalConfig && (
@@ -46,7 +35,6 @@ const ModalProvider = ({ children }) => {
           {modalConfig.content}
         </Modal>
       )}
-
     </ModalContext.Provider>
   );
 };

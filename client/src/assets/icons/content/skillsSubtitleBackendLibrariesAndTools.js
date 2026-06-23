@@ -5,5 +5,5 @@ export const skillsSubtitleBackendLibrariesAndTools = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

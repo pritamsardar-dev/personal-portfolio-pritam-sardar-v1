@@ -1,5 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
+
 import clsx from "clsx";
+
 import { customSelectClasses } from "./formField.config";
 
 const CustomSelect = React.forwardRef(
@@ -21,21 +23,19 @@ const CustomSelect = React.forwardRef(
 
     const selectedOption = options.find((opt) => opt.value === value);
 
+    // Forward selected value to React Hook Form
     const handleSelect = (option) => {
-      onChange(option.value); // Send value to React Hook Form
+      onChange(option.value);
       setIsOpen(false);
     };
 
     return (
       <div className={customSelectClasses.wrapper} ref={dropdownRef}>
-        <div
-          className={customSelectClasses.selectedBoxParent}
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {/* Selected box */}
+        <div className={customSelectClasses.selectedBoxParent} onClick={() => setIsOpen(!isOpen)}>
+          {/* Selected Box */}
           <div
             className={customSelectClasses.selectedBox}
-            ref={ref} // connect RHF ref here
+            ref={ref}
             name={name}
             onBlur={onBlur}
             tabIndex={0}
@@ -50,7 +50,7 @@ const CustomSelect = React.forwardRef(
               className={clsx(
                 selectedOption
                   ? customSelectClasses.selectedBoxTextSelected
-                  : customSelectClasses.selectedBoxTextDefault
+                  : customSelectClasses.selectedBoxTextDefault,
               )}
             >
               {selectedOption ? selectedOption.label : placeholder}
@@ -60,15 +60,15 @@ const CustomSelect = React.forwardRef(
               <span
                 className={clsx(
                   customSelectClasses.iconClasses,
-                  isOpen && customSelectClasses.iconClassesOpened
+                  isOpen && customSelectClasses.iconClassesOpened,
                 )}
               >
-                <Icon/>
+                <Icon />
               </span>
             )}
           </div>
 
-          {/* Dropdown list */}
+          {/* Dropdown List */}
           {isOpen && (
             <ul className={customSelectClasses.dropdownList}>
               {options.map((opt) => (
@@ -84,7 +84,7 @@ const CustomSelect = React.forwardRef(
                   }}
                   className={clsx(
                     customSelectClasses.option,
-                    value === opt.value && customSelectClasses.selectedOption
+                    value === opt.value && customSelectClasses.selectedOption,
                   )}
                 >
                   {opt.label}
@@ -95,7 +95,7 @@ const CustomSelect = React.forwardRef(
         </div>
       </div>
     );
-  }
+  },
 );
 
 export default CustomSelect;

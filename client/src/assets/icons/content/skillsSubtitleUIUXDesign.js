@@ -5,5 +5,5 @@ export const skillsSubtitleUIUXDesign = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

@@ -1,7 +1,9 @@
 import React from "react";
+
 import clsx from "clsx";
+
 import { baseTag, variantMap } from "./tag.config";
-import {iconPaintClasses} from "./icon.paint.config";
+import { iconPaintClasses } from "./icon.paint.config";
 
 const resolveClasses = (value, size) => {
   if (!value) return "";
@@ -15,8 +17,8 @@ const Tag = ({
   label = "",
   iconLeft: IconLeft = null,
   iconRight: IconRight = null,
-  iconLeftType = null,  
-  iconRightType = null, 
+  iconLeftType = null,
+  iconRightType = null,
   className = "",
   ...props
 }) => {
@@ -26,13 +28,11 @@ const Tag = ({
     baseTag,
     variantConfig.baseClasses,
     resolveClasses(variantConfig.sizes, size),
-    className
+    className,
   );
 
-  const getIconClasses = (type) => clsx(
-      resolveClasses(variantConfig.iconClasses, size), 
-      type && iconPaintClasses[type] 
-  );
+  const getIconClasses = (type) =>
+    clsx(resolveClasses(variantConfig.iconClasses, size), type && iconPaintClasses[type]);
 
   return (
     <div className={classes} {...props}>

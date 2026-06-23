@@ -1,49 +1,31 @@
 import React from "react";
+
 import clsx from "clsx";
+
+import { heroSectionShellClasses } from "./heroSectionLayout.config";
+
 import BlockRenderer from "../../../renderers/blocks/blockRenderer";
+import HeroSectionSkeleton from "./skeletons/HeroSectionSkeleton";
 
-const heroSectionShellClasses = `
-    overflow-hidden items-center justify-center
-    w-full flex flex-col sm:flex-row lg:flex-row 
-    sm:max-w-(--size-section-wrapper-tablet-max-width)
-    lg:max-w-(--size-section-wrapper-desktop-max-width)
+const HeroSection = ({ variant = "homeHero", data, isLoading, className }) => {
+  if (isLoading) {
+    return <HeroSectionSkeleton />;
+  }
 
-    px-(--spacing-section-wrapper-mobile-padding-x)
-    sm:px-(--spacing-section-wrapper-tablet-padding-x)
-    lg:px-(--spacing-section-wrapper-desktop-padding-x)
+  const resolvedRow = data?.rows?.find((row) => row?.type === variant);
+  const blocks = resolvedRow?.blocks;
 
-    gap-(--spacing-section-wrapper-mobile-gap)
-    sm:gap-(--spacing-section-wrapper-tablet-gap)
-    lg:gap-(--spacing-section-wrapper-desktop-gap)
-`;
-
-const HeroSecion = ({
-    variant = "homeHero", // homeHero / aboutHero / ..
-    data,
-    className,
-    ...props
-}) => {
-    const resolvedRow = data.rows.find(row => row?.type === variant);
-    const blocks = resolvedRow.blocks;
-
-    return (
-        <div
-            className={clsx(
-                heroSectionShellClasses,
-                className
-            )}
-            {...props}
-        >
-
-            {/* Blocks */}
-            {Array.isArray(blocks) && blocks.length > 0 && (
-                blocks
-                    .filter(block => block.enabled)
-                    .sort((a, b) => a.order - b.order)
-                    .map(block => (<BlockRenderer key={block.id} block={block} />))
-            )}
-        </div>
-    );
+  return (
+    <div id={data?.id} className={clsx(heroSectionShellClasses, className)}>
+      {/* Blocks */}
+      {Array.isArray(blocks) &&
+        blocks.length > 0 &&
+        blocks
+          .filter((block) => block.enabled)
+          .sort((a, b) => a.order - b.order)
+          .map((block) => <BlockRenderer key={block.id} block={block} variant={variant} />)}
+    </div>
+  );
 };
 
-export default HeroSecion;
+export default HeroSection;

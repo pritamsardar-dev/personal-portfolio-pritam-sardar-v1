@@ -1,75 +1,32 @@
-/**
- * Role: CMS-driven Skills section
- * Used by: Home page or any page rendering Skills via section.type === "skills"
- *
- * Responsibilities:
- *  - Render section heading
- *  - Render grouped rows of blocks via BlockRenderer
- *  - Render optional section-level CTA
- *  - Respect enabled flags and alignment from CMS
- *
- * Guardrails:
- *  - Fully data-driven (no hardcoded layout logic)
- *  - Block layout handled by molecules
- *  - Section never mutates block data
- */
-
 import React from "react";
+
 import clsx from "clsx";
-import Text from "../../../atoms/text/Text";
-import Button from "../../../atoms/button/Button";
-import BlockRenderer from "../../../../renderers/blocks/blockRenderer";
+
 import { resolveProps } from "../../../../utils/resolveProps";
 import { resolveSkillsBlocks } from "./resolveSkillsBlocks";
 import { useCTA } from "../../../../hooks/useCTA";
+import { skillsSectionLayoutConfig } from "./skillsSectionLayout.config";
+import { ctaIconMap } from "../../../../assets/icons/system/ctaIconMap";
 
-const sectionContainerClasses = `
-  flex flex-col w-full
-  sm:max-w-(--size-section-wrapper-tablet-max-width)
-  lg:max-w-(--size-section-wrapper-desktop-max-width)
+import Text from "../../../atoms/text/Text";
+import Button from "../../../atoms/button/Button";
+import BlockRenderer from "../../../../renderers/blocks/blockRenderer";
+import SkillsSectionSkeleton from "./skeletons/SkillsSectionSkeleton";
 
-  px-(--spacing-section-wrapper-mobile-padding-x)
-  sm:px-(--spacing-section-wrapper-tablet-padding-x)
-  lg:px-(--spacing-section-wrapper-desktop-padding-x)
+const {
+  sectionContainer: sectionContainerClasses,
+  sectionHeadingWrapper: sectionHeadingWrapperClasses,
+  blocksContainer: blocksContainerClasses,
+  textAlignMap,
+  flexAlignMap,
+} = skillsSectionLayoutConfig;
 
-  gap-(--spacing-section-wrapper-mobile-gap)
-  sm:gap-(--spacing-section-wrapper-tablet-gap)
-  lg:gap-(--spacing-section-wrapper-desktop-gap)
-`;
-
-const sectionHeadingWrapperClasses = `
-  flex flex-col w-full
-  gap-(--spacing-heading-1-heading-2-mobile-gap)
-  sm:gap-(--spacing-heading-1-heading-2-tablet-gap)
-  lg:gap-(--spacing-heading-1-heading-2-desktop-gap)
-`;
-
-const blocksContainerClasses = `
-  flex flex-col sm:flex-row w-full
-  gap-(--spacing-section-wrapper-mobile-gap)
-  sm:gap-(--spacing-section-wrapper-tablet-gap)
-  lg:gap-(--spacing-section-wrapper-desktop-gap)
-`;
-
-const textAlignMap = {
-  left: "text-left",
-  center: "text-center",
-  right: "text-right",
-};
-
-const flexAlignMap = {
-  left: "justify-start",
-  center: "justify-center",
-  right: "justify-end",
-};
-
-const SkillsSection = ({ 
-  data = {}, 
-  className, 
-  ...props 
-}) => {
+// CMS driven Skills section.
+// Renders heading, resolved skill blocks, and an optional CTA.
+// Home domain props are resolved via resolveProps.
+const SkillsSection = ({ data = {}, isLoading, className }) => {
   const resolvedData = resolveProps(data, "home");
-  
+
   const {
     id,
     heading,
@@ -83,45 +40,40 @@ const SkillsSection = ({
   const blocks = resolveSkillsBlocks(resolvedData);
   const { handleCTA } = useCTA();
 
+  if (isLoading) {
+    return <SkillsSectionSkeleton />;
+  }
+
   return (
-    <section
-      id={id}
-      className={clsx(sectionContainerClasses, className)}
-      {...props}
-    >
+    <section id={id} className={clsx(sectionContainerClasses, className)}>
       <div className={sectionHeadingWrapperClasses}>
         {/* Section Heading */}
         {heading && (
-          <div
-            className={clsx(textAlignMap[alignment.heading])}>
+          <div className={clsx(textAlignMap[alignment.heading])}>
             <Text {...heading} />
           </div>
         )}
 
         {/* Blocks */}
-        {Array.isArray(blocks) && blocks.length > 0 &&
+        {Array.isArray(blocks) && blocks.length > 0 && (
           <div className={blocksContainerClasses}>
             {blocks
-                ?.filter(block => block.enabled)
-                .sort((a, b) => a.order - b.order)
-                .map(block => (
+              ?.filter((block) => block.enabled)
+              .sort((a, b) => a.order - b.order)
+              .map((block) => (
                 <BlockRenderer key={block.id} block={block} />
-                ))}
+              ))}
           </div>
-        }
+        )}
       </div>
-      
+
       {/* Section CTA */}
       {buttonProps && (
-        <div
-          className={clsx(
-            "w-full flex",
-            flexAlignMap[alignment.cta]
-          )}
-        >
+        <div className={clsx("w-full flex", flexAlignMap[alignment.cta])}>
           <Button
             variant={buttonProps.variant}
             label={buttonProps.label}
+            iconRight={buttonProps.icon ? ctaIconMap[buttonProps.icon] : null}
             onClick={() => handleCTA(buttonProps)}
           />
         </div>

@@ -27,6 +27,7 @@ export const projectsSectionLayoutConfig = {
       sm:gap-(--spacing-heading-1-heading-2-tablet-gap)
       lg:gap-(--spacing-heading-1-heading-2-desktop-gap)
     `,
+
     block: `
       flex flex-col
       gap-(--spacing-heading-2-heading-3-mobile-gap)
@@ -42,6 +43,7 @@ export const projectsSectionLayoutConfig = {
       sm:gap-(--spacing-section-wrapper-tablet-gap)
       lg:gap-(--spacing-section-wrapper-desktop-gap)
     `,
+
     relatedProjects: `
       w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1
       xl:max-w-(--size-block-wrapper-mobile-max-width)
@@ -70,8 +72,10 @@ export const projectsSectionLayoutConfig = {
       transform-gpu
       will-change-transform
     `,
+
     default: `
     `,
+
     relatedProjects: `
       h-fit
     `,

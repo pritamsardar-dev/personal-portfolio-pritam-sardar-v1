@@ -27,5 +27,5 @@ export const variantMap = {
       lg:text-(length:--text-avatar-placeholder-desktop-font-size)
       font-(--text-avatar-placeholder-font-weight)
    `,
-    },
+  },
 };

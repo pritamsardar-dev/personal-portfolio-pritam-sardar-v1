@@ -5,5 +5,5 @@ export const skillsTitleCardblock = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

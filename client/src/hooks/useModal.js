@@ -1,6 +1,8 @@
 import { useContext } from "react";
+
 import { ModalContext } from "../context/ModalContext";
 
+// Provides access to modal open/close state and controls
 const useModal = () => {
   const context = useContext(ModalContext);
 

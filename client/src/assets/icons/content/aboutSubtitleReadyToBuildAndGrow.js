@@ -5,5 +5,5 @@ export const aboutSubtitleReadyToBuildAndGrow = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

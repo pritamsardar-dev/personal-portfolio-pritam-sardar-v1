@@ -5,5 +5,5 @@ export const projectsSubtitleKeyFeatures = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

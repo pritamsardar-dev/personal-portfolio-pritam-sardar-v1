@@ -5,5 +5,5 @@ export const skillsSubtitleTestedDocumentedAndDebugged = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

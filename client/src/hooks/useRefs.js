@@ -1,6 +1,8 @@
 import { useContext } from "react";
+
 import { RefsContext } from "../context/RefsContext";
 
+// Provides access to shared DOM refs registered via RefsProvider
 const useRefs = () => {
   const context = useContext(RefsContext);
 

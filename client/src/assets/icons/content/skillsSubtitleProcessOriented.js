@@ -6,5 +6,5 @@ export const skillsSubtitleProcessOriented = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

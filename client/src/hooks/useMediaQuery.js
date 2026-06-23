@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 
+// Tracks whether the current viewport matches a given CSS media query
 export default function useMediaQuery(query) {
-  const [matches, setMatches] = useState(() =>
-    window.matchMedia(query).matches
-  );
+  const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
 
   useEffect(() => {
     const media = window.matchMedia(query);

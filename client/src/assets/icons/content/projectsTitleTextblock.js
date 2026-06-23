@@ -5,5 +5,5 @@ export const projectsTitleTextblock = {
 </svg>
 
   `,
-  type: "mixed"
+  type: "mixed",
 };

@@ -1,26 +1,14 @@
-/**
- * Role: Reusable horizontal scroll wrapper
- * Used by: Tag lists, carousels, and overflowed horizontal content
- *
- * Responsibilities:
- *  - Enable wheel-based vertical → horizontal scrolling
- *  - Support drag-to-scroll interaction for mouse users
- *  - Detect overflow and expose affordances (cursor, selection lock)
- *
- * Guardrails:
- *  - Presentation-agnostic (no layout or content assumptions)
- *  - Does not manage focus, snapping, or pagination
- *  - Enhances UX without mutating child elements
- */
-
 import { useEffect, useRef, useState } from "react";
+
 import clsx from "clsx";
 
+// Horizontal scroll wrapper with wheel redirect and drag to scroll support.
+// Detects overflow and applies grab cursor when content exceeds container width.
 const HorizontalScroll = ({ children, className }) => {
   const ref = useRef(null);
   const [isScrollable, setIsScrollable] = useState(false);
 
-  // Check overflow
+  // Detects horizontal overflow and updates on resize
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -34,13 +22,14 @@ const HorizontalScroll = ({ children, className }) => {
     return () => window.removeEventListener("resize", checkOverflow);
   }, []);
 
-  // Wheel → horizontal scroll
+  // Redirects vertical wheel delta to horizontal scroll
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
     const onWheel = (e) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      const hasOverflow = el.scrollWidth > el.clientWidth;
+      if (hasOverflow && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         e.preventDefault();
         el.scrollLeft += e.deltaY;
       }
@@ -50,7 +39,7 @@ const HorizontalScroll = ({ children, className }) => {
     return () => el.removeEventListener("wheel", onWheel);
   }, []);
 
-  // Drag to scroll
+  // Drag to scroll via mouse events
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -68,7 +57,6 @@ const HorizontalScroll = ({ children, className }) => {
     const onMouseLeave = () => {
       isDown = false;
     };
-
     const onMouseUp = () => {
       isDown = false;
     };
@@ -97,10 +85,7 @@ const HorizontalScroll = ({ children, className }) => {
   return (
     <div
       ref={ref}
-      className={clsx(
-        isScrollable && "select-none cursor-grab active:cursor-grabbing",
-        className
-      )}
+      className={clsx(isScrollable && "select-none cursor-grab active:cursor-grabbing", className)}
     >
       {children}
     </div>

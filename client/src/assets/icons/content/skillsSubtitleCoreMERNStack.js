@@ -5,5 +5,5 @@ export const skillsSubtitleCoreMERNStack = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

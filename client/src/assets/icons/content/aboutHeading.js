@@ -5,5 +5,5 @@ export const aboutHeading = {
 </svg>
 
   `,
-  type: "stroke"
+  type: "stroke",
 };

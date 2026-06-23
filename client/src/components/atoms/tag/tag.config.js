@@ -51,9 +51,9 @@ export const variantMap = {
         fill-(--color-tag-icon-defualt)
         text-(--color-tag-icon-defualt)
         stroke-(length:--border-icon-base-width)
-        w-(--size-icon-button-element-mobile-diameter)
-        sm:w-(--size-icon-button-element-tablet-diameter)
-        lg:w-(--size-icon-button-element-desktop-diameter)
+        w-(length:--text-button-small-mobile-font-size)
+        sm:w-(length:--text-button-small-tablet-font-size)
+        lg:w-(length:--text-button-small-desktop-font-size)
         h-auto
       `,
 
@@ -61,9 +61,10 @@ export const variantMap = {
         fill-(--color-tag-icon-defualt)
         text-(--color-tag-icon-defualt)
         stroke-(length:--border-icon-base-width)
-        w-(--size-icon-button-element-mobile-diameter)
+        w-(length:--text-button-small-mobile-font-size)
         h-auto
       `,
     },
   },
 };
+

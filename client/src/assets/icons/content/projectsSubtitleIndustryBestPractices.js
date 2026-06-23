@@ -6,5 +6,5 @@ export const projectsSubtitleIndustryBestPractices = {
 </svg>
 
   `,
-  type: "fill"
+  type: "fill",
 };

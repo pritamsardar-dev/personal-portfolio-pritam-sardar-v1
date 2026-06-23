@@ -1,57 +1,29 @@
-/**
- * Role: CMS-driven card block for the About section
- * Used by: Mounted via BlockRenderer based on block.type
- * Responsibilities:
- *   - Render an optional block heading
- *   - Render a list of card items via CardRenderer
- *   - Support expand / collapse with animated height
- *   - Use padding buffer to avoid shadow clipping
- *   - Respect CMS controls (enabled, alignment, order)
- * Guardrails:
- *   - Fully data-driven, no page-specific assumptions
- *   - All cards remain mounted to enable height measurement
- *   - Expansion logic is layout-safe (no fixed heights)
- */
-
 import React, { useState, useRef, useLayoutEffect } from "react";
+
 import clsx from "clsx";
+
+import { aboutCardBlockLayoutConfig } from "./aboutCardBlockLayout.config";
+import { ctaIconMap } from "../../../../assets/icons/system/ctaIconMap";
+
 import Text from "../../../atoms/text/Text.jsx";
 import Button from "../../../atoms/button/Button.jsx";
 import CardRenderer from "./CardRenderer.jsx";
+import AboutCardBlockSkeleton from "./skeletons/AboutCardBlockSkeleton.jsx";
+
+const { blockContainer, bodyItemsContainer, animatedHeightWrapper, textAlignMap } =
+  aboutCardBlockLayoutConfig;
+
+const blockContainerClasses = clsx(blockContainer);
+const bodyItemsContainerClasses = clsx(bodyItemsContainer);
+const animatedHeightWrapperClasses = clsx(animatedHeightWrapper);
+const alignmentClassesMap = textAlignMap;
 
 const VISIBLE_CARDS_COLLAPSED = 2;
 const BOTTOM_BUFFER = 8;
 
-const blockContainerClasses = `
-  flex flex-col w-full h-auto
-  sm:max-w-(--size-block-wrapper-tablet-max-width)
-  lg:max-w-(--size-block-wrapper-desktop-max-width)
-  gap-(--spacing-heading-2-heading-3-mobile-gap)
-  sm:gap-(--spacing-heading-2-heading-3-tablet-gap)
-  lg:gap-(--spacing-heading-2-heading-3-desktop-gap)
-`;
-
-const bodyItemsContainerClasses = `
-  flex flex-col w-full
-  gap-(--spacing-item-item-mobile-gap)
-  sm:gap-(--spacing-item-item-tablet-gap)
-  lg:gap-(--spacing-item-item-desktop-gap)
-`;
-
-const animatedHeightWrapper = `
-  overflow-hidden transition-[max-height] duration-500
-  ccubic-bezier(0.4, 0, 0.2, 1)
-  px-(--spacing-card-wrapper-buffer-padding-x)
-  pt-(--spacing-card-wrapper-buffer-padding-top)
-  pb-(--spacing-card-wrapper-buffer-padding-bottom)
-`;
-
-const alignmentClassesMap = {
-  left: "text-left",
-  center: "text-center",
-  right: "text-right",
-};
-
+// CMS driven card block for the About section.
+// Renders a heading and card items with animated expand and collapse height.
+// All cards stay mounted to allow accurate height measurement via ResizeObserver.
 const AboutCardBlock = ({ data = {}, className, ...props }) => {
   let {
     id,
@@ -68,6 +40,7 @@ const AboutCardBlock = ({ data = {}, className, ...props }) => {
   const fullContentRef = useRef(null);
   const collapsedContentRef = useRef(null);
 
+  // Measures both collapsed and expanded heights including bottom buffer
   const recalcHeights = () => {
     if (!fullContentRef.current || !collapsedContentRef.current) return;
     setHeights({
@@ -89,11 +62,10 @@ const AboutCardBlock = ({ data = {}, className, ...props }) => {
     return () => resizeObserver.disconnect();
   }, [bodyItems.length]);
 
-  if (!enabled) return null;
+  const buttonLabel = isExpanded ? buttonProps?.label?.expanded : buttonProps?.label?.collapsed;
+  const buttonIcon = isExpanded ? buttonProps?.icon?.expanded : buttonProps?.icon?.collapsed;
 
-  const buttonLabel = isExpanded
-    ? buttonProps?.label?.expanded
-    : buttonProps?.label?.collapsed;
+  if (!enabled) return null;
 
   return (
     <div
@@ -101,40 +73,39 @@ const AboutCardBlock = ({ data = {}, className, ...props }) => {
       className={clsx(blockContainerClasses, alignmentClassesMap[alignment.heading], className)}
       {...props}
     >
+      {/* Block Heading */}
       {heading && <Text {...heading} />}
 
       <div
-        className={animatedHeightWrapper}
+        className={animatedHeightWrapperClasses}
         style={{
-          maxHeight: isExpanded
-            ? `${heights.expanded}px`
-            : `${heights.collapsed}px`,
+          maxHeight: isExpanded ? `${heights.expanded}px` : `${heights.collapsed}px`,
         }}
       >
         <div ref={fullContentRef} className={clsx(bodyItemsContainerClasses)}>
-          {/* Collapsed measurement group */}
+          {/* Collapsed Cards */}
           <div ref={collapsedContentRef} className={bodyItemsContainerClasses}>
             {bodyItems.slice(0, VISIBLE_CARDS_COLLAPSED).map((item) => (
               <CardRenderer key={item.id} item={item} />
             ))}
           </div>
 
-          {/* Remaining cards */}
+          {/* Remaining Cards */}
           {bodyItems.slice(VISIBLE_CARDS_COLLAPSED).map((item) => (
             <CardRenderer key={item.id} item={item} />
           ))}
-
         </div>
       </div>
 
       {buttonProps && bodyItems.length > VISIBLE_CARDS_COLLAPSED && (
         <div className="px-(--spacing-card-wrapper-buffer-padding-x)">
-            <Button
-                {...buttonProps}
-                label={buttonLabel}
-                onClick={() => setIsExpanded((prev) => !prev)}
-                aria-expanded={isExpanded}
-            />
+          <Button
+            variant={buttonProps.variant}
+            label={buttonLabel}
+            iconRight={buttonIcon ? ctaIconMap[buttonIcon] : null}
+            onClick={() => setIsExpanded((prev) => !prev)}
+            aria-expanded={isExpanded}
+          />
         </div>
       )}
     </div>

@@ -1,24 +1,23 @@
-import HeroImageBlock from "../../components/organisms/hero-section/HeroImageBlock"
-import HeroTextBlock from "../../components/organisms/hero-section/HeroTextBlock"
-import AboutTextBlock from '../../components/sections/home/about-section/AboutTextBlock';
-import AboutCardBlock from '../../components/sections/home/about-section/AboutCardBlock';
-import WorkExperienceHighlightsBlock from '../../components/molecules/work-experience-block/WorkExperienceHighlightsBlock';
-import WorkExperienceMetaInfoBlock from '../../components/molecules/work-experience-block/WorkExperienceMetaInfoBlock';
-import SkillsCardBlock from '../../components/sections/home/skills-section/SkillsCardBlock';
-import SkillsTextBlock from '../../components/sections/home/skills-section/SkillsTextBlock';
-import ProjectsCarouselBlock from '../../components/organisms/work-items-section/ProjectsCarouselBlock';
-import ContactTextBlock from '../../components/organisms/contact-section/ContactTextBlock';
-import ContactFormBlock from '../../components/organisms/contact-section/ContactFormBlock';
-import DeveloperJourneyBlock from '../../components/sections/about/journey-section/DeveloperJourneyBlock';
-import AcademicJourneyBlock from '../../components/sections/about/journey-section/AcademicJourneyBlock';
-import CoreValuesBlock from '../../components/sections/about/core-values-section/CoreValuesBlock';
-import CurrentSkillsSnapshotOverviewBlock from '../../components/sections/about/current-skills-snapshot/currentSkillsSnapshotOverviewBlock';
-import CurrentSkillsSnapshotSkillsBlock from '../../components/sections/about/current-skills-snapshot/CurrentSkillsSnapshotSkillsBlock';
-import ValidationCtaBlock from '../../components/sections/skills/skillsRowsSection/ValidationCtaBlock';
-import SkillOverviewBlock from '../../components/sections/skills/skillsRowsSection/SkillOverviewBlock';
-import SkillDetailsBlock from '../../components/sections/skills/skillsRowsSection/SkillDetailsBlock';
-import WorkItemsTextBlock from '../../components/organisms/work-items-section/WorkItemsTextBlock';
-import CaseStudyImageBlock from '../../components/organisms/work-items-section/CaseStudyImageBlock';
+import HeroImageBlock from "../../components/organisms/hero-section/HeroImageBlock";
+import HeroTextBlock from "../../components/organisms/hero-section/HeroTextBlock";
+import AboutTextBlock from "../../components/sections/home/about-section/AboutTextBlock";
+import AboutCardBlock from "../../components/sections/home/about-section/AboutCardBlock";
+import WorkExperienceHighlightsBlock from "../../components/molecules/work-experience-block/WorkExperienceHighlightsBlock";
+import WorkExperienceMetaInfoBlock from "../../components/molecules/work-experience-block/WorkExperienceMetaInfoBlock";
+import SkillsCardBlock from "../../components/sections/home/skills-section/SkillsCardBlock";
+import SkillsTextBlock from "../../components/sections/home/skills-section/SkillsTextBlock";
+import ProjectsCarouselBlock from "../../components/organisms/work-items-section/ProjectsCarouselBlock";
+import ContactTextBlock from "../../components/organisms/contact-section/ContactTextBlock";
+import ContactFormBlock from "../../components/organisms/contact-section/ContactFormBlock";
+import DeveloperJourneyBlock from "../../components/sections/about/journey-section/DeveloperJourneyBlock";
+import AcademicJourneyBlock from "../../components/sections/about/journey-section/AcademicJourneyBlock";
+import CurrentSkillsSnapshotOverviewBlock from "../../components/sections/about/current-skills-snapshot/currentSkillsSnapshotOverviewBlock";
+import CurrentSkillsSnapshotSkillsBlock from "../../components/sections/about/current-skills-snapshot/CurrentSkillsSnapshotSkillsBlock";
+import ValidationCtaBlock from "../../components/sections/skills/skillsRowsSection/ValidationCtaBlock";
+import SkillOverviewBlock from "../../components/sections/skills/skillsRowsSection/SkillOverviewBlock";
+import SkillDetailsBlock from "../../components/sections/skills/skillsRowsSection/SkillDetailsBlock";
+import WorkItemsTextBlock from "../../components/organisms/work-items-section/WorkItemsTextBlock";
+import CaseStudyImageBlock from "../../components/organisms/work-items-section/CaseStudyImageBlock";
 
 export const BLOCK_MAP = {
   heroImage: HeroImageBlock,
@@ -33,7 +32,6 @@ export const BLOCK_MAP = {
   contactFormBlock: ContactFormBlock,
   developerJourneyDetailed: DeveloperJourneyBlock,
   academicJourneyDetailed: AcademicJourneyBlock,
-  coreValues: CoreValuesBlock,
   currentSkillsSnapshotOverview: CurrentSkillsSnapshotOverviewBlock,
   currentSkillsSnapshotSkills: CurrentSkillsSnapshotSkillsBlock,
   validationBlock: ValidationCtaBlock,
@@ -41,6 +39,5 @@ export const BLOCK_MAP = {
   contentBlock: SkillDetailsBlock,
   carouselBlock: ProjectsCarouselBlock,
   imageBlock: CaseStudyImageBlock,
-  workItemsTextBlock: WorkItemsTextBlock
+  workItemsTextBlock: WorkItemsTextBlock,
 };
-
