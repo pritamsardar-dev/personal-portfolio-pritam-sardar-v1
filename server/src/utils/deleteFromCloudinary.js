@@ -2,7 +2,9 @@ import cloudinary from "../config/cloudinary.js";
 
 export const deleteOneAsset = async (publicId) => {
   try {
-    const result = await cloudinary.uploader.destroy(publicId);
+    // Raw resource_type required for PDFs detect by extension in the public_id
+    const resourceType = /\.pdf$/i.test(publicId) ? "raw" : "image";
+    const result = await cloudinary.uploader.destroy(publicId, { resource_type: resourceType });
     return result;
   } catch {
     throw new Error(`Failed to delete: ${publicId}`);

@@ -168,7 +168,10 @@ export const updateSection = async (req, res) => {
     const folder = `portfolio_pritam/${existingSection.assetFolder || "misc"}`;
 
     for (const file of files) {
-      const uploaded = await uploadFromBuffer(file.buffer, folder);
+      const uploaded = await uploadFromBuffer(file.buffer, folder, {
+        mimetype: file.mimetype,
+        originalname: file.originalname,
+      });
 
       uploadedFilesMap[file.fieldname] = {
         src: uploaded.url,

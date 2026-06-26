@@ -27,7 +27,7 @@ export const personalPortfolioProjectRow = {
       url: "https://github.com/pritamsardar-dev/personal-portfolio-pritam-sardar-v1",
     },
     designFile: {
-      url: "https://www.figma.com/design/UPHqdVgpojdSB9w2AHVGUF/portfolio-video-stream-v1?node-id=0-1",
+      url: "https://www.figma.com/design/v0BGWJPWQgJxp2vqtjBmPV/personal-portfolio-pritam-sardar-v1?node-id=0-1",
     },
   },
 

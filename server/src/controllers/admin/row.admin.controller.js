@@ -188,7 +188,10 @@ export const updateRow = async (req, res) => {
     const uploadedFilesMap = {};
 
     for (const file of files) {
-      const uploaded = await uploadFromBuffer(file.buffer, folder);
+      const uploaded = await uploadFromBuffer(file.buffer, folder, {
+        mimetype: file.mimetype,
+        originalname: file.originalname,
+      });
       uploadedFilesMap[file.fieldname] = {
         url: uploaded.url,
         public_id: uploaded.public_id,
