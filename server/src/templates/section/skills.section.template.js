@@ -1102,7 +1102,7 @@ export const skillsSectionTemplate = {
                   variant: "heading3",
                   text: "Python & AI/ML",
                   icon: {
-                    src: "icons/content/skills-subtitle-dsa-and-programming.svg",
+                    src: "icons/content/skills-subtitle-python-and-ai-ml.svg",
                     public_id: "",
                     type: "stroke",
                   },
@@ -1123,7 +1123,7 @@ export const skillsSectionTemplate = {
                     variant: "heading3",
                     text: "Python & AI/ML",
                     icon: {
-                      src: "icons/content/skills-subtitle-dsa-and-programming.svg",
+                      src: "icons/content/skills-subtitle-python-and-ai-ml.svg",
                       public_id: "",
                       type: "stroke",
                     },
