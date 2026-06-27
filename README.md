@@ -2,7 +2,7 @@
 
 A full stack developer portfolio with its own content management system built in. Pages, projects, and work history live in MongoDB and can be edited directly from a floating admin panel, with no code changes or redeploys needed.
 
-Live: https://pritamsardar.dev  |  Case Study: https://pritamsardar.dev/full-case-study/personal-portfolio-pritam-sardar-v1?source=case-studies
+Live: https://pritamsardar.dev  |  Case Study: https://www.pritamsardar.dev/full-case-study/project-row-personal-portfolio-site?source=case-studies
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/images/personal-portfolio-hero-dark.png">

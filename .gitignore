@@ -33,7 +33,6 @@ lerna-debug.log*
 *.local
 
 # Server ignored folders
-server/src/templates/
 server/seeder/
 
 # Project context files
