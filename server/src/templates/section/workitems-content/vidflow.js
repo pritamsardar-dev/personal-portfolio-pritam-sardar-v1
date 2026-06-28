@@ -299,7 +299,7 @@ export const vidFlowProjectRow = {
               {
                 type: "text",
                 variant: "bodyLarge",
-                text: "I built this solo from the ground up, covering MongoDB schema design with pre-save password hashing and instance methods for token generation, two-stage aggregation pipelines for channel and history data, Cloudinary upload and delete lifecycle management across all media endpoints, JWT verification middleware, and a standardized error and response wrapper applied consistently across every route.",
+                text: "I built this, covering MongoDB schema design with pre-save password hashing and instance methods for token generation, two-stage aggregation pipelines for channel and history data, Cloudinary upload and delete lifecycle management across all media endpoints, JWT verification middleware, and a standardized error and response wrapper applied consistently across every route.",
               },
             ],
           },
@@ -740,7 +740,7 @@ export const vidFlowProjectRow = {
                 },
                 type: "text",
                 variant: "bodyLarge",
-                text: "By the end this became a backend that handles the real problems of a social platform rather than just the happy path of a tutorial. The auth flow revokes at the database level, the media lifecycle is clean, and the social data resolves efficiently in single round trips.",
+                text: "This became a backend that handles the real problems of a social platform rather than just the happy path of a tutorial. The auth flow revokes at the database level, the media lifecycle is clean, and the social data resolves efficiently in single round trips.",
               },
             ],
           },

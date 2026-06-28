@@ -176,7 +176,7 @@ export const taskFlowProjectRow = {
               {
                 type: "text",
                 variant: "bodyLarge",
-                text: "TaskFlow is a browser-based productivity app that lets you create tasks, run timers against them, track daily hours, and export the data. There is no backend and no account required. Everything lives in localStorage. The problem it solves is straightforward: most task timer tools either require a server or are too heavy for personal daily use. TaskFlow is a single-page React app that loads instantly, works offline, and stores nothing outside the browser.",
+                text: "TaskFlow is a browser-based productivity app that lets you create tasks, run timers against them, track daily hours, and export the data. There is no backend and no account required. Everything lives in localStorage. The problem it solves is straightforward: most task timer tools either require a server or are too heavy for personal daily use. TaskFlow is a single-page React app that works offline and stores nothing outside the browser.",
               },
               {
                 type: "text",
@@ -233,7 +233,7 @@ export const taskFlowProjectRow = {
                 },
                 type: "text",
                 variant: "bodyLarge",
-                text: "The goal was to build a fully functional productivity tool that demonstrates real product thinking without reaching for a backend as a shortcut.",
+                text: "The goal was to build a fully functional productivity tool without reaching for a backend as a shortcut.",
               },
               {
                 enabled: {
@@ -607,7 +607,7 @@ export const taskFlowProjectRow = {
                 variant: "bodyLarge",
                 as: "li",
                 texts: [
-                  "Instant load with no backend dependency: the app reads all task and timer state from localStorage on mount with no network requests, no auth flow, and no loading screen",
+                  "No backend dependency: the app reads all task and timer state from localStorage on mount with no network requests, no auth flow, and no loading screen",
                   "Timer accuracy maintained across reloads and background tabs: wall-clock timestamps eliminate the drift that interval-based timers accumulate in throttled or backgrounded contexts",
                   "localStorage write frequency capped at 800ms during active timing: throttling keeps the write rate low without letting the displayed time diverge from the stored value",
                   "requestAnimationFrame batching for task writes: all task state writes are deferred to the next animation frame to avoid layout thrashing during rapid updates",
@@ -629,7 +629,7 @@ export const taskFlowProjectRow = {
                 },
                 type: "text",
                 variant: "bodyLarge",
-                text: "By the end this became a tool I use personally for daily task tracking. That is a reasonable sign that the core product decisions were correct.",
+                text: "This became a tool I use personally for daily task tracking, which is a reasonable sign the core product decisions were correct.",
               },
             ],
           },

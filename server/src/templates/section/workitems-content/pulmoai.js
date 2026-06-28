@@ -185,7 +185,7 @@ export const pulmoAiProjectRow = {
               {
                 type: "text",
                 variant: "bodyLarge",
-                text: "The main architectural decision on the backend was to separate inference from the HTTP response. Rather than blocking the request until the model finishes, the backend queues each job in SQLite, runs inference in a background thread, and lets the client poll for results. This made the system honest about processing time and let the frontend show live progress without a long-running connection.",
+                text: "The main architectural decision on the backend was to separate inference from the HTTP response. Rather than blocking the request until the model finishes, the backend queues each job in SQLite, runs inference in a background thread, and lets the client poll for results. This let the frontend show live progress without a long-running connection.",
               },
               {
                 type: "text",
@@ -237,7 +237,7 @@ export const pulmoAiProjectRow = {
                 },
                 type: "text",
                 variant: "bodyLarge",
-                text: "The goal was to build a complete, honest AI diagnostic system, from raw audio to a readable report, without shortcuts on any layer of the stack.",
+                text: "The goal was to build a complete AI diagnostic system, from raw audio to a readable report, without shortcuts on any layer of the stack.",
               },
               {
                 enabled: {
@@ -252,7 +252,7 @@ export const pulmoAiProjectRow = {
                   "Address class imbalance during training without overfitting the augmented minority classes",
                   "Build an async backend that queues and processes inference jobs reliably without losing results to server restarts or client disconnections",
                   "Build a frontend that handles page navigation, tab switches, and server delays without losing uploaded files or in-progress diagnoses",
-                  "Keep the output honest by showing per-sample confidence scores, a severity tag, and a clear disclaimer rather than a single confident answer with no context",
+                  "Show per-sample confidence scores, a severity tag, and a clear disclaimer instead of a single confident answer with no context",
                 ],
               },
               {
@@ -633,7 +633,7 @@ export const pulmoAiProjectRow = {
                 },
                 type: "text",
                 variant: "bodyLarge",
-                text: "By the end this became a deployable system that does what it says, handles the unhappy paths, and is upfront about what the model can and cannot do given the dataset it was trained on.",
+                text: "This became a deployable system that does what it says, handles the unhappy paths, and states clearly what the model can and cannot do given the dataset it was trained on.",
               },
             ],
           },
@@ -668,7 +668,7 @@ export const pulmoAiProjectRow = {
                   "Dataset quality and class balance determine model behavior far more than architecture choices. Time spent auditing and augmenting the training data had more impact on prediction quality than any CNN layer tuning.",
                   "Async systems in the browser have more failure modes than they appear to on the happy path. File persistence, job reconnection, and timer accuracy each required a specific solution that only became clear when tested under real navigation patterns.",
                   "SQLite with WAL mode is underrated for small backend projects. It handles concurrent reads during polling without the setup overhead of a full database server, and WAL mode specifically prevents the read-write contention that would otherwise occur during active inference.",
-                  "Honest output builds more trust than confident output. Showing per-sample confidence scores, a severity classification, and a prominent disclaimer does more for the user than a single bold diagnosis with no supporting context.",
+                  "Showing per-sample confidence scores, a severity classification, and a prominent disclaimer does more for the user than a single bold diagnosis with no supporting context.",
                   "Matching preprocessing parameters exactly between training and inference is not optional. A mismatch in sample rate or mel spectrogram settings produces silently wrong predictions that are very difficult to trace back to the source.",
                 ],
               },

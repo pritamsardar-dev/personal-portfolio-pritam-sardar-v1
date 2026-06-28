@@ -167,7 +167,7 @@ export const personalPortfolioProjectRow = {
               dark: { src: "images/personal-portfolio/feat-confirmation-mail-light.png", public_id: "" },
             },
             alt: "Auto-reply confirmation email rendered in an email client showing a branded header, a personalized greeting with the sender name, confirmation that the message was received, and a footer with contact links",
-            caption: "The contact form auto-reply email. It is sent via the Resend API as a fire-and-forget call after the message is saved to MongoDB, so a failed email send does not block the 201 response to the client. The template uses nested HTML tables and inline styles on every element to ensure consistent rendering across email clients that ignore flexbox, grid, and external stylesheets.",
+            caption: "The contact form auto-reply email. It is sent via the Resend API as a fire-and-forget call after the message is saved to MongoDB, so a failed email send does not block the 201 response to the client. The template uses nested HTML tables and inline styles on every element so it renders consistently across email clients that ignore flexbox, grid, and external stylesheets.",
           },
           {
             id: "feat-figma-overview",
@@ -248,7 +248,7 @@ export const personalPortfolioProjectRow = {
               {
                 type: "text",
                 variant: "bodyLarge",
-                text: "This portfolio site works as a full-stack application with a real backend, not a static site. Every piece of visible content is stored in MongoDB and fetched through a page, section, and block API. The frontend walks that data using a renderer pattern where PageRenderer resolves the active variant through a recursive resolveProps utility and BlockRenderer maps block type keys to React components. No page content is hardcoded in the frontend.",
+                text: "This portfolio site is a full-stack application built end to end, frontend and backend. Every piece of visible content is stored in MongoDB and fetched through a page, section, and block API. The frontend walks that data using a renderer pattern where PageRenderer resolves the active variant through a recursive resolveProps utility and BlockRenderer maps block type keys to React components. No page content is hardcoded in the frontend.",
               },
               {
                 type: "text",
@@ -515,7 +515,7 @@ export const personalPortfolioProjectRow = {
                 texts: [
                   {
                     label: "Frontend:",
-                    value: "React 19 with Vite 5. The component model suits the renderer architecture where each section and block is a self-contained component resolved by a string key. React Router v7 handles client-side routing across nine pages with URL-based filter and pagination state. React Hook Form with Zod handles contact form validation with schema-driven error messages. The choice was not React versus Vue but about which ecosystem matched the specific patterns in this project: portal-based editor panels, IntersectionObserver hooks for section nav and carousel coordination, and context-driven live preview.",
+                    value: "React 19 with Vite 5. The component model suits the renderer architecture where each section and block is a self-contained component resolved by a string key. React Router v7 handles client-side routing across nine pages with URL-based filter and pagination state. React Hook Form with Zod handles contact form validation with schema-driven error messages. React fit these patterns better than Vue: portal-based editor panels, IntersectionObserver hooks for section nav and carousel coordination, and context-driven live preview.",
                   },
                   {
                     label: "Styling:",
@@ -715,7 +715,7 @@ export const personalPortfolioProjectRow = {
                 },
                 type: "text",
                 variant: "bodyLarge",
-                text: "By the end this site ended up showing the engineering decisions behind it just as much as it shows the projects listed on it. The admin editor, the renderer architecture, the theme system, and the aggregation pipelines are all visible in the source code and testable on the live site.",
+                text: "This site ended up showing the engineering decisions behind it just as much as it shows the projects listed on it. The admin editor, the renderer architecture, the theme system, and the aggregation pipelines are all visible in the source code and testable on the live site.",
               },
             ],
           },
@@ -750,7 +750,7 @@ export const personalPortfolioProjectRow = {
                   "A block renderer pattern is one of the cleanest ways to separate CMS content from presentation logic. The cost is one BLOCK_MAP lookup per block type. The benefit is that no existing render code needs to change when a new block type is added, which becomes meaningful when the block type count grows past ten.",
                   "IndexedDB is the right tool for storing binary draft data in the browser, but it adds coordination surface that is easy to underestimate. Every consumer needs to handle the async read on mount, revoke blob URLs on unmount, and clean up entries on clear. Most of this only becomes clear when it surfaces as a memory leak or a race condition during a specific navigation sequence.",
                   "Module-level state for cross-component coordination avoids the remount problem that React context cannot solve cleanly. If a piece of state needs to outlive the component tree that uses it, moving it outside React entirely is the right approach, not working around component lifecycle with complex refs and effects.",
-                  "Email HTML is a different environment from web HTML. Writing a template that renders consistently means table-based layout, inline styles on every element, and no modern CSS. This is not a preference, it is a hard constraint of the email rendering environment that styling skill alone cannot overcome.",
+                  "Email HTML is a different environment from web HTML. Writing a template that renders consistently means table-based layout, inline styles on every element, and no modern CSS. This is a hard constraint of the email rendering environment, not something styling skill can work around.",
                   "CSS custom properties are a more flexible foundation for a design token system than a JavaScript theme object. They work in computed values, inline styles, and CSS functions like color-mix(), which a JS object cannot do. The overhead is learning the token vocabulary up front, but that cost is unavoidable regardless of the approach chosen.",
                   "A recursive variant resolver like resolveProps is powerful but entirely implicit. The caller has no type safety on what the return shape will be, and a mismatched context key returns the original object rather than an error. This is manageable in a solo project but would need TypeScript discriminated union types to be maintainable in a team or as the block type count grows.",
                 ],

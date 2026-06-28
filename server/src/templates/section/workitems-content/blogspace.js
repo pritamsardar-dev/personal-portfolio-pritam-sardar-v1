@@ -453,7 +453,7 @@ export const blogSpaceProjectRow = {
                 },
                 type: "text",
                 variant: "bodyLarge",
-                text: "Each choice was made to match a specific need. The app needed a real backend without building one. It needed a capable editor that could follow the app theme. It needed form validation that worked cleanly with both standard inputs and a controlled third-party editor component.",
+                text: "Each choice was made to match a specific need. The app needed backend functionality without building a custom server. It needed a capable editor that could follow the app theme. It needed form validation that worked cleanly with both standard inputs and a controlled third-party editor component.",
               },
               {
                 enabled: {
@@ -575,7 +575,7 @@ export const blogSpaceProjectRow = {
                   },
                   {
                     label: "Per-device signup limit without a custom server:",
-                    value: "A client-only check using localStorage can be bypassed by clearing storage. The fix was a device_registry collection in Appwrite. When a user signs up, the device ID is read or generated in localStorage, and the app queries device_registry for that ID before calling account.create. If the count is already 3, the request is rejected before any account operation runs. This is not unbypassable on a public platform but it adds real friction.",
+                    value: "A client-only check using localStorage can be bypassed by clearing storage. The fix was a device_registry collection in Appwrite. When a user signs up, the device ID is read or generated in localStorage, and the app queries device_registry for that ID before calling account.create. If the count is already 3, the request is rejected before any account operation runs. A motivated user could still bypass this on a public platform, but it adds friction.",
                   },
                   {
                     label: "Appwrite cold starts on the free tier:",
@@ -660,7 +660,7 @@ export const blogSpaceProjectRow = {
                 },
                 type: "text",
                 variant: "bodyLarge",
-                text: "By the end this became a working platform where multiple users can sign up, write, and publish, with real data in Appwrite and real files in cloud storage.",
+                text: "This became a working platform where multiple users can sign up, write, and publish, with real data in Appwrite and real files in cloud storage.",
               },
             ],
           },
@@ -694,7 +694,7 @@ export const blogSpaceProjectRow = {
                 texts: [
                   "A BaaS removes the need to write server code but it shifts where the constraints live. Document ID limits, query filters, collection permissions, and SDK error messages become the design surface instead of API routes and middleware.",
                   "Using a business key as a database primary key creates permanent constraints. The slug as the Appwrite document ID means the post URL is fixed forever and there is no way to update it without deleting and recreating the post.",
-                  "Third-party editors embedded in a React app need careful handling when the app has dynamic theming. The key prop remount approach works but the editor re-initializes on every theme toggle. A more robust approach would update only the skin without a full remount.",
+                  "Third-party editors embedded in a React app need careful handling when the app has dynamic theming. The key prop remount approach works but the editor re-initializes on every theme toggle. A more efficient approach would update only the skin without a full remount.",
                   "Skeleton states are more useful when designed before the real UI, not retrofitted after. Building the skeleton first forces you to commit to the real layout dimensions early, which reduces the chance of needing to redesign the skeleton later.",
                   "Per-device limits on a public platform add friction but not a hard barrier. A motivated user can bypass localStorage-based device IDs. The value is in reducing accidental or casual abuse, not in preventing determined abuse.",
                 ],

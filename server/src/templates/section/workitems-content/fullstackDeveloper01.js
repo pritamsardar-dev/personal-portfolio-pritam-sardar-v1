@@ -49,12 +49,12 @@ export const fullstackDeveloper01Row = {
         {
           type: "text",
           variant: "bodyLarge",
-          text: "The main value of the year was working on real client requirements with real deadlines, not on controlled solo projects. Clients changed requirements during active builds, timelines shifted, and some features that seemed simple in planning required significant rework. That kind of friction does not show up in solo portfolio work, and it shaped how I approach scoping, documentation, and feature implementation now.",
+          text: "The main value of the year was working on client requirements and deadlines instead of controlled solo projects. Clients changed requirements during active builds, timelines shifted, and some features that seemed simple in planning required significant rework. That kind of friction does not show up in solo portfolio work, and it shaped how I approach scoping, documentation, and feature implementation now.",
         },
         {
           type: "text",
           variant: "bodyLarge",
-          text: "This period was a deliberate step taken after completing my studies, to build real development experience before joining a formal full time role. The goal was to bridge the gap between academic work and production software, and the year of client work did that.",
+          text: "This period was a deliberate step taken after completing my studies, to build development experience before joining a formal full time role. Academic work does not prepare you for production software work, and the year of client work did.",
         },
       ],
     },
@@ -91,7 +91,7 @@ export const fullstackDeveloper01Row = {
         {
           type: "text",
           variant: "bodyLarge",
-          text: "These constraints made certain decisions harder but also meant every architecture and tooling choice was driven by what actually worked within the limits, not by what looked good on paper.",
+          text: "These constraints made certain decisions harder, but they also meant every architecture and tooling choice was driven by what actually worked within those limits.",
         },
       ],
     },
@@ -182,7 +182,7 @@ export const fullstackDeveloper01Row = {
         {
           type: "text",
           variant: "bodyLarge",
-          text: "Delivered multiple complete, deployed web applications for small business clients over twelve months, covering different domains and use cases. Each was live in production with real user authentication and, on the e-commerce builds, live payment processing through Stripe. Delivering that volume of shipped work across different client requirements was the most direct way to build practical skills that solo portfolio projects alone could not provide.",
+          text: "Delivered multiple complete, deployed web applications for small business clients over twelve months, covering different domains and use cases. Each was live in production with working user authentication and, on the e-commerce builds, live payment processing through Stripe. Delivering that volume of shipped work across different client requirements was the most direct way to build practical skills that solo portfolio projects alone could not provide.",
         },
       ],
     },
@@ -349,7 +349,7 @@ export const fullstackDeveloper01Row = {
         {
           type: "text",
           variant: "bodyLarge",
-          text: "This year changed how I approach project setup. Deployment configuration and environment separation are now first decisions, not things to sort out once the feature work is done.",
+          text: "This year changed how I approach project setup. Deployment configuration and environment separation are now first decisions instead of late ones.",
         },
         {
           type: "text",
@@ -502,7 +502,7 @@ export const fullstackDeveloper01Row = {
             overview: {
               variant: "bodyLarge",
               text: {
-                home: "One year of full stack development on the MERN stack, building and shipping client projects across e-commerce, business management, and web applications. I took this year deliberately to gain real production experience before joining a company full time.",
+                home: "One year of full stack development on the MERN stack, building and shipping client projects across e-commerce, business management, and web applications. I took this year deliberately to gain production experience before joining a company full time.",
                 workExperience: null,
               },
             },
