@@ -78,9 +78,15 @@ const WorkItemsTextBlock = ({
       const resolvedLabel =
         tag.id === "views"
           ? String((row?.views ?? 0) + viewCountDelta)
-          : typeof tag.label === "object" && tag.label !== null
-            ? (tag.label[mode] ?? tag.label.project ?? tag.label.caseStudy ?? "")
-            : tag.label;
+          : tag.icon === "CalendarEvent" && row?.createdAt
+            ? new Date(row.createdAt).toLocaleDateString("en-GB", {
+              day: "2-digit",
+              month: "short",
+              year: "2-digit",
+            })
+            : typeof tag.label === "object" && tag.label !== null
+              ? (tag.label[mode] ?? tag.label.project ?? tag.label.caseStudy ?? "")
+              : tag.label;
       return {
         ...tag,
         label: resolvedLabel,
