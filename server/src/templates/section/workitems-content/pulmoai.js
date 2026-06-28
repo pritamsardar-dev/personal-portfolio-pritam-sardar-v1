@@ -158,7 +158,7 @@ export const pulmoAiProjectRow = {
         ],
         overview: {
           variant: "bodyLarge",
-          text: "Pulmo AI is a solo portfolio project that classifies 8 respiratory diseases from lung audio recordings. The system covers the full pipeline: CNN model training on the ICBHI 2017 dataset (920 recordings, 126 patients), a FastAPI backend with async job processing and SQLite job persistence, and a React frontend built to handle real-world usage patterns including page navigation, tab switching, and server delays without losing state.",
+          text: "Pulmo AI classifies 8 respiratory diseases from lung audio recordings. The system covers the full pipeline: CNN model training on the ICBHI 2017 dataset (920 recordings, 126 patients), a FastAPI backend with async job processing and SQLite job persistence, and a React frontend built to handle real-world usage patterns including page navigation, tab switching, and server delays without losing state.",
         },
         description: [
           {
@@ -190,7 +190,7 @@ export const pulmoAiProjectRow = {
               {
                 type: "text",
                 variant: "bodyLarge",
-                text: "Built end to end as a solo project: model training in Python with TensorFlow and Keras, a FastAPI backend with SQLite job persistence using WAL mode, and a React frontend that handles async inference, majority-vote results across multiple files, session persistence via IndexedDB, and PDF report export via jsPDF.",
+                text: "I handled the whole stack: model training in Python with TensorFlow and Keras, a FastAPI backend with SQLite job persistence using WAL mode, and a React frontend that handles async inference, majority-vote results across multiple files, session persistence via IndexedDB, and PDF report export via jsPDF.",
               },
             ],
           },
@@ -237,7 +237,7 @@ export const pulmoAiProjectRow = {
                 },
                 type: "text",
                 variant: "bodyLarge",
-                text: "The goal was to build a complete, honest demonstration of an AI diagnostic system, from raw audio to a readable report, without shortcuts on any layer of the stack.",
+                text: "The goal was to build a complete, honest AI diagnostic system, from raw audio to a readable report, without shortcuts on any layer of the stack.",
               },
               {
                 enabled: {

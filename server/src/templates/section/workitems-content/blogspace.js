@@ -175,7 +175,7 @@ export const blogSpaceProjectRow = {
         ],
         overview: {
           variant: "bodyLarge",
-          text: "BlogSpace is a solo portfolio project and a full-stack blog publishing platform built with React 19 and Appwrite as the backend. Users can sign up, write posts in a TinyMCE rich text editor, upload a featured image, set a post status, and publish to a shared feed. The backend handles authentication, database storage, and file storage through Appwrite's SDK without any custom server. The platform enforces a per-user post limit of 12 and a per-device signup limit of 3 accounts using Appwrite database queries before each operation.",
+          text: "BlogSpace is a full-stack blog publishing platform built with React 19 and Appwrite as the backend. Users can sign up, write posts in a TinyMCE rich text editor, upload a featured image, set a post status, and publish to a shared feed. The backend handles authentication, database storage, and file storage through Appwrite's SDK without any custom server. The platform enforces a per-user post limit of 12 and a per-device signup limit of 3 accounts using Appwrite database queries before each operation.",
         },
         description: [
           {
@@ -207,7 +207,7 @@ export const blogSpaceProjectRow = {
               {
                 type: "text",
                 variant: "bodyLarge",
-                text: "Built end to end as a solo project: React 19 with Redux Toolkit for global auth state, React Router v7 for routing and route protection, React Hook Form for form handling and validation, TinyMCE for rich text editing with light and dark theme sync, and Appwrite SDK 17 for all backend operations.",
+                text: "I put this together solo: React 19 with Redux Toolkit for global auth state, React Router v7 for routing and route protection, React Hook Form for form handling and validation, TinyMCE for rich text editing with light and dark theme sync, and Appwrite SDK 17 for all backend operations.",
               },
             ],
           },

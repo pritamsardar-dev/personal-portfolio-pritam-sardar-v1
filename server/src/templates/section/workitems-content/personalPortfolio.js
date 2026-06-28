@@ -226,7 +226,7 @@ export const personalPortfolioProjectRow = {
         ],
         overview: {
           variant: "bodyLarge",
-          text: "This site is the project. It is a production-grade full-stack application where every piece of visible content is stored in MongoDB and served through a structured API. The frontend renders it using a section and block renderer that maps CMS document type keys to React components. The admin panel is a floating, draggable, resizable editor built directly into the site, using flatten-based field editing with draft persistence in IndexedDB and live preview through a context-driven overlay. The tech stack is React 19, Vite 5, Tailwind CSS v4, Node.js, Express 5, and MongoDB.",
+          text: "This site doubles as the main project itself. Every piece of visible content is stored in MongoDB and served through a structured API. The frontend renders it using a section and block renderer that maps CMS document type keys to React components. The admin panel is a floating, draggable, resizable editor built directly into the site, using flatten-based field editing with draft persistence in IndexedDB and live preview through a context-driven overlay. The tech stack is React 19, Vite 5, Tailwind CSS v4, Node.js, Express 5, and MongoDB.",
         },
         description: [
           {
@@ -248,17 +248,17 @@ export const personalPortfolioProjectRow = {
               {
                 type: "text",
                 variant: "bodyLarge",
-                text: "This portfolio site is built as a full-stack production application, not a static site. Every piece of visible content is stored in MongoDB and fetched through a page, section, and block API. The frontend walks that data using a renderer pattern where PageRenderer resolves the active variant through a recursive resolveProps utility and BlockRenderer maps block type keys to React components. No page content is hardcoded in the frontend.",
+                text: "This portfolio site works as a full-stack application with a real backend, not a static site. Every piece of visible content is stored in MongoDB and fetched through a page, section, and block API. The frontend walks that data using a renderer pattern where PageRenderer resolves the active variant through a recursive resolveProps utility and BlockRenderer maps block type keys to React components. No page content is hardcoded in the frontend.",
               },
               {
                 type: "text",
                 variant: "bodyLarge",
-                text: "The defining architectural decision was to make MongoDB the single source of truth for all content and to build a live admin editor directly into the site rather than a separate CMS interface. The editor is a floating, draggable, resizable panel that renders as a React portal above the page. It flattens any selected CMS document to a dot-notation key-value map, renders each key as an inline editable field with image upload support, persists drafts to IndexedDB so images survive page reloads, and provides live preview through a context-driven overlay that replaces the section's fetched data with the current draft state.",
+                text: "The main decision early on was to make MongoDB the single source of truth for the content, and to build a live admin editor directly into the site instead of using a separate CMS interface. The editor is a floating, draggable, resizable panel that renders as a React portal above the page. It flattens any selected CMS document to a dot-notation key-value map, renders each key as an inline editable field with image upload support, persists drafts to IndexedDB so images survive page reloads, and provides live preview through a context-driven overlay that replaces the section's fetched data with the current draft state.",
               },
               {
                 type: "text",
                 variant: "bodyLarge",
-                text: "Built end to end as a solo project: Mongoose schema design with resolveProps-compatible variant data structures, MongoDB aggregation pipelines for work item queries and IP-hashed view counting, Cloudinary upload and delete lifecycle management across all admin media endpoints, JWT authentication with httpOnly cookies, Resend API email integration for contact form auto-replies, a design token system built on CSS custom properties with full dark and light theme support, and a React frontend covering nine distinct pages with skeleton loading states for every section and block type.",
+                text: "I built this alone from start to finish. That included Mongoose schema design with variant compatible data structures, MongoDB aggregation pipelines for work item queries and view counting, Cloudinary upload and delete handling across admin media endpoints, JWT authentication with httpOnly cookies, Resend email integration for contact form replies, a CSS custom property based design token system with dark and light themes, and a React frontend across nine pages with skeleton loading for every section.",
               },
             ],
           },
@@ -305,7 +305,7 @@ export const personalPortfolioProjectRow = {
                 },
                 type: "text",
                 variant: "bodyLarge",
-                text: "The goal was to build a portfolio site that is itself a demonstration of full-stack capability, not just a static page with project screenshots. Every technical decision had to be justifiable as production-grade work.",
+                text: "The goal here was for the portfolio site itself to show full-stack work, not just list project screenshots on a static page. Every technical decision had to hold up as something I would stand behind.",
               },
               {
                 enabled: {
@@ -332,7 +332,7 @@ export const personalPortfolioProjectRow = {
                 },
                 type: "text",
                 variant: "bodyLarge",
-                text: "These goals came from wanting the site to answer a more useful question than a static portfolio does. A static site answers what projects were built. A production-grade application shows how they were built and whether those same approaches hold up under real constraints.",
+                text: "These goals came from wanting the site to answer a different question than a static portfolio usually does. A static site shows what projects were built. This one also shows how they were built, and whether those same decisions hold up under real constraints.",
               },
             ],
           },
@@ -715,7 +715,7 @@ export const personalPortfolioProjectRow = {
                 },
                 type: "text",
                 variant: "bodyLarge",
-                text: "By the end this became a site that demonstrates the engineering decisions behind it as much as it presents the projects on it. The admin editor, the renderer architecture, the theme system, and the aggregation pipelines are all visible in the source code and testable on the live site.",
+                text: "By the end this site ended up showing the engineering decisions behind it just as much as it shows the projects listed on it. The admin editor, the renderer architecture, the theme system, and the aggregation pipelines are all visible in the source code and testable on the live site.",
               },
             ],
           },

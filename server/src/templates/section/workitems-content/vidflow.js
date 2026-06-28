@@ -267,7 +267,7 @@ export const vidFlowProjectRow = {
         ],
         overview: {
           variant: "bodyLarge",
-          text: "VidFlow is a solo portfolio project building the backend REST API for a video streaming platform. The API covers user authentication with JWT access and refresh tokens stored in httpOnly cookies, avatar and cover image management through Cloudinary with lifecycle cleanup of old assets on every update, channel profiles with subscriber counts and subscription status resolved via MongoDB aggregation pipelines, and watch history populated with nested video and owner data in a single round trip. The Figma designs for the frontend are complete and cover every feature screen. A React implementation is planned for the next release.",
+          text: "VidFlow is the backend REST API for a video streaming platform. The API covers user authentication with JWT access and refresh tokens stored in httpOnly cookies, avatar and cover image management through Cloudinary with lifecycle cleanup of old assets on every update, channel profiles with subscriber counts and subscription status resolved via MongoDB aggregation pipelines, and watch history populated with nested video and owner data in a single round trip. The Figma designs for the frontend are complete and cover every feature screen. A React implementation is planned for the next release.",
         },
         description: [
           {
@@ -299,7 +299,7 @@ export const vidFlowProjectRow = {
               {
                 type: "text",
                 variant: "bodyLarge",
-                text: "Built as a solo project end to end, covering MongoDB schema design with pre-save password hashing and instance methods for token generation, two-stage aggregation pipelines for channel and history data, Cloudinary upload and delete lifecycle management across all media endpoints, JWT verification middleware, and a standardized error and response wrapper applied consistently across every route.",
+                text: "I built this solo from the ground up, covering MongoDB schema design with pre-save password hashing and instance methods for token generation, two-stage aggregation pipelines for channel and history data, Cloudinary upload and delete lifecycle management across all media endpoints, JWT verification middleware, and a standardized error and response wrapper applied consistently across every route.",
               },
             ],
           },

@@ -154,7 +154,7 @@ export const taskFlowProjectRow = {
         ],
         overview: {
           variant: "bodyLarge",
-          text: "TaskFlow is a solo portfolio project and a client-side task manager built with React 19 and Vite 5. It runs entirely in the browser with no backend server. Tasks, timer state, daily time totals, and saved templates all persist through localStorage. The app supports real-time timer tracking with wall-clock accuracy across page reloads and tab switches, priority and status filtering, five date range presets plus a custom calendar picker, and CSV or JSON export.",
+          text: "TaskFlow is a client-side task manager built with React 19 and Vite 5. It runs entirely in the browser with no backend server. Tasks, timer state, daily time totals, and saved templates all persist through localStorage. The app supports real-time timer tracking with wall-clock accuracy across page reloads and tab switches, priority and status filtering, five date range presets plus a custom calendar picker, and CSV or JSON export.",
         },
         description: [
           {
@@ -186,7 +186,7 @@ export const taskFlowProjectRow = {
               {
                 type: "text",
                 variant: "bodyLarge",
-                text: "Built end to end as a solo project: React 19 with custom hooks for all state logic, Tailwind CSS v4 with CSS custom properties for light and dark theming, and no third-party state management or UI component libraries.",
+                text: "Every part of this was built solo: React 19 with custom hooks for all state logic, Tailwind CSS v4 with CSS custom properties for light and dark theming, and no third-party state management or UI component libraries.",
               },
             ],
           },
