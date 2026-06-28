@@ -48,8 +48,8 @@ export const blogSpaceProjectRow = {
               light: { src: "images/blogspace/blogspace-hero-light.png", public_id: "" },
               dark: { src: "images/blogspace/blogspace-hero-dark.png", public_id: "" },
             },
-            alt: "BlogSpace home page showing the hero section with platform tagline, Explore Posts and Write a Post buttons, a hero illustration, and a grid of featured post cards below with title, author, date, and image",
-            caption: "The home page. The hero section shows the platform description and two primary actions. Below it, the latest active posts are displayed in a three-column card grid. Each card shows the featured image, author, date, title, and a text preview stripped from the HTML content.",
+            alt: "BlogSpace site cover image showing three device frames in light mode: a desktop screen with the home page, a tablet screen with the all posts page, and a mobile screen with a post detail page",
+            caption: "The site cover image shown across three device frames. The desktop frame shows the home page with the hero section and a grid of featured post cards. The tablet frame shows the all posts page with the paginated post grid and total post count. The mobile frame shows a post detail page, similar to a video detail layout, with the title, featured image, and parsed rich text content.",
           },
           {
             id: "feat-all-posts",
@@ -207,7 +207,7 @@ export const blogSpaceProjectRow = {
               {
                 type: "text",
                 variant: "bodyLarge",
-                text: "I put this together solo: React 19 with Redux Toolkit for global auth state, React Router v7 for routing and route protection, React Hook Form for form handling and validation, TinyMCE for rich text editing with light and dark theme sync, and Appwrite SDK 17 for all backend operations.",
+                text: "I built this with React 19 and Redux Toolkit for global auth state, React Router v7 for routing and route protection, React Hook Form for form handling and validation, TinyMCE for rich text editing with light and dark theme sync, and Appwrite SDK 17 for all backend operations.",
               },
             ],
           },

@@ -47,8 +47,8 @@ export const taskFlowProjectRow = {
               light: { src: "images/taskflow/taskflow-hero-light.png", public_id: "" },
               dark: { src: "images/taskflow/taskflow-hero-dark.png", public_id: "" },
             },
-            alt: "TaskFlow main interface showing the Today task list with a collapsed sidebar, task cards containing priority pills, editable timer displays, play and pause controls, progress indicators, and a completion checkbox on each card",
-            caption: "The main task view. Each card shows the task name, details, priority, target time, a running timer with play and pause controls, a progress indicator that fills as spent time approaches the target, and a completion checkbox. The sidebar collapses to icons on narrower viewports and the card grid switches to a single column on mobile.",
+            alt: "TaskFlow site cover image showing three device frames in light mode: a desktop screen with the main task list page, a tablet screen with the analytics page, and a mobile screen with the same task list page in its responsive mobile layout",
+            caption: "The site cover image shown across three device frames. The desktop frame shows the main task list page with task cards containing priority pills, timers, and progress indicators. The tablet frame shows the analytics page with stat cards, the daily hours grid, and the productivity curve. The mobile frame shows the same task list page in its responsive single-column layout, with the card grid adapting cleanly to the smaller screen.",
           },
           {
             id: "feat-tasks-week",
@@ -186,7 +186,7 @@ export const taskFlowProjectRow = {
               {
                 type: "text",
                 variant: "bodyLarge",
-                text: "Every part of this was built solo: React 19 with custom hooks for all state logic, Tailwind CSS v4 with CSS custom properties for light and dark theming, and no third-party state management or UI component libraries.",
+                text: "This was built with React 19 using custom hooks for all state logic, Tailwind CSS v4 with CSS custom properties for light and dark theming, and no third-party state management or UI component libraries.",
               },
             ],
           },

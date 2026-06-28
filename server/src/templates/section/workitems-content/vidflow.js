@@ -48,8 +48,8 @@ export const vidFlowProjectRow = {
               light: { src: "images/vidflow/vidflow-hero-light.png", public_id: "" },
               dark: { src: "images/vidflow/vidflow-hero-dark.png", public_id: "" },
             },
-            alt: "VidFlow shown across laptop, tablet, and mobile screens displaying the home feed in light mode",
-            caption: "VidFlow across screen sizes. The full UI was designed in Figma before a single line of backend code was written, covering every feature screen from the home feed to channel analytics. The screenshots shown throughout this case study are from those completed designs. The backend is the full scope of this release. The React frontend implementation is planned for the next version.",
+            alt: "VidFlow site cover image showing three device frames in light mode: a desktop screen with the home feed, a tablet screen with the video detail page, and a mobile screen with the channel management panel for videos",
+            caption: "The site cover image shown across three device frames. The desktop frame shows the home feed, similar to a YouTube-style home page, with video cards showing thumbnail, title, channel name, and view count. The tablet frame shows the video detail page with the video and description in a large left column and a suggested videos column on the right, the same layout pattern as YouTube. The mobile frame shows the channel management panel listing the user's own uploaded videos. The full UI was designed in Figma before any backend code was written. The backend is the complete scope of this release, with the React frontend implementation planned for the next version.",
           },
           {
             id: "feat-home",

@@ -47,8 +47,8 @@ export const pulmoAiProjectRow = {
               light: { src: "images/pulmoai/pulmoai-hero-light.png", public_id: "" },
               dark: { src: "images/pulmoai/pulmoai-hero-dark.png", public_id: "" },
             },
-            alt: "Pulmo AI main interface showing the two-panel diagnosis layout with file upload on the left and empty output state on the right",
-            caption: "The main diagnosis interface. The left panel handles WAV file upload and submission. The right panel shows the diagnosis result with severity badge, clinical description, per-sample confidence scores, and export options. On mobile the panels stack vertically.",
+            alt: "Pulmo AI site cover image showing three device frames in light mode: a desktop screen with the diagnosis page, a tablet screen with the samples page, and a mobile screen with the about page",
+            caption: "The site cover image shown across three device frames. The desktop frame shows the diagnosis page with the file upload panel on the left and the diagnosis output panel on the right, including severity badge, clinical description, and per-sample confidence scores. The tablet frame shows the samples page with pre-loaded recordings for three conditions, each card showing whether the samples were held out of training. The mobile frame shows the about page covering the AI pipeline, the ICBHI 2017 training dataset, and the tech stack.",
           },
           {
             id: "feature-diagnose",

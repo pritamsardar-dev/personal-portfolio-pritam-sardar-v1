@@ -49,8 +49,8 @@ export const personalPortfolioProjectRow = {
               light: { src: "images/personal-portfolio/personal-portfolio-hero-light.png", public_id: "" },
               dark: { src: "images/personal-portfolio/personal-portfolio-hero-dark.png", public_id: "" },
             },
-            alt: "Personal portfolio site home page showing the hero section with a developer photo, intro text, heading, tagline, and call to action buttons in light mode",
-            caption: "The home page hero section. The text block on the left carries the intro label, heading, tagline, and CTA buttons. The image block on the right renders a developer photo with a brand-colored radial glow and a circular-to-transparent CSS mask blend. Both blocks are fully CMS-driven and editable through the admin panel without a code deploy.",
+            alt: "Personal portfolio site cover image showing three device frames in light mode: a desktop screen with the project view details page, a tablet screen with the projects listing page, and a mobile screen with the contact page",
+            caption: "The site cover image shown across three device frames. The desktop frame shows the project view details page with the full description column open on the left and a related projects list on the right, similar to a video detail layout. The tablet frame shows the projects listing page with project cards in a grid. The mobile frame shows the contact page with the contact form. All three pages render from the same MongoDB-backed CMS.",
           },
           {
             id: "feat-home",
@@ -258,7 +258,7 @@ export const personalPortfolioProjectRow = {
               {
                 type: "text",
                 variant: "bodyLarge",
-                text: "I built this alone from start to finish. That included Mongoose schema design with variant compatible data structures, MongoDB aggregation pipelines for work item queries and view counting, Cloudinary upload and delete handling across admin media endpoints, JWT authentication with httpOnly cookies, Resend email integration for contact form replies, a CSS custom property based design token system with dark and light themes, and a React frontend across nine pages with skeleton loading for every section.",
+                text: "I built this from start to finish. That included Mongoose schema design with variant compatible data structures, MongoDB aggregation pipelines for work item queries and view counting, Cloudinary upload and delete handling across admin media endpoints, JWT authentication with httpOnly cookies, Resend email integration for contact form replies, a CSS custom property based design token system with dark and light themes, and a React frontend across nine pages with skeleton loading for every section.",
               },
             ],
           },
