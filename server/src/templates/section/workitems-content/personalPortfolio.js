@@ -226,7 +226,7 @@ export const personalPortfolioProjectRow = {
         ],
         overview: {
           variant: "bodyLarge",
-          text: "This site doubles as the main project itself. Every piece of visible content is stored in MongoDB and served through a structured API. The frontend renders it using a section and block renderer that maps CMS document type keys to React components. The admin panel is a floating, draggable, resizable editor built directly into the site, using flatten-based field editing with draft persistence in IndexedDB and live preview through a context-driven overlay. The tech stack is React 19, Vite 5, Tailwind CSS v4, Node.js, Express 5, and MongoDB.",
+          text: "Personal Portfolio is a full stack CMS driven application built end to end, frontend and backend. Content is stored in MongoDB and fetched through a page, section, and block API. The frontend uses a renderer pattern, PageRenderer resolves the active variant and BlockRenderer maps block type keys to React components, no page content is hardcoded. The admin editor is a floating, draggable, resizable panel built as a React portal, with inline editable fields, image upload, IndexedDB draft persistence, and a live preview overlay.",
         },
         description: [
           {

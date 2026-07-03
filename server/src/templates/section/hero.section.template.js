@@ -434,16 +434,16 @@ export const heroSectionTemplate = {
                   text: "Portfolio",
                   color: "heading",
                 },
+                // {
+                //   text: "Projects",
+                //   color: "primary",
+                // },
+                // {
+                //   text: "&",
+                //   color: "heading",
+                // },
                 {
-                  text: "Projects",
-                  color: "primary",
-                },
-                {
-                  text: "& Work",
-                  color: "heading",
-                },
-                {
-                  text: "Experience",
+                  text: "Projects & Experience",
                   color: "primary",
                 },
               ],
@@ -516,16 +516,16 @@ export const heroSectionTemplate = {
                   text: "For",
                   color: "heading",
                 },
+                // {
+                //   text: "Questions",
+                //   color: "primary",
+                // },
+                // {
+                //   text: "or",
+                //   color: "heading",
+                // },
                 {
-                  text: "Questions",
-                  color: "primary",
-                },
-                {
-                  text: "or",
-                  color: "heading",
-                },
-                {
-                  text: "Interviews",
+                  text: "Questions or Interviews",
                   color: "primary",
                 },
               ],

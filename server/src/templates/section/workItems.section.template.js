@@ -291,7 +291,7 @@ export const workItemsSectionTemplate = {
           full: "primary",
         },
       },
-      label: "Live demo",
+      label: "Live Site",
       icon: "ChevronUpRight",
       action: "external",
     },
